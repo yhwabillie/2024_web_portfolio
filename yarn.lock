@@ -19,6 +19,7 @@ __metadata:
     gatsby-plugin-mdx: "npm:^5.13.1"
     gatsby-source-contentful: "npm:^8.13.2"
     gatsby-source-filesystem: "npm:^5.13.1"
+    node-addon-api: "npm:^8.0.0"
     prettier: "npm:^3.3.1"
     prettier-plugin-tailwindcss: "npm:^0.6.2"
     react: "npm:^18.2.0"
@@ -11427,6 +11428,15 @@ __metadata:
   dependencies:
     node-gyp: "npm:latest"
   checksum: 10c0/2e096ab079e3c46d33b0e252386e9c239c352f7cc6d75363d9a3c00bdff34c1a5da170da861917512843f213c32d024ced9dc9552b968029786480d18727ec66
+  languageName: node
+  linkType: hard
+
+"node-addon-api@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "node-addon-api@npm:8.0.0"
+  dependencies:
+    node-gyp: "npm:latest"
+  checksum: 10c0/20eb231362cc07c62d9839164473744d985be5d82685214f3750d990d9f61ef366e0ba112a766c925d640ed29b2a500b83568e895dc2444dcd5db01e615aac2b
   languageName: node
   linkType: hard
 
