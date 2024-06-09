@@ -18,8 +18,10 @@
   "dependencies": {
     "@mdx-js/react": "^3.0.1",
     "gatsby": "^5.13.5",
+    "gatsby-adapter-netlify": "^1.1.6",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-mdx": "^5.13.1",
+    "gatsby-plugin-typescript": "^5.13.1",
     "gatsby-source-contentful": "^8.13.2",
     "gatsby-source-filesystem": "^5.13.1",
     "node-addon-api": "^8.0.0",

@@ -47,7 +47,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
       <section>
         <h2>4. 문제 해결 문서</h2>
         <ul>
-          {data.allContentfulProblems.nodes.map((item, index) => {
+          {/* {data.allContentfulProblems.nodes.map((item, index) => {
             const date = new Date(`${item.createdAt}`)
 
             return (
@@ -58,7 +58,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
                 </Link>
               </li>
             )
-          })}
+          })} */}
         </ul>
       </section>
       <section>
@@ -80,14 +80,6 @@ export const query = graphql`
     }
 
     allContentfulProject {
-      nodes {
-        id
-        title
-        createdAt
-      }
-    }
-
-    allContentfulProblems {
       nodes {
         id
         title
