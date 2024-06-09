@@ -1,4 +1,6 @@
 import * as React from 'react'
+import moment from 'moment'
+import 'moment/locale/ko'
 import { Link, graphql, type PageProps } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
@@ -20,7 +22,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
                   <span>{item.title}</span>
-                  <span>{date.toLocaleString()}</span>
+                  <span>{moment(item.createdAt).local().format(`YYYY-MM-DD A hh:mm:ss`)}</span>
                 </Link>
               </li>
             )
@@ -37,7 +39,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
               <li key={index}>
                 <Link to={`/side-project/${item.id}`}>
                   <span>{item.title}</span>
-                  <span>{date.toLocaleString()}</span>
+                  <span>{moment(item.createdAt).local().format(`YYYY-MM-DD a hh:mm:ss`)}</span>
                 </Link>
               </li>
             )
