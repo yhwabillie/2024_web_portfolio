@@ -1,0 +1,38 @@
+{
+  "name": "2024_web_portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "2024_web_portfolio",
+  "author": "yhwa93",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "dev": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@mdx-js/react": "^3.0.1",
+    "gatsby": "^5.13.5",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-mdx": "^5.13.1",
+    "gatsby-source-contentful": "^8.13.2",
+    "gatsby-source-filesystem": "^5.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "dotenv": "^16.4.5",
+    "prettier": "^3.3.1",
+    "prettier-plugin-tailwindcss": "^0.6.2",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.2.2"
+}
