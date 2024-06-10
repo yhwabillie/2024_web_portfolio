@@ -9,6 +9,7 @@ interface ILayoutProps {
 export default function Layout({ children, title }: ILayoutProps) {
   return (
     <div>
+      <strong>마지막 빌드:</strong>
       <header>
         <h1>
           <Link to="/">LOGO</Link>
