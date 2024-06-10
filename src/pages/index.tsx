@@ -23,9 +23,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
                   <span>{item.title}</span>
-                  <React.Suspense fallback={<div>로딩 중. . .</div>}>
-                    <RelativeDateTextComponent time={`${item.createdAt}`} />
-                  </React.Suspense>
+                  <span>{item.createdAt}</span>
                 </Link>
               </li>
             )
