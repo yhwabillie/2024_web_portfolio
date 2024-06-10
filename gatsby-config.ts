@@ -15,6 +15,7 @@ const config: GatsbyConfig = {
     `gatsby-plugin-mdx`,
     `gatsby-plugin-image`,
     `gatsby-adapter-netlify`,
+    `gatsby-buildtime-timezone`,
     {
       resolve: `gatsby-source-contentful`,
       options: {

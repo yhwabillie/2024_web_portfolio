@@ -1,14 +1,12 @@
 import * as React from 'react'
-import moment from 'moment'
-import 'moment/locale/ko'
 import { Link, graphql, type PageProps } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
+import moment from 'moment-timezone'
 
 export default function Page({ data }: PageProps<Queries.WorksQuery>) {
   // 다이나믹 임포트
   const RelativeDateTextComponent = React.lazy(() => import('../components/RelativeDateTextComponent'))
-
   return (
     <Layout title="메인 페이지">
       <section>
@@ -23,7 +21,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
                   <span>{item.title}</span>
-                  <span>{item.createdAt}</span>
+                  <span>{moment(item.createdAt).local().tz('Asia/Seoul').format(`YYYY-MM-DD A hh:mm:ss`)}</span>
                 </Link>
               </li>
             )
