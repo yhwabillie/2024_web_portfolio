@@ -31,7 +31,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
                   <strong>{item.title}</strong>
-                  <p>{`게시일: ${dayjs(item.createdAt).format('YYYY-MM-DD a hh:mm:ss')}`}</p>
+                  <p>{`게시일: ${dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}`}</p>
                   <p>{`업데이트: ${dayjs(item.updatedAt).fromNow()}`}</p>
                 </Link>
               </li>
