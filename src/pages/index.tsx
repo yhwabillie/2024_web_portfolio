@@ -3,23 +3,20 @@ import { Link, graphql, type PageProps } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import dayjs from 'dayjs'
-import 'dayjs/locale/ko'
+import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
 
-dayjs.locale('ko')
+dayjs.locale(ko)
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(relativeTime)
-
 // 클라이언트의 타임존으로 변경
 // dayjs.tz.setDefault('Asia/Seoul')
 dayjs.tz.setDefault()
 
 export default function Page({ data }: PageProps<Queries.WorksQuery>) {
-  // 다이나믹 임포트
-  // const RelativeDateTextComponent = React.lazy(() => import('../components/RelativeDateTextComponent'))
   return (
     <Layout title="메인 페이지">
       <section>
@@ -33,8 +30,9 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
             return (
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
-                  <span>{item.title}</span>
-                  <span>{dayjs(item.createdAt).fromNow()}</span>
+                  <strong>{item.title}</strong>
+                  <p>{`게시일: ${dayjs(item.createdAt).format('YYYY-MM-DD a hh:mm:ss')}`}</p>
+                  <p>{`업데이트: ${dayjs(item.updatedAt).fromNow()}`}</p>
                 </Link>
               </li>
             )
@@ -90,6 +88,7 @@ export const query = graphql`
         id
         title
         createdAt
+        updatedAt
       }
     }
 
