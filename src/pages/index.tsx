@@ -6,6 +6,9 @@ import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 
 export default function Page({ data }: PageProps<Queries.WorksQuery>) {
+  // 다이나믹 임포트
+  const RelativeDateTextComponent = React.lazy(() => import('../components/RelativeDateTextComponent'))
+
   return (
     <Layout title="메인 페이지">
       <section>
@@ -16,13 +19,13 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
         <h2>2. 경력사항</h2>
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
-            const date = new Date(`${item.createdAt}`)
-
             return (
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
                   <span>{item.title}</span>
-                  <span>{moment(item.createdAt).local().format(`YYYY-MM-DD A hh:mm:ss`)}</span>
+                  <React.Suspense fallback={<div>로딩 중. . .</div>}>
+                    <RelativeDateTextComponent time={`${item.createdAt}`} />
+                  </React.Suspense>
                 </Link>
               </li>
             )
@@ -32,7 +35,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
       <section>
         <h2>3. 사이드 프로젝트</h2>
         <ul>
-          {data.allContentfulProject.nodes.map((item, index) => {
+          {/* {data.allContentfulProject.nodes.map((item, index) => {
             const date = new Date(`${item.createdAt}`)
 
             return (
@@ -43,7 +46,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
                 </Link>
               </li>
             )
-          })}
+          })} */}
         </ul>
       </section>
       <section>
