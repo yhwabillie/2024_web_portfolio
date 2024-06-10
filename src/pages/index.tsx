@@ -11,6 +11,10 @@ dayjs.locale('ko')
 dayjs.extend(utc)
 dayjs.extend(timezone)
 
+// 클라이언트의 타임존으로 변경
+// dayjs.tz.setDefault('Asia/Seoul')
+dayjs.tz.setDefault()
+
 export default function Page({ data }: PageProps<Queries.WorksQuery>) {
   // 다이나믹 임포트
   // const RelativeDateTextComponent = React.lazy(() => import('../components/RelativeDateTextComponent'))
@@ -28,7 +32,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
                   <span>{item.title}</span>
-                  <span>{dayjs(item.createdAt).tz('Asia/Seoul').format('YYYY-MM-DD a hh:mm:ss')}</span>
+                  <span>{dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}</span>
                 </Link>
               </li>
             )
