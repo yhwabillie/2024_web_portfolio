@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Link, graphql, type PageProps } from 'gatsby'
+import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
 import Layout from '../components/Layout'
 import Seo from '../components/Seo'
 import dayjs from 'dayjs'
@@ -108,4 +108,4 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }: PageProps<Queries.WorksQuery>) => <Seo title="웹 포트폴리오" />
+export const Head: HeadFC = () => <Seo title="웹 포트폴리오" description="2024 웹 포트폴리오입니다." pathname="/" />

@@ -24,4 +24,10 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }: PageProps<Queries.WorkQuery>) => <Seo title={`${data.contentfulWork?.title}`} />
+export const Head = ({ data }: PageProps<Queries.WorkQuery>) => (
+  <Seo
+    title={`${data.contentfulWork?.title}`}
+    description={`${data.contentfulWork?.title}`}
+    pathname={`/work-experience/${data.contentfulWork?.id}`}
+  />
+)

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { PageProps, graphql } from 'gatsby'
+import { HeadFC, PageProps, graphql } from 'gatsby'
 import Seo from '../../components/Seo'
 import DetailLayout from '../../components/DetailLayout'
 
@@ -24,4 +24,6 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }: PageProps<Queries.ProjectQuery>) => <Seo title={`${data.contentfulProject?.title}`} />
+export const Head = ({ data }: PageProps<Queries.ProjectQuery>) => (
+  <Seo title={`${data.contentfulProject?.title}`} description={`${data.contentfulProject?.id}`} pathname="" />
+)
