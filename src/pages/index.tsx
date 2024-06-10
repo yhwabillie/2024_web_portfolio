@@ -13,8 +13,8 @@ dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(relativeTime)
 // 클라이언트의 타임존으로 변경
-// dayjs.tz.setDefault('Asia/Seoul')
-dayjs.tz.setDefault()
+dayjs.tz.setDefault('Asia/Seoul')
+// dayjs.tz.setDefault()
 
 export default function Page({ data }: PageProps<Queries.WorksQuery>) {
   return (
