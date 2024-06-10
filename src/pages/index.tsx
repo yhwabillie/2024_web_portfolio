@@ -6,10 +6,12 @@ import dayjs from 'dayjs'
 import 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.locale('ko')
 dayjs.extend(utc)
 dayjs.extend(timezone)
+dayjs.extend(relativeTime)
 
 // 클라이언트의 타임존으로 변경
 // dayjs.tz.setDefault('Asia/Seoul')
@@ -32,7 +34,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
               <li key={index}>
                 <Link to={`/work-experience/${item.id}`}>
                   <span>{item.title}</span>
-                  <span>{dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}</span>
+                  <span>{dayjs(item.createdAt).fromNow()}</span>
                 </Link>
               </li>
             )
