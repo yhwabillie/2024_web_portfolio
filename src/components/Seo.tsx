@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
 import { PageProps, graphql, useStaticQuery } from 'gatsby'
+import { DeepNonNullable } from 'utility-types'
+
 // import ogImage from '../images/open-graph/default-og.png'
 // import ogImage from 'images/open-graph/default-og.png'
 
@@ -15,7 +17,7 @@ interface ISeoProps {
 }
 
 export default function Seo({ title, description }: ISeoProps) {
-  const { site, file }: Queries.MetaDataQuery = useStaticQuery(graphql`
+  const { site, openGraphDefaultImage } = useStaticQuery<DeepNonNullable<Queries.MetaDataQuery>>(graphql`
     query MetaData {
       site {
         siteMetadata {
@@ -25,22 +27,20 @@ export default function Seo({ title, description }: ISeoProps) {
         }
       }
 
-      file(base: { eq: "default-og.png" }) {
+      openGraphDefaultImage: file(relativePath: { eq: "open-graph/default-og.png" }) {
         childImageSharp {
-          original {
-            height
-            width
-            src
-          }
+          gatsbyImageData(layout: FIXED, width: 1200, height: 580)
         }
       }
     }
   `)
 
+  console.log(openGraphDefaultImage.childImageSharp.gatsbyImageData)
+
   return (
     <>
       {/* Metadata */}
-      <title>{site?.siteMetadata?.title}</title>
+      {/* <title>{site?.siteMetadata?.title}</title>
       <meta name="description" content={site?.siteMetadata?.description!} />
       <meta property="og:title" content={site?.siteMetadata?.title!} />
       <meta name="og:description" content={site?.siteMetadata?.description!} />
@@ -48,7 +48,8 @@ export default function Seo({ title, description }: ISeoProps) {
       <meta name="og:image" content={`${site?.siteMetadata?.siteUrl}${file?.childImageSharp?.original?.src}`} />
       <meta property="og:site_name" content="웹 포트폴리오 오픈 그래프 테스트" />
       <meta property="og:image:type" content="image/png" />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content="website" /> */}
+
       {/* <title>{site?.siteMetadata?.title || title}</title>
       <meta name="description" content={site?.siteMetadata?.description} />
       <meta name="image" content={`${site.siteMetadata.siteUrl}${file.childImageSharp.gatsbyImageData.images.fallback.src}`} /> */}
