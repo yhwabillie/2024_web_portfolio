@@ -15,7 +15,7 @@ interface ISeoProps {
 }
 
 export default function Seo({ title, description }: ISeoProps) {
-  const { site, file } = useStaticQuery(graphql`
+  const { site, file }: Queries.MetaDataQuery = useStaticQuery(graphql`
     query MetaData {
       site {
         siteMetadata {
@@ -27,7 +27,11 @@ export default function Seo({ title, description }: ISeoProps) {
 
       file(base: { eq: "default-og.png" }) {
         childImageSharp {
-          gatsbyImageData
+          original {
+            height
+            width
+            src
+          }
         }
       }
     }
@@ -36,9 +40,18 @@ export default function Seo({ title, description }: ISeoProps) {
   return (
     <>
       {/* Metadata */}
-      <title>{title || site.siteMetadata.title}</title>
-      <meta name="description" content={description || site.siteMetadata.description} />
-      <meta name="image" content={`${site.siteMetadata.siteUrl}${file.childImageSharp.gatsbyImageData.images.fallback.src}`} />
+      <title>{site?.siteMetadata?.title}</title>
+      <meta name="description" content={site?.siteMetadata?.description!} />
+      <meta property="og:title" content={site?.siteMetadata?.title!} />
+      <meta name="og:description" content={site?.siteMetadata?.description!} />
+      <meta property="og:url" content={`${site?.siteMetadata?.siteUrl}`} />
+      <meta name="og:image" content={`${site?.siteMetadata?.siteUrl}${file?.childImageSharp?.original?.src}`} />
+      <meta property="og:site_name" content="웹 포트폴리오 오픈 그래프 테스트" />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:type" content="website" />
+      {/* <title>{site?.siteMetadata?.title || title}</title>
+      <meta name="description" content={site?.siteMetadata?.description} />
+      <meta name="image" content={`${site.siteMetadata.siteUrl}${file.childImageSharp.gatsbyImageData.images.fallback.src}`} /> */}
       {/* <meta name="author" content="younhwa" />
       <meta name="generator" content="Gatsby 5.13.5" />
       <meta
@@ -52,7 +65,7 @@ export default function Seo({ title, description }: ISeoProps) {
       <meta name="googlebot" content="index, follow" /> */}
 
       {/* Open Graph */}
-      <meta property="og:image" content={`${site.siteMetadata.siteUrl}${file.childImageSharp.gatsbyImageData.images.fallback.src}`} />
+      {/* <meta property="og:image" content={`${site.siteMetadata.siteUrl}${file.childImageSharp.gatsbyImageData.images.fallback.src}`} />
       <meta property="og:url" content={`${site.siteMetadata.siteUrl}${file.childImageSharp.gatsbyImageData.images.fallback.src}`} />
       <meta property="og:site_name" content="웹 포트폴리오 오픈 그래프 테스트" />
       <meta property="og:image:type" content="image/png" />
@@ -60,7 +73,7 @@ export default function Seo({ title, description }: ISeoProps) {
       <meta property="og:image:height" content={file.childImageSharp.gatsbyImageData.height} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title || site.siteMetadata.title} />
-      <meta property="og:description" content={description || site.siteMetadata.description} />
+      <meta property="og:description" content={description || site.siteMetadata.description} /> */}
 
       {/* Twitter */}
       {/* <meta name="twitter:url" content={seo.url} />
