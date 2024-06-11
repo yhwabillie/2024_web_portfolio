@@ -3,9 +3,9 @@ require('dotenv').config()
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `jpatrickfulton.dev`,
-    author: `J. Patrick Fulton`,
-    description: `A personal blog on occasionally useful technical topics.`,
+    title: `2024 웹 포트폴리오`,
+    author: `테스터1`,
+    description: `오픈 그래프 디스크립션 테스트 아아`,
     image: `/icon.png`,
     // siteUrl: 'http://localhost:8000',
     siteUrl: `https://main--snazzy-medovik-177b8e.netlify.app`,
