@@ -108,4 +108,4 @@ export const query = graphql`
   }
 `
 
-export const Head: HeadFC = () => <Seo openGraphImageSrc="/" />
+export const Head: HeadFC = () => <Seo title="" description="" openGraphImageSrc="/" />

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
-import { graphql, useStaticQuery } from 'gatsby'
+import { PageProps, graphql, useStaticQuery } from 'gatsby'
 // import ogImage from '../images/open-graph/default-og.png'
 // import ogImage from 'images/open-graph/default-og.png'
 
@@ -9,14 +9,14 @@ import { graphql, useStaticQuery } from 'gatsby'
 //gatsby head API 적용
 
 interface ISeoProps {
-  title?: string
-  description?: string
+  title: string
+  description: string
   openGraphImageSrc: string
 }
 
 export default function Seo({ title, description }: ISeoProps) {
   const { site, file } = useStaticQuery(graphql`
-    query MyQuery {
+    query MetaData {
       site {
         siteMetadata {
           title

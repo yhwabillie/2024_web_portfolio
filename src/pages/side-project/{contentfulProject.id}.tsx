@@ -25,5 +25,5 @@ export const query = graphql`
 `
 
 export const Head = ({ data }: PageProps<Queries.ProjectQuery>) => (
-  <Seo title={`${data.contentfulProject?.title}`} description={`${data.contentfulProject?.id}`} pathname="" />
+  <Seo title={`${data.contentfulProject?.title}`} description={`${data.contentfulProject?.id}`} openGraphImageSrc="" />
 )
