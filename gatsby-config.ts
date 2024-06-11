@@ -7,6 +7,7 @@ const config: GatsbyConfig = {
     author: `J. Patrick Fulton`,
     description: `A personal blog on occasionally useful technical topics.`,
     image: `/icon.png`,
+    // siteUrl: 'http://localhost:8000',
     siteUrl: `https://main--snazzy-medovik-177b8e.netlify.app`,
   },
   graphqlTypegen: true,
