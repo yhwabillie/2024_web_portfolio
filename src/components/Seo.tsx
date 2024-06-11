@@ -40,15 +40,15 @@ export default function Seo({ title, description }: ISeoProps) {
   return (
     <>
       {/* Metadata */}
-      {/* <title>{site?.siteMetadata?.title}</title>
+      <title>{site?.siteMetadata?.title}</title>
       <meta name="description" content={site?.siteMetadata?.description!} />
       <meta property="og:title" content={site?.siteMetadata?.title!} />
       <meta name="og:description" content={site?.siteMetadata?.description!} />
       <meta property="og:url" content={`${site?.siteMetadata?.siteUrl}`} />
-      <meta name="og:image" content={`${site?.siteMetadata?.siteUrl}${file?.childImageSharp?.original?.src}`} />
+      <meta name="og:image" content={`${site?.siteMetadata?.siteUrl}${openGraphDefaultImage.publicURL}`} />
       <meta property="og:site_name" content="웹 포트폴리오 오픈 그래프 테스트" />
       <meta property="og:image:type" content="image/png" />
-      <meta property="og:type" content="website" /> */}
+      <meta property="og:type" content="website" />
 
       {/* <title>{site?.siteMetadata?.title || title}</title>
       <meta name="description" content={site?.siteMetadata?.description} />
