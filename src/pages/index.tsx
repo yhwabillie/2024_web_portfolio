@@ -108,4 +108,4 @@ export const query = graphql`
   }
 `
 
-export const Head: HeadFC = () => <Seo title="웹 포트폴리오" description="2024 웹 포트폴리오입니다." pathname="/" />
+export const Head: HeadFC = () => <Seo openGraphImageSrc="/" />
