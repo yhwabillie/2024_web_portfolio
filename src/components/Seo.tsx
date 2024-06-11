@@ -28,14 +28,14 @@ export default function Seo({ title, description }: ISeoProps) {
       }
 
       openGraphDefaultImage: file(relativePath: { eq: "open-graph/default-og.png" }) {
-        childImageSharp {
-          gatsbyImageData(layout: FIXED, width: 1200, height: 580)
-        }
+        publicURL
+        relativePath
+        name
       }
     }
   `)
 
-  console.log(openGraphDefaultImage.childImageSharp.gatsbyImageData)
+  console.log(openGraphDefaultImage)
 
   return (
     <>
