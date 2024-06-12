@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { PageProps, graphql } from 'gatsby'
-import Seo from '../../components/Seo'
 import DetailLayout from '../../components/DetailLayout'
+import SEO from '../../components/Seo'
 
 export default function WorkDetail({ data }: PageProps<Queries.WorkQuery>) {
   return <DetailLayout category="work-experience" title={`${data.contentfulWork?.title}`} nextList={data.allContentfulWork.nodes} />
@@ -24,4 +24,4 @@ export const query = graphql`
   }
 `
 
-export const Head = () => <Seo />
+export const Head = () => <SEO />

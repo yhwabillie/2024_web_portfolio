@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
+import { HeadFC, HeadProps, Link, graphql, type PageProps } from 'gatsby'
 import Layout from '../components/Layout'
-import Seo from '../components/Seo'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import SEO from '../components/Seo'
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -14,9 +14,8 @@ dayjs.extend(timezone)
 dayjs.extend(relativeTime)
 // 클라이언트의 타임존으로 변경
 dayjs.tz.setDefault('Asia/Seoul')
-// dayjs.tz.setDefault()
 
-export default function Page({ data }: PageProps<Queries.WorksQuery>) {
+export default function Page({ data, pageContext }: PageProps<Queries.PageQuery>) {
   return (
     <Layout title="메인 페이지">
       <section>
@@ -82,7 +81,7 @@ export default function Page({ data }: PageProps<Queries.WorksQuery>) {
 }
 
 export const query = graphql`
-  query Works {
+  query Page {
     allContentfulWork {
       nodes {
         id
@@ -103,9 +102,12 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
+        image
+        description
       }
     }
   }
 `
 
-export const Head: HeadFC = () => <Seo />
+export const Head: HeadFC = () => <SEO title="메인페이지" description="메인페이지 입니다." />

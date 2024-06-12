@@ -4,10 +4,10 @@ require('dotenv').config({
 })
 
 const config: GatsbyConfig = {
+  //메타데이터 정보 (동적 메타데이터)
   siteMetadata: {
-    title: `2024 웹 포트폴리오`,
-    author: `테스터1`,
-    description: `오픈 그래프 디스크립션 테스트 아아`,
+    title: `웹사이트 이름`,
+    description: `디폴트 메타데이터 디스크립션 설명입니다.`,
     image: `/icon.png`,
     siteUrl: process.env.GATSBY_API_URL,
   },

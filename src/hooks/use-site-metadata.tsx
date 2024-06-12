@@ -1,8 +1,10 @@
 import { graphql, useStaticQuery } from 'gatsby'
+import { DeepNonNullable } from 'utility-types'
 
 export const useSiteMetadata = () => {
-  const data = useStaticQuery(graphql`
-    query {
+  // DeepNonNullable: 모든 속성은 null이나 undefined 값을 가질 수 없게 됩니다.
+  const data = useStaticQuery<DeepNonNullable<Queries.MetaDataQuery>>(graphql`
+    query MetaData {
       site {
         siteMetadata {
           title
@@ -11,8 +13,18 @@ export const useSiteMetadata = () => {
           siteUrl
         }
       }
+
+      file(relativePath: { eq: "open-graph/default-og.png" }) {
+        publicURL
+        internal {
+          mediaType
+        }
+      }
     }
   `)
 
-  return data.site.siteMetadata
+  return {
+    metadataDefaultInfo: data.site,
+    openGraphDefaultImage: data.file,
+  }
 }
