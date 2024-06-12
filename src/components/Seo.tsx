@@ -27,12 +27,6 @@ export default function Seo({ title, description }: ISeoProps) {
         publicURL
         relativePath
         name
-        childImageSharp {
-          original {
-            width
-            height
-          }
-        }
         internal {
           mediaType
         }
@@ -57,8 +51,8 @@ export default function Seo({ title, description }: ISeoProps) {
       <meta name="og:description" content={site?.siteMetadata?.description} />
       <meta property="og:site_name" content="웹 포트폴리오 오픈 그래프 테스트" />
       <meta property="og:locale" content="ko" />
-      <meta property="og:image:width" content={`${openGraphDefaultImage.childImageSharp.original.width}`} />
-      <meta property="og:image:height" content={`${openGraphDefaultImage.childImageSharp.original.height}`} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="580" />
       <meta property="og:image:type" content={openGraphDefaultImage.internal.mediaType} />
 
       {/* <title>{site?.siteMetadata?.title || title}</title>
