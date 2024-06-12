@@ -20,7 +20,7 @@ export default function Page({ data, pageContext }: PageProps<Queries.PageQuery>
     <Layout title="메인 페이지">
       <section>
         <h2>1. 소개</h2>
-        <p>어쩌고한 개발자입니다.</p>
+        <p>어쩌고한 개발잡니다</p>
       </section>
       <section>
         <h2>2. 경력사항</h2>
@@ -96,15 +96,6 @@ export const query = graphql`
         id
         title
         createdAt
-      }
-    }
-
-    site {
-      siteMetadata {
-        title
-        siteUrl
-        image
-        description
       }
     }
   }

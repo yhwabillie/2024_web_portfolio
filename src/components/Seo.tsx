@@ -5,17 +5,17 @@ interface ISEOProps {
   title?: string
   description?: string
   imagePath?: string
-  siteUrl?: string
+  pathname?: string
 }
 
-export default function SEO({ title, description, imagePath, siteUrl }: ISEOProps) {
+export default function SEO({ title, description, imagePath, pathname }: ISEOProps) {
   const { metadataDefaultInfo, openGraphDefaultImage } = useSiteMetadata()
 
   //기본 메타데이터 정제
   const defaultSiteMetaData = {
     title: metadataDefaultInfo.siteMetadata.title,
     description: metadataDefaultInfo.siteMetadata.description,
-    siteUrl: metadataDefaultInfo.siteMetadata.siteUrl,
+    ogUrl: metadataDefaultInfo.siteMetadata.siteUrl,
     ogImageType: openGraphDefaultImage.internal.mediaType,
     ogImagePath: openGraphDefaultImage.publicURL,
   }
@@ -24,9 +24,9 @@ export default function SEO({ title, description, imagePath, siteUrl }: ISEOProp
   const seo = {
     title: title ? `${title} | ${defaultSiteMetaData.title}` : defaultSiteMetaData.title,
     description: description ? description : defaultSiteMetaData.description,
-    og_url: siteUrl ? siteUrl : `${defaultSiteMetaData.siteUrl}`,
+    og_url: pathname ? `${defaultSiteMetaData.ogUrl}${pathname}` : `${defaultSiteMetaData.ogUrl}`,
     og_image_type: defaultSiteMetaData.ogImageType,
-    og_image_path: imagePath ? `${defaultSiteMetaData.siteUrl}${imagePath}` : `${defaultSiteMetaData.siteUrl}${openGraphDefaultImage.publicURL}`,
+    og_image_path: imagePath ? `${defaultSiteMetaData.ogUrl}${imagePath}` : `${defaultSiteMetaData.ogUrl}${openGraphDefaultImage.publicURL}`,
   }
 
   return (
@@ -67,6 +67,8 @@ export default function SEO({ title, description, imagePath, siteUrl }: ISEOProp
       <meta name="twitter:title" content={seo.title} />
       <meta name="twitter:description" content={seo.description} />
       <meta name="twitter:image" content={seo.og_image_path} />
+
+      {/* 페이지 타이틀 */}
       <title>{seo.title}</title>
     </>
   )
