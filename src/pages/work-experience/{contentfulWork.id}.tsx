@@ -24,6 +24,4 @@ export const query = graphql`
   }
 `
 
-export const Head = ({ data }: PageProps<Queries.WorkQuery>) => (
-  <Seo title={`${data.contentfulWork?.title}`} description={`${data.contentfulWork?.title}`} openGraphImageSrc="" />
-)
+export const Head = () => <Seo />
