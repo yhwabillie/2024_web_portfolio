@@ -33,6 +33,6 @@ export const Head: HeadFC<Queries.WorkDetailQuery> = ({ data, location }) => (
     title={data.contentfulWork?.title!}
     pathname={location.pathname}
     description={data.contentfulWork?.description!}
-    // imagePath={data.contentfulWork?.ogImage?.publicUrl}
+    imagePath={data.contentfulWork?.ogImage?.publicUrl}
   />
 )
