@@ -1,10 +1,6 @@
 import * as React from 'react'
-import { useSiteMetadata } from '../hooks/use-site-metadata'
-import { PageProps, graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 import { DeepNonNullable } from 'utility-types'
-
-// import ogImage from '../images/open-graph/default-og.png'
-// import ogImage from 'images/open-graph/default-og.png'
 
 //SEO 컴포넌트
 //head 내부 요소를 담고 있는 컴포넌트를 export
@@ -31,6 +27,12 @@ export default function Seo({ title, description }: ISeoProps) {
         publicURL
         relativePath
         name
+        childImageSharp {
+          original {
+            width
+            height
+          }
+        }
         internal {
           mediaType
         }
@@ -47,7 +49,7 @@ export default function Seo({ title, description }: ISeoProps) {
       <meta name="description" content={site?.siteMetadata?.description} />
       <meta name="image" content={`${site?.siteMetadata?.siteUrl}${openGraphDefaultImage.publicURL}`} />
 
-      {/* OG */}
+      {/* Open Graph - 기본 */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={`${site?.siteMetadata?.siteUrl}`} />
       <meta property="og:title" content={site?.siteMetadata?.title} />
@@ -55,8 +57,8 @@ export default function Seo({ title, description }: ISeoProps) {
       <meta name="og:description" content={site?.siteMetadata?.description} />
       <meta property="og:site_name" content="웹 포트폴리오 오픈 그래프 테스트" />
       <meta property="og:locale" content="ko" />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="580" />
+      <meta property="og:image:width" content={`${openGraphDefaultImage.childImageSharp.original.width}`} />
+      <meta property="og:image:height" content={`${openGraphDefaultImage.childImageSharp.original.height}`} />
       <meta property="og:image:type" content={openGraphDefaultImage.internal.mediaType} />
 
       {/* <title>{site?.siteMetadata?.title || title}</title>

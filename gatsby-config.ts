@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from 'gatsby'
-require('dotenv').config()
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -7,8 +9,7 @@ const config: GatsbyConfig = {
     author: `테스터1`,
     description: `오픈 그래프 디스크립션 테스트 아아`,
     image: `/icon.png`,
-    // siteUrl: 'http://localhost:8000',
-    siteUrl: `https://main--snazzy-medovik-177b8e.netlify.app`,
+    siteUrl: process.env.GATSBY_API_URL,
   },
   graphqlTypegen: true,
   plugins: [
