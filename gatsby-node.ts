@@ -2,38 +2,50 @@ import { GatsbyNode } from 'gatsby'
 import path from 'path'
 
 //category별 디테일 페이지 생성
-export const createPages: GatsbyNode['createPages'] = ({ graphql, actions, reporter }) => {
+export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
   const categoryPostTemplate = path.resolve(`src/templates/category-post.tsx`)
 
-  return graphql<Queries.AllWorkNodesQuery>(`
+  const result = await graphql<Queries.AllWorkNodesQuery>(`
     query AllWorkNodes {
       allContentfulWork {
         nodes {
-          category
+          id
           title
           slug
+          category
           createdAt
+          description
           ogImage {
             publicUrl
           }
         }
       }
     }
-  `).then((result) => {
-    if (result.errors) {
-      throw result.errors
-    }
+  `)
 
-    // Create blog post pages.
-    result.data?.allContentfulWork.nodes.forEach((node) => {
-      createPage({
-        path: `${node.category}/${node.slug}`,
-        component: categoryPostTemplate,
-        context: {
-          slug: node.slug,
-        },
-      })
+  if (result.errors) {
+    reporter.panicOnBuild('🚨 Error: Loading "createPages" Query')
+  }
+
+  // AllWorkNodes 데이터
+  const allWorks = result.data?.allContentfulWork.nodes || []
+
+  allWorks.forEach((node) => {
+    //template pageContext data
+    createPage({
+      path: `${node.category}/${node.slug}`,
+      component: categoryPostTemplate,
+      context: {
+        id: node.id,
+        title: node.title,
+        slug: node.slug,
+        category: node.category,
+        createdAt: node.createdAt,
+        description: node.description,
+        ogImageUrl: node.ogImage?.publicUrl,
+        workList: allWorks.filter((item) => item.id !== node.id),
+      },
     })
   })
 }
