@@ -4,7 +4,9 @@ import { useSiteMetadata } from '../hooks/use-site-metadata'
 interface ISEOProps {
   title?: string
   description?: string
-  imagePath?: string
+  imagePath?: {
+    publicUrl: string
+  }
   pathname?: string
 }
 

@@ -2,13 +2,22 @@ import * as React from 'react'
 import DetailLayout from '../components/DetailLayout'
 import SEO from '../components/Seo'
 
-type PageContextType = {
+export type WorkListType = {
+  id: string
   category: string
   createdAt: string
   description: string
-  ogImageUrl: string
+  ogImage: {
+    publicUrl: string
+    gatsbyImageData: any
+  }
+  headerImageUrl: any
   slug: string
   title: string
+}
+
+interface PageContextType extends WorkListType {
+  workList: WorkListType[]
 }
 
 type TemplatePropsType = {
@@ -19,10 +28,16 @@ type TemplatePropsType = {
 }
 
 export default function CategoryPostTemplate({ pageContext }: TemplatePropsType) {
-  console.log(pageContext)
-  return <DetailLayout title={pageContext.title} category={pageContext.category} nextList={[]} />
+  return (
+    <DetailLayout
+      title={pageContext.title}
+      category={pageContext.category}
+      headerImageUrl={pageContext.headerImageUrl}
+      nextList={pageContext.workList}
+    />
+  )
 }
 
 export const Head = ({ pageContext, location }: TemplatePropsType) => {
-  return <SEO title={pageContext.title} description={pageContext.description} imagePath={pageContext.ogImageUrl} pathname={location.pathname} />
+  return <SEO title={pageContext.title} description={pageContext.description} imagePath={pageContext.ogImage} pathname={location.pathname} />
 }
