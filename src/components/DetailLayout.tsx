@@ -4,7 +4,7 @@ import * as React from 'react'
 interface IDetailLayoutProps {
   category: string
   title: string
-  nextList: readonly { readonly title: string | null; readonly id: string; readonly createdAt: string | null }[]
+  nextList: readonly { readonly slug: string | null; readonly title: string | null; readonly createdAt: string | null }[]
 }
 
 export default function DetailLayout({ category, title, nextList }: IDetailLayoutProps) {
@@ -21,7 +21,7 @@ export default function DetailLayout({ category, title, nextList }: IDetailLayou
             const date = new Date(`${item.createdAt}`)
             return (
               <li key={index}>
-                <Link to={`/${category}/${item.id}`}>
+                <Link to={`/${category}/${item.slug}`}>
                   <span>{item.title}</span>
                   <span>{date.toLocaleString()}</span>
                 </Link>

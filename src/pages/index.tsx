@@ -28,7 +28,7 @@ export default function Page({ data, pageContext }: PageProps<Queries.PageQuery>
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
               <li key={index}>
-                <Link to={`/work-experience/${item.id}`}>
+                <Link to={`/${item.category}/${item.slug}`}>
                   <strong>{item.title}</strong>
                   <p>{`게시일: ${dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}`}</p>
                   {/* <p>{`업데이트: ${dayjs(item.updatedAt).tz().fromNow()}`}</p> */}
@@ -85,6 +85,8 @@ export const query = graphql`
     allContentfulWork {
       nodes {
         id
+        slug
+        category
         title
         createdAt
         updatedAt

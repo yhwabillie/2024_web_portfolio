@@ -20,7 +20,7 @@ export const query = graphql`
 
     allContentfulWork(filter: { id: { ne: $id } }, sort: { createdAt: DESC }) {
       nodes {
-        id
+        slug
         title
         createdAt
       }
