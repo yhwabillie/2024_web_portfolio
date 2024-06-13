@@ -7,7 +7,7 @@ export type WorkListType = {
   category: string
   createdAt: string
   description: string
-  ogImage: {
+  ogImageUrl: {
     publicUrl: string
     gatsbyImageData: any
   }
@@ -39,5 +39,6 @@ export default function CategoryPostTemplate({ pageContext }: TemplatePropsType)
 }
 
 export const Head = ({ pageContext, location }: TemplatePropsType) => {
-  return <SEO title={pageContext.title} description={pageContext.description} imagePath={pageContext.ogImage} pathname={location.pathname} />
+  console.log(pageContext.ogImageUrl)
+  return <SEO title={pageContext.title} description={pageContext.description} imagePath={pageContext.ogImageUrl} pathname={location.pathname} />
 }
