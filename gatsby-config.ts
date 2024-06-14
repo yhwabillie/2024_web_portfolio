@@ -8,7 +8,7 @@ const config: GatsbyConfig = {
   siteMetadata: {
     title: `웹사이트 이름`,
     description: `디폴트 메타데이터 디스크립션 설명입니다.`,
-    image: `/icon.png`,
+    ogImagePath: `/icon.png`,
     siteUrl: process.env.GATSBY_API_URL,
   },
   graphqlTypegen: true,

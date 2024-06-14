@@ -4,13 +4,11 @@ import { useSiteMetadata } from '../hooks/use-site-metadata'
 interface ISEOProps {
   title?: string
   description?: string
-  imagePath?: {
-    publicUrl: string
-  }
+  ogImageUrl?: string
   pathname?: string
 }
 
-export default function SEO({ title, description, imagePath, pathname }: ISEOProps) {
+export default function SEO({ title, description, ogImageUrl, pathname }: ISEOProps) {
   const { metadataDefaultInfo, openGraphDefaultImage } = useSiteMetadata()
 
   //기본 메타데이터 정제
@@ -28,7 +26,7 @@ export default function SEO({ title, description, imagePath, pathname }: ISEOPro
     description: description ? description : defaultSiteMetaData.description,
     og_url: pathname ? `${defaultSiteMetaData.ogUrl}${pathname}` : `${defaultSiteMetaData.ogUrl}`,
     og_image_type: defaultSiteMetaData.ogImageType,
-    og_image_path: imagePath ? `${defaultSiteMetaData.ogUrl}${imagePath}` : `${defaultSiteMetaData.ogUrl}${openGraphDefaultImage.publicURL}`,
+    og_image_path: ogImageUrl ? `${defaultSiteMetaData.ogUrl}${ogImageUrl}` : `${defaultSiteMetaData.ogUrl}${openGraphDefaultImage.publicURL}`,
   }
 
   return (

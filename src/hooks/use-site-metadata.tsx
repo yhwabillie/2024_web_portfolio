@@ -9,7 +9,7 @@ export const useSiteMetadata = () => {
         siteMetadata {
           title
           description
-          image
+          ogImagePath
           siteUrl
         }
       }
