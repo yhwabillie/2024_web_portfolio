@@ -33,7 +33,7 @@ export default function DetailLayout({ title, category, headerImagePath, content
       },
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         const { gatsbyImageData, description } = node.data.target
-        console.log('node====>', gatsbyImageData, description)
+        // console.log('node====>', gatsbyImageData, description)
 
         return <GatsbyImage image={getImage(gatsbyImageData)!} alt={description} />
       },

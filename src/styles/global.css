@@ -2,48 +2,50 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 400;
-  font-display: swap;
-  font-named-instance: 'Regular';
-  src:
-    local('Pretendard Regular'),
-    url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Regular.woff2) format('woff2'),
-    url(/fonts/Pretendard-1.3.9/woff/Pretendard-Regular.woff2) format('woff');
-}
+@layer base {
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 400;
+    font-display: swap;
+    font-named-instance: 'Regular';
+    src:
+      local('Pretendard Regular'),
+      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Regular.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff/Pretendard-Regular.woff2) format('woff');
+  }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 500;
-  font-display: swap;
-  font-named-instance: 'Medium';
-  src:
-    local('Pretendard Medium'),
-    url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Medium.woff2) format('woff2'),
-    url(/fonts/Pretendard-1.3.9/woff/Pretendard-Medium.woff2) format('woff');
-}
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 500;
+    font-display: swap;
+    font-named-instance: 'Medium';
+    src:
+      local('Pretendard Medium'),
+      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Medium.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff/Pretendard-Medium.woff2) format('woff');
+  }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 600;
-  font-display: swap;
-  font-named-instance: 'SemiBold';
-  src:
-    local('Pretendard SemiBold'),
-    url(/fonts/Pretendard-1.3.9/woff2/Pretendard-SemiBold.woff2) format('woff2'),
-    url(/fonts/Pretendard-1.3.9/woff/Pretendard-SemiBold.woff2) format('woff');
-}
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 600;
+    font-display: swap;
+    font-named-instance: 'SemiBold';
+    src:
+      local('Pretendard SemiBold'),
+      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-SemiBold.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff/Pretendard-SemiBold.woff2) format('woff');
+  }
 
-@font-face {
-  font-family: 'Pretendard';
-  font-weight: 700;
-  font-display: swap;
-  font-named-instance: 'Bold';
-  src:
-    local('Pretendard Bold'),
-    url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Bold.woff2) format('woff2'),
-    url(/fonts/Pretendard-1.3.9/woff/Pretendard-Bold.woff2) format('woff');
+  @font-face {
+    font-family: 'Pretendard';
+    font-weight: 700;
+    font-display: swap;
+    font-named-instance: 'Bold';
+    src:
+      local('Pretendard Bold'),
+      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Bold.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff/Pretendard-Bold.woff2) format('woff');
+  }
 }
 
 body {
