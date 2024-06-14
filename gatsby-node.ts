@@ -20,6 +20,18 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
             publicUrl
             gatsbyImageData(height: 200)
           }
+          content {
+            raw
+            references {
+              ... on ContentfulAsset {
+                contentful_id
+                title
+                description
+                gatsbyImageData(width: 150)
+                __typename
+              }
+            }
+          }
         }
       }
     }
@@ -47,6 +59,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         ogImageUrl: node.ogImage?.publicUrl,
         headerImagePath: node.ogImage?.gatsbyImageData,
         workList: allWorks.filter((item) => item.id !== node.id),
+        contentRawData: node.content,
       },
     })
   })

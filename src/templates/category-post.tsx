@@ -9,6 +9,7 @@ type BaseWorkDataType = {
   category: string
   createdAt: string
   description: string
+  contentRawData: any
 }
 
 export interface WorkListType extends BaseWorkDataType {
@@ -40,6 +41,7 @@ export default function CategoryPostTemplate({ pageContext }: TemplatePropsType)
       title={pageContext.title}
       category={pageContext.category}
       headerImagePath={pageContext.headerImagePath}
+      contentRawData={pageContext.contentRawData}
       nextList={pageContext.workList}
     />
   )

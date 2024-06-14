@@ -11,9 +11,6 @@ const config: GatsbyConfig = {
     ogImagePath: `/icon.png`,
     siteUrl: process.env.GATSBY_API_URL,
   },
-  flags: {
-    DEV_SSR: true,
-  },
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-mdx`,

@@ -1,17 +1,46 @@
-import { Link, PageProps } from 'gatsby'
+import { Link } from 'gatsby'
 import * as React from 'react'
 import { NextWorkListType } from '../templates/category-post'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
+import { renderRichText } from 'gatsby-source-contentful/rich-text'
 
 interface IDetailLayoutProps {
   category: string
   title: string
   headerImagePath: any
+  contentRawData: any
   nextList: NextWorkListType[]
 }
 
-export default function DetailLayout({ title, category, headerImagePath, nextList }: IDetailLayoutProps) {
+export default function DetailLayout({ title, category, headerImagePath, contentRawData, nextList }: IDetailLayoutProps) {
   const headerImage = getImage(headerImagePath)!
+  const richTextDocument = contentRawData
+  const options = {
+    renderMark: {
+      [MARKS.BOLD]: (text: React.ReactNode) => <b>{text}</b>,
+    },
+    renderNode: {
+      [BLOCKS.HEADING_1]: (node: any, children: React.ReactNode) => <h1>{children}</h1>,
+      [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => <h2>{children}</h2>,
+      [BLOCKS.HEADING_3]: (node: any, children: React.ReactNode) => <h3>{children}</h3>,
+      [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => <p>{children}</p>,
+      [BLOCKS.UL_LIST]: (node: any, children: React.ReactNode) => <ul>{children}</ul>,
+      [BLOCKS.LIST_ITEM]: (node: any, children: React.ReactNode) => <li>{children}</li>,
+      [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
+        const { uri } = node.data
+        return <a href={uri}>{children}</a>
+      },
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const { gatsbyImageData, description } = node.data.target
+        console.log('node====>', gatsbyImageData, description)
+
+        return <GatsbyImage image={getImage(gatsbyImageData)!} alt={description} />
+      },
+    },
+  }
+
+  //console.log(richTextDocument)
 
   return (
     <main>
@@ -19,6 +48,9 @@ export default function DetailLayout({ title, category, headerImagePath, nextLis
       <article>
         <h1>{title}</h1>
         <GatsbyImage image={headerImage} alt={title} />
+
+        {/* bodyRichText Data */}
+        <div>{renderRichText(richTextDocument, options)}</div>
       </article>
       <div>
         <strong>{`Next ${category}`}</strong>
