@@ -16,3 +16,4 @@ src/gatsby-types.d.ts
 
 .vscode
 .DS_Store
+*storybook.log
