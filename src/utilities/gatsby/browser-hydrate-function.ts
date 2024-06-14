@@ -1,7 +1,8 @@
 import * as ReactDOM from 'react-dom/client'
+import { ReactElement } from 'react'
 
 const browserHydrateFunction = () => {
-  return (element: any, container: any) => {
+  return (element: ReactElement, container: HTMLElement) => {
     const root = ReactDOM.createRoot(container)
     root.render(element)
   }
