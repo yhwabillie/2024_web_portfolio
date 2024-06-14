@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* base : 룰을 초기화하거나 HTML 자체에 적용될 디폴트 스타일을 위한 레이어 */
 @layer base {
+  /* font family */
   @font-face {
     font-family: 'Pretendard';
     font-weight: 400;
@@ -46,9 +48,18 @@
       url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Bold.woff2) format('woff2'),
       url(/fonts/Pretendard-1.3.9/woff/Pretendard-Bold.woff2) format('woff');
   }
+
+  /* default setup */
+  html {
+    font-family: 'Pretendard';
+    font-weight: 400;
+  }
 }
 
-body {
-  font-family: 'Pretendard';
-  font-weight: 400;
+/* components : 유틸리티로 재정의 할 수 있는 클래스-기반 스타일을 위한 레이어 (써드파티 라이브러리를 위한 커스텀 스타일을 작성) */
+@layer components {
+}
+
+/* utilities : 다른 어떤 스타일들보다 먼저 적용되야할 작고, 하나의 목적을 가진 클래스를 위한 레이어 */
+@layer utilities {
 }

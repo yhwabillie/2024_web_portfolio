@@ -14,7 +14,6 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-postcss',
-    `gatsby-plugin-mdx`,
     `gatsby-adapter-netlify`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -45,8 +44,8 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `J. Patrick Fulton - Blog`,
-        short_name: `JPF.dev Blog`,
+        name: `웹사이트 이름`,
+        short_name: `웹사이트 이름`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#ffffff`,

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { HeadFC, HeadProps, Link, graphql, type PageProps } from 'gatsby'
+import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
 import Layout from '../components/Layout'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
