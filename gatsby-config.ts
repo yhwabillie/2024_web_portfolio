@@ -13,6 +13,7 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
+    'gatsby-plugin-postcss',
     `gatsby-plugin-mdx`,
     `gatsby-adapter-netlify`,
     `gatsby-plugin-image`,
