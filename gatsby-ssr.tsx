@@ -4,7 +4,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
   setHeadComponents([
     <link
       rel="preload"
-      href="/fonts/Pretendard-1.3.9/woff2/Pretendard-Regular.woff2"
+      href="/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-Regular.subset.woff2"
       as="font"
       type="font/woff2"
       crossOrigin="anonymous"
@@ -12,7 +12,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
     <link
       rel="preload"
-      href="/fonts/Pretendard-1.3.9/woff2/Pretendard-Medium.woff2"
+      href="/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-Medium.subset.woff2"
       as="font"
       type="font/woff2"
       crossOrigin="anonymous"
@@ -20,7 +20,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
     <link
       rel="preload"
-      href="/fonts/Pretendard-1.3.9/woff2/Pretendard-SemiBold.woff2"
+      href="/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-SemiBold.subset.woff2"
       as="font"
       type="font/woff2"
       crossOrigin="anonymous"
@@ -28,7 +28,7 @@ export const onRenderBody = ({ setHeadComponents }) => {
     />,
     <link
       rel="preload"
-      href="/fonts/Pretendard-1.3.9/woff2/Pretendard-Bold.woff2"
+      href="/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-Bold.subset.woff2"
       as="font"
       type="font/woff2"
       crossOrigin="anonymous"

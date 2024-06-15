@@ -12,8 +12,8 @@
     font-named-instance: 'Regular';
     src:
       local('Pretendard Regular'),
-      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Regular.woff2) format('woff2'),
-      url(/fonts/Pretendard-1.3.9/woff/Pretendard-Regular.woff2) format('woff');
+      url(/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-Regular.subset.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff-subset/Pretendard-Regular.subset.woff) format('woff');
   }
 
   @font-face {
@@ -23,8 +23,8 @@
     font-named-instance: 'Medium';
     src:
       local('Pretendard Medium'),
-      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Medium.woff2) format('woff2'),
-      url(/fonts/Pretendard-1.3.9/woff/Pretendard-Medium.woff2) format('woff');
+      url(/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-Medium.subset.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff-subset/Pretendard-Medium.subset.woff) format('woff');
   }
 
   @font-face {
@@ -34,8 +34,8 @@
     font-named-instance: 'SemiBold';
     src:
       local('Pretendard SemiBold'),
-      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-SemiBold.woff2) format('woff2'),
-      url(/fonts/Pretendard-1.3.9/woff/Pretendard-SemiBold.woff2) format('woff');
+      url(/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-SemiBold.subset.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff-subset/Pretendard-SemiBold.subset.woff) format('woff');
   }
 
   @font-face {
@@ -45,8 +45,8 @@
     font-named-instance: 'Bold';
     src:
       local('Pretendard Bold'),
-      url(/fonts/Pretendard-1.3.9/woff2/Pretendard-Bold.woff2) format('woff2'),
-      url(/fonts/Pretendard-1.3.9/woff/Pretendard-Bold.woff2) format('woff');
+      url(/fonts/Pretendard-1.3.9/woff2-subset/Pretendard-Bold.subset.woff2) format('woff2'),
+      url(/fonts/Pretendard-1.3.9/woff-subset/Pretendard-Bold.subset.woff) format('woff');
   }
 
   /* default setup */
