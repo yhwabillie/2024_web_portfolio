@@ -32,7 +32,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
     <Layout title="메인 페이지">
       <section ref={mainRef}>
         <h2>1. 소개</h2>
-        <p className="text-3xl font-bold underline">어쩌고한 개발잡니다</p>
+        <p className="text-3xl text-blue xs:text-orange">어쩌고한 개발잡니다</p>
       </section>
       <section>
         <h2>2. 경력사항</h2>
