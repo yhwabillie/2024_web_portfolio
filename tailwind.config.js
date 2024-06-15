@@ -14,6 +14,9 @@ module.exports = {
     },
     colors: {
       transparent: 'transparent',
+      black: '#000000',
+      white: '#ffffff',
+      red: '#ef4444',
       blue: '#1fb6ff',
       purple: '#7e5bef',
       pink: '#ff49db',
@@ -50,6 +53,10 @@ module.exports = {
       full: '9999px',
     },
     extend: {
+      backgroundImage: {
+        'logo-black': "url('/logo/logo_black.png')",
+        'logo-white': "url('/logo/logo_white.png')",
+      },
       fontFamily: {
         display: 'Pretendard', // Adds a new `font-display` class
       },

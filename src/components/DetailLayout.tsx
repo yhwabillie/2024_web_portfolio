@@ -1,5 +1,5 @@
-import { Link } from 'gatsby'
 import * as React from 'react'
+import { Link } from 'gatsby'
 import { NextWorkListType } from '../templates/category-post'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'

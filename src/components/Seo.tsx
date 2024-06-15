@@ -11,7 +11,7 @@ interface ISEOProps {
 
 export default function SEO({ title, description, ogImageUrl, pathname }: ISEOProps) {
   const { metadataDefaultInfo, openGraphDefaultImage } = useSiteMetadata()
-  const theme = useThemeStore((state:any) => state.theme)
+  const theme = useThemeStore((state: any) => state.theme)
 
   //기본 메타데이터 정제
   const defaultSiteMetaData = {
@@ -72,6 +72,9 @@ export default function SEO({ title, description, ogImageUrl, pathname }: ISEOPr
 
       {/* 페이지 타이틀 */}
       <title>{seo.title}</title>
+
+      {/* Body Tag */}
+      <body className="bg-white text-black dark:bg-black dark:text-white" />
     </>
   )
 }

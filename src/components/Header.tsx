@@ -6,30 +6,33 @@ export default function Header() {
   const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
 
   return (
-    <header>
-      <div className="container">
-        <div>
-          <div>Logo</div>
-          <p>공통 헤더 컴포넌트</p>
-          <button onClick={toggleTheme}>테마모드</button>
-        </div>
-        <nav>
-          <p>스크롤 네비게이션 헤더</p>
-          <ul>
+    <header className="w-full bg-white dark:bg-black">
+      <div className="container m-auto border-2 border-red flex justify-between items-center">
+        {/* Logo */}
+        <Link to="/" className="w-48 h-20 bg-logo-black dark:bg-logo-white bg-contain bg-no-repeat bg-center">
+          <h1 className="sr-only">Logo</h1>
+        </Link>
+
+        {/* Navigation */}
+        <nav className="bg-pink">
+          <ul className="flex gap-x-2.5">
             <li>
-              <Link to="">소개</Link>
+              <Link to="">ABOUT ME</Link>
             </li>
             <li>
-              <Link to="">경력사항</Link>
+              <Link to="">CAREER</Link>
             </li>
             <li>
-              <Link to="">사이드 프로젝트</Link>
+              <Link to="">PROJECTS</Link>
             </li>
             <li>
-              <Link to="">문제 해결 문서</Link>
+              <Link to="">PROBLEM_SOLVING</Link>
             </li>
           </ul>
         </nav>
+
+        {/* Theme Toggle Btn */}
+        <button onClick={toggleTheme}>Theme</button>
       </div>
     </header>
   )

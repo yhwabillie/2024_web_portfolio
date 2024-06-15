@@ -10,7 +10,6 @@ import SEO from '../components/Seo'
 
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import useThemeStore from '../store/useThemeStore'
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -19,21 +18,31 @@ dayjs.extend(relativeTime)
 dayjs.tz.setDefault('Asia/Seoul')
 
 export default function Page({ data }: PageProps<Queries.PageQuery>) {
-  const mainRef = React.useRef<any>(null)
-  
+  const mainRef = React.useRef<HTMLDivElement>(null)
+
   useGSAP(() => {
-    gsap.to(mainRef.current, {
-      x: 50,
+    gsap.from(mainRef.current, {
+      y: 50,
       duration: 2,
+      opacity: 0,
+      ease: 'elastic',
+    })
+
+    gsap.to(mainRef.current, {
+      y: 0,
+      duration: 2,
+      opacity: 1,
       ease: 'elastic',
     })
   })
 
   return (
     <Layout title="메인 페이지">
-      <section ref={mainRef} className='bg-blue dark:bg-pink'>
-        <h2>1. 소개</h2>
-        <p className="text-3xl text-blue xs:text-orange">어쩌고한 개발잡니다</p>
+      <section>
+        <div ref={mainRef}>
+          <h2>1. 소개</h2>
+          <p>어쩌고한 개발잡니다</p>
+        </div>
       </section>
       <section>
         <h2>2. 경력사항</h2>
