@@ -4,6 +4,8 @@ import { NextWorkListType } from '../templates/category-post'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
+import Header from './Header'
+import Footer from './Footer'
 
 interface IDetailLayoutProps {
   category: string
@@ -43,37 +45,41 @@ export default function DetailLayout({ title, category, headerImagePath, content
   //console.log(richTextDocument)
 
   return (
-    <main>
-      <Link to="/">👈 Go Home</Link>
-      <article>
-        <h1>{title}</h1>
-        <GatsbyImage image={headerImage} alt={title} />
+    <>
+      <Header />
+      <main>
+        <Link to="/">👈 Go Home</Link>
+        <article>
+          <h1>{title}</h1>
+          <GatsbyImage image={headerImage} alt={title} />
 
-        {/* bodyRichText Data */}
-        <div>{renderRichText(richTextDocument, options)}</div>
-      </article>
-      <div>
-        <strong>{`Next ${category}`}</strong>
-        <ul>
-          {nextList.map((item, index) => {
-            const date = new Date(`${item.createdAt}`)
-            const headerImage = getImage(item.ogImage.gatsbyImageData)!
+          {/* bodyRichText Data */}
+          <div>{renderRichText(richTextDocument, options)}</div>
+        </article>
+        <div>
+          <strong>{`Next ${category}`}</strong>
+          <ul>
+            {nextList.map((item, index) => {
+              const date = new Date(`${item.createdAt}`)
+              const headerImage = getImage(item.ogImage.gatsbyImageData)!
 
-            return (
-              <li key={index}>
-                <Link to={`/${category}/${item.slug}`}>
-                  <span>{item.title}</span>
-                  <p>{item.description}</p>
-                  <span>{date.toLocaleString()}</span>
-                  <GatsbyImage image={headerImage} alt={item.title} />
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
+              return (
+                <li key={index}>
+                  <Link to={`/${category}/${item.slug}`}>
+                    <span>{item.title}</span>
+                    <p>{item.description}</p>
+                    <span>{date.toLocaleString()}</span>
+                    <GatsbyImage image={headerImage} alt={item.title} />
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
 
-      <Link to="/">👈 Go Home</Link>
-    </main>
+        <Link to="/">👈 Go Home</Link>
+      </main>
+      <Footer />
+    </>
   )
 }

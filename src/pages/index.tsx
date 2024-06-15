@@ -20,8 +20,7 @@ dayjs.tz.setDefault('Asia/Seoul')
 
 export default function Page({ data }: PageProps<Queries.PageQuery>) {
   const mainRef = React.useRef<any>(null)
-  const toggleTheme = useThemeStore((state:any) => state.toggleTheme);
-
+  
   useGSAP(() => {
     gsap.to(mainRef.current, {
       x: 50,
@@ -32,7 +31,6 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
 
   return (
     <Layout title="메인 페이지">
-      <button onClick={toggleTheme}>테마모드</button>
       <section ref={mainRef} className='bg-blue dark:bg-pink'>
         <h2>1. 소개</h2>
         <p className="text-3xl text-blue xs:text-orange">어쩌고한 개발잡니다</p>
