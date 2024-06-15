@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { useSiteMetadata } from '../hooks/use-site-metadata'
+import useThemeStore from '../store/useThemeStore'
 
 interface ISEOProps {
   title?: string
@@ -10,6 +11,7 @@ interface ISEOProps {
 
 export default function SEO({ title, description, ogImageUrl, pathname }: ISEOProps) {
   const { metadataDefaultInfo, openGraphDefaultImage } = useSiteMetadata()
+  const theme = useThemeStore((state:any) => state.theme)
 
   //기본 메타데이터 정제
   const defaultSiteMetaData = {
@@ -32,7 +34,7 @@ export default function SEO({ title, description, ogImageUrl, pathname }: ISEOPr
   return (
     <>
       {/* HTML attributes & 정적 Metadata */}
-      <html lang="ko" />
+      <html lang="ko" className={theme} />
       <meta name="author" content="작성자" />
       <meta name="publisher" content="작성자" />
       <meta name="generator" content="Gatsby 5.13.5" />
