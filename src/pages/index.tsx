@@ -8,17 +8,29 @@ import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import SEO from '../components/Seo'
 
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+
 dayjs.locale(ko)
 dayjs.extend(utc)
 dayjs.extend(timezone)
 dayjs.extend(relativeTime)
-// 클라이언트의 타임존으로 변경
 dayjs.tz.setDefault('Asia/Seoul')
 
-export default function Page({ data, pageContext }: PageProps<Queries.PageQuery>) {
+export default function Page({ data }: PageProps<Queries.PageQuery>) {
+  const mainRef = React.useRef<any>(null)
+
+  useGSAP(() => {
+    gsap.to(mainRef.current, {
+      x: 50,
+      duration: 2,
+      ease: 'elastic',
+    })
+  })
+
   return (
     <Layout title="메인 페이지">
-      <section>
+      <section ref={mainRef}>
         <h2>1. 소개</h2>
         <p className="text-3xl font-bold underline">어쩌고한 개발잡니다</p>
       </section>
