@@ -47,7 +47,7 @@ export default function DetailLayout({ title, category, headerImagePath, content
   return (
     <>
       <Header />
-      <main>
+      <main className="container m-auto border-2 border-red">
         <Link to="/">👈 Go Home</Link>
         <article>
           <h1>{title}</h1>

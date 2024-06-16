@@ -13,20 +13,17 @@ module.exports = {
       xl: '1280px',
     },
     colors: {
-      transparent: 'transparent',
-      black: '#000000',
       white: '#ffffff',
+      black: '#000000',
+      blue: '#0064FF',
+      gray: '#202632',
+      transparent: 'transparent',
       red: '#ef4444',
-      blue: '#1fb6ff',
       purple: '#7e5bef',
       pink: '#ff49db',
       orange: '#ff7849',
       green: '#13ce66',
       yellow: '#ffc82c',
-      gray: {
-        100: '#f7fafc',
-        900: '#1a202c',
-      },
     },
     zIndex: {
       1: 1000,
@@ -45,17 +42,18 @@ module.exports = {
     fontFamily: {
       Pretendard: ['Pretendard'],
     },
-    borderRadius: {
-      none: '0',
-      sm: '.125rem',
-      DEFAULT: '.25rem',
-      lg: '.5rem',
-      full: '9999px',
-    },
     extend: {
+      height: {
+        header: '75px',
+      },
+      margin: {
+        header: '75px',
+      },
       backgroundImage: {
         'logo-black': "url('/logo/logo_black.png')",
         'logo-white': "url('/logo/logo_white.png')",
+        'edge-round-1': "url('/header_edge_left_round.svg')",
+        'edge-round-2': "url('/header_edge_right_round.svg')",
       },
       fontFamily: {
         display: 'Pretendard', // Adds a new `font-display` class
@@ -96,9 +94,6 @@ module.exports = {
         72: '18rem',
         80: '20rem',
         96: '24rem',
-      },
-      borderRadius: {
-        '4xl': '2rem',
       },
     },
   },

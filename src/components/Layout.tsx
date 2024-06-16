@@ -11,10 +11,7 @@ export default function Layout({ children, title }: ILayoutProps) {
   return (
     <>
       <Header />
-      <main>
-        <h2>{title}</h2>
-        {children}
-      </main>
+      <main className="container m-auto">{children}</main>
       <Footer />
     </>
   )
