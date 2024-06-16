@@ -4,18 +4,20 @@ module.exports = {
   darkMode: 'class',
   theme: {
     screens: {
-      xxxs: '280px',
+      xxxs: '320px',
       xxs: '375px',
       xs: '460px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
       xl: '1280px',
+      '2xl': '1712px',
     },
     colors: {
       white: '#ffffff',
       black: '#000000',
       blue: '#0064FF',
+      lightGray: '#888888',
       gray: '#202632',
       transparent: 'transparent',
       red: '#ef4444',
@@ -55,12 +57,16 @@ module.exports = {
       backgroundImage: {
         'logo-black': "url('/logo/logo_black.png')",
         'logo-white': "url('/logo/logo_white.png')",
+        'logo-mobile-white': "url('/logo/mobile_logo_white.png')",
+        'logo-mobile-black': "url('/logo/mobile_logo_black.png')",
         'edge-round-1': "url('/header_edge_left_round.svg')",
         'edge-round-2': "url('/header_edge_right_round.svg')",
         'edge-round-3': "url('/header_edge_right_round_light.svg')",
         'edge-round-4': "url('/header_edge_left_round_light.svg')",
         'contact-mask-dark': "url('/contact_mask.svg')",
         'contact-mask-light': "url('/contact_mask_light.svg')",
+        'contact-mini-mask-dark': "url('/contact_mini_mask.svg')",
+        'contact-mini-mask-light': "url('/contact_mini_mask_light.svg')",
       },
       fontFamily: {
         display: 'Pretendard', // Adds a new `font-display` class
