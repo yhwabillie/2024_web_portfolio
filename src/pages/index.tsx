@@ -38,7 +38,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
 
   return (
     <Layout title="메인 페이지">
-      <section className="h-[calc(100vh-58px)] pt-[103px] mb-[25px] bg-blue rounded-3xl p-7">
+      <section className="h-[calc(100vh-35px)] pt-[103px] mb-[31px] bg-gray rounded-3xl p-7">
         <div ref={mainRef}>
           <h2>1. 소개</h2>
           <p>어쩌고한 개발잡니다</p>

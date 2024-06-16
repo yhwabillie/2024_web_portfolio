@@ -43,6 +43,9 @@ module.exports = {
       Pretendard: ['Pretendard'],
     },
     extend: {
+      boxShadow: {
+        highlight: 'inset 0 -8px 0 #3572EF',
+      },
       height: {
         header: '75px',
       },
@@ -54,6 +57,10 @@ module.exports = {
         'logo-white': "url('/logo/logo_white.png')",
         'edge-round-1': "url('/header_edge_left_round.svg')",
         'edge-round-2': "url('/header_edge_right_round.svg')",
+        'edge-round-3': "url('/header_edge_right_round_light.svg')",
+        'edge-round-4': "url('/header_edge_left_round_light.svg')",
+        'contact-mask-dark': "url('/contact_mask.svg')",
+        'contact-mask-light': "url('/contact_mask_light.svg')",
       },
       fontFamily: {
         display: 'Pretendard', // Adds a new `font-display` class
