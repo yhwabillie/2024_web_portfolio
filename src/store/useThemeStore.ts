@@ -1,18 +1,19 @@
 import { create } from 'zustand'
-import { persist } from "zustand/middleware"
+import { persist } from 'zustand/middleware'
 
-const useThemeStore = create(
+export const useThemeStore = create(
   persist(
     (set) => ({
       theme: 'light',
-      toggleTheme: () => set((state:any) => ({
-        theme: state.theme === 'light' ? 'dark' : 'light',
-      }))
+      toggleTheme: () =>
+        set((state: any) => ({
+          theme: state.theme === 'light' ? 'dark' : 'light',
+        })),
     }),
     {
-      name: 'theme'
-    }
-  )
+      name: 'theme',
+    },
+  ),
 )
 
 export default useThemeStore

@@ -2,10 +2,12 @@ import * as React from 'react'
 import useThemeStore from '../store/useThemeStore'
 import { Link } from 'gatsby'
 import { MdOutlineLightMode, MdNightlight } from 'react-icons/md'
+import useSectionRefStore from '../store/useSectionRefStore'
 0
 export default function Header() {
   const theme = useThemeStore((state: any) => state.theme)
   const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
+  const { refArray }: any = useSectionRefStore()
 
   return (
     <header className="lg:bg-transparent dark:lg:bg-transparent bg-white dark:bg-black w-full z-1 2xl:h-[90px] h-[84px] fixed top-0 after:content-[''] after:block after:w-full after:h-[22px] after:bg-white dark:after:bg-black after:top-0 after:absolute after:z-0">
@@ -22,25 +24,29 @@ export default function Header() {
             <span className="sr-only">Mobile Logo</span>
           </Link>
           <ul className="h-full hover:text-lightGray hidden xl:flex z-1">
-            <li className="hover:text-black dark:hover:text-white px-[10px] cursor-pointer">
-              <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
-                💡 About Me
-              </Link>
+            <li
+              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
+              onClick={() => refArray[0].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            >
+              💡 About Me
             </li>
-            <li className="hover:text-black dark:hover:text-white px-[10px] cursor-pointer">
-              <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
-                💼 Career
-              </Link>
+            <li
+              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
+              onClick={() => refArray[1].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            >
+              💼 Career
             </li>
-            <li className="hover:text-black dark:hover:text-white px-[10px] cursor-pointer">
-              <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
-                🧑‍💻 Projects
-              </Link>
+            <li
+              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
+              onClick={() => refArray[2].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            >
+              🧑‍💻 Projects
             </li>
-            <li className="hover:text-black dark:hover:text-white pl-[10px] pr-[40px] cursor-pointer">
-              <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
-                🙋‍♀️ Problem Solving
-              </Link>
+            <li
+              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white pl-[10px] pr-[40px] cursor-pointer"
+              onClick={() => refArray[3].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+            >
+              🙋‍♀️ Problem Solving
             </li>
           </ul>
         </nav>
@@ -48,7 +54,10 @@ export default function Header() {
         {/* Right */}
         <div className="2xl:h-[90px] h-[84px] before:content-[''] before:bg-edge-round-3 dark:before:bg-edge-round-2 before:w-[22px] before:h-[22px] before:block before:absolute before:bottom-[-22px] before:right-0 after:content-[''] after:block after:w-[22px] after:h-[22px] after:bg-edge-round-3 dark:after:bg-edge-round-2 after:absolute after:top-[22px] after:left-[-22px] rounded-bl-3xl relative z-1 bg-white dark:bg-black">
           <div className="flex items-center mt-[24px] 2xl:mt-[30px] mb-auto mx-[20px]">
-            <button className="w-[34px] h-[34px] bg-blue dark:xl:bg-blue dark:bg-white dark:text-white bg-contact-mini-mask-light dark:bg-contact-mini-mask-dark xl:w-[123px] xl:text-white dark:xl:text-white xl:bg-blue bg-cover xl:bg-contact-mask-light xl:dark:bg-contact-mask-dark bg-no-repeat bg-right rounded-l-[18px] box-border block">
+            <button
+              onClick={() => refArray[4].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              className="w-[34px] h-[34px] bg-blue dark:xl:bg-blue dark:bg-white dark:text-white bg-contact-mini-mask-light dark:bg-contact-mini-mask-dark xl:w-[123px] xl:text-white dark:xl:text-white xl:bg-blue bg-cover xl:bg-contact-mask-light xl:dark:bg-contact-mask-dark bg-no-repeat bg-right rounded-l-[18px] box-border block"
+            >
               <span className="hidden font-medium xl:block">Contact Me</span>
             </button>
             <button

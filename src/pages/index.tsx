@@ -10,6 +10,7 @@ import SEO from '../components/Seo'
 
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
+import useSectionRefStore from '../store/useSectionRefStore'
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -18,7 +19,21 @@ dayjs.extend(relativeTime)
 dayjs.tz.setDefault('Asia/Seoul')
 
 export default function Page({ data }: PageProps<Queries.PageQuery>) {
+  //Ref
   const mainRef = React.useRef<HTMLDivElement>(null)
+  const aboutRef = React.useRef<HTMLElement>(null)
+  const careerRef = React.useRef<HTMLElement>(null)
+  const projectRef = React.useRef<HTMLElement>(null)
+  const problemRef = React.useRef<HTMLElement>(null)
+  const contactRef = React.useRef<HTMLElement>(null)
+  const sectionsRefArray = [aboutRef, careerRef, projectRef, problemRef, contactRef]
+
+  //useSectionRef
+  const { setRefArray }: any = useSectionRefStore()
+
+  React.useEffect(() => {
+    setRefArray(sectionsRefArray)
+  }, [setRefArray])
 
   useGSAP(() => {
     gsap.from(mainRef.current, {
@@ -38,13 +53,13 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
 
   return (
     <Layout title="메인 페이지">
-      <section className="h-screen pt-[103px] mb-[31px] bg-gray rounded-3xl p-7">
+      <section ref={aboutRef} className="h-screen pt-[103px] mb-[31px] bg-gray rounded-3xl p-7">
         <div ref={mainRef}>
           <h2>1. 소개</h2>
           <p>어쩌고한 개발잡니다</p>
         </div>
       </section>
-      <section className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
+      <section ref={careerRef} className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
         <h2>2. 경력사항</h2>
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
@@ -60,41 +75,13 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           })}
         </ul>
       </section>
-      <section className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
+      <section id="projects" ref={projectRef} className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
         <h2>3. 사이드 프로젝트</h2>
-        <ul>
-          {/* {data.allContentfulProject.nodes.map((item, index) => {
-            const date = new Date(`${item.createdAt}`)
-
-            return (
-              <li key={index}>
-                <Link to={`/side-project/${item.id}`}>
-                  <span>{item.title}</span>
-                  <span>{moment(item.createdAt).local().format(`YYYY-MM-DD a hh:mm:ss`)}</span>
-                </Link>
-              </li>
-            )
-          })} */}
-        </ul>
       </section>
-      <section className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
+      <section ref={problemRef} className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
         <h2>4. 문제 해결 문서</h2>
-        <ul>
-          {/* {data.allContentfulProblems.nodes.map((item, index) => {
-            const date = new Date(`${item.createdAt}`)
-
-            return (
-              <li key={index}>
-                <Link to={`/problem-solving/${item.id}`}>
-                  <span>{item.title}</span>
-                  <span>{date.toLocaleString()}</span>
-                </Link>
-              </li>
-            )
-          })} */}
-        </ul>
       </section>
-      <section>
+      <section ref={contactRef}>
         <h2>5. 연락</h2>
         <p>이리로 연락하세요</p>
       </section>
