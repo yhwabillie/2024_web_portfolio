@@ -28,19 +28,19 @@ export default function Header() {
               className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
               onClick={() => refArray[0].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
             >
-              💡 About Me
+              💡 소개
             </li>
             <li
               className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
               onClick={() => refArray[1].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
             >
-              💼 Career
+              💼 경력
             </li>
             <li
               className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
               onClick={() => refArray[2].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
             >
-              🧑‍💻 Projects
+              🧑‍💻 개인 프로젝트
             </li>
             <li
               className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white pl-[10px] pr-[40px] cursor-pointer"

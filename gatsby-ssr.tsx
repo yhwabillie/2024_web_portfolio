@@ -1,6 +1,19 @@
 import * as React from 'react'
 
-export const onRenderBody = ({ setHeadComponents }) => {
+// const applyDarkModeClass = `
+// (function() {
+//   try {
+//     var mode = localStorage.getItem('theme');
+//     document.getElementsByTagName("html")[0].className = mode === 'dark' ? 'dark' : 'light';
+//   } catch (e) {}
+// })();
+// `
+
+const BodyAttributes = {
+  className: 'dark',
+}
+
+export const onRenderBody = ({ setHeadComponents, setHtmlAttributes, setPreBodyComponents }) => {
   setHeadComponents([
     <link
       rel="preload"
@@ -35,4 +48,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
       key="pretendardFont"
     />,
   ])
+
+  setHtmlAttributes(BodyAttributes)
 }

@@ -34,7 +34,7 @@ export default function SEO({ title, description, ogImageUrl, pathname }: ISEOPr
   return (
     <>
       {/* HTML attributes & 정적 Metadata */}
-      <html lang="ko" className={theme} />
+      <html lang="ko" />
       <meta name="author" content="작성자" />
       <meta name="publisher" content="작성자" />
       <meta name="generator" content="Gatsby 5.13.5" />
