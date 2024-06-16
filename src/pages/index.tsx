@@ -44,7 +44,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           <p>어쩌고한 개발잡니다</p>
         </div>
       </section>
-      <section>
+      <section className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
         <h2>2. 경력사항</h2>
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
@@ -60,7 +60,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           })}
         </ul>
       </section>
-      <section>
+      <section className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
         <h2>3. 사이드 프로젝트</h2>
         <ul>
           {/* {data.allContentfulProject.nodes.map((item, index) => {
@@ -77,7 +77,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           })} */}
         </ul>
       </section>
-      <section>
+      <section className="h-screen bg-gray rounded-3xl p-7 mb-[31px]">
         <h2>4. 문제 해결 문서</h2>
         <ul>
           {/* {data.allContentfulProblems.nodes.map((item, index) => {

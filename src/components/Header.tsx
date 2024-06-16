@@ -8,7 +8,7 @@ export default function Header() {
   const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
 
   return (
-    <header className="bg-white dark:bg-black w-full z-1 2xl:h-[90px] h-[84px] fixed top-0 after:content-[''] after:block after:w-full after:h-[22px] after:bg-white dark:after:bg-black after:top-0 after:absolute after:z-0">
+    <header className="lg:bg-transparent dark:lg:bg-transparent bg-white dark:bg-black w-full z-1 2xl:h-[90px] h-[84px] fixed top-0 after:content-[''] after:block after:w-full after:h-[22px] after:bg-white dark:after:bg-black after:top-0 after:absolute after:z-0">
       <div className="container h-full m-auto flex justify-between items-center">
         {/* Left */}
         <nav className="gap-0 h-full relative pr-[20px] xl:pr-0 before:block before:content-[''] before:w-[22px] before:h-[22px] before:absolute before:bottom-[-22px] before:left-0 before:bg-edge-round-4 dark:before:bg-edge-round-1 after:block after:content-[''] after:bg-edge-round-4 dark:after:bg-edge-round-1 after:absolute after:top-[22px] after:right-[-22px] after:w-[22px] after:h-[22px] rounded-br-3xl flex items-center lg:gap-10 bg-white dark:bg-black">
@@ -22,22 +22,22 @@ export default function Header() {
             <span className="sr-only">Mobile Logo</span>
           </Link>
           <ul className="h-full hover:text-lightGray hidden xl:flex z-1">
-            <li className="hover:text-white px-[10px] cursor-pointer">
+            <li className="hover:text-black dark:hover:text-white px-[10px] cursor-pointer">
               <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
                 💡 About Me
               </Link>
             </li>
-            <li className="hover:text-white px-[10px] cursor-pointer">
+            <li className="hover:text-black dark:hover:text-white px-[10px] cursor-pointer">
               <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
                 💼 Career
               </Link>
             </li>
-            <li className="hover:text-white px-[10px] cursor-pointer">
+            <li className="hover:text-black dark:hover:text-white px-[10px] cursor-pointer">
               <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
                 🧑‍💻 Projects
               </Link>
             </li>
-            <li className="hover:text-white pl-[10px] pr-[40px] cursor-pointer">
+            <li className="hover:text-black dark:hover:text-white pl-[10px] pr-[40px] cursor-pointer">
               <Link to="" className="text-[18px] leading-[84px] 2xl:leading-[90px]">
                 🙋‍♀️ Problem Solving
               </Link>
