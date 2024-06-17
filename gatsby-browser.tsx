@@ -3,8 +3,8 @@ import * as React from "react"
 import type { GatsbyBrowser } from "gatsby"
 import Layout from "./src/components/layout"
 
-// import browserHydrateFunction from './src/utilities/gatsby/browser-hydrate-function'
-// export const replaceHydrateFunction = browserHydrateFunction
+import browserHydrateFunction from './src/utilities/gatsby/browser-hydrate-function'
+export const replaceHydrateFunction = browserHydrateFunction
 
 // export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
 //     element,
