@@ -4,10 +4,9 @@ import Footer from './Footer'
 
 interface ILayoutProps {
   children: React.ReactNode
-  title: string
 }
 
-export default function Layout({ children, title }: ILayoutProps) {
+export default function Layout({ children }: ILayoutProps) {
   return (
     <>
       <Header />

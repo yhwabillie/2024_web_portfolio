@@ -1,19 +1,37 @@
 import * as React from 'react'
 
-// const applyDarkModeClass = `
-// (function() {
-//   try {
-//     var mode = localStorage.getItem('theme');
-//     document.getElementsByTagName("html")[0].className = mode === 'dark' ? 'dark' : 'light';
-//   } catch (e) {}
-// })();
-// `
+const applyDarkModeClass = `
+  (function() {
+    try {
+      const theme = window.localStorage.getItem('theme')
 
-const BodyAttributes = {
-  className: 'dark',
+      if(theme === null){
+        window.localStorage.setItem('theme','dark')
+      } else {
+        document.getElementsByTagName("body")[0].className = theme === 'dark' ? 'dark bg-primary text-text-main' : 'light bg-primary text-text-main';
+      }
+      
+    } catch (e){}
+  })();
+`;
+
+const Attributes = {
+  "className": "dark bg-primary text-text-main"
 }
 
-export const onRenderBody = ({ setHeadComponents, setHtmlAttributes, setPreBodyComponents }) => {
+// export const onPreRenderHTML = ({ setPreBodyComponents }) => {
+//   const script = React.createElement("script", {
+//     key:'theme',
+//     dangerouslySetInnerHTML: {
+//       __html: applyDarkModeClass,
+//     },
+//   });
+
+//   setPreBodyComponents([script]);
+// }
+
+
+export const onRenderBody = ({ setHeadComponents, setBodyAttributes, setHtmlAttributes, setPreBodyComponents }) => {
   setHeadComponents([
     <link
       rel="preload"
@@ -49,5 +67,13 @@ export const onRenderBody = ({ setHeadComponents, setHtmlAttributes, setPreBodyC
     />,
   ])
 
-  setHtmlAttributes(BodyAttributes)
+  const script = React.createElement("script", {
+    key:'theme',
+    dangerouslySetInnerHTML: {
+      __html: applyDarkModeClass,
+    },
+  });
+
+  setPreBodyComponents([script]);
+  setBodyAttributes(Attributes)
 }

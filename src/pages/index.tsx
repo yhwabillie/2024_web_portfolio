@@ -52,7 +52,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   })
 
   return (
-    <Layout title="메인 페이지">
+    <Layout>
       <section ref={aboutRef} className="h-screen pt-[103px] mb-[31px] bg-gray rounded-3xl p-7">
         <div ref={mainRef}>
           <h2>1. 소개</h2>

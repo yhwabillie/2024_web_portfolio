@@ -1,6 +1,7 @@
 import * as React from 'react'
 import DetailLayout from '../components/DetailLayout'
 import SEO from '../components/Seo'
+import Layout from '../components/Layout'
 
 type BaseWorkDataType = {
   id: string
@@ -37,7 +38,7 @@ type TemplatePropsType = {
 
 export default function CategoryPostTemplate({ pageContext }: TemplatePropsType) {
   return (
-    <DetailLayout
+      <DetailLayout
       title={pageContext.title}
       category={pageContext.category}
       headerImagePath={pageContext.headerImagePath}
