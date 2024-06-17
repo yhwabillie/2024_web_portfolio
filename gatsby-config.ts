@@ -19,6 +19,8 @@ const config: GatsbyConfig = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     'gatsby-plugin-advanced-sitemap',
+    `gatsby-plugin-layout`,
+
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {

@@ -3,13 +3,12 @@ import * as React from 'react'
 import { Link } from 'gatsby'
 import { MdOutlineLightMode, MdNightlight } from 'react-icons/md'
 import useSectionRefStore from '../store/useSectionRefStore'
+
 0
 export default function Header() {
   // const theme = useThemeStore((state: any) => state.theme)
   // const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
   const { refArray }: any = useSectionRefStore()
-
-  
 
   return (
     <header className="lg:bg-transparent dark:lg:bg-transparent bg-white dark:bg-black w-full z-1 2xl:h-[90px] h-[84px] fixed top-0 after:content-[''] after:block after:w-full after:h-[22px] after:bg-white dark:after:bg-black after:top-0 after:absolute after:z-0">
@@ -69,19 +68,22 @@ export default function Header() {
               {theme === 'light' ? <MdNightlight /> : <MdOutlineLightMode />}
             </button> */}
 
-            <button onClick={() => {
-              const currentTheme = window.localStorage.getItem('theme')
-              const bodyElement = document.getElementsByTagName('body')
+            <button
+              onClick={() => {
+                const currentTheme = window.localStorage.getItem('theme')
+                const bodyElement = document.getElementsByTagName('body')
 
-              if(currentTheme === 'dark'){
-                window.localStorage.setItem('theme','light')
-                bodyElement[0].classList.replace('dark','light')
-
-              } else {
-                window.localStorage.setItem('theme','dark')
-                bodyElement[0].classList.replace('light','dark')
-              }
-            }}>TEST</button>
+                if (currentTheme === 'dark') {
+                  window.localStorage.setItem('theme', 'light')
+                  bodyElement[0].classList.replace('dark', 'light')
+                } else {
+                  window.localStorage.setItem('theme', 'dark')
+                  bodyElement[0].classList.replace('light', 'dark')
+                }
+              }}
+            >
+              TEST
+            </button>
           </div>
         </div>
       </div>

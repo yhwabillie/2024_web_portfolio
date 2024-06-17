@@ -1,7 +1,7 @@
 import * as React from 'react'
 import DetailLayout from '../components/DetailLayout'
 import SEO from '../components/Seo'
-import Layout from '../components/Layout'
+import Layout from '../layouts/index'
 
 type BaseWorkDataType = {
   id: string
@@ -36,15 +36,21 @@ type TemplatePropsType = {
   }
 }
 
-export default function CategoryPostTemplate({ pageContext }: TemplatePropsType) {
+export default function CategoryPostTemplate({ pageContext, location }: TemplatePropsType) {
   return (
-      <DetailLayout
-      title={pageContext.title}
-      category={pageContext.category}
-      headerImagePath={pageContext.headerImagePath}
-      contentRawData={pageContext.contentRawData}
-      nextList={pageContext.workList}
-    />
+    <>
+      <article className="h-screen bg-blue">
+        <p className="text-white">Detail Page</p>
+      </article>
+
+      {/* <DetailLayout
+        title={pageContext.title}
+        category={pageContext.category}
+        headerImagePath={pageContext.headerImagePath}
+        contentRawData={pageContext.contentRawData}
+        nextList={pageContext.workList}
+      /> */}
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
-import Layout from '../components/Layout'
+import Layout from '../layouts/index'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
@@ -52,7 +52,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   })
 
   return (
-    <Layout>
+    <article>
       <section ref={aboutRef} className="h-screen pt-[103px] mb-[31px] bg-gray rounded-3xl p-7">
         <div ref={mainRef}>
           <h2>1. 소개</h2>
@@ -85,7 +85,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         <h2>5. 연락</h2>
         <p>이리로 연락하세요</p>
       </section>
-    </Layout>
+    </article>
   )
 }
 
