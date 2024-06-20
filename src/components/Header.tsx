@@ -55,7 +55,7 @@ export default function Header() {
               onMouseEnter={() => setShowMailTooltip(true)}
               onMouseLeave={() => setShowMailTooltip(false)}
               onClick={() => refArray[4].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              className="relative dark:hover:bg-gray rounded-[18px] flex justify-center items-center text-[26px] w-[36px] h-[36px]"
+              className="relative hover:bg-[#eeeeee] dark:hover:bg-gray rounded-[18px] flex justify-center items-center text-[26px] w-[36px] h-[36px]"
             >
               {showMailTooltip && (
                 <div className="before:content:'' shadow-xl before:rotate-[180deg] before:border-t-[10px] border-0 before:border-t-blue before:border-l-[10px] before:border-r-[10px] before:border-x-transparent before:absolute before:top-[-10px] before:left-[38px] before:border-blue box-border absolute bottom-[-50px] left-[50%] text-[14px] leading-[40px] text-white w-[100px] h-[40px] rounded-[20px] translate-x-[-50%] bg-blue">
@@ -67,7 +67,7 @@ export default function Header() {
             </button>
 
             <button
-              className="relative dark:hover:bg-gray rounded-[18px] flex justify-center items-center text-[26px] w-[36px] h-[36px]"
+              className="relative hover:bg-[#eeeeee] dark:hover:bg-gray rounded-[18px] flex justify-center items-center text-[26px] w-[36px] h-[36px]"
               onMouseEnter={() => setShowThemeTooltip(true)}
               onMouseLeave={() => setShowThemeTooltip(false)}
               onClick={() => {

@@ -7,6 +7,7 @@ import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import SEO from '../components/Seo'
 import { useSectionRefStore } from '../store/storehooks'
+const videoBg = require('../images/videos/bg_video.mp4')
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -30,8 +31,15 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   return (
     <article className="relative z-2">
       {/* 소개 */}
-      <div id="about" ref={aboutRef} className="h-[800px] py-[84px] rounded-3xl mb-[120px] bg-gray">
-        <strong>?</strong>
+      <div
+        id="about"
+        ref={aboutRef}
+        className="2xl:h-[903px] xl:h-[720px] lg:h-[576px] md:h-[432px] mt-[84px] lg:mt-0 sm:h-[360px] xs:h-[258px] h-[170px] rounded-3xl mb-[120px] bg-gray overflow-hidden"
+      >
+        {/* <video width="100%" height="100%" preload="auto" loop autoPlay muted>
+          <source src={videoBg.default} type="video/mp4" />
+          Your browser does not support HTML5 video.
+        </video> */}
       </div>
 
       {/* 경력 */}

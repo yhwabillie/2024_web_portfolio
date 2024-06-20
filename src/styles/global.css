@@ -5,11 +5,13 @@
 .dark {
   --primary: #000000;
   --text-main: #ffffff;
+  --active: #ffffff;
 }
 
 .light {
   --primary: #ffffff;
   --text-main: #000000;
+  --active: #000000;
 }
 
 /* base : 룰을 초기화하거나 HTML 자체에 적용될 디폴트 스타일을 위한 레이어 */
@@ -77,25 +79,9 @@
       transition: color 0.1s ease-in-out;
     }
 
-    li.active {
-      color: #ffffff;
+    li.active > a {
+      color: var(--active);
     }
-
-    /* li:after {
-      content: '';
-      display: block;
-      width: 0%;
-      height: 4px;
-      background-color: red;
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      transition: width 0.2s ease-in-out;
-    }
-
-    li.active:after {
-      width: 100%;
-    } */
   }
 }
 

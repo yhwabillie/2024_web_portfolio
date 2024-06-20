@@ -58,11 +58,6 @@ export default function Layout(props: PageProps) {
     links.forEach((a: any, index: number) => {
       let element = document.querySelector(a.getAttribute('href').replace('/', ''))
 
-      let linkST = ScrollTrigger.create({
-        trigger: element,
-        start: 'top top',
-      })
-
       gsap.to(a, {
         scrollTrigger: {
           trigger: element,
