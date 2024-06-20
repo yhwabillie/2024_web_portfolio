@@ -68,13 +68,13 @@
   /* Header Nav 스크롤 하이라이트 active */
   ul {
     li {
-      transition: color 0.2s ease-in-out;
+      transition: color 0.1s ease-in-out;
       position: relative;
       color: #888888;
     }
 
     li > a {
-      transition: color 0.2s ease-in-out;
+      transition: color 0.1s ease-in-out;
     }
 
     li.active {

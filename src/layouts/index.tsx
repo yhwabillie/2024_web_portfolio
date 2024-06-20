@@ -38,7 +38,7 @@ export default function Layout(props: PageProps) {
       opacity: 1,
       duration: 1,
       scrollTrigger: {
-        trigger: refArray[4]?.current,
+        trigger: refArray[3]?.current,
         start: 'bottom 80%',
         end: 'bottom 100%',
         toggleActions: 'play none none reverse',
@@ -83,6 +83,18 @@ export default function Layout(props: PageProps) {
     })
   }, [refArray])
 
+  const getDocumentTitle = (path: string) => {
+    if (path === '/') {
+      return '홈 본문'
+    } else if (path.startsWith('/work-experience')) {
+      return '경력사항 본문'
+    } else if (path.startsWith('/projects')) {
+      return '개인 프로젝트 본문'
+    } else if (path.startsWith('/problem-solving')) {
+      return '문제 해결 본문'
+    }
+  }
+
   return (
     <>
       <Header />
@@ -107,7 +119,10 @@ export default function Layout(props: PageProps) {
                     ...getTransitionStyles[status],
                   }}
                 >
-                  <div className="container m-auto">{props.children}</div>
+                  <section className="container m-auto">
+                    <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
+                    {props.children}
+                  </section>
                 </main>
               </>
             )
