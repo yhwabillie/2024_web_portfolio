@@ -64,6 +64,39 @@
     font-family: 'Pretendard';
     font-weight: 400;
   }
+
+  /* Header Nav 스크롤 하이라이트 active */
+  ul {
+    li {
+      transition: color 0.2s ease-in-out;
+      position: relative;
+      color: #888888;
+    }
+
+    li > a {
+      transition: color 0.2s ease-in-out;
+    }
+
+    li.active {
+      color: #ffffff;
+    }
+
+    /* li:after {
+      content: '';
+      display: block;
+      width: 0%;
+      height: 4px;
+      background-color: red;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transition: width 0.2s ease-in-out;
+    }
+
+    li.active:after {
+      width: 100%;
+    } */
+  }
 }
 
 /* components : 유틸리티로 재정의 할 수 있는 클래스-기반 스타일을 위한 레이어 (써드파티 라이브러리를 위한 커스텀 스타일을 작성) */

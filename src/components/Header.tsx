@@ -1,13 +1,10 @@
 import * as React from 'react'
-// import useThemeStore from '../store/useThemeStore'
 import { Link } from 'gatsby'
 import { MdOutlineLightMode, MdNightlight } from 'react-icons/md'
-import useSectionRefStore from '../store/useSectionRefStore'
+import { useSectionRefStore } from '../store/storehooks'
 
 0
 export default function Header() {
-  // const theme = useThemeStore((state: any) => state.theme)
-  // const toggleTheme = useThemeStore((state: any) => state.toggleTheme)
   const { refArray }: any = useSectionRefStore()
 
   return (
@@ -25,29 +22,25 @@ export default function Header() {
             <span className="sr-only">Mobile Logo</span>
           </Link>
           <ul className="h-full hover:text-lightGray hidden xl:flex z-1">
-            <li
-              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
-              onClick={() => refArray[0].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
-              💡 소개
+            <li className={`text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer`}>
+              <Link to="#about" className="block h-full w-full">
+                💡 소개
+              </Link>
             </li>
-            <li
-              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
-              onClick={() => refArray[1].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
-              💼 경력
+            <li className={`text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer`}>
+              <Link to="#career" className="block h-full w-full">
+                💼 경력
+              </Link>
             </li>
-            <li
-              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer"
-              onClick={() => refArray[2].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
-              🧑‍💻 개인 프로젝트
+            <li className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[10px] cursor-pointer">
+              <Link to="#project" className="block h-full w-full">
+                🧑‍💻 개인 프로젝트
+              </Link>
             </li>
-            <li
-              className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white pl-[10px] pr-[40px] cursor-pointer"
-              onClick={() => refArray[3].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-            >
-              🙋‍♀️ Problem Solving
+            <li className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white pl-[10px] pr-[40px] cursor-pointer">
+              <Link to="#problem" className="block h-full w-full">
+                🙋‍♀️ Problem Solving
+              </Link>
             </li>
           </ul>
         </nav>

@@ -37,10 +37,19 @@ type TemplatePropsType = {
 }
 
 export default function CategoryPostTemplate({ pageContext, location }: TemplatePropsType) {
+  const [allSections, setAllSections] = React.useState<any>([])
+
+  React.useEffect(() => {
+    setAllSections(document.querySelectorAll('section'))
+  }, [])
+
   return (
     <>
-      <article className="h-screen bg-blue">
-        <p className="text-white">Detail Page</p>
+      <article className="">
+        <section style={{ marginBottom: '40px' }} className="w-full h-[800px] rounded-3xl bg-blue">
+          section 01
+        </section>
+        <section className="w-full h-[800px] rounded-3xl bg-blue">section 02</section>
       </article>
 
       {/* <DetailLayout
