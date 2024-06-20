@@ -6,11 +6,12 @@ import { Link, PageProps } from 'gatsby'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
+import Observer from 'gsap/dist/Observer'
 import { useGSAP } from '@gsap/react'
 import { useSectionRefStore } from '../store/storehooks'
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollToPlugin)
+  gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollToPlugin, Observer)
 }
 
 const timeout = 500
@@ -34,16 +35,22 @@ export default function Layout(props: PageProps) {
   const { refArray }: any = useSectionRefStore()
 
   React.useEffect(() => {
-    gsap.to(footerRef.current, {
-      opacity: 1,
-      duration: 1,
-      scrollTrigger: {
-        trigger: refArray[3]?.current,
-        start: 'bottom 80%',
-        end: 'bottom 100%',
-        toggleActions: 'play none none reverse',
+    gsap.fromTo(
+      footerRef.current,
+      {
+        autoAlpha: 0,
       },
-    })
+      {
+        autoAlpha: 1,
+        duration: 2,
+        scrollTrigger: {
+          scrub: true,
+          trigger: refArray[3]?.current,
+          start: 'bottom 100%',
+          end: 'bottom 100%',
+        },
+      },
+    )
 
     let links = gsap.utils.toArray('nav > ul > li > a')
 
@@ -114,7 +121,7 @@ export default function Layout(props: PageProps) {
                     ...getTransitionStyles[status],
                   }}
                 >
-                  <section className="container m-auto">
+                  <section className="">
                     <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
                     {props.children}
                   </section>
