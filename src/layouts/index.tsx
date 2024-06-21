@@ -42,17 +42,16 @@ export default function Layout(props: PageProps) {
       },
       {
         autoAlpha: 1,
-        duration: 2,
         scrollTrigger: {
-          scrub: true,
+          scrub: 2,
           trigger: refArray[3]?.current,
-          start: 'bottom 100%',
-          end: 'bottom 100%',
+          start: '100% 60%',
+          end: '100% 100%',
         },
       },
     )
 
-    let links = gsap.utils.toArray('nav > ul > li > a')
+    let links = gsap.utils.toArray('nav.desktop-gnb-wrap > ul > li > a')
 
     function setActive(link: any) {
       link.parentElement.classList.add('active')
@@ -64,7 +63,6 @@ export default function Layout(props: PageProps) {
 
     links.forEach((a: any, index: number) => {
       let element = document.querySelector(a.getAttribute('href').replace('/', ''))
-
       gsap.to(a, {
         scrollTrigger: {
           trigger: element,
@@ -77,10 +75,15 @@ export default function Layout(props: PageProps) {
           },
         },
       })
-
+      //클릭하여 섹션 이동
       a.addEventListener('click', (e: any) => {
         e.preventDefault()
-        gsap.to(window, { scrollTo: element })
+        gsap.to(window, {
+          scrollTo: {
+            y: element,
+            offsetY: 90,
+          },
+        })
       })
     })
   }, [refArray])
@@ -116,12 +119,11 @@ export default function Layout(props: PageProps) {
               <>
                 <main
                   ref={nodeRef}
-                  className="dark:bg-black bg-white"
                   style={{
                     ...getTransitionStyles[status],
                   }}
                 >
-                  <section className="">
+                  <section>
                     <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
                     {props.children}
                   </section>

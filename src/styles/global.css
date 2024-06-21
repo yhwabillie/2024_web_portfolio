@@ -2,21 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark {
-  --primary: #000000;
-  --text-main: #ffffff;
-  --active: #ffffff;
-}
-
-.light {
-  --primary: #ffffff;
-  --text-main: #000000;
-  --active: #000000;
-}
-
-/* base : 룰을 초기화하거나 HTML 자체에 적용될 디폴트 스타일을 위한 레이어 */
+/* base : 룰을 초기화하거나 디폴트 스타일을 위한 레이어 */
 @layer base {
-  /* font family */
+  :root {
+    --primary: #0064ff;
+  }
+
   @font-face {
     font-family: 'Pretendard';
     font-weight: 400;
@@ -61,10 +52,15 @@
       url(/fonts/Pretendard-1.3.9/woff-subset/Pretendard-Bold.subset.woff) format('woff');
   }
 
-  /* default setup */
+  /* RESET */
   html {
     font-family: 'Pretendard';
     font-weight: 400;
+    font-size: 62.5%;
+  }
+
+  video {
+    height: 100% !important;
   }
 
   /* Header Nav 스크롤 하이라이트 active */
@@ -91,4 +87,17 @@
 
 /* utilities : 다른 어떤 스타일들보다 먼저 적용되야할 작고, 하나의 목적을 가진 클래스를 위한 레이어 */
 @layer utilities {
+}
+
+/* UI 테마 설정 */
+.dark {
+  --bg-primary: #000000;
+  --text-primary: #ffffff;
+  --active-hover: #eeeeee;
+}
+
+.light {
+  --bg-primary: #ffffff;
+  --text-primary: #000000;
+  --active-hover: #eeeeee;
 }

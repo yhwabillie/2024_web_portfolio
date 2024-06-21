@@ -20,6 +20,8 @@
   "dependencies": {
     "@contentful/rich-text-types": "^16.5.2",
     "@gsap/react": "^2.1.1",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "contentful-resolve-response": "^1.8.1",
     "dayjs": "^1.11.11",
     "dayjs-plugin-utc": "^0.1.2",
@@ -44,6 +46,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-transition-group": "^4.4.5",
+    "tailwind-merge": "^2.3.0",
     "webpack": "^5.91.0",
     "zustand": "^4.5.2"
   },

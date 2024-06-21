@@ -8,15 +8,15 @@ const applyDarkModeClass = `
       if(theme === null){
         window.localStorage.setItem('theme','dark')
       } else {
-        document.getElementsByTagName("body")[0].className = theme === 'dark' ? 'dark bg-primary text-text-main' : 'light bg-primary text-text-main';
+        document.getElementsByTagName("body")[0].className = theme === 'dark' ? 'dark bg-bg_primary text-text_primary' : 'light bg-bg_primary text-text_primary';
       }
       
     } catch (e){}
   })();
-`;
+`
 
 const Attributes = {
-  "className": "dark bg-primary text-text-main"
+  className: 'dark bg-primary text-text-main',
 }
 
 // export const onPreRenderHTML = ({ setPreBodyComponents }) => {
@@ -29,7 +29,6 @@ const Attributes = {
 
 //   setPreBodyComponents([script]);
 // }
-
 
 export const onRenderBody = ({ setHeadComponents, setBodyAttributes, setHtmlAttributes, setPreBodyComponents }) => {
   setHeadComponents([
@@ -67,13 +66,13 @@ export const onRenderBody = ({ setHeadComponents, setBodyAttributes, setHtmlAttr
     />,
   ])
 
-  const script = React.createElement("script", {
-    key:'theme',
+  const script = React.createElement('script', {
+    key: 'theme',
     dangerouslySetInnerHTML: {
       __html: applyDarkModeClass,
     },
-  });
+  })
 
-  setPreBodyComponents([script]);
+  setPreBodyComponents([script])
   setBodyAttributes(Attributes)
 }

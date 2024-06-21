@@ -1,64 +1,143 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
 import { MdOutlineLightMode, MdNightlight, MdOutgoingMail } from 'react-icons/md'
-import { useSectionRefStore } from '../store/storehooks'
+import { HiOutlineMenuAlt1 } from 'react-icons/hi'
+
+enum LOCAL_THEME {
+  LOCAL_KEY = 'theme',
+  LIGHT_VALUE = 'light',
+  DARK_VALUE = 'dark',
+}
+
+interface INavList {
+  title: string
+}
+
+const nav_list: INavList[] = [
+  {
+    title: '💡 소개',
+  },
+  {
+    title: '💼 경력',
+  },
+  {
+    title: '🧑‍💻 개인 프로젝트',
+  },
+  {
+    title: '🙋‍♀️ Problem Solving',
+  },
+]
 
 0
 export default function Header() {
-  const { refArray }: any = useSectionRefStore()
-  const [mode, setMode] = React.useState(window.localStorage.getItem('theme') === 'light' ? false : true)
+  const [mode, setMode] = React.useState(window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY) === LOCAL_THEME.LIGHT_VALUE ? false : true)
   const [showMailTooltip, setShowMailTooltip] = React.useState<boolean>(false)
   const [showThemeTooltip, setShowThemeTooltip] = React.useState<boolean>(false)
 
+  const changeTheme = () => {
+    const currentTheme = window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY)
+    const bodyElement = document.getElementsByTagName('body')
+
+    switch (currentTheme) {
+      case LOCAL_THEME.DARK_VALUE:
+        window.localStorage.setItem(LOCAL_THEME.LOCAL_KEY, LOCAL_THEME.LIGHT_VALUE)
+        bodyElement[0].classList.replace(LOCAL_THEME.DARK_VALUE, LOCAL_THEME.LIGHT_VALUE)
+        setMode(false)
+        break
+
+      case LOCAL_THEME.LIGHT_VALUE:
+        window.localStorage.setItem(LOCAL_THEME.LOCAL_KEY, LOCAL_THEME.DARK_VALUE)
+        bodyElement[0].classList.replace(LOCAL_THEME.LIGHT_VALUE, LOCAL_THEME.DARK_VALUE)
+        setMode(true)
+        break
+    }
+  }
+
   return (
-    <header className="lg:bg-transparent dark:lg:bg-transparent bg-white dark:bg-black w-full z-1 2xl:h-[90px] h-[84px] fixed top-0 after:content-[''] after:block after:w-full after:h-[22px] after:bg-white dark:after:bg-black after:top-0 after:absolute after:z-0">
-      <div className="container h-full m-auto flex justify-between items-center">
-        {/* Left */}
-        <nav className="gap-0 h-full relative pr-[20px] xl:pr-0 before:block before:content-[''] before:w-[22px] before:h-[22px] before:absolute before:bottom-[-22px] before:left-0 before:bg-edge-round-4 dark:before:bg-edge-round-1 after:block after:content-[''] after:bg-edge-round-4 dark:after:bg-edge-round-1 after:absolute after:top-[22px] after:right-[-22px] after:w-[22px] after:h-[22px] rounded-br-3xl flex items-center lg:gap-10 bg-white dark:bg-black">
+    <header className="w-full text-text_primary border-b border-dark_gray bg-bg_primary fixed top-0 left-0 z-1 h-md_header lg:h-header xl:h-xl_header">
+      <div className="flex justify-between items-center h-full m-auto px-mobile xxs:max-w-xxs xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg lg:px-0 xl:max-w-xl">
+        {/* Logo */}
+        <div>
           <Link
             to="/"
-            className="ml-[20px] block lg:w-[192px] h-[84px] 2xl:h-[90px] lg:bg-logo-black lg:dark:bg-logo-white bg-contain bg-no-repeat bg-center z-1"
+            className="hidden lg:block h-header bg-contain bg-no-repeat bg-center xl:h-xl_header lg:w-desktop_logo lg:bg-logo-black lg:dark:bg-logo-white"
           >
             <h1 className="sr-only">Portfolio Website (웹사이트 이름)</h1>
           </Link>
-          <Link to="/" className="bg-logo-mobile-black dark:bg-logo-mobile-white bg-cover bg-center bg-no-repeat w-[77px] h-[34px] lg:hidden">
+          <Link
+            to="/"
+            className="block lg:hidden w-mobile_logo h-mobile_logo bg-logo_mobile_light dark:bg-logo_mobile_dark bg-cover bg-center bg-no-repeat"
+          >
             <span className="sr-only">Mobile Logo</span>
           </Link>
-          <ul className="h-full hover:text-lightGray hidden xl:flex z-1">
-            <li className={`text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[20px] cursor-pointer`}>
-              <Link to="#about" className="block h-full w-full">
-                💡 소개
-              </Link>
-            </li>
-            <li className={`text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[20px] cursor-pointer`}>
-              <Link to="#career" className="block h-full w-full">
-                💼 경력
-              </Link>
-            </li>
-            <li className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white px-[20px] cursor-pointer">
-              <Link to="#project" className="block h-full w-full">
-                🧑‍💻 개인 프로젝트
-              </Link>
-            </li>
-            <li className="text-[18px] leading-[84px] 2xl:leading-[90px] hover:text-black dark:hover:text-white pl-[20px] pr-[40px] cursor-pointer">
-              <Link to="#problem" className="block h-full w-full">
-                🙋‍♀️ Problem Solving
-              </Link>
-            </li>
+        </div>
+
+        {/* Desktop Gnb */}
+        <nav className="desktop-gnb-wrap hidden md:flex items-center">
+          <ul className="flex h-full hover:text-light_gray">
+            {nav_list.map((item: INavList, index: number) => (
+              <li key={index} className="text-xl_header leading-header xl:leading-xl_header hover:text-text_primary px-2 cursor-pointer">
+                <Link to="#visual_view" className="block h-full w-full">
+                  {item.title}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        {/* Right */}
-        <div className="2xl:h-[90px] h-[84px] before:content-[''] before:bg-edge-round-3 dark:before:bg-edge-round-2 before:w-[22px] before:h-[22px] before:block before:absolute before:bottom-[-22px] before:right-0 after:content-[''] after:block after:w-[22px] after:h-[22px] after:bg-edge-round-3 dark:after:bg-edge-round-2 after:absolute after:top-[22px] after:left-[-22px] rounded-bl-3xl relative z-1 bg-white dark:bg-black">
-          <div className="flex items-center gap-4 mt-[24px] 2xl:mt-[30px] mb-auto mx-[20px]">
+        {/* Mobile Gnb */}
+        <div>
+          <div>
+            <strong>
+              <Link to="/">
+                <span className="sr-only">포트폴리오 이름</span>
+                {/* Logo Image */}
+              </Link>
+            </strong>
+
+            {/* Nav */}
+            <nav>
+              <h2>모바일 메뉴</h2>
+              <ul>
+                <li>
+                  <Link to="">Menu 1</Link>
+                </li>
+                <li>
+                  <Link to="">Menu 2</Link>
+                </li>
+                <li>
+                  <Link to="">Menu 3</Link>
+                </li>
+                <li>
+                  <Link to="">Menu 4</Link>
+                </li>
+              </ul>
+            </nav>
+
+            {/* Bottom */}
+            <div>
+              <ul>
+                <li>button</li>
+                <li>button</li>
+              </ul>
+              <div>
+                <button>util 1</button>
+                <button>util 2</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tools */}
+        <div className="hidden md:flex h-header xl:h-xl_header items-center">
+          <div className="flex items-center gap-4">
             <button
               onMouseEnter={() => setShowMailTooltip(true)}
               onMouseLeave={() => setShowMailTooltip(false)}
-              onClick={() => refArray[4].current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-              className="relative hover:bg-[#eeeeee] dark:hover:bg-gray rounded-[18px] flex justify-center items-center text-[26px] w-[36px] h-[36px]"
+              className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
             >
               {showMailTooltip && (
-                <div className="before:content:'' shadow-xl before:rotate-[180deg] before:border-t-[10px] border-0 before:border-t-blue before:border-l-[10px] before:border-r-[10px] before:border-x-transparent before:absolute before:top-[-10px] before:left-[38px] before:border-blue box-border absolute bottom-[-50px] left-[50%] text-[14px] leading-[40px] text-white w-[100px] h-[40px] rounded-[20px] translate-x-[-50%] bg-blue">
+                <div className="shadow-xl before:content:'' before:rotate-[180deg] before:border-t-[1rem] before:border-t-primary before:border-x-[1rem] before:border-x-transparent before:absolute before:top-[-1rem] before:left-[3.8rem] box-border absolute left-[50%] bottom-[-5rem] w-[10rem] h-[4rem] rounded-[2rem] translate-x-[-50%] bg-primary text-white text-sm leading-[4rem]">
                   메일 보내기
                 </div>
               )}
@@ -67,26 +146,13 @@ export default function Header() {
             </button>
 
             <button
-              className="relative hover:bg-[#eeeeee] dark:hover:bg-gray rounded-[18px] flex justify-center items-center text-[26px] w-[36px] h-[36px]"
+              className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
               onMouseEnter={() => setShowThemeTooltip(true)}
               onMouseLeave={() => setShowThemeTooltip(false)}
-              onClick={() => {
-                const currentTheme = window.localStorage.getItem('theme')
-                const bodyElement = document.getElementsByTagName('body')
-
-                if (currentTheme === 'dark') {
-                  window.localStorage.setItem('theme', 'light')
-                  bodyElement[0].classList.replace('dark', 'light')
-                  setMode(false)
-                } else {
-                  window.localStorage.setItem('theme', 'dark')
-                  bodyElement[0].classList.replace('light', 'dark')
-                  setMode(true)
-                }
-              }}
+              onClick={changeTheme}
             >
               {showThemeTooltip && (
-                <div className="before:content:'' shadow-xl before:rotate-[180deg] before:border-t-[10px] border-0 before:border-t-blue before:border-l-[10px] before:border-r-[10px] before:border-x-transparent before:absolute before:top-[-10px] before:left-[38px] before:border-blue box-border absolute bottom-[-50px] left-[50%] text-[14px] leading-[40px] text-white w-[100px] h-[40px] rounded-[20px] translate-x-[-50%] bg-blue">
+                <div className="shadow-xl before:content:'' before:rotate-[180deg] before:border-t-[1rem] before:border-t-primary before:border-x-[1rem] before:border-x-transparent before:absolute before:top-[-1rem] before:left-[3.8rem] box-border absolute left-[50%] bottom-[-5rem] w-[10rem] h-[4rem] rounded-[2rem] translate-x-[-50%] bg-primary text-white text-sm leading-[4rem]">
                   테마 변경
                 </div>
               )}
@@ -95,6 +161,12 @@ export default function Header() {
             </button>
           </div>
         </div>
+
+        {/* Hamberger Menu */}
+        <button className="text-nav_icon md:hidden">
+          <HiOutlineMenuAlt1 />
+          <span className="sr-only">모바일 햄버거 메뉴 버튼</span>
+        </button>
       </div>
     </header>
   )
