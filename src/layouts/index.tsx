@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 import Observer from 'gsap/dist/Observer'
 import { useGSAP } from '@gsap/react'
-import { useSectionRefStore } from '../store/storehooks'
+import { useIsShowSideMenuStore, useSectionRefStore } from '../store/storehooks'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollToPlugin, Observer)
@@ -33,6 +33,7 @@ export default function Layout(props: PageProps) {
   const nodeRef = React.useRef(null)
   const footerRef = React.useRef<any>(null)
   const { refArray }: any = useSectionRefStore()
+  const { isShowSideMenu, setIsShowSideMenu }: any = useIsShowSideMenuStore()
 
   React.useEffect(() => {
     gsap.fromTo(
@@ -52,6 +53,7 @@ export default function Layout(props: PageProps) {
     )
 
     let links = gsap.utils.toArray('nav.desktop-gnb-wrap > ul > li > a')
+    let mobile_links = gsap.utils.toArray('nav.mobile-gnb-wrap > ul > li > a')
 
     function setActive(link: any) {
       link.parentElement.classList.add('active')
@@ -61,6 +63,7 @@ export default function Layout(props: PageProps) {
       links.forEach((el: any) => el.parentElement.classList.remove('active'))
     }
 
+    //Desktop Nav Links
     links.forEach((a: any, index: number) => {
       let element = document.querySelector(a.getAttribute('href').replace('/', ''))
       gsap.to(a, {
@@ -78,6 +81,37 @@ export default function Layout(props: PageProps) {
       //클릭하여 섹션 이동
       a.addEventListener('click', (e: any) => {
         e.preventDefault()
+
+        gsap.to(window, {
+          scrollTo: {
+            y: element,
+            offsetY: 90,
+          },
+        })
+      })
+    })
+
+    //Mobile Side Menu Nav Links
+    mobile_links.forEach((a: any, index: number) => {
+      let element = document.querySelector(a.getAttribute('href').replace('/', ''))
+      gsap.to(a, {
+        scrollTrigger: {
+          trigger: element,
+          start: 'top center',
+          end: 'bottom center',
+          toggleClass: 'active',
+          toggleActions: 'play none none reverse',
+          onToggle: (self) => {
+            self.isActive ? setActive(a) : removeActive()
+          },
+        },
+      })
+      //클릭하여 섹션 이동
+      a.addEventListener('click', (e: any) => {
+        e.preventDefault()
+
+        setIsShowSideMenu(false)
+
         gsap.to(window, {
           scrollTo: {
             y: element,

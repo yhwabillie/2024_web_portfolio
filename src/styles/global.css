@@ -4,10 +4,6 @@
 
 /* base : 룰을 초기화하거나 디폴트 스타일을 위한 레이어 */
 @layer base {
-  :root {
-    --primary: #0064ff;
-  }
-
   @font-face {
     font-family: 'Pretendard';
     font-weight: 400;
@@ -64,7 +60,7 @@
   }
 
   /* Header Nav 스크롤 하이라이트 active */
-  ul {
+  .desktop-gnb-wrap > ul {
     li {
       transition: color 0.1s ease-in-out;
       position: relative;
@@ -76,7 +72,7 @@
     }
 
     li.active > a {
-      color: var(--active);
+      color: var(--text-primary);
     }
   }
 }
@@ -91,7 +87,7 @@
 
 /* UI 테마 설정 */
 .dark {
-  --bg-primary: #000000;
+  --bg-primary: #111111;
   --text-primary: #ffffff;
   --active-hover: #eeeeee;
 }

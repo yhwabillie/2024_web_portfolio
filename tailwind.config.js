@@ -18,15 +18,20 @@ module.exports = {
       md: '948px',
       lg: '1316px',
       xl: '1712px',
+      side_menu: '412px',
     },
     fontSize: {
       xl_header: '1.8rem',
       nav_icon: '2.6rem',
+      close_icon: '3.4rem',
+      side_menu: '2.4rem',
       sm: '1.4rem',
+      base: '1.4rem',
     },
     lineHeight: {
       header: '8.4rem',
       xl_header: '9rem',
+      base: '2.8rem',
     },
     borderRadius: {
       nav_icon: '1.8rem',
@@ -64,6 +69,7 @@ module.exports = {
         desktop_logo: '19.2rem',
         mobile_logo: '7.7rem',
         nav_icon: '3.6rem',
+        close_icon: '3.4rem',
       },
       height: {
         xl_header: '90px',
@@ -71,6 +77,7 @@ module.exports = {
         header: '84px',
         mobile_logo: '3.4rem',
         nav_icon: '3.6rem',
+        close_icon: '3.4rem',
       },
       margin: {
         xl_header: '90px',

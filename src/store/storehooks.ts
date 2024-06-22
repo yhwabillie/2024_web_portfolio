@@ -11,3 +11,9 @@ export const useIntersectingStore = create((set) => ({
   isIntersectingObj: {},
   setIsIntersectingObj: (state: object) => set({ isIntersectingObj: state }),
 }))
+
+//모바일 사이드메뉴 isShow 상태값 저장
+export const useIsShowSideMenuStore = create((set) => ({
+  isShowSideMenu: false,
+  setIsShowSideMenu: (state: boolean) => set({ isShowSideMenu: state }),
+}))

@@ -6,7 +6,7 @@ import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import SEO from '../components/Seo'
-import { useSectionRefStore } from '../store/storehooks'
+import { useIsShowSideMenuStore, useSectionRefStore } from '../store/storehooks'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
@@ -23,6 +23,7 @@ dayjs.tz.setDefault('Asia/Seoul')
 
 export default function Page({ data }: PageProps<Queries.PageQuery>) {
   const { setRefArray }: any = useSectionRefStore()
+
   const aboutRef = React.useRef<HTMLDivElement>(null)
   const careerRef = React.useRef<HTMLDivElement>(null)
   const projectRef = React.useRef<HTMLDivElement>(null)
@@ -126,7 +127,6 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         </div>
       </div>
 
-      
       <div id="career" ref={careerRef} className="container m-auto h-[800px] rounded-3xl mb-[120px] bg-gray">
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
@@ -142,12 +142,10 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         </ul>
       </div>
 
-     
       <div id="project" ref={projectRef} className="container m-auto h-[800px] pt-[84px] rounded-3xl mb-[120px] bg-gray">
         <h2>3. 사이드 프로젝트</h2>
       </div>
 
-      
       <div id="problem" ref={problemRef} className="container m-auto h-[800px] pt-[84px] rounded-b-3xl bg-gray">
         <h2>4. 문제 해결 문서</h2>
       </div> */}
