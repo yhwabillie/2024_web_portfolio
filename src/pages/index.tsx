@@ -22,7 +22,7 @@ dayjs.extend(relativeTime)
 dayjs.tz.setDefault('Asia/Seoul')
 
 export default function Page({ data }: PageProps<Queries.PageQuery>) {
-  const { setRefArray }: any = useSectionRefStore()
+  const { setRefArray } = useSectionRefStore()
 
   const aboutRef = React.useRef<HTMLDivElement>(null)
   const careerRef = React.useRef<HTMLDivElement>(null)

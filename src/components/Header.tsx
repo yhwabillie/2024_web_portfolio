@@ -40,8 +40,7 @@ export default function Header() {
   const [mode, setMode] = React.useState(false)
   const [showMailTooltip, setShowMailTooltip] = React.useState<boolean>(false)
   const [showThemeTooltip, setShowThemeTooltip] = React.useState<boolean>(false)
-  // const [isShowSideMenu, setIsShowSideMenu] = React.useState<boolean>(false)
-  const { isShowSideMenu, setIsShowSideMenu }: any = useIsShowSideMenuStore()
+  const { isShowSideMenu, setIsShowSideMenu } = useIsShowSideMenuStore()
 
   const changeTheme = () => {
     const currentTheme = window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY)
@@ -103,7 +102,7 @@ export default function Header() {
 
         {/* Mobile Gnb */}
         <div
-          className={`${isShowSideMenu ? 'translate-x-[0%]' : 'translate-x-[100%]'} fixed z-1 left-0 top-0 overflow-x-hidden overflow-y-auto w-full h-full bg-bg_primary transition-transform`}
+          className={`${isShowSideMenu ? 'translate-x-[0%]' : 'translate-x-[100%]'} md:hidden fixed z-1 left-0 top-0 overflow-x-hidden overflow-y-auto w-full h-full bg-bg_primary transition-transform`}
         >
           <div className="flex flex-col relative max-w-side_menu min-h-full mx-auto pb-[3.6rem] px-[1.4rem] sm:px-0">
             <strong className="block py-[2.4rem]">

@@ -32,8 +32,8 @@ const getTransitionStyles: any = {
 export default function Layout(props: PageProps) {
   const nodeRef = React.useRef(null)
   const footerRef = React.useRef<any>(null)
-  const { refArray }: any = useSectionRefStore()
-  const { isShowSideMenu, setIsShowSideMenu }: any = useIsShowSideMenuStore()
+  const { refArray } = useSectionRefStore()
+  const { isShowSideMenu, setIsShowSideMenu } = useIsShowSideMenuStore()
 
   React.useEffect(() => {
     gsap.fromTo(
