@@ -79,30 +79,23 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="w-full text-text_primary border-b border-dark_gray bg-bg_primary fixed top-0 left-0 z-1 h-md_header lg:h-header xl:h-xl_header">
-      <div className="flex justify-between items-center h-full m-auto px-mobile xxs:max-w-xxs xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg lg:px-0 xl:max-w-xl">
-        {/* Logo */}
-        <div className="logo-wrap">
-          <Link
-            to="/"
-            className="hidden lg:block h-header bg-contain bg-no-repeat bg-center xl:h-xl_header lg:w-desktop_logo lg:bg-logo-black lg:dark:bg-logo-white"
-          >
-            <h1 className="sr-only">Portfolio Website (웹사이트 이름)</h1>
-          </Link>
-          <Link
-            to="/"
-            className="block lg:hidden w-mobile_logo h-mobile_logo bg-logo_mobile_light dark:bg-logo_mobile_dark bg-cover bg-center bg-no-repeat"
-          >
-            <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
-          </Link>
-        </div>
+    <header className="w-full h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse fixed top-0 left-0 z-1 border-b border-theme-gray">
+      <div className="container flex justify-between items-center">
+        <Link
+          to="/"
+          className="block w-logo-small lg:w-logo-big h-header-small lg:h-header-medium xl:h-header-large bg-logo bg-contain bg-center bg-no-repeat"
+        >
+          <h1 className="sr-only">Portfolio Website (웹사이트 이름)</h1>
+        </Link>
 
-        {/* Desktop Navigation Links */}
         <nav className="desktop-gnb-wrap hidden md:flex items-center">
           <ul className="flex h-full hover:text-light_gray">
             {nav_list.map((item: NavItemType, index: number) => (
-              <li key={index} className="text-xl_header leading-header xl:leading-xl_header hover:text-text_primary px-2 cursor-pointer">
-                <Link to={item.href} className="block h-full w-full">
+              <li
+                key={index}
+                className="px-2 text-md lg:text-lg hover:text-theme-active text-theme-unactive leading-header-small lg:leading-header-medium xl:leading-header-large"
+              >
+                <Link to={item.href} className="block h-full w-full transition-colors">
                   {item.title}
                 </Link>
               </li>
@@ -112,22 +105,22 @@ export default function Header() {
 
         {/* Mobile Sidebar Menu */}
         <div
-          className={`${sidebarStatus === SIDEBAR_STATUS.OPEN ? 'translate-x-[0%]' : 'translate-x-[100%]'} md:hidden fixed z-1 left-0 top-0 overflow-x-hidden overflow-y-auto w-full h-full bg-bg_primary transition-transform`}
+          className={`${sidebarStatus === SIDEBAR_STATUS.OPEN ? 'translate-x-0' : 'translate-x-full'} md:hidden w-full h-full bg-theme fixed left-0 top-0 z-1 overflow-x-hidden overflow-y-auto transition-transform`}
         >
-          <div className="flex flex-col relative max-w-side_menu min-h-full mx-auto pb-[3.6rem] px-[1.4rem] sm:px-0">
-            <strong className="block py-[2.4rem]">
-              <Link to="/" className="block w-mobile_logo h-mobile_logo bg-logo_mobile_light dark:bg-logo_mobile_dark bg-cover bg-no-repeat">
-                <span className="sr-only">포트폴리오 이름</span>
+          <div className="flex flex-col relative max-w-sidebar min-h-full mx-auto px-xs pb-md sm:px-zero">
+            <strong className="block py-sm">
+              <Link to="/" className="block w-logo-small h-icon-medium bg-logo bg-contain bg-no-repeat bg-center">
+                <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
               </Link>
             </strong>
 
             {/* Nav */}
-            <nav className="mobile-gnb-wrap flex-1 pt-[4.7rem] pb-[6.6rem]">
+            <nav className="mobile-gnb-wrap flex-1 pt-lg pb-xl">
               <h2 className="sr-only">모바일 모드 네비게이션 영역</h2>
               <ul>
                 {nav_list.map((item: NavItemType, index: number) => (
-                  <li key={index} className="text-side_menu leading-header xl:leading-xl_header cursor-pointer">
-                    <Link to={item.href} className="block h-full w-full">
+                  <li key={index} className="text-xl leading-header-medium">
+                    <Link to={item.href} className="block w-full h-full">
                       {item.title}
                     </Link>
                   </li>
@@ -139,26 +132,23 @@ export default function Header() {
             <div className="flex justify-between">
               <ul className="flex gap-3">
                 <li>
-                  <Link to="/" className="text-base leading-base">
+                  <Link to="/" className="text-sm leading-lg">
                     LinkedIn
                   </Link>
                 </li>
                 <li>
-                  <Link to="/" className="text-base leading-base">
+                  <Link to="/" className="text-sm leading-lg">
                     Instar
                   </Link>
                 </li>
               </ul>
               <div className="flex items-center gap-4">
-                <button className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative">
+                <button className="large-icon">
                   <span className="sr-only">메일 보내기 버튼</span>
                   <MdOutgoingMail />
                 </button>
 
-                <button
-                  className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
-                  onClick={changeThemeMode}
-                >
+                <button className="large-icon" onClick={changeThemeMode}>
                   <span className="sr-only">테마 변경 버튼</span>
                   {themeModeState ? <MdOutlineLightMode /> : <MdNightlight />}
                 </button>
@@ -167,7 +157,7 @@ export default function Header() {
 
             {/* Close Btn */}
             <button
-              className="absolute top-[2.4rem] right-[1.4rem] sm:right-0 text-text_primary text-close_icon w-close_icon h-close_icon"
+              className="w-icon-medium h-icon-medium text-icon-medium absolute top-[2.4rem] right-[1.4rem] sm:right-0"
               onClick={() => setSidebarStatus(SIDEBAR_STATUS.CLOSE)}
             >
               <span className="sr-only">모바일 메뉴 닫기</span>
@@ -179,11 +169,7 @@ export default function Header() {
         {/* Tools */}
         <div className="hidden md:flex h-header xl:h-xl_header items-center">
           <div className="flex items-center gap-4">
-            <button
-              onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)}
-              onMouseLeave={resetTooltip}
-              className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
-            >
+            <button onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)} onMouseLeave={resetTooltip} className="large-icon relative">
               <span className="sr-only">메일 보내기 버튼</span>
 
               {showTooltip === TOOLTIP.MAIL && TooltipComponent[TOOLTIP.MAIL]}
@@ -191,7 +177,7 @@ export default function Header() {
             </button>
 
             <button
-              className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
+              className="large-icon relative"
               onMouseEnter={() => handleTooltip(TOOLTIP.THEME)}
               onMouseLeave={resetTooltip}
               onClick={changeThemeMode}
@@ -205,7 +191,7 @@ export default function Header() {
         </div>
 
         {/* Hamberger Menu */}
-        <button className="text-nav_icon md:hidden" onClick={() => setSidebarStatus(SIDEBAR_STATUS.OPEN)}>
+        <button className="text-icon-small md:hidden" onClick={() => setSidebarStatus(SIDEBAR_STATUS.OPEN)}>
           <HiOutlineMenuAlt1 />
           <span className="sr-only">모바일 햄버거 메뉴 버튼</span>
         </button>

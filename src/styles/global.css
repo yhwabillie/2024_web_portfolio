@@ -61,24 +61,21 @@
 
   /* Header Nav 스크롤 하이라이트 active */
   .desktop-gnb-wrap > ul {
-    li {
-      transition: color 0.1s ease-in-out;
-      position: relative;
-      color: #888888;
-    }
-
-    li > a {
-      transition: color 0.1s ease-in-out;
-    }
-
     li.active > a {
-      color: var(--text-primary);
+      color: var(--theme-active);
     }
   }
 }
 
 /* components : 유틸리티로 재정의 할 수 있는 클래스-기반 스타일을 위한 레이어 (써드파티 라이브러리를 위한 커스텀 스타일을 작성) */
 @layer components {
+  .container {
+    @apply h-full m-auto px-mobile xxs:max-w-xxs xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg lg:px-0 xl:max-w-xl;
+  }
+
+  .large-icon {
+    @apply w-icon-large h-icon-large text-icon-small rounded-sm hover:text-theme-reverse hover:bg-theme-hover flex justify-center items-center;
+  }
 }
 
 /* utilities : 다른 어떤 스타일들보다 먼저 적용되야할 작고, 하나의 목적을 가진 클래스를 위한 레이어 */
@@ -87,13 +84,21 @@
 
 /* UI 테마 설정 */
 .dark {
-  --bg-primary: #111111;
-  --text-primary: #ffffff;
-  --active-hover: #eeeeee;
+  --theme: #111111;
+  --theme-reverse: #ffffff;
+  --theme-gray: #333333;
+  --desktop-logo: url('/logo/logo_white.png');
+  --theme-active: #ffffff;
+  --theme-unactive: #888888;
+  --theme-hover: #222224;
 }
 
 .light {
-  --bg-primary: #ffffff;
-  --text-primary: #000000;
-  --active-hover: #eeeeee;
+  --theme: #ffffff;
+  --theme-reverse: #000000;
+  --theme-gray: #eeeeee;
+  --desktop-logo: url('/logo/logo_black.png');
+  --theme-active: #111111;
+  --theme-unactive: #888888;
+  --theme-hover: #eeeeee;
 }

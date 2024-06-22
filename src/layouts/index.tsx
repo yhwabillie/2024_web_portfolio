@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 import Observer from 'gsap/dist/Observer'
 import { useGSAP } from '@gsap/react'
-import { useSectionRefStore, useSidebarStatusStore } from '../store/storehooks'
+import { useMainPageRefsStore, useSidebarStatusStore } from '../store/storehooks'
 import { SIDEBAR_STATUS } from '../types/enums'
 
 if (typeof window !== 'undefined') {
@@ -31,10 +31,13 @@ const getTransitionStyles: any = {
 }
 
 export default function Layout(props: PageProps) {
-  const nodeRef = React.useRef(null)
-  const footerRef = React.useRef<any>(null)
-  const { refArray } = useSectionRefStore()
-  const { sidebarStatus, setSidebarStatus } = useSidebarStatusStore()
+  //zustand state
+  const { mainPageRefs } = useMainPageRefsStore()
+  const { setSidebarStatus } = useSidebarStatusStore()
+
+  //refs 정의
+  const nodeRef = React.useRef<HTMLElement>(null)
+  const footerRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     gsap.fromTo(
@@ -46,7 +49,7 @@ export default function Layout(props: PageProps) {
         autoAlpha: 1,
         scrollTrigger: {
           scrub: 2,
-          trigger: refArray[3]?.current,
+          trigger: mainPageRefs[3]?.current,
           start: '100% 60%',
           end: '100% 100%',
         },
@@ -121,7 +124,7 @@ export default function Layout(props: PageProps) {
         })
       })
     })
-  }, [refArray])
+  }, [mainPageRefs])
 
   const getDocumentTitle = (path: string) => {
     if (path === '/') {

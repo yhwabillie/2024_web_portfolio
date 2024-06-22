@@ -1,18 +1,28 @@
+//zustand 상태와 액션을 저장
 import { MutableRefObject } from 'react'
 import { create } from 'zustand'
 import { SIDEBAR_STATUS } from '../types/enums'
 
-//zustand 상태와 액션을 저장
-
-//메인페이지 section별 DOM Element 저장
-interface SectionRefState {
-  refArray: MutableRefObject<HTMLElement | null>[]
-  setRefArray: (ref: MutableRefObject<HTMLElement | null>[]) => void
+//메인페이지 섹션별 Ref DOM Element 배열에 저장
+type MainPageRefsType = {
+  mainPageRefs: React.RefObject<HTMLElement | HTMLDivElement>[]
+  setMainPageRefs: (ref: React.RefObject<HTMLElement | HTMLDivElement>[]) => void
 }
 
-export const useSectionRefStore = create<SectionRefState>((set) => ({
-  refArray: [],
-  setRefArray: (ref: MutableRefObject<HTMLElement | null>[]) => set({ refArray: ref }),
+export const useMainPageRefsStore = create<MainPageRefsType>((set) => ({
+  mainPageRefs: [],
+  setMainPageRefs: (ref) => set({ mainPageRefs: ref }),
+}))
+
+//푸터 Ref DOM Element 저장
+type FooterRefType = {
+  footerRef: React.RefObject<HTMLElement>
+  setFooterRef: (ref: React.RefObject<HTMLElement>) => void
+}
+
+export const useFooterRefStore = create<FooterRefType>((set) => ({
+  footerRef: { current: null },
+  setFooterRef: (ref) => set({ footerRef: ref }),
 }))
 
 //메인페이지 section별 스크롤 isIntersecting 상태값 저장
