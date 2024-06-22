@@ -1,5 +1,8 @@
 import * as React from 'react'
 
+// SSR 로컬스토리지 테마 값 설정 및 판단하여 테마 스타일 적용
+// 로컬 테마 값이 없으면 Dark로 설정하고 body에 테마 적용
+// 로컬 테마 값이 존재하면 Light, Dark 를 판단하여 body에 테마 적용
 const applyDarkModeClass = `
   (function() {
     try {
@@ -7,6 +10,8 @@ const applyDarkModeClass = `
 
       if(theme === null){
         window.localStorage.setItem('theme','dark')
+        document.getElementsByTagName("body")[0].className = 'dark bg-bg_primary text-text_primary'
+
       } else {
         document.getElementsByTagName("body")[0].className = theme === 'dark' ? 'dark bg-bg_primary text-text_primary' : 'light bg-bg_primary text-text_primary';
       }
@@ -15,9 +20,9 @@ const applyDarkModeClass = `
   })();
 `
 
-const Attributes = {
-  className: 'dark bg-primary text-text-main',
-}
+// const Attributes = {
+//   className: 'dark bg-primary text-text-main',
+// }
 
 // export const onPreRenderHTML = ({ setPreBodyComponents }) => {
 //   const script = React.createElement("script", {
@@ -74,5 +79,5 @@ export const onRenderBody = ({ setHeadComponents, setBodyAttributes, setHtmlAttr
   })
 
   setPreBodyComponents([script])
-  setBodyAttributes(Attributes)
+  // setBodyAttributes(Attributes)
 }

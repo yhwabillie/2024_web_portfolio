@@ -3,20 +3,18 @@ import { Link } from 'gatsby'
 import { MdOutlineLightMode, MdNightlight, MdOutgoingMail } from 'react-icons/md'
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
 import { IoCloseOutline } from 'react-icons/io5'
-import { useIsShowSideMenuStore } from '../store/storehooks'
+import { LOCAL_THEME, SIDEBAR_STATUS, TOOLTIP } from '../types/enums'
+import Tooltip from './Tooltip'
+import { useSidebarStatusStore } from '../store/storehooks'
 
-enum LOCAL_THEME {
-  LOCAL_KEY = 'theme',
-  LIGHT_VALUE = 'light',
-  DARK_VALUE = 'dark',
-}
-
-interface INavList {
+type NavItemType = {
   href: string
   title: string
 }
 
-const nav_list: INavList[] = [
+type TooltipType = TOOLTIP.MAIL | TOOLTIP.THEME | TOOLTIP.RESET
+
+const nav_list: NavItemType[] = [
   {
     href: '#visual_view',
     title: '💡 소개',
@@ -35,14 +33,27 @@ const nav_list: INavList[] = [
   },
 ]
 
-0
 export default function Header() {
-  const [mode, setMode] = React.useState(false)
-  const [showMailTooltip, setShowMailTooltip] = React.useState<boolean>(false)
-  const [showThemeTooltip, setShowThemeTooltip] = React.useState<boolean>(false)
-  const { isShowSideMenu, setIsShowSideMenu } = useIsShowSideMenuStore()
+  //state
+  const [themeModeState, setThemeModeState] = React.useState<boolean>(false)
+  const [showTooltip, setShowTooltip] = React.useState<TooltipType>(TOOLTIP.RESET)
 
-  const changeTheme = () => {
+  //zustand state
+  const { sidebarStatus, setSidebarStatus } = useSidebarStatusStore()
+
+  //tooltip components
+  const TooltipComponent: Record<TooltipType, JSX.Element> = {
+    mail: <Tooltip text="메일 보내기" />,
+    theme: <Tooltip text="테마 변경" />,
+    reset: <></>,
+  }
+
+  //툴팁 호버 event
+  const handleTooltip = (tooltip: TooltipType) => setShowTooltip(tooltip)
+  const resetTooltip = () => setShowTooltip(TOOLTIP.RESET)
+
+  //로컬 테마모드 변경하기 event
+  const changeThemeMode = () => {
     const currentTheme = window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY)
     const bodyElement = document.getElementsByTagName('body')
 
@@ -50,29 +61,28 @@ export default function Header() {
       case LOCAL_THEME.DARK_VALUE:
         window.localStorage.setItem(LOCAL_THEME.LOCAL_KEY, LOCAL_THEME.LIGHT_VALUE)
         bodyElement[0].classList.replace(LOCAL_THEME.DARK_VALUE, LOCAL_THEME.LIGHT_VALUE)
-        setMode(false)
+        setThemeModeState(false)
         break
 
       case LOCAL_THEME.LIGHT_VALUE:
         window.localStorage.setItem(LOCAL_THEME.LOCAL_KEY, LOCAL_THEME.DARK_VALUE)
         bodyElement[0].classList.replace(LOCAL_THEME.LIGHT_VALUE, LOCAL_THEME.DARK_VALUE)
-        setMode(true)
+        setThemeModeState(true)
         break
     }
   }
 
-  const openMobileMenu = () => setIsShowSideMenu(true)
-  const closeMobileMenu = () => setIsShowSideMenu(false)
-
   React.useEffect(() => {
-    setMode(window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY) === LOCAL_THEME.LIGHT_VALUE ? false : true)
+    //최초 로드시 로컬스토리지에 있는 theme값을 판단하여 state에 저장
+    //True 다크모드, False 라이트모드
+    setThemeModeState(window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY) === LOCAL_THEME.DARK_VALUE)
   }, [])
 
   return (
     <header className="w-full text-text_primary border-b border-dark_gray bg-bg_primary fixed top-0 left-0 z-1 h-md_header lg:h-header xl:h-xl_header">
       <div className="flex justify-between items-center h-full m-auto px-mobile xxs:max-w-xxs xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg lg:px-0 xl:max-w-xl">
         {/* Logo */}
-        <div>
+        <div className="logo-wrap">
           <Link
             to="/"
             className="hidden lg:block h-header bg-contain bg-no-repeat bg-center xl:h-xl_header lg:w-desktop_logo lg:bg-logo-black lg:dark:bg-logo-white"
@@ -83,14 +93,14 @@ export default function Header() {
             to="/"
             className="block lg:hidden w-mobile_logo h-mobile_logo bg-logo_mobile_light dark:bg-logo_mobile_dark bg-cover bg-center bg-no-repeat"
           >
-            <span className="sr-only">Mobile Logo</span>
+            <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
           </Link>
         </div>
 
-        {/* Desktop Gnb */}
+        {/* Desktop Navigation Links */}
         <nav className="desktop-gnb-wrap hidden md:flex items-center">
           <ul className="flex h-full hover:text-light_gray">
-            {nav_list.map((item: INavList, index: number) => (
+            {nav_list.map((item: NavItemType, index: number) => (
               <li key={index} className="text-xl_header leading-header xl:leading-xl_header hover:text-text_primary px-2 cursor-pointer">
                 <Link to={item.href} className="block h-full w-full">
                   {item.title}
@@ -100,9 +110,9 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Mobile Gnb */}
+        {/* Mobile Sidebar Menu */}
         <div
-          className={`${isShowSideMenu ? 'translate-x-[0%]' : 'translate-x-[100%]'} md:hidden fixed z-1 left-0 top-0 overflow-x-hidden overflow-y-auto w-full h-full bg-bg_primary transition-transform`}
+          className={`${sidebarStatus === SIDEBAR_STATUS.OPEN ? 'translate-x-[0%]' : 'translate-x-[100%]'} md:hidden fixed z-1 left-0 top-0 overflow-x-hidden overflow-y-auto w-full h-full bg-bg_primary transition-transform`}
         >
           <div className="flex flex-col relative max-w-side_menu min-h-full mx-auto pb-[3.6rem] px-[1.4rem] sm:px-0">
             <strong className="block py-[2.4rem]">
@@ -113,9 +123,9 @@ export default function Header() {
 
             {/* Nav */}
             <nav className="mobile-gnb-wrap flex-1 pt-[4.7rem] pb-[6.6rem]">
-              <h2 className="sr-only">모바일 메뉴</h2>
+              <h2 className="sr-only">모바일 모드 네비게이션 영역</h2>
               <ul>
-                {nav_list.map((item: INavList, index: number) => (
+                {nav_list.map((item: NavItemType, index: number) => (
                   <li key={index} className="text-side_menu leading-header xl:leading-xl_header cursor-pointer">
                     <Link to={item.href} className="block h-full w-full">
                       {item.title}
@@ -147,10 +157,10 @@ export default function Header() {
 
                 <button
                   className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
-                  onClick={changeTheme}
+                  onClick={changeThemeMode}
                 >
                   <span className="sr-only">테마 변경 버튼</span>
-                  {mode ? <MdOutlineLightMode /> : <MdNightlight />}
+                  {themeModeState ? <MdOutlineLightMode /> : <MdNightlight />}
                 </button>
               </div>
             </div>
@@ -158,7 +168,7 @@ export default function Header() {
             {/* Close Btn */}
             <button
               className="absolute top-[2.4rem] right-[1.4rem] sm:right-0 text-text_primary text-close_icon w-close_icon h-close_icon"
-              onClick={closeMobileMenu}
+              onClick={() => setSidebarStatus(SIDEBAR_STATUS.CLOSE)}
             >
               <span className="sr-only">모바일 메뉴 닫기</span>
               <IoCloseOutline />
@@ -170,38 +180,32 @@ export default function Header() {
         <div className="hidden md:flex h-header xl:h-xl_header items-center">
           <div className="flex items-center gap-4">
             <button
-              onMouseEnter={() => setShowMailTooltip(true)}
-              onMouseLeave={() => setShowMailTooltip(false)}
+              onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)}
+              onMouseLeave={resetTooltip}
               className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
             >
-              {showMailTooltip && (
-                <div className="shadow-xl before:content:'' before:rotate-[180deg] before:border-t-[1rem] before:border-t-primary before:border-x-[1rem] before:border-x-transparent before:absolute before:top-[-1rem] before:left-[3.8rem] box-border absolute left-[50%] bottom-[-5rem] w-[10rem] h-[4rem] rounded-[2rem] translate-x-[-50%] bg-primary text-white text-sm leading-[4rem]">
-                  메일 보내기
-                </div>
-              )}
               <span className="sr-only">메일 보내기 버튼</span>
+
+              {showTooltip === TOOLTIP.MAIL && TooltipComponent[TOOLTIP.MAIL]}
               <MdOutgoingMail />
             </button>
 
             <button
               className="w-nav_icon h-nav_icon text-nav_icon rounded-nav_icon hover:text-black hover:bg-icon_hover_bg flex justify-center items-center relative"
-              onMouseEnter={() => setShowThemeTooltip(true)}
-              onMouseLeave={() => setShowThemeTooltip(false)}
-              onClick={changeTheme}
+              onMouseEnter={() => handleTooltip(TOOLTIP.THEME)}
+              onMouseLeave={resetTooltip}
+              onClick={changeThemeMode}
             >
-              {showThemeTooltip && (
-                <div className="shadow-xl before:content:'' before:rotate-[180deg] before:border-t-[1rem] before:border-t-primary before:border-x-[1rem] before:border-x-transparent before:absolute before:top-[-1rem] before:left-[3.8rem] box-border absolute left-[50%] bottom-[-5rem] w-[10rem] h-[4rem] rounded-[2rem] translate-x-[-50%] bg-primary text-white text-sm leading-[4rem]">
-                  테마 변경
-                </div>
-              )}
               <span className="sr-only">테마 변경 버튼</span>
-              {mode ? <MdOutlineLightMode /> : <MdNightlight />}
+
+              {showTooltip === TOOLTIP.THEME && TooltipComponent[TOOLTIP.THEME]}
+              {themeModeState ? <MdOutlineLightMode /> : <MdNightlight />}
             </button>
           </div>
         </div>
 
         {/* Hamberger Menu */}
-        <button className="text-nav_icon md:hidden" onClick={openMobileMenu}>
+        <button className="text-nav_icon md:hidden" onClick={() => setSidebarStatus(SIDEBAR_STATUS.OPEN)}>
           <HiOutlineMenuAlt1 />
           <span className="sr-only">모바일 햄버거 메뉴 버튼</span>
         </button>

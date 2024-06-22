@@ -8,7 +8,8 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
 import Observer from 'gsap/dist/Observer'
 import { useGSAP } from '@gsap/react'
-import { useIsShowSideMenuStore, useSectionRefStore } from '../store/storehooks'
+import { useSectionRefStore, useSidebarStatusStore } from '../store/storehooks'
+import { SIDEBAR_STATUS } from '../types/enums'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger, useGSAP, ScrollToPlugin, Observer)
@@ -33,7 +34,7 @@ export default function Layout(props: PageProps) {
   const nodeRef = React.useRef(null)
   const footerRef = React.useRef<any>(null)
   const { refArray } = useSectionRefStore()
-  const { isShowSideMenu, setIsShowSideMenu } = useIsShowSideMenuStore()
+  const { sidebarStatus, setSidebarStatus } = useSidebarStatusStore()
 
   React.useEffect(() => {
     gsap.fromTo(
@@ -110,7 +111,7 @@ export default function Layout(props: PageProps) {
       a.addEventListener('click', (e: any) => {
         e.preventDefault()
 
-        setIsShowSideMenu(false)
+        setSidebarStatus(SIDEBAR_STATUS.CLOSE)
 
         gsap.to(window, {
           scrollTo: {
