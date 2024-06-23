@@ -49,6 +49,10 @@
   }
 
   /* RESET */
+  html {
+    font-family: 'Pretendard';
+    font-weight: 400;
+  }
 
   video {
     height: 100% !important;
@@ -79,19 +83,19 @@
 
 /* UI 테마 설정 */
 .dark {
-  --theme: #111111;
-  --theme-reverse: #ffffff;
-  --theme-gray: #333333;
-  --theme-active: #ffffff;
-  --theme-unactive: #888888;
+  --theme: #111;
+  --theme-reverse: #fff;
+  --theme-gray: #333;
+  --theme-active: #fff;
+  --theme-unactive: #888;
   --theme-hover: #222224;
 }
 
 .light {
-  --theme: #ffffff;
-  --theme-reverse: #000000;
-  --theme-gray: #eeeeee;
-  --theme-active: #111111;
-  --theme-unactive: #888888;
-  --theme-hover: #eeeeee;
+  --theme: #fff;
+  --theme-reverse: #000;
+  --theme-gray: #eee;
+  --theme-active: #111;
+  --theme-unactive: #888;
+  --theme-hover: #eee;
 }
