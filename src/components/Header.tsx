@@ -7,6 +7,7 @@ import { LOCAL_THEME, SIDEBAR_STATUS, TOOLTIP } from '../types/enums'
 import Tooltip from './Tooltip'
 import { useSidebarStatusStore } from '../store/storehooks'
 import Logo from './Logo'
+import { ThemeModeStateType } from '../types/globalTypes'
 
 type NavItemType = {
   href: string
@@ -35,8 +36,11 @@ const nav_list: NavItemType[] = [
 ]
 
 export default function Header() {
+  //local storage
+  const currentTheme: ThemeModeStateType = window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY)
+
   //state
-  const [themeModeState, setThemeModeState] = React.useState<boolean>(false)
+  const [themeModeState, setThemeModeState] = React.useState<ThemeModeStateType>(currentTheme)
   const [showTooltip, setShowTooltip] = React.useState<TooltipType>(TOOLTIP.RESET)
 
   //zustand state
@@ -55,46 +59,39 @@ export default function Header() {
 
   //로컬 테마모드 변경하기 event
   const changeThemeMode = () => {
-    const currentTheme = window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY)
     const bodyElement = document.getElementsByTagName('body')
 
     switch (currentTheme) {
       case LOCAL_THEME.DARK_VALUE:
         window.localStorage.setItem(LOCAL_THEME.LOCAL_KEY, LOCAL_THEME.LIGHT_VALUE)
         bodyElement[0].classList.replace(LOCAL_THEME.DARK_VALUE, LOCAL_THEME.LIGHT_VALUE)
-        setThemeModeState(false)
+        setThemeModeState(LOCAL_THEME.LIGHT_VALUE)
         break
 
       case LOCAL_THEME.LIGHT_VALUE:
         window.localStorage.setItem(LOCAL_THEME.LOCAL_KEY, LOCAL_THEME.DARK_VALUE)
         bodyElement[0].classList.replace(LOCAL_THEME.LIGHT_VALUE, LOCAL_THEME.DARK_VALUE)
-        setThemeModeState(true)
+        setThemeModeState(LOCAL_THEME.DARK_VALUE)
         break
     }
   }
 
-  React.useEffect(() => {
-    //최초 로드시 로컬스토리지에 있는 theme값을 판단하여 state에 저장
-    //True 다크모드, False 라이트모드
-    setThemeModeState(window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY) === LOCAL_THEME.DARK_VALUE)
-  }, [])
-
   return (
-    <header className="w-full h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse fixed top-0 left-0 z-1 border-b border-theme-gray">
-      <div className="container flex justify-between items-center">
+    <header className="fixed top-0 left-0 w-full border-b h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse z-1 border-theme-gray">
+      <div className="container flex items-center justify-between">
         <Link to="/">
           <h1 className="sr-only">Portfolio Website (웹사이트 이름)</h1>
           <Logo themeModeState={themeModeState} />
         </Link>
 
-        <nav className="desktop-gnb-wrap hidden md:flex items-center">
+        <nav className="items-center hidden desktop-gnb-wrap md:flex">
           <ul className="flex h-full hover:text-light_gray">
             {nav_list.map((item: NavItemType, index: number) => (
               <li
                 key={index}
                 className="px-2 text-md lg:text-lg hover:text-theme-active text-theme-unactive leading-header-small lg:leading-header-medium xl:leading-header-large"
               >
-                <Link to={item.href} className="block h-full w-full transition-colors">
+                <Link to={item.href} className="block w-full h-full transition-colors">
                   {item.title}
                 </Link>
               </li>
@@ -106,7 +103,7 @@ export default function Header() {
         <div
           className={`${sidebarStatus === SIDEBAR_STATUS.OPEN ? 'translate-x-0' : 'translate-x-full'} md:hidden w-full h-full bg-theme fixed left-0 top-0 z-1 overflow-x-hidden overflow-y-auto transition-transform`}
         >
-          <div className="flex flex-col relative max-w-sidebar min-h-full mx-auto px-xs pb-md sm:px-zero">
+          <div className="relative flex flex-col min-h-full mx-auto max-w-sidebar px-xs pb-md sm:px-zero">
             <strong className="block py-sm">
               <Link to="/">
                 <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
@@ -115,7 +112,7 @@ export default function Header() {
             </strong>
 
             {/* Nav */}
-            <nav className="mobile-gnb-wrap flex-1 pt-lg pb-xl">
+            <nav className="flex-1 mobile-gnb-wrap pt-lg pb-xl">
               <h2 className="sr-only">모바일 모드 네비게이션 영역</h2>
               <ul>
                 {nav_list.map((item: NavItemType, index: number) => (
@@ -150,7 +147,7 @@ export default function Header() {
 
                 <button className="large-icon" onClick={changeThemeMode}>
                   <span className="sr-only">테마 변경 버튼</span>
-                  {themeModeState ? <MdOutlineLightMode /> : <MdNightlight />}
+                  {themeModeState === LOCAL_THEME.DARK_VALUE ? <MdOutlineLightMode /> : <MdNightlight />}
                 </button>
               </div>
             </div>
@@ -167,9 +164,9 @@ export default function Header() {
         </div>
 
         {/* Tools */}
-        <div className="hidden md:flex h-header xl:h-xl_header items-center">
+        <div className="items-center hidden md:flex h-header xl:h-xl_header">
           <div className="flex items-center gap-4">
-            <button onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)} onMouseLeave={resetTooltip} className="large-icon relative">
+            <button onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)} onMouseLeave={resetTooltip} className="relative large-icon">
               <span className="sr-only">메일 보내기 버튼</span>
 
               {showTooltip === TOOLTIP.MAIL && TooltipComponent[TOOLTIP.MAIL]}
@@ -177,7 +174,7 @@ export default function Header() {
             </button>
 
             <button
-              className="large-icon relative"
+              className="relative large-icon"
               onMouseEnter={() => handleTooltip(TOOLTIP.THEME)}
               onMouseLeave={resetTooltip}
               onClick={changeThemeMode}
@@ -185,7 +182,7 @@ export default function Header() {
               <span className="sr-only">테마 변경 버튼</span>
 
               {showTooltip === TOOLTIP.THEME && TooltipComponent[TOOLTIP.THEME]}
-              {themeModeState ? <MdOutlineLightMode /> : <MdNightlight />}
+              {themeModeState === LOCAL_THEME.DARK_VALUE ? <MdOutlineLightMode /> : <MdNightlight />}
             </button>
           </div>
         </div>
