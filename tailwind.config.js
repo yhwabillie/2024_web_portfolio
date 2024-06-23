@@ -1,29 +1,35 @@
 /** @type {import('tailwindcss').Config} */
+
+function pxToRem(px, base = 16) {
+  return `${px / base}rem`
+}
+
 module.exports = {
   content: ['./src/pages/**/*.{js,jsx,ts,tsx}', './src/layouts/**/*.{js,jsx,ts,tsx}', './src/components/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'class',
   theme: {
     screens: {
-      xxs: '17.5rem', // 280px
-      xs: '26rem', // 416px
-      sm: '48rem', // 768px
-      md: '64rem', // 1024px
-      lg: '90rem', // 1440px
-      xl: '118.938rem', // 1903px
+      xxs: pxToRem(280),
+      xs: pxToRem(416),
+      sm: pxToRem(768),
+      md: pxToRem(1024),
+      lg: pxToRem(1440),
+      xl: pxToRem(1903),
     },
     maxWidth: {
       xxs: '100%',
-      xs: '24rem', // 384px
-      sm: '44.5rem', // 712px
-      md: '59.25rem', // 948px
-      lg: '82.25rem', // 1316px
-      xl: '107rem', // 1712px
-      sidebar: '25.75rem', // 412px
+      xs: pxToRem(384),
+      sm: pxToRem(712),
+      md: pxToRem(948),
+      lg: pxToRem(1316),
+      xl: pxToRem(1712),
+      sidebar: pxToRem(412),
     },
     width: {
       full: '100%',
       'icon-medium': '2.125rem',
       'icon-large': '2.25rem',
+      tooltip: pxToRem(100),
     },
     height: {
       full: '100%',
