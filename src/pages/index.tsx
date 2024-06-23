@@ -80,7 +80,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
               <li key={index}>
-                <Link to={`/${item.category}/${item.slug}`}>
+                <Link className="text-[1rem]" to={`/${item.category}/${item.slug}`}>
                   <strong>{item.title}</strong>
                   <p>{`게시일: ${dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}`}</p>
                 </Link>

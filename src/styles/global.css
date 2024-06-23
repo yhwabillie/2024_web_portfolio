@@ -49,11 +49,6 @@
   }
 
   /* RESET */
-  html {
-    font-family: 'Pretendard';
-    font-weight: 400;
-    font-size: 62.5%;
-  }
 
   video {
     height: 100% !important;
