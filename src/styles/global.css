@@ -87,7 +87,6 @@
   --theme: #111111;
   --theme-reverse: #ffffff;
   --theme-gray: #333333;
-  --desktop-logo: url('/logo/logo_white.png');
   --theme-active: #ffffff;
   --theme-unactive: #888888;
   --theme-hover: #222224;
@@ -97,7 +96,6 @@
   --theme: #ffffff;
   --theme-reverse: #000000;
   --theme-gray: #eeeeee;
-  --desktop-logo: url('/logo/logo_black.png');
   --theme-active: #111111;
   --theme-unactive: #888888;
   --theme-hover: #eeeeee;

@@ -22,8 +22,6 @@ module.exports = {
     },
     width: {
       full: '100%',
-      'logo-big': '19.2rem',
-      'logo-small': '14.5rem',
       'icon-medium': '3.4rem',
       'icon-large': '3.6rem',
     },
@@ -66,6 +64,12 @@ module.exports = {
       black: '#333333',
       transparent: 'transparent',
     },
+    margin: {
+      auto: 'auto',
+      'header-small': '7.2rem',
+      'header-medium': '8.4rem',
+      'header-large': '9rem',
+    },
     padding: {
       zero: '0rem',
       xs: '1.4rem',
@@ -92,36 +96,7 @@ module.exports = {
       80: '0.8',
       100: '1',
     },
-    backgroundImage: {
-      logo: 'var(--desktop-logo)',
-    },
-    fontFamily: {
-      Pretendard: ['Pretendard'],
-    },
-
-    extend: {
-      //별도로 클래스 설정
-      margin: {
-        xl_header: '90px',
-        md_header: '72px',
-        header: '84px',
-      },
-      backgroundImage: {
-        // logo_mobile_dark: "url('/logo/mobile_logo_white.png')",
-        // logo_mobile_light: "url('/logo/mobile_logo_black.png')",
-        // 'edge-round-1': "url('/header_edge_left_round.svg')",
-        // 'edge-round-2': "url('/header_edge_right_round.svg')",
-        // 'edge-round-3': "url('/header_edge_right_round_light.svg')",
-        // 'edge-round-4': "url('/header_edge_left_round_light.svg')",
-        // 'contact-mask-dark': "url('/contact_mask.svg')",
-        // 'contact-mask-light': "url('/contact_mask_light.svg')",
-        // 'contact-mini-mask-dark': "url('/contact_mini_mask.svg')",
-        // 'contact-mini-mask-light': "url('/contact_mini_mask_light.svg')",
-      },
-      fontFamily: {
-        display: 'Pretendard', // Adds a new `font-display` class
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }

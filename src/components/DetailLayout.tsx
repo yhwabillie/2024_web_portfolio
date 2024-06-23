@@ -6,6 +6,7 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import Header from './Header'
 import Footer from './Footer'
+import { useFooterRefStore } from '../store/storehooks'
 
 interface IDetailLayoutProps {
   category: string
@@ -16,6 +17,7 @@ interface IDetailLayoutProps {
 }
 
 export default function DetailLayout({ title, category, headerImagePath, contentRawData, nextList }: IDetailLayoutProps) {
+  const { footerRef } = useFooterRefStore()
   const headerImage = getImage(headerImagePath)!
   const richTextDocument = contentRawData
   const options = {
@@ -79,7 +81,7 @@ export default function DetailLayout({ title, category, headerImagePath, content
 
         <Link to="/">👈 Go Home</Link>
       </main>
-      <Footer />
+      <Footer footerRef={footerRef} />
     </>
   )
 }

@@ -75,7 +75,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   }, [footerRef])
 
   return (
-    <article className="relative z-2 mt-md_header lg:mt-header xl:mt-xl_header">
+    <article className="relative z-2 mt-header-small lg:mt-header-medium xl:mt-header-large">
       <div id="visualView" ref={visualViewRef} className=""></div>
 
       {/* 소개 */}
