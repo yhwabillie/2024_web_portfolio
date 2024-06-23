@@ -20,6 +20,26 @@ const config: GatsbyConfig = {
     'gatsby-plugin-advanced-sitemap',
     `gatsby-plugin-layout`,
     {
+      resolve: 'gatsby-plugin-alias-imports',
+      options: {
+        alias: {
+          '@src': 'src',
+          '@components': 'src/components',
+          '@constants': 'src/constants',
+          '@hooks': 'src/hooks',
+          '@images': 'src/images',
+          '@layouts': 'src/layouts',
+          '@pages': 'src/pages',
+          '@store': 'src/store',
+          '@styles': 'src/styles',
+          '@templates': 'src/templates',
+          '@/types': 'src/types',
+          '@utilities': 'src/utilities',
+        },
+        extensions: ['js', 'ts', 'tsx', 'jsx'],
+      },
+    },
+    {
       resolve: `gatsby-transformer-sharp`,
       options: {
         defaults: {

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useSiteMetadata } from '../hooks/use-site-metadata'
+import { useSiteMetadata } from '@hooks/use-site-metadata'
 // import useThemeStore from '../store/useThemeStore'
 
 interface ISEOProps {
@@ -34,7 +34,7 @@ export default function SEO({ title, description, ogImageUrl, pathname }: ISEOPr
   return (
     <>
       {/* HTML attributes & 정적 Metadata */}
-      <html lang="ko"/>
+      <html lang="ko" />
       <meta name="author" content="작성자" />
       <meta name="publisher" content="작성자" />
       <meta name="generator" content="Gatsby 5.13.5" />
@@ -75,7 +75,7 @@ export default function SEO({ title, description, ogImageUrl, pathname }: ISEOPr
 
       {/* Body Tag */}
       {/* <body className='bg-primary text-text-main' /> */}
-      <body/>
+      <body />
     </>
   )
 }

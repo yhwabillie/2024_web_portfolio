@@ -5,8 +5,8 @@ import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import SEO from '../components/Seo'
-import { useFooterRefStore, useMainPageRefsStore } from '../store/storehooks'
+import { useFooterRefStore, useMainPageRefsStore } from '@store/storehooks'
+import SEO from '@components/Seo'
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -98,7 +98,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
 
       {/* <div className="scrolling-text overflow-hidden bg-blue 2xl:mb-[200px] xl:mb-[120px] lg:mb-[80px] mb-[40px]">
         <div className="container w-[90%] m-auto">
-          <ul className="items scrollx-section flex justify-start flex-nowrap">
+          <ul className="flex justify-start items scrollx-section flex-nowrap">
             {marqueeArray.map((item, index) => (
               <li key={index} className="item text-[100px] text-white">
                 {item}

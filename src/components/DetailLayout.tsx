@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { Link } from 'gatsby'
-import { NextWorkListType } from '../templates/category-post'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
-import Header from './Header'
-import Footer from './Footer'
-import { useFooterRefStore } from '../store/storehooks'
+import { useFooterRefStore } from '@store/storehooks'
+import { NextWorkListType } from '@templates/category-post'
+import Header from '@components/Header'
+import Footer from '@components/Footer'
 
 interface IDetailLayoutProps {
   category: string

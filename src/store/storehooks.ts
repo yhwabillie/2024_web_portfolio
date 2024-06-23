@@ -1,7 +1,6 @@
 //zustand 상태와 액션을 저장
-import { MutableRefObject } from 'react'
 import { create } from 'zustand'
-import { SIDEBAR_STATUS } from '../types/enums'
+import { SIDEBAR_STATUS } from '@/types/enums'
 
 //메인페이지 섹션별 Ref DOM Element 배열에 저장
 type MainPageRefsType = {

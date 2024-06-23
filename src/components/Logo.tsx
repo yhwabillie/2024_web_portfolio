@@ -1,7 +1,7 @@
-import { StaticImage } from 'gatsby-plugin-image'
 import React from 'react'
-import { LOCAL_THEME } from '../types/enums'
-import { ThemeModeStateType } from '../types/globalTypes'
+import { StaticImage } from 'gatsby-plugin-image'
+import { LOCAL_THEME } from '@/types/enums'
+import { ThemeModeStateType } from '@/types/globalTypes'
 
 const Logo = ({ themeModeState }: { themeModeState: ThemeModeStateType }) => {
   return (

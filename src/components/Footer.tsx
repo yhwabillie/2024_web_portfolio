@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useFooterRefStore } from '../store/storehooks'
+import { useFooterRefStore } from '@store/storehooks'
 
 type FooterPropsType = {
   footerRef: React.RefObject<HTMLElement>

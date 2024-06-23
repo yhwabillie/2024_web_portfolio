@@ -3,11 +3,11 @@ import { Link } from 'gatsby'
 import { MdOutlineLightMode, MdNightlight, MdOutgoingMail } from 'react-icons/md'
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
 import { IoCloseOutline } from 'react-icons/io5'
-import { LOCAL_THEME, SIDEBAR_STATUS, TOOLTIP } from '../types/enums'
-import Tooltip from './Tooltip'
-import { useSidebarStatusStore } from '../store/storehooks'
-import Logo from './Logo'
-import { ThemeModeStateType } from '../types/globalTypes'
+import { useSidebarStatusStore } from '@store/storehooks'
+import { ThemeModeStateType } from '@/types/globalTypes'
+import { LOCAL_THEME, SIDEBAR_STATUS, TOOLTIP } from '@/types/enums'
+import Logo from '@components/Logo'
+import Tooltip from '@components/Tooltip'
 
 type NavItemType = {
   href: string

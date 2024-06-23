@@ -34,6 +34,7 @@ __metadata:
     gatsby: "npm:^5.13.5"
     gatsby-adapter-netlify: "npm:^1.1.6"
     gatsby-plugin-advanced-sitemap: "npm:^2.1.0"
+    gatsby-plugin-alias-imports: "npm:^1.0.5"
     gatsby-plugin-canonical-urls: "npm:^5.13.1"
     gatsby-plugin-image: "npm:^3.13.1"
     gatsby-plugin-layout: "npm:^4.13.1"
@@ -1683,7 +1684,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.17.9, @babel/runtime@npm:^7.2.0, @babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.21.0, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.24.7
   resolution: "@babel/runtime@npm:7.24.7"
   dependencies:
@@ -10988,6 +10989,17 @@ __metadata:
   peerDependencies:
     gatsby: ^3.0.0 || ^4.0.0
   checksum: 10c0/a948f814b55e30d8341a0ec1cb1a5c3fda86a65dda68e7f81f5e39a9ee81e524407d1902644c7f12ce27dc81776ef404ef8e25043c5f75ab3c683391346169f2
+  languageName: node
+  linkType: hard
+
+"gatsby-plugin-alias-imports@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "gatsby-plugin-alias-imports@npm:1.0.5"
+  dependencies:
+    "@babel/runtime": "npm:^7.2.0"
+  peerDependencies:
+    gatsby: ">2.0.0"
+  checksum: 10c0/e37d1b1de7520ed07f4c0f5aa709d2e169b291f5fc4104b82e1d30053ba3fecdf95cc1d3017064d47126a4124001ca21ac14bcd32f609015f36037dd09697870
   languageName: node
   linkType: hard
 
