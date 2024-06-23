@@ -114,6 +114,11 @@ export default function Header() {
             <strong className="block py-sm">
               <Link to="/" className="">
                 <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
+                {themeModeState ? (
+                  <StaticImage src={'../images/logo/logo_darkmode.webp'} alt="웹사이트 로고 다크모드" width={151} height={36} />
+                ) : (
+                  <StaticImage src={'../images/logo/logo_lightmode.webp'} alt="웹사이트 로고 라이트모드" width={151} height={36} />
+                )}
               </Link>
             </strong>
 
