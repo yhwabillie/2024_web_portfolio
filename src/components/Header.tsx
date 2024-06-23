@@ -36,6 +36,9 @@ const nav_list: NavItemType[] = [
 ]
 
 export default function Header() {
+  //define window
+  if (typeof window === 'undefined') return
+
   //local storage
   const currentTheme: ThemeModeStateType = window.localStorage.getItem(LOCAL_THEME.LOCAL_KEY)
 
