@@ -17,10 +17,25 @@ const config: GatsbyConfig = {
     `gatsby-adapter-netlify`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     'gatsby-plugin-advanced-sitemap',
     `gatsby-plugin-layout`,
-
+    {
+      resolve: `gatsby-transformer-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `dominantColor`,
+          quality: 50,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {

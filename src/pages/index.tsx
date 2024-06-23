@@ -6,14 +6,7 @@ import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import SEO from '../components/Seo'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin'
-import Observer from 'gsap/dist/Observer'
-import { useGSAP } from '@gsap/react'
-import { FaArrowRightLong } from 'react-icons/fa6'
 import { useFooterRefStore, useMainPageRefsStore } from '../store/storehooks'
-const videoBg = require('../images/videos/bg_video.mp4')
 
 dayjs.locale(ko)
 dayjs.extend(utc)

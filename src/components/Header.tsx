@@ -6,7 +6,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { LOCAL_THEME, SIDEBAR_STATUS, TOOLTIP } from '../types/enums'
 import Tooltip from './Tooltip'
 import { useSidebarStatusStore } from '../store/storehooks'
-import { StaticImage } from 'gatsby-plugin-image'
+import Logo from './Logo'
 
 type NavItemType = {
   href: string
@@ -82,13 +82,9 @@ export default function Header() {
   return (
     <header className="w-full h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse fixed top-0 left-0 z-1 border-b border-theme-gray">
       <div className="container flex justify-between items-center">
-        <Link to="/" className="">
+        <Link to="/">
           <h1 className="sr-only">Portfolio Website (웹사이트 이름)</h1>
-          {themeModeState ? (
-            <StaticImage src={'../images/logo/logo_darkmode.webp'} alt="웹사이트 로고 다크모드" width={151} height={36} />
-          ) : (
-            <StaticImage src={'../images/logo/logo_lightmode.webp'} alt="웹사이트 로고 라이트모드" width={151} height={36} />
-          )}
+          <Logo themeModeState={themeModeState} />
         </Link>
 
         <nav className="desktop-gnb-wrap hidden md:flex items-center">
@@ -112,13 +108,9 @@ export default function Header() {
         >
           <div className="flex flex-col relative max-w-sidebar min-h-full mx-auto px-xs pb-md sm:px-zero">
             <strong className="block py-sm">
-              <Link to="/" className="">
+              <Link to="/">
                 <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
-                {themeModeState ? (
-                  <StaticImage src={'../images/logo/logo_darkmode.webp'} alt="웹사이트 로고 다크모드" width={151} height={36} />
-                ) : (
-                  <StaticImage src={'../images/logo/logo_lightmode.webp'} alt="웹사이트 로고 라이트모드" width={151} height={36} />
-                )}
+                <Logo themeModeState={themeModeState} />
               </Link>
             </strong>
 
