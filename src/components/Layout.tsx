@@ -1,18 +1,14 @@
 import React from 'react'
-import Header from './Header'
+import { PageProps } from 'gatsby'
+import MainHeader from '@components/MainHeader'
+import SubHeader from '@components/SubHeader'
 
-type LayoutProps = {
-  children: React.ReactNode
-}
-
-export default function Layout({ children }: any) {
-  //refs 정의
-  const nodeRef = React.useRef<HTMLElement>(null)
-
+export default function Layout(props: any) {
   return (
-    <div className="default-layout">
-      <Header />
-      {children}
+    <div className="base-layout">
+      {props.path === '/' ? <MainHeader /> : <SubHeader title={props.pageContext.title} />}
+
+      {props.children}
     </div>
   )
 }

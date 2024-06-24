@@ -48,7 +48,6 @@ export default function CategoryPostTemplate({ pageContext, location }: Template
     <>
       <div className="container pages-category-template bg-theme">
         <h3>Category Detail</h3>
-        <Link to="/">Home</Link>
       </div>
 
       {/* <DetailLayout

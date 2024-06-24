@@ -5,7 +5,7 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { useFooterRefStore } from '@store/storehooks'
 import { NextWorkListType } from '@templates/category-post'
-import Header from '@components/Header'
+import Header from '@components/MainHeader'
 import Footer from '@components/Footer'
 
 interface IDetailLayoutProps {

@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useMainPageRefsStore, useSidebarStatusStore } from '@store/storehooks'
 import { SIDEBAR_STATUS } from '@/types/enums'
-import Header from '@components/Header'
+import Header from '@components/MainHeader'
 import { relative } from 'path'
 import Layout from '@components/Layout'
 
@@ -127,20 +127,21 @@ export default function CategoryLayout(props: PageProps) {
       case path.startsWith('/category/problem-solving'):
         return '문제 해결 본문'
       default:
-        return '본문'
+        return '디폴트 본문'
     }
   }
 
   return (
-    <div className="layout-index mt-header-small lg:mt-header-medium xl:mt-header-large">
-      <TransitionGroup className="relative mt-header-small lg:mt-header-medium xl:mt-header-large">
-        <CSSTransition nodeRef={nodeRef} key={props.location.pathname} timeout={150} classNames={'navigate-push'}>
-          <main ref={nodeRef} className="absolute top-0 left-0 w-full h-[100vh] transition-transform overflow-x-hidden">
-            <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
-            {props.children}
-          </main>
-        </CSSTransition>
-      </TransitionGroup>
-    </div>
+    <TransitionGroup className="relative mt-header-small lg:mt-header-medium xl:mt-header-large">
+      <CSSTransition nodeRef={nodeRef} key={props.location.pathname} timeout={150} classNames="navigate-push">
+        <main
+          ref={nodeRef}
+          className="absolute top-0 left-0 w-full overflow-x-hidden transition-transform h-dynamic-layout-small lg:dynamic-layout-medium xl:dynamic-layout-large"
+        >
+          <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
+          {props.children}
+        </main>
+      </CSSTransition>
+    </TransitionGroup>
   )
 }

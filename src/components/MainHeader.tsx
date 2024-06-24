@@ -4,38 +4,13 @@ import { MdOutlineLightMode, MdNightlight, MdOutgoingMail } from 'react-icons/md
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
 import { IoCloseOutline } from 'react-icons/io5'
 import { useSidebarStatusStore } from '@store/storehooks'
-import { ThemeModeStateType } from '@/types/globalTypes'
+import { NavItemType, ThemeModeStateType, TooltipType } from '@/types/globalTypes'
 import { LOCAL_THEME, SIDEBAR_STATUS, TOOLTIP } from '@/types/enums'
 import Logo from '@components/Logo'
 import Tooltip from '@components/Tooltip'
+import { navList } from '@constants/common'
 
-type NavItemType = {
-  href: string
-  title: string
-}
-
-type TooltipType = TOOLTIP.MAIL | TOOLTIP.THEME | TOOLTIP.RESET
-
-const nav_list: NavItemType[] = [
-  {
-    href: '#visual_view',
-    title: '💡 소개',
-  },
-  {
-    href: '#career',
-    title: '💼 경력',
-  },
-  {
-    href: '#project',
-    title: '🧑‍💻 개인 프로젝트',
-  },
-  {
-    href: '#problem',
-    title: '🙋‍♀️ Problem Solving',
-  },
-]
-
-export default function Header() {
+export default function MainHeader() {
   //define window
   if (typeof window === 'undefined') return
 
@@ -82,14 +57,14 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full border-b h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse z-1 border-theme-gray">
       <div className="container flex items-center justify-between">
-        {/* <Link to="/">
+        <Link to="/">
           <h1 className="sr-only">Portfolio Website (웹사이트 이름)</h1>
           <Logo themeModeState={themeModeState} />
-        </Link> */}
+        </Link>
 
         <nav className="items-center hidden desktop-gnb-wrap md:flex">
-          <ul className="flex h-full hover:text-light_gray">
-            {nav_list.map((item: NavItemType, index: number) => (
+          <ul className="flex h-full">
+            {navList.map((item: NavItemType, index: number) => (
               <li
                 key={index}
                 className="px-2 text-md lg:text-lg hover:text-theme-active text-theme-unactive leading-header-small lg:leading-header-medium xl:leading-header-large"
@@ -118,7 +93,7 @@ export default function Header() {
             <nav className="flex-1 mobile-gnb-wrap pt-lg pb-xl">
               <h2 className="sr-only">모바일 모드 네비게이션 영역</h2>
               <ul>
-                {nav_list.map((item: NavItemType, index: number) => (
+                {navList.map((item: NavItemType, index: number) => (
                   <li key={index} className="text-xl leading-header-medium">
                     <Link to={item.href} className="block w-full h-full">
                       {item.title}

@@ -1,5 +1,4 @@
 import * as React from 'react'
-import CategoryLayout from './src/layouts/index'
 import DefaultLayout from './src/components/Layout'
 import { WrapPageElementNodeArgs, WrapRootElementBrowserArgs, WrapRootElementNodeArgs } from 'gatsby'
 
