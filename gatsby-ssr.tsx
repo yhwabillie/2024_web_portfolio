@@ -1,4 +1,7 @@
 import * as React from 'react'
+import CategoryLayout from './src/layouts/index'
+import DefaultLayout from './src/components/Layout'
+import { WrapPageElementNodeArgs, WrapRootElementBrowserArgs, WrapRootElementNodeArgs } from 'gatsby'
 
 // SSR 로컬스토리지 테마 값 설정 및 판단하여 테마 스타일 적용
 // 로컬 테마 값이 없으면 Dark로 설정하고 body에 테마 적용
@@ -64,4 +67,12 @@ export const onRenderBody = ({ setHeadComponents, setBodyAttributes, setHtmlAttr
   })
 
   setPreBodyComponents([script])
+}
+
+//Root wrap
+export const wrapRootElement = ({ element }: WrapRootElementNodeArgs) => {}
+
+//Page wrap
+export const wrapPageElement = ({ element, props }: WrapPageElementNodeArgs) => {
+  return <DefaultLayout {...props}>{element}</DefaultLayout>
 }

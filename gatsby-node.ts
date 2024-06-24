@@ -47,7 +47,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
   allWorks.forEach((node) => {
     //template pageContext data
     createPage({
-      path: `${node.category}/${node.slug}`,
+      path: `category/${node.category}/${node.slug}`,
       component: categoryPostTemplate,
       context: {
         id: node.id,

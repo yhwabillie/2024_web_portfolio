@@ -7,6 +7,7 @@ import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useFooterRefStore, useMainPageRefsStore } from '@store/storehooks'
 import SEO from '@components/Seo'
+import Layout from '@components/Layout'
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -68,46 +69,42 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   }, [footerRef])
 
   return (
-    <article className="relative z-2 mt-header-small lg:mt-header-medium xl:mt-header-large">
-      <div id="visualView" ref={visualViewRef} className=""></div>
+    <>
+      <article className="h-full bg-blue">
+        <div className="container">
+          <section id="visualView" ref={visualViewRef}></section>
+          <section id="about" ref={aboutRef}></section>
+          <section id="career" ref={careerRef}>
+            <ul>
+              {data.allContentfulWork.nodes.map((item, index) => {
+                return (
+                  <li key={index}>
+                    <Link className="text-[1rem]" to={`category/${item.category}/${item.slug}`} state={{ modal: true }}>
+                      <strong>{item.title}</strong>
+                      <p>{`게시일: ${dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}`}</p>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+          <section id="project" ref={projectRef}></section>
+          <section id="problem" ref={problemRef}></section>
 
-      {/* 소개 */}
-      <div id="about" ref={aboutRef}></div>
-
-      {/* 경력 */}
-      <div id="career" ref={careerRef}>
-        <ul>
-          {data.allContentfulWork.nodes.map((item, index) => {
-            return (
-              <li key={index}>
-                <Link className="text-[1rem]" to={`/${item.category}/${item.slug}`}>
-                  <strong>{item.title}</strong>
-                  <p>{`게시일: ${dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}`}</p>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-
-      {/* 개인 프로젝트 */}
-      <div id="project" ref={projectRef}></div>
-
-      {/* 문제 해결 */}
-      <div id="problem" ref={problemRef}></div>
-
-      {/* <div className="scrolling-text overflow-hidden bg-blue 2xl:mb-[200px] xl:mb-[120px] lg:mb-[80px] mb-[40px]">
-        <div className="container w-[90%] m-auto">
-          <ul className="flex justify-start items scrollx-section flex-nowrap">
-            {marqueeArray.map((item, index) => (
-              <li key={index} className="item text-[100px] text-white">
-                {item}
-              </li>
-            ))}
-          </ul>
+          {/* <div className="scrolling-text overflow-hidden bg-blue 2xl:mb-[200px] xl:mb-[120px] lg:mb-[80px] mb-[40px]">
+            <div className="container w-[90%] m-auto">
+              <ul className="flex justify-start items scrollx-section flex-nowrap">
+                {marqueeArray.map((item, index) => (
+                  <li key={index} className="item text-[100px] text-white">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div> */}
         </div>
-      </div> */}
-    </article>
+      </article>
+    </>
   )
 }
 

@@ -82,10 +82,10 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full border-b h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse z-1 border-theme-gray">
       <div className="container flex items-center justify-between">
-        <Link to="/">
+        {/* <Link to="/">
           <h1 className="sr-only">Portfolio Website (웹사이트 이름)</h1>
           <Logo themeModeState={themeModeState} />
-        </Link>
+        </Link> */}
 
         <nav className="items-center hidden desktop-gnb-wrap md:flex">
           <ul className="flex h-full hover:text-light_gray">
@@ -108,10 +108,10 @@ export default function Header() {
         >
           <div className="relative flex flex-col min-h-full mx-auto max-w-sidebar px-xs pb-md sm:px-zero">
             <strong className="block py-sm">
-              <Link to="/">
+              {/* <Link to="/">
                 <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
                 <Logo themeModeState={themeModeState} />
-              </Link>
+              </Link> */}
             </strong>
 
             {/* Nav */}

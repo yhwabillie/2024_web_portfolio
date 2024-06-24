@@ -2,6 +2,7 @@ import * as React from 'react'
 import DetailLayout from '../components/DetailLayout'
 import SEO from '../components/Seo'
 import Layout from '../layouts/index'
+import { Link, navigate } from 'gatsby'
 
 type BaseWorkDataType = {
   id: string
@@ -45,12 +46,10 @@ export default function CategoryPostTemplate({ pageContext, location }: Template
 
   return (
     <>
-      <article className="">
-        <section style={{ marginBottom: '40px' }} className="w-full h-[800px] rounded-3xl bg-blue">
-          section 01
-        </section>
-        <section className="w-full h-[800px] rounded-3xl bg-blue">section 02</section>
-      </article>
+      <div className="container pages-category-template bg-theme">
+        <h3>Category Detail</h3>
+        <Link to="/">Home</Link>
+      </div>
 
       {/* <DetailLayout
         title={pageContext.title}

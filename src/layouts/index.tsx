@@ -1,17 +1,19 @@
 import * as React from 'react'
-import { TransitionGroup, Transition } from 'react-transition-group'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { PageProps } from 'gatsby'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useMainPageRefsStore, useSidebarStatusStore } from '@store/storehooks'
 import { SIDEBAR_STATUS } from '@/types/enums'
 import Header from '@components/Header'
+import { relative } from 'path'
+import Layout from '@components/Layout'
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger)
 }
 
-const timeout = 500
+const timeout = 200
 const getTransitionStyles: any = {
   entering: {
     opacity: 0,
@@ -26,7 +28,7 @@ const getTransitionStyles: any = {
   },
 }
 
-export default function Layout(props: PageProps) {
+export default function CategoryLayout(props: PageProps) {
   //zustand state
   const { mainPageRefs } = useMainPageRefsStore()
   const { setSidebarStatus } = useSidebarStatusStore()
@@ -114,51 +116,31 @@ export default function Layout(props: PageProps) {
     // })
   }, [mainPageRefs])
 
-  const getDocumentTitle = (path: string) => {
-    if (path === '/') {
-      return '홈 본문'
-    } else if (path.startsWith('/work-experience')) {
-      return '경력사항 본문'
-    } else if (path.startsWith('/projects')) {
-      return '개인 프로젝트 본문'
-    } else if (path.startsWith('/problem-solving')) {
-      return '문제 해결 본문'
+  const getDocumentTitle = (path: string): string => {
+    switch (true) {
+      case path === '/':
+        return '메인 페이지 본문'
+      case path.startsWith('/category/work-experience'):
+        return '경력사항 본문'
+      case path.startsWith('/category/projects'):
+        return '개인 프로젝트 본문'
+      case path.startsWith('/category/problem-solving'):
+        return '문제 해결 본문'
+      default:
+        return '본문'
     }
   }
 
   return (
-    <>
-      <Header />
-      <TransitionGroup>
-        <Transition
-          key={props.location.pathname}
-          nodeRef={nodeRef}
-          in={true}
-          out={true}
-          timeout={{
-            enter: timeout,
-            exit: timeout,
-          }}
-        >
-          {(status) => {
-            return (
-              <>
-                <main
-                  ref={nodeRef}
-                  style={{
-                    ...getTransitionStyles[status],
-                  }}
-                >
-                  <section>
-                    <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
-                    {props.children}
-                  </section>
-                </main>
-              </>
-            )
-          }}
-        </Transition>
+    <div className="layout-index mt-header-small lg:mt-header-medium xl:mt-header-large">
+      <TransitionGroup className="relative mt-header-small lg:mt-header-medium xl:mt-header-large">
+        <CSSTransition nodeRef={nodeRef} key={props.location.pathname} timeout={150} classNames={'navigate-push'}>
+          <main ref={nodeRef} className="absolute top-0 left-0 w-full h-[100vh] transition-transform overflow-x-hidden">
+            <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
+            {props.children}
+          </main>
+        </CSSTransition>
       </TransitionGroup>
-    </>
+    </div>
   )
 }
