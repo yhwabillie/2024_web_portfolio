@@ -11,7 +11,7 @@ interface SubHeaderProps {
   title: string
 }
 
-export default function SubHeader({ title }: SubHeaderProps) {
+export default function SubHeader(props: any) {
   //state
   const [showTooltip, setShowTooltip] = React.useState<TooltipType>(TOOLTIP.RESET)
 
@@ -33,7 +33,7 @@ export default function SubHeader({ title }: SubHeaderProps) {
           <IoArrowBackOutline />
         </button>
 
-        <h1 className="text-md lg:text-lg">{title}</h1>
+        <h1 className="text-md lg:text-lg">{props.pageContext.title}</h1>
 
         <button onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)} onMouseLeave={resetTooltip} className="relative large-icon">
           <span className="sr-only">메일 보내기 버튼</span>

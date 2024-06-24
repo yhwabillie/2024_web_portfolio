@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import { PageProps } from 'gatsby'
+import { PageProps, navigate } from 'gatsby'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useMainPageRefsStore, useSidebarStatusStore } from '@store/storehooks'
@@ -35,7 +35,8 @@ export default function CategoryLayout(props: PageProps) {
 
   //refs 정의
   const nodeRef = React.useRef<HTMLElement>(null)
-  const footerRef = React.useRef<HTMLDivElement>(null)
+
+  //console.log(props.location.state.key, props.location.state.direction)
 
   React.useEffect(() => {
     // gsap.fromTo(
@@ -132,12 +133,14 @@ export default function CategoryLayout(props: PageProps) {
   }
 
   return (
-    <TransitionGroup className="relative mt-header-small lg:mt-header-medium xl:mt-header-large">
-      <CSSTransition nodeRef={nodeRef} key={props.location.pathname} timeout={150} classNames="navigate-push">
-        <main
-          ref={nodeRef}
-          className="absolute top-0 left-0 w-full overflow-x-hidden transition-transform h-dynamic-layout-small lg:dynamic-layout-medium xl:dynamic-layout-large"
-        >
+    <TransitionGroup className="relative overflow-x-hidden h-dynamic-layout-small lg:h-dynamic-layout-medium xl:h-dynamic-layout-large mt-header-small lg:mt-header-medium xl:mt-header-large">
+      <CSSTransition
+        nodeRef={nodeRef}
+        key={props.location.pathname}
+        timeout={300}
+        classNames={props.location.state?.direction !== undefined ? 'navigate-pop' : 'navigate-push'}
+      >
+        <main ref={nodeRef} className={`absolute top-0 left-0 w-full h-dynamic-layout-small lg:dynamic-layout-medium xl:dynamic-layout-large`}>
           <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
           {props.children}
         </main>

@@ -46,9 +46,11 @@ export default function CategoryPostTemplate({ pageContext, location }: Template
 
   return (
     <>
-      <div className="container pages-category-template bg-theme">
-        <h3>Category Detail</h3>
-      </div>
+      <article className="h-full bg-theme">
+        <div className="container">
+          <h3>Category Detail</h3>
+        </div>
+      </article>
 
       {/* <DetailLayout
         title={pageContext.title}

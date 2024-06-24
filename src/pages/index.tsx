@@ -69,7 +69,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   }, [footerRef])
 
   return (
-    <article className="h-full bg-blue">
+    <article className="h-full bg-theme">
       <div className="container">
         <section id="visualView" ref={visualViewRef}></section>
         <section id="about" ref={aboutRef}></section>
@@ -78,7 +78,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             {data.allContentfulWork.nodes.map((item, index) => {
               return (
                 <li key={index}>
-                  <Link className="text-[1rem]" to={`category/${item.category}/${item.slug}`} state={{ modal: true }}>
+                  <Link className="text-[1rem]" to={`category/${item.category}/${item.slug}`} state={{ direction: 'navigate-pop' }}>
                     <strong>{item.title}</strong>
                     <p>{`게시일: ${dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}`}</p>
                   </Link>

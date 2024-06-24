@@ -83,10 +83,10 @@ export default function MainHeader() {
         >
           <div className="relative flex flex-col min-h-full mx-auto max-w-sidebar px-xs pb-md sm:px-zero">
             <strong className="block py-sm">
-              {/* <Link to="/">
+              <Link to="/">
                 <span className="sr-only">Portfolio Website (웹사이트 이름)</span>
                 <Logo themeModeState={themeModeState} />
-              </Link> */}
+              </Link>
             </strong>
 
             {/* Nav */}
@@ -132,7 +132,7 @@ export default function MainHeader() {
 
             {/* Close Btn */}
             <button
-              className="w-icon-medium h-icon-medium text-icon-medium absolute top-[2.4rem] right-[1.4rem] sm:right-0"
+              className="absolute right-[0.875rem] sm:right-0 top-[1.563rem] w-icon-medium h-icon-medium text-icon-medium"
               onClick={() => setSidebarStatus(SIDEBAR_STATUS.CLOSE)}
             >
               <span className="sr-only">모바일 메뉴 닫기</span>
@@ -142,7 +142,7 @@ export default function MainHeader() {
         </div>
 
         {/* Tools */}
-        <div className="items-center hidden md:flex h-header xl:h-xl_header">
+        <div className="items-center hidden md:flex">
           <div className="flex items-center gap-4">
             <button onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)} onMouseLeave={resetTooltip} className="relative large-icon">
               <span className="sr-only">메일 보내기 버튼</span>

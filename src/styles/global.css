@@ -93,21 +93,50 @@
   --theme-hover: #eee;
 }
 
+/* PUSH */
+/* 들어올때 */
 .navigate-push-enter {
-  transform: translateX(100%);
+  transform: translateX(0%);
 }
 
 .navigate-push-enter-active {
   z-index: 1;
-  transform: translateX(0);
-  box-shadow: -5px 0px 25px rgba(0, 0, 0, 0.05);
-  /* transition: transform 300ms ease-in-out; */
+  transform: translateX(0%);
+  transition: transform 300ms ease-in-out;
 }
 
+/* 나갈때 */
 .navigate-push-exit {
-  transform: translateX(0);
+  transform: translateX(100%);
 }
 
 .navigate-push-exit-active {
-  transform: translateX(-20%);
+  z-index: 2;
+  transform: translateX(0%);
+  transition: transform 300ms ease-in-out;
+}
+
+/* POP */
+/* 들어올때 */
+.navigate-pop-enter {
+  transform: translateX(100%);
+  /* border: 1px solid red; */
+}
+
+.navigate-pop-enter-active {
+  z-index: 1;
+  transform: translateX(0%);
+  transition: transform 300ms ease-in-out;
+}
+
+/* 나갈때 */
+.navigate-pop-exit {
+  transform: translateX(-100%);
+}
+
+.navigate-pop-exit-active {
+  z-index: 2;
+  transform: translateX(0%);
+  /* border: 1px solid yellow; */
+  transition: transform 300ms ease-in-out;
 }
