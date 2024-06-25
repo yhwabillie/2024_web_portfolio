@@ -57,6 +57,15 @@
   video {
     height: 100% !important;
   }
+
+  /* 스크롤 삭제 */
+  .hide-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scroll {
+    scrollbar-width: none;
+  }
 }
 
 /* components : 유틸리티로 재정의 할 수 있는 클래스-기반 스타일을 위한 레이어 (써드파티 라이브러리를 위한 커스텀 스타일을 작성) */
@@ -66,7 +75,7 @@
   }
 
   .large-icon {
-    @apply w-icon-large h-icon-large text-icon-small rounded-sm hover:text-theme-reverse hover:bg-theme-hover flex justify-center items-center;
+    @apply w-icon-large h-icon-large text-icon-small rounded-xs hover:text-theme-reverse hover:bg-theme-hover flex justify-center items-center;
   }
 }
 
@@ -75,6 +84,13 @@
 }
 
 /* UI 테마 설정 */
+:root {
+  --black: #111;
+  --white: #fff;
+  --blue: #0064ff;
+  --gray1: #333;
+}
+
 .dark {
   --theme: #111;
   --theme-reverse: #fff;
@@ -93,8 +109,7 @@
   --theme-hover: #eee;
 }
 
-/* PUSH */
-/* 들어올때 */
+/* PUSH - 들어올때 */
 .navigate-push-enter {
   transform: translateX(0%);
 }
@@ -105,7 +120,7 @@
   transition: transform 300ms ease-in-out;
 }
 
-/* 나갈때 */
+/* PUSH - 나갈때 */
 .navigate-push-exit {
   transform: translateX(100%);
 }
@@ -116,8 +131,7 @@
   transition: transform 300ms ease-in-out;
 }
 
-/* POP */
-/* 들어올때 */
+/* POP - 들어올때 */
 .navigate-pop-enter {
   transform: translateX(100%);
   /* border: 1px solid red; */
@@ -129,7 +143,7 @@
   transition: transform 300ms ease-in-out;
 }
 
-/* 나갈때 */
+/* POP - 나갈때 */
 .navigate-pop-exit {
   transform: translateX(-100%);
 }

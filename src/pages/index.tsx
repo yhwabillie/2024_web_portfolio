@@ -71,22 +71,20 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
     <article className="h-full bg-theme">
       <section id="visualView" ref={visualViewRef}>
         <div className="container flex flex-col justify-between md:flex-row">
-          <div className="w-full h-auto mb-40 xs:mb-16 sm:mb-20 sm:h-video-xsmall md:mb-0 md:w-video-small md:h-video-small rounded-small lg:w-video-medium lg:h-video-medium lg:rounded-medium xl:rounded-large xl:w-video-large xl:h-video-large bg-darkGray1">
+          <div className="w-full h-auto mb-40 rounded-sm xs:mb-16 sm:mb-20 sm:h-405 md:mb-0 md:w-755 md:h-486 lg:w-1094 lg:h-621 lg:rounded-md xl:rounded-lg xl:w-1424 xl:h-808 bg-darkGray1">
             <div>Video</div>
             <div>Video Title</div>
             <div>Title</div>
             <div>Visit</div>
           </div>
-          <div className="flex flex-col sm:flex-row md:block md:w-widget-small lg:w-widget-medium xl:w-widget-large">
-            <div className="mb-16 mr-0 sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-widget-1-xxsamll xs:h-widget-1-xsmall sm:h-widget-xsamll sm:w-widget-xsmall md:w-full md:h-widget-1-small rounded-small lg:mb-16 lg:h-widget-1-medium xl:h-widget-1-large bg-blue lg:rounded-medium xl:rounded-large">
+          <div className="flex flex-col sm:flex-row md:block md:w-180 lg:w-206 xl:w-272">
+            <div className="mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue lg:rounded-md xl:rounded-lg">
               1
             </div>
-            <div className="mb-16 mr-0 sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-widget-1-xxsamll xs:h-widget-1-xsmall sm:h-widget-xsamll sm:w-widget-xsmall md:w-full md:h-widget-2-small rounded-small lg:mb-16 lg:h-widget-2-medium xl:h-widget-2-large bg-darkGray1 lg:rounded-medium xl:rounded-large">
+            <div className="mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-170 lg:mb-16 lg:h-259 xl:h-340 bg-darkGray1 lg:rounded-md xl:rounded-lg">
               2
             </div>
-            <div className="sm:w-widget-xsmall md:w-full h-widget-3-xsmall xs:h-widget-1-xsmall md:h-widget-3-small rounded-small lg:h-widget-3-medium xl:h-widget-3-large bg-darkGray1 lg:rounded-medium xl:rounded-large">
-              3
-            </div>
+            <div className="rounded-sm sm:w-232 md:w-full h-158 xs:h-220 md:h-120 lg:h-124 xl:h-164 bg-darkGray1 lg:rounded-md xl:rounded-lg">3</div>
           </div>
         </div>
       </section>

@@ -81,7 +81,7 @@ export default function MainHeader() {
         <div
           className={`${sidebarStatus === SIDEBAR_STATUS.OPEN ? 'translate-x-0' : 'translate-x-full'} md:hidden w-full h-full bg-theme fixed left-0 top-0 z-1 overflow-x-hidden overflow-y-auto transition-transform`}
         >
-          <div className="relative flex flex-col min-h-full mx-auto max-w-sidebar px-xs pb-md sm:px-zero">
+          <div className="relative flex flex-col min-h-full mx-auto max-w-sidebar px-xs pb-md sm:px-0">
             <strong className="block py-sm">
               <Link to="/">
                 <span className="sr-only">Portfolio Website (웹사이트 이름)</span>

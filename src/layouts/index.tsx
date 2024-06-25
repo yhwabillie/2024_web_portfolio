@@ -133,7 +133,7 @@ export default function CategoryLayout(props: PageProps) {
   }
 
   return (
-    <TransitionGroup className="relative overflow-x-hidden h-dynamic-layout-small lg:h-dynamic-layout-medium xl:h-dynamic-layout-large mt-header-small lg:mt-header-medium xl:mt-header-large">
+    <TransitionGroup className="relative overflow-x-hidden hide-scroll h-dynamic-layout-small lg:h-dynamic-layout-medium xl:h-dynamic-layout-large mt-header-small lg:mt-header-medium xl:mt-header-large">
       <CSSTransition
         nodeRef={nodeRef}
         key={props.location.pathname}
