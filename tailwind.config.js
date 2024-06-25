@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require('tailwindcss/plugin')
 
 function pxToRem(px, base = 16) {
   return `${px / base}rem`
@@ -74,6 +75,12 @@ module.exports = {
       md: '1rem' /* 16 */,
       lg: '1.125rem' /* 18 */,
       xl: '1.5rem' /* 24 */,
+      15: pxToRem(15),
+      22: pxToRem(22),
+      26: pxToRem(26),
+      32: pxToRem(32),
+      48: pxToRem(48),
+      52: pxToRem(52),
     },
     lineHeight: {
       'header-small': '4.5rem',
@@ -129,7 +136,20 @@ module.exports = {
       3: 0,
       4: -1,
     },
+
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities, addComponents, e, config }) {
+      // Add your custom styles here
+      addUtilities({
+        '.text-shadow': {
+          'text-shadow': '2px 2px 4px rgba(0,0,0,.45)',
+        },
+        '.visual-text-bg': {
+          background: 'linear-gradient(77deg,rgba(0,0,0,.2),transparent 85%)',
+        },
+      })
+    }),
+  ],
 }
