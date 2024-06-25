@@ -33,6 +33,7 @@ module.exports = {
       'icon-large': pxToRem(36),
       'icon-xlarge': pxToRem(48),
       tooltip: pxToRem(100),
+      82: pxToRem(82),
       180: pxToRem(180),
       206: pxToRem(206),
       232: pxToRem(232),
@@ -54,6 +55,8 @@ module.exports = {
       'dynamic-layout-small': `calc(100vh - ${pxToRem(72)})`,
       'dynamic-layout-medium': `calc(100vh - ${pxToRem(84)})`,
       'dynamic-layout-large': `calc(100vh - ${pxToRem(90)})`,
+      82: pxToRem(82),
+      102: pxToRem(102),
       120: pxToRem(120),
       124: pxToRem(124),
       164: pxToRem(164),
@@ -71,6 +74,7 @@ module.exports = {
       486: pxToRem(486),
       621: pxToRem(621),
       808: pxToRem(808),
+      1000: pxToRem(1000),
     },
     fontSize: {
       'icon-small': '1.625rem',
@@ -85,6 +89,7 @@ module.exports = {
       32: pxToRem(32),
       48: pxToRem(48),
       52: pxToRem(52),
+      60: pxToRem(60),
     },
     lineHeight: {
       'header-small': '4.5rem',
@@ -92,10 +97,13 @@ module.exports = {
       'header-large': '5.625rem',
       lg: '2.25rem' /* 36 */,
       xl: '2.5rem' /* 40 */,
+      1: 1,
+      2: 2,
       1.6: 1.6,
       64: pxToRem(64),
     },
     borderRadius: {
+      xxs: pxToRem(12),
       xs: pxToRem(18),
       sm: pxToRem(20),
       md: pxToRem(24),
@@ -135,6 +143,8 @@ module.exports = {
       2: '1.25rem' /* 20 */,
       12: pxToRem(12),
       14: pxToRem(14),
+      16: pxToRem(16),
+      20: pxToRem(20),
       23: pxToRem(23),
       28: pxToRem(28),
       58: pxToRem(58),
@@ -158,9 +168,14 @@ module.exports = {
         '.visual-text-bg': {
           background: 'linear-gradient(77deg,rgba(0,0,0,.2),transparent 85%)',
         },
-
         '.l-b-corner': {
           'background-image': 'var(--theme-corner-left-bottom)',
+          'background-repeat': 'no-repeat',
+          'background-size': 'cover',
+          zIndex: 1,
+        },
+        '.r-t-corner': {
+          'background-image': 'var(--theme-corner-right-top)',
           'background-repeat': 'no-repeat',
           'background-size': 'cover',
           zIndex: 1,

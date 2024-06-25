@@ -137,7 +137,7 @@ export default function CategoryLayout(props: PageProps) {
       <CSSTransition
         nodeRef={nodeRef}
         key={props.location.pathname}
-        timeout={300}
+        timeout={180}
         classNames={props.location.state?.direction !== undefined ? 'navigate-pop' : 'navigate-push'}
       >
         <main

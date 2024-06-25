@@ -48,7 +48,7 @@ export default function CategoryPostTemplate({ pageContext, location }: Template
     <>
       <article className="h-full bg-theme">
         <div className="container">
-          <h3>Category Detail</h3>
+          <h1>메롱</h1>
         </div>
       </article>
 

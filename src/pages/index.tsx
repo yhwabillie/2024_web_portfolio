@@ -77,9 +77,9 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         <div className="container flex flex-col justify-between md:flex-row">
           <div
             className="relative after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-black after:opacity-10 w-full h-auto mb-40 overflow-hidden xs:mb-16 sm:mb-20 sm:h-405 md:mb-0 md:w-755 md:h-486 lg:w-1094 lg:h-621 
-            rounded-tl-sm rounded-tr-sm rounded-br-sm
-            lg:rounded-tl-md lg:rounded-tr-md lg:rounded-br-md
-            xl:rounded-tl-lg xl:rounded-tr-lg xl:rounded-br-lg 
+            rounded-tl-sm rounded-br-sm
+            lg:rounded-tl-md lg:rounded-br-md
+            xl:rounded-tl-lg xl:rounded-br-lg 
             xl:w-1424 xl:h-808"
           >
             <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full h-full">
@@ -87,21 +87,37 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
               <span className="sr-only">웹 프론트 및 퍼블리싱 포트폴리오 화면 영상 보러가기</span>
             </div>
 
-            <div className="absolute top-0 bottom-0 left-0 right-[26%] visual-text-bg"></div>
+            <div className="absolute top-0 bottom-0 left-0 right-[26%] visual-text-bg">
+              <span className="sr-only">비쥬얼 타이틀 바탕 음영 배경</span>
+            </div>
 
-            <div className="absolute top-[50px] left-[50px] md:top-[80px] md:left-[80px] lg:top-[80px] lg:left-[90px] xl:top-[130px] xl:left-[141px] text-white z-1">
+            <div className="absolute top-[50px] left-[50px] md:top-[80px] md:left-[80px] lg:top-[80px] lg:left-[90px] xl:top-[130px] xl:left-[141px] text-white z-2">
               <strong className="text-shadow text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
                 간단한 UI 설계 <br /> 매력적인 인터랙션
               </strong>
-              <p className="mt-20 font-bold text-shadow text-15 lg:text-22 leading-1.6">
+              <p className="mt-20 font-bold text-shadow text-15 lg:text-22 leading-2">
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
               </p>
+            </div>
+
+            <div
+              className="absolute top-0 right-0 flex items-center justify-center pr-23 rounded-bl-lg pt-0 z-2 bg-theme pl-28 pb-23
+              before:content-[''] before:w-38 before:h-38 before:absolute before:z-1 before:top-0 before:left-[-38px] before:r-t-corner
+              after:content-[''] after:w-38 after:h-38 after:absolute after:z-1 after:bottom-[-38px] after:right-0 after:r-t-corner"
+            >
+              <span className="sr-only">현재 접속 디바이스 타입 알림 영역</span>
+
+              <div className="absolute top-0 left-[-50px] w-180 px-20 py-12 text-black bg-white rounded-xxs text-15">
+                현재 데스크탑 레이아웃입니다.
+              </div>
+
+              <p className="text-center text-60 w-82 h-82">💻</p>
             </div>
 
             <div className="absolute bottom-0 left-0">
               <Link
                 to="/"
-                className="relative z-1 rounded-tr-lg
+                className="relative z-2 rounded-tr-lg
                 before:content-[''] before:l-b-corner before:w-38 before:h-38 before:absolute before:top-[-38px] before:left-0
                 after:content-[''] after:l-b-corner after:w-38 after:h-38 after:absolute after:bottom-0 after:right-[-38px]
                 pb-12 pt-23 px-58 bg-theme flex items-center text-theme-reverse text-22 leading-64"
@@ -121,7 +137,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         </div>
       </section>
       <section id="about" ref={aboutRef}></section>
-      {/* <section id="career" ref={careerRef}>
+      <section id="career" ref={careerRef}>
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
@@ -134,7 +150,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             )
           })}
         </ul>
-      </section> */}
+      </section>
       <section id="project" ref={projectRef}></section>
       <section id="problem" ref={problemRef}></section>
 
