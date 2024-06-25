@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
+import { FaArrowRight } from 'react-icons/fa6'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
@@ -74,7 +75,13 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
     <article className="h-full bg-theme">
       <section id="visualView" ref={visualViewRef}>
         <div className="container flex flex-col justify-between md:flex-row">
-          <div className="relative after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-black after:opacity-10 w-full h-auto mb-40 overflow-hidden rounded-sm xs:mb-16 sm:mb-20 sm:h-405 md:mb-0 md:w-755 md:h-486 lg:w-1094 lg:h-621 lg:rounded-md xl:rounded-lg xl:w-1424 xl:h-808">
+          <div
+            className="relative after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-black after:opacity-10 w-full h-auto mb-40 overflow-hidden xs:mb-16 sm:mb-20 sm:h-405 md:mb-0 md:w-755 md:h-486 lg:w-1094 lg:h-621 
+            rounded-tl-sm rounded-tr-sm rounded-br-sm
+            lg:rounded-tl-md lg:rounded-tr-md lg:rounded-br-md
+            xl:rounded-tl-lg xl:rounded-tr-lg xl:rounded-br-lg 
+            xl:w-1424 xl:h-808"
+          >
             <div className="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-full h-full">
               <img className="w-full h-full" src={visual_bg_path.default} alt="visual mockup gif" />
               <span className="sr-only">웹 프론트 및 퍼블리싱 포트폴리오 화면 영상 보러가기</span>
@@ -86,12 +93,25 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
               <strong className="text-shadow text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
                 간단한 UI 설계 <br /> 매력적인 인터랙션
               </strong>
-              <p className="mt-20 font-bold text-shadow text-15 lg:text-22">
+              <p className="mt-20 font-bold text-shadow text-15 lg:text-22 leading-1.6">
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
               </p>
             </div>
 
-            <div>Visit</div>
+            <div className="absolute bottom-0 left-0">
+              <Link
+                to="/"
+                className="relative z-1 rounded-tr-lg
+                before:content-[''] before:l-b-corner before:w-38 before:h-38 before:absolute before:top-[-38px] before:left-0
+                after:content-[''] after:l-b-corner after:w-38 after:h-38 after:absolute after:bottom-0 after:right-[-38px]
+                pb-12 pt-23 px-58 bg-theme flex items-center text-theme-reverse text-22 leading-64"
+              >
+                영상 보러가기 <span className="sr-only">새창을 열어서 유튜브 영상 웹 사이트로 이동하기 </span>
+                <span className="flex items-center justify-center ml-16 rounded-md w-icon-xlarge h-icon-xlarge bg-theme-reverse text-theme">
+                  <FaArrowRight />
+                </span>
+              </Link>
+            </div>
           </div>
           <div className="flex flex-col sm:flex-row md:block md:w-180 lg:w-206 xl:w-272">
             <div className="mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue lg:rounded-md xl:rounded-lg"></div>

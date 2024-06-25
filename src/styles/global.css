@@ -98,6 +98,7 @@
   --theme-active: #fff;
   --theme-unactive: #888;
   --theme-hover: #222224;
+  --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_black.svg');
 }
 
 .light {
@@ -107,6 +108,7 @@
   --theme-active: #111;
   --theme-unactive: #888;
   --theme-hover: #eee;
+  --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_white.svg');
 }
 
 /* PUSH - 들어올때 */

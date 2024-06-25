@@ -28,8 +28,10 @@ module.exports = {
     },
     width: {
       full: '100%',
+      38: pxToRem(38),
       'icon-medium': pxToRem(34),
       'icon-large': pxToRem(36),
+      'icon-xlarge': pxToRem(48),
       tooltip: pxToRem(100),
       180: pxToRem(180),
       206: pxToRem(206),
@@ -42,8 +44,10 @@ module.exports = {
     height: {
       full: '100%',
       auto: 'auto',
+      38: pxToRem(38),
       'icon-medium': pxToRem(34),
       'icon-large': pxToRem(36),
+      'icon-xlarge': pxToRem(48),
       'header-small': pxToRem(72),
       'header-medium': pxToRem(84),
       'header-large': pxToRem(90),
@@ -88,6 +92,8 @@ module.exports = {
       'header-large': '5.625rem',
       lg: '2.25rem' /* 36 */,
       xl: '2.5rem' /* 40 */,
+      1.6: 1.6,
+      64: pxToRem(64),
     },
     borderRadius: {
       xs: pxToRem(18),
@@ -127,7 +133,11 @@ module.exports = {
       lg: '2.938rem' /* 47.008 */,
       xl: '4.125rem' /* 66 */,
       2: '1.25rem' /* 20 */,
+      12: pxToRem(12),
       14: pxToRem(14),
+      23: pxToRem(23),
+      28: pxToRem(28),
+      58: pxToRem(58),
     },
     zIndex: {
       0: 9999,
@@ -136,7 +146,6 @@ module.exports = {
       3: 0,
       4: -1,
     },
-
     extend: {},
   },
   plugins: [
@@ -148,6 +157,13 @@ module.exports = {
         },
         '.visual-text-bg': {
           background: 'linear-gradient(77deg,rgba(0,0,0,.2),transparent 85%)',
+        },
+
+        '.l-b-corner': {
+          'background-image': 'var(--theme-corner-left-bottom)',
+          'background-repeat': 'no-repeat',
+          'background-size': 'cover',
+          zIndex: 1,
         },
       })
     }),
