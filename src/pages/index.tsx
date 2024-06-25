@@ -101,14 +101,20 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             </div>
 
             <div
-              className="absolute top-0 right-0 flex items-center justify-center pr-23 rounded-bl-lg pt-0 z-2 bg-theme pl-28 pb-23
+              className="absolute top-0 right-0 pt-0 pl-28 pb-23 rounded-bl-lg z-2 bg-theme 
+              flex items-center gap-[20px]
               before:content-[''] before:w-38 before:h-38 before:absolute before:z-1 before:top-0 before:left-[-38px] before:r-t-corner
               after:content-[''] after:w-38 after:h-38 after:absolute after:z-1 after:bottom-[-38px] after:right-0 after:r-t-corner"
             >
               <span className="sr-only">현재 접속 디바이스 타입 알림 영역</span>
 
-              <div className="absolute top-0 left-[-50px] w-180 px-20 py-12 text-black bg-white rounded-xxs text-15">
-                현재 데스크탑 레이아웃입니다.
+              <div
+                className="
+                relative
+                after:bubble-tail after:content-[''] after:w-15 after:h-15 after:absolute after:top-[40px] after:right-[-15px]
+                px-20 py-12 text-center text-theme bg-theme-reverse rounded-xxs xl:w-300 xl:text-18"
+              >
+                현재 보고계시는 화면은 <br /> 데스크탑 XL 레이아웃입니다.
               </div>
 
               <p className="text-center text-60 w-82 h-82">💻</p>

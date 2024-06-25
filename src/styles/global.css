@@ -100,6 +100,7 @@
   --theme-hover: #222224;
   --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_black.svg');
   --theme-corner-right-top: url('/corner/round_corner_right_top_black.svg');
+  --theme-bubble-tail: url('/bubble_tail/bubble_tail_white.svg');
 }
 
 .light {
@@ -111,40 +112,18 @@
   --theme-hover: #eee;
   --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_white.svg');
   --theme-corner-right-top: url('/corner/round_corner_right_top_white.svg');
-}
-
-/* PUSH - 들어올때 */
-.navigate-push-enter {
-  transform: translateX(0%);
-}
-
-.navigate-push-enter-active {
-  z-index: 1;
-  transform: translateX(0%);
-  transition: transform 180ms ease-in-out;
-}
-
-/* PUSH - 나갈때 */
-.navigate-push-exit {
-  transform: translateX(100%);
-}
-
-.navigate-push-exit-active {
-  z-index: 9999;
-  transform: translateX(0%);
-  transition: transform 180ms ease-in-out;
+  --theme-bubble-tail: url('/bubble_tail/bubble_tail_black.svg');
 }
 
 /* POP - 들어올때 */
 .navigate-pop-enter {
   transform: translateX(100%);
-  /* border: 1px solid red; */
 }
 
 .navigate-pop-enter-active {
-  z-index: 1;
+  z-index: 9999;
   transform: translateX(0%);
-  transition: transform 180ms ease-in-out;
+  transition: transform 300ms ease-in-out;
 }
 
 /* POP - 나갈때 */
@@ -155,6 +134,5 @@
 .navigate-pop-exit-active {
   z-index: 9999;
   transform: translateX(0%);
-  /* border: 1px solid yellow; */
-  transition: transform 180ms ease-in-out;
+  transition: transform 300ms ease-in-out;
 }
