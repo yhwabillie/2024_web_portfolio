@@ -100,7 +100,9 @@
   --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_black.svg');
   --theme-corner-right-top: url('/corner/round_corner_right_top_black.svg');
   --theme-bubble-tail: url('/bubble_tail/bubble_tail_white.svg');
-  --keycolor-blue: #0064ff;
+  --blue-1: #0064ff;
+  --blue-2: #def0ff;
+  --blue-3: #0656a6;
   --gray-1: #41474c;
 }
 
@@ -114,7 +116,9 @@
   --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_white.svg');
   --theme-corner-right-top: url('/corner/round_corner_right_top_white.svg');
   --theme-bubble-tail: url('/bubble_tail/bubble_tail_black.svg');
-  --keycolor-blue: #7dd5ff;
+  --blue-1: #7dd5ff;
+  --blue-2: #0088da;
+  --blue-3: #f0faff;
   --gray-1: #e9ebee;
 }
 

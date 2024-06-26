@@ -11,7 +11,6 @@ import SEO from '@components/Seo'
 import { StaticImage } from 'gatsby-plugin-image'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
-import { CSSPlugin } from 'gsap'
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -30,7 +29,9 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   const careerRef = React.useRef<HTMLDivElement>(null)
   const projectRef = React.useRef<HTMLDivElement>(null)
   const problemRef = React.useRef<HTMLDivElement>(null)
-  const mouseObjRef = React.useRef<any>(null)
+
+  const widget_container = React.useRef<HTMLDivElement>(null)
+  const video_container = React.useRef<HTMLDivElement>(null)
 
   //ref 종합
   const allRefs = [visualViewRef, aboutRef, careerRef, projectRef, problemRef, footerRef]
@@ -72,18 +73,113 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   //   })
   // })
 
-  useGSAP(() => {
-    window.addEventListener('mousemove', (e) => {
-      const depth = 40
-      const moveX = (e.pageX - window.innerWidth / 2) / depth
-      const moveY = (e.pageY - window.innerHeight / 2) / depth
-      gsap.to(mouseObjRef.current, {
-        x: moveX,
-        y: moveY,
-        rotateZ: -20,
+  useGSAP(
+    () => {
+      let tl = gsap.timeline({ delay: 0.2 })
+
+      //set
+      gsap.set('#main_title', {
+        opacity: 0,
+        y: 100,
       })
-    })
-  })
+
+      gsap.set('#sub_title', {
+        opacity: 0,
+        y: 100,
+      })
+
+      //timeline
+      tl.to('#main_title', {
+        opacity: 1,
+        y: 0,
+        ease: 'back',
+      })
+
+      tl.to('#sub_title', {
+        opacity: 1,
+        y: 0,
+        ease: 'back',
+      })
+    },
+    { scope: video_container },
+  )
+
+  useGSAP(
+    (context, contextSafe) => {
+      //set
+      gsap.set('.sticker_item', {
+        scale: 0,
+        opacity: 0,
+      })
+
+      //timeline
+      let tl = gsap.timeline({ delay: 0.2 })
+
+      tl.to('#widget1', {
+        rotate: 6,
+        ease: 'circ',
+      })
+
+      tl.to('#widget2', {
+        rotate: -6,
+        ease: 'circ',
+      })
+
+      tl.to('#widget3', {
+        rotate: 6,
+        ease: 'circ',
+      })
+
+      tl.to('.sticker_item', {
+        scale: 1,
+        opacity: 1,
+        stagger: 0.1,
+        ease: 'back',
+      })
+
+      window.addEventListener('mousemove', (e) => {
+        const stickerElement1 = document.querySelector('#sticker1')
+        const stickerElement2 = document.querySelector('#sticker1')
+
+        if (stickerElement1 === null || stickerElement2 === null) return
+
+        const depth1 = 20
+
+        const moveX_1 = (e.pageX - window.innerWidth / 2) / depth1
+        const moveY_1 = (e.pageY - window.innerHeight / 2) / depth1
+
+        gsap.to('#sticker1', {
+          x: moveX_1,
+          y: moveY_1,
+          rotateZ: -20,
+        })
+
+        gsap.to('#sticker2', {
+          x: moveX_1,
+          y: moveY_1,
+          rotateZ: 20,
+        })
+
+        gsap.to('#sticker3', {
+          x: moveX_1,
+          y: moveY_1,
+          rotateZ: -20,
+        })
+
+        gsap.to('#sticker4', {
+          x: moveX_1,
+          y: moveY_1,
+        })
+
+        gsap.to('#sticker5', {
+          x: moveX_1,
+          y: moveY_1,
+          rotateZ: 10,
+        })
+      })
+    },
+    { scope: widget_container },
+  )
 
   React.useEffect(() => {
     setMainPageRefs(allRefs)
@@ -92,8 +188,9 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   return (
     <article className="h-full bg-theme">
       <section id="visualView" ref={visualViewRef}>
-        <div className="container flex flex-col justify-between md:flex-row">
+        <div className="container flex flex-col justify-between pt-35 md:flex-row">
           <div
+            ref={video_container}
             className="relative after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-black after:opacity-10 w-full h-auto mb-40 overflow-hidden xs:mb-16 sm:mb-20 sm:h-405 md:mb-0 md:w-755 md:h-486 lg:w-1094 lg:h-621 
             rounded-tl-sm rounded-br-sm
             lg:rounded-tl-md lg:rounded-br-md
@@ -110,10 +207,10 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             </div>
 
             <div className="absolute top-[50px] left-[50px] md:top-[80px] md:left-[80px] lg:top-[80px] lg:left-[90px] xl:top-[130px] xl:left-[141px] text-white z-2">
-              <strong className="text-shadow text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
+              <strong id="main_title" className="block text-shadow text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
                 간단한 UI 설계 <br /> 매력적인 인터랙션
               </strong>
-              <p className="mt-20 font-bold text-shadow text-15 lg:text-22 leading-2">
+              <p id="sub_title" className="mt-20 font-bold text-shadow text-15 lg:text-22 leading-2">
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
               </p>
             </div>
@@ -153,33 +250,60 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row md:block md:w-180 lg:w-206 xl:w-272">
-            <div className="relative p-20 mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue lg:rounded-md xl:rounded-lg">
-              <strong className="text-white text-52">2년차</strong>
 
-              <div>
-                <p className="text-white text-22">프론트 개발자 / </p>
-                <p className="text-white text-22">웹 퍼블리셔 입니다</p>
+          <div ref={widget_container} className="flex flex-col sm:flex-row md:block md:w-180 lg:w-206 xl:w-272">
+            <div
+              id="widget1"
+              className="origin-bottom-right hover:translate-y-[-10px] relative p-20 mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue-1 lg:rounded-md xl:rounded-lg"
+            >
+              <strong className="text-white text-shadow-s text-52">2년차</strong>
+
+              <div className="mb-10 leading-1.4">
+                <p className="font-medium text-white text-shadow-s text-26">프론트 개발자 & </p>
+                <p className="font-medium text-white text-shadow-s text-22">웹 퍼블리셔 입니다</p>
               </div>
-
-              <p className="text-white">2년 5개월</p>
 
               {/* gsap */}
-              <div ref={mouseObjRef} className="absolute bottom-[-15px] left-[45%] w-fit">
-                <StaticImage src={'../images/mockup_sticker.webp'} alt="웹사이트 로고 다크모드" width={160} height={160} placeholder="none" />
+              <div id="sticker1" className="sticker_item absolute bottom-[0px] left-[45%] w-fit">
+                <StaticImage src={'../images/sticker_1.png'} alt="프론트 개발자 스티커 이미지" width={100} height={100} placeholder="none" />
               </div>
             </div>
-            <div className="p-20 mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-170 lg:mb-16 lg:h-259 xl:h-340 bg-darkGray1 lg:rounded-md xl:rounded-lg">
-              내가 잘하는건 이거예요
+            <div
+              id="widget2"
+              className="relative p-20 mb-16 mr-0 origin-top-left rounded-sm text-theme sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-170 lg:mb-16 lg:h-259 xl:h-340 bg-blue-2 lg:rounded-md xl:rounded-lg"
+            >
+              <strong className="text-40">잘하는 것을</strong>
+              <p className="text-22 font-medium leading-1.4">
+                쏟아낼 수 있는 곳을 <br /> 찾고있어요
+              </p>
+
+              {/* gsap */}
+              <div id="sticker2" className="sticker_item absolute bottom-[0px] left-[45%] w-fit">
+                <StaticImage src={'../images/sticker_2.png'} alt="웹사이트 로고 다크모드" width={80} height={80} placeholder="none" />
+              </div>
+              <div id="sticker3" className="sticker_item absolute bottom-10px] right-[10%] w-fit">
+                <StaticImage src={'../images/sticker_3.png'} alt="웹사이트 로고 다크모드" width={90} height={90} placeholder="none" />
+              </div>
+              <div id="sticker4" className="sticker_item absolute bottom-30px] left-[0%] w-fit">
+                <StaticImage src={'../images/sticker_4.png'} alt="웹사이트 로고 다크모드" width={130} height={130} placeholder="none" />
+              </div>
             </div>
-            <div className="p-20 rounded-sm sm:w-232 md:w-full h-158 xs:h-220 sm:h-232 md:h-120 lg:h-124 xl:h-164 bg-darkGray1 lg:rounded-md xl:rounded-lg">
-              이렇게 공부하고있어요
+            <div
+              id="widget3"
+              className="relative p-20 origin-bottom-right rounded-sm sm:w-232 md:w-full h-158 xs:h-220 sm:h-232 md:h-120 lg:h-124 xl:h-164 bg-gray-1 lg:rounded-md xl:rounded-lg"
+            >
+              <div>나의 경계없는 성장을 위한</div>
+              <div>동료들의 아낌없는</div>
+              <div>피드백을 좋아합니다</div>
+              <div id="sticker5" className="sticker_item absolute bottom-[10px] right-[0%] w-fit">
+                <StaticImage src={'../images/sticker_5.png'} alt="웹사이트 로고 다크모드" width={80} height={80} placeholder="none" />
+              </div>
             </div>
           </div>
         </div>
       </section>
       <section id="about" ref={aboutRef}></section>
-      {/* <section id="career" ref={careerRef}>
+      <section id="career" ref={careerRef}>
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
@@ -192,11 +316,11 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             )
           })}
         </ul>
-      </section> */}
+      </section>
       <section id="project" ref={projectRef}></section>
       <section id="problem" ref={problemRef}></section>
 
-      {/* <div className="scrolling-text overflow-hidden bg-blue 2xl:mb-[200px] xl:mb-[120px] lg:mb-[80px] mb-[40px]">
+      {/* <div className="scrolling-text overflow-hidden bg-blue-1 2xl:mb-[200px] xl:mb-[120px] lg:mb-[80px] mb-[40px]">
             <div className="container w-[90%] m-auto">
               <ul className="flex justify-start items scrollx-section flex-nowrap">
                 {marqueeArray.map((item, index) => (

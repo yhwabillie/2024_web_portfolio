@@ -142,7 +142,7 @@ export default function CategoryLayout(props: PageProps) {
       >
         <main
           ref={nodeRef}
-          className={`absolute top-0 left-0 w-full h-dynamic-layout-small lg:dynamic-layout-medium xl:dynamic-layout-large px-14 lg:px-0`}
+          className={`t-40 absolute top-0 left-0 w-full h-dynamic-layout-small lg:dynamic-layout-medium xl:dynamic-layout-large px-14 lg:px-0`}
         >
           <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
           {props.children}
