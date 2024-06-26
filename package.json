@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@contentful/rich-text-types": "^16.5.2",
+    "@gsap/react": "^2.1.1",
     "class-variance-authority": "^0.7.0",
     "contentful-resolve-response": "^1.8.1",
     "dayjs": "^1.11.11",

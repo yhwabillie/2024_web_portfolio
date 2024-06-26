@@ -8,6 +8,10 @@ import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { useFooterRefStore, useMainPageRefsStore } from '@store/storehooks'
 import SEO from '@components/Seo'
+import { StaticImage } from 'gatsby-plugin-image'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+import { CSSPlugin } from 'gsap'
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -26,6 +30,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   const careerRef = React.useRef<HTMLDivElement>(null)
   const projectRef = React.useRef<HTMLDivElement>(null)
   const problemRef = React.useRef<HTMLDivElement>(null)
+  const mouseObjRef = React.useRef<any>(null)
 
   //ref 종합
   const allRefs = [visualViewRef, aboutRef, careerRef, projectRef, problemRef, footerRef]
@@ -66,6 +71,19 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   //     })
   //   })
   // })
+
+  useGSAP(() => {
+    window.addEventListener('mousemove', (e) => {
+      const depth = 40
+      const moveX = (e.pageX - window.innerWidth / 2) / depth
+      const moveY = (e.pageY - window.innerHeight / 2) / depth
+      gsap.to(mouseObjRef.current, {
+        x: moveX,
+        y: moveY,
+        rotateZ: -20,
+      })
+    })
+  })
 
   React.useEffect(() => {
     setMainPageRefs(allRefs)
@@ -136,14 +154,32 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row md:block md:w-180 lg:w-206 xl:w-272">
-            <div className="mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue lg:rounded-md xl:rounded-lg"></div>
-            <div className="mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-170 lg:mb-16 lg:h-259 xl:h-340 bg-darkGray1 lg:rounded-md xl:rounded-lg"></div>
-            <div className="rounded-sm sm:w-232 md:w-full h-158 xs:h-220 sm:h-232 md:h-120 lg:h-124 xl:h-164 bg-darkGray1 lg:rounded-md xl:rounded-lg"></div>
+            <div className="relative p-20 mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue lg:rounded-md xl:rounded-lg">
+              <strong className="text-white text-52">2년차</strong>
+
+              <div>
+                <p className="text-white text-22">프론트 개발자 / </p>
+                <p className="text-white text-22">웹 퍼블리셔 입니다</p>
+              </div>
+
+              <p className="text-white">2년 5개월</p>
+
+              {/* gsap */}
+              <div ref={mouseObjRef} className="absolute bottom-[-15px] left-[45%] w-fit">
+                <StaticImage src={'../images/mockup_sticker.webp'} alt="웹사이트 로고 다크모드" width={160} height={160} placeholder="none" />
+              </div>
+            </div>
+            <div className="p-20 mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-170 lg:mb-16 lg:h-259 xl:h-340 bg-darkGray1 lg:rounded-md xl:rounded-lg">
+              내가 잘하는건 이거예요
+            </div>
+            <div className="p-20 rounded-sm sm:w-232 md:w-full h-158 xs:h-220 sm:h-232 md:h-120 lg:h-124 xl:h-164 bg-darkGray1 lg:rounded-md xl:rounded-lg">
+              이렇게 공부하고있어요
+            </div>
           </div>
         </div>
       </section>
       <section id="about" ref={aboutRef}></section>
-      <section id="career" ref={careerRef}>
+      {/* <section id="career" ref={careerRef}>
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
@@ -156,7 +192,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             )
           })}
         </ul>
-      </section>
+      </section> */}
       <section id="project" ref={projectRef}></section>
       <section id="problem" ref={problemRef}></section>
 

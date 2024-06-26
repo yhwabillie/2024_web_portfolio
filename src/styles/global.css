@@ -87,7 +87,6 @@
 :root {
   --black: #111;
   --white: #fff;
-  --blue: #0064ff;
   --gray1: #333;
 }
 
@@ -101,6 +100,8 @@
   --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_black.svg');
   --theme-corner-right-top: url('/corner/round_corner_right_top_black.svg');
   --theme-bubble-tail: url('/bubble_tail/bubble_tail_white.svg');
+  --keycolor-blue: #0064ff;
+  --gray-1: #41474c;
 }
 
 .light {
@@ -113,6 +114,8 @@
   --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_white.svg');
   --theme-corner-right-top: url('/corner/round_corner_right_top_white.svg');
   --theme-bubble-tail: url('/bubble_tail/bubble_tail_black.svg');
+  --keycolor-blue: #7dd5ff;
+  --gray-1: #e9ebee;
 }
 
 /* POP - 들어올때 */

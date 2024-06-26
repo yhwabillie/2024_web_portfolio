@@ -27,6 +27,7 @@ module.exports = {
       sidebar: pxToRem(412),
     },
     width: {
+      fit: 'fit-content',
       full: '100%',
       38: pxToRem(38),
       'icon-medium': pxToRem(34),
@@ -127,8 +128,8 @@ module.exports = {
       'theme-hover': 'var(--theme-hover)',
       black: 'var(--black)',
       white: 'var(--white)',
-      blue: 'var(--blue)',
-      darkGray1: 'var(--gray1)',
+      blue: 'var(--keycolor-blue)',
+      darkGray1: 'var(--gray-1)',
       transparent: 'transparent',
     },
     margin: {
@@ -176,7 +177,7 @@ module.exports = {
           'text-shadow': '2px 2px 4px rgba(0,0,0,.45)',
         },
         '.visual-text-bg': {
-          background: 'linear-gradient(77deg,rgba(0,0,0,.2),transparent 85%)',
+          background: 'linear-gradient(77deg,rgba(0,0,0,.4),transparent 85%)',
         },
         '.l-b-corner': {
           'background-image': 'var(--theme-corner-left-bottom)',
