@@ -132,15 +132,17 @@ export default function CategoryLayout(props: PageProps) {
     }
   }
 
+  // overflow-x-hidden hide-scroll h-dynamic-layout-small lg:h-dynamic-layout-medium xl:h-dynamic-layout-large
+
   return (
-    <TransitionGroup className="relative overflow-x-hidden hide-scroll h-dynamic-layout-small lg:h-dynamic-layout-medium xl:h-dynamic-layout-large mt-header-small lg:mt-header-medium xl:mt-header-large">
+    <TransitionGroup className="relative mt-header-small lg:mt-header-medium xl:mt-header-large">
       <CSSTransition
         nodeRef={nodeRef}
         key={props.location.pathname}
         timeout={300}
         classNames={props.location.state?.direction !== undefined ? 'navigate-pop' : 'navigate-push'}
       >
-        <main ref={nodeRef} className={`t-40 absolute top-0 left-0 w-full h-full px-14 lg:px-0`}>
+        <main ref={nodeRef} className="absolute top-0 left-0 w-full t-40 px-14 lg:px-0">
           <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
           {props.children}
         </main>
