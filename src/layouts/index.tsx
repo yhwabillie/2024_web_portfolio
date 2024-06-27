@@ -140,10 +140,7 @@ export default function CategoryLayout(props: PageProps) {
         timeout={300}
         classNames={props.location.state?.direction !== undefined ? 'navigate-pop' : 'navigate-push'}
       >
-        <main
-          ref={nodeRef}
-          className={`t-40 absolute top-0 left-0 w-full h-dynamic-layout-small lg:dynamic-layout-medium xl:dynamic-layout-large px-14 lg:px-0`}
-        >
+        <main ref={nodeRef} className={`t-40 absolute top-0 left-0 w-full h-full px-14 lg:px-0`}>
           <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
           {props.children}
         </main>

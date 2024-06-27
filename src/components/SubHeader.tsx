@@ -27,7 +27,7 @@ export default function SubHeader(props: any) {
 
   return (
     <header className="fixed top-0 left-0 w-full border-b h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse z-1 border-theme-gray">
-      <div className="container flex items-center justify-between">
+      <div className="container flex items-center justify-between px-14 md:px-0">
         <button className="large-icon" onClick={() => navigate(-1)}>
           <span className="sr-only">뒤로가기 버튼</span>
           <IoArrowBackOutline />

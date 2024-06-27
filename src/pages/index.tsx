@@ -193,6 +193,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             className="relative after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-black after:opacity-10 overflow-hidden
             w-full
             h-200
+            xs:h-256
             mb-0
             sm:rounded-bl-0 sm:mb-45
             sm:h-405 
