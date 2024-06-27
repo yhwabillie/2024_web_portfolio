@@ -145,6 +145,7 @@ module.exports = {
       'header-large': '5.625rem',
       auto: 'auto',
       0: 0,
+      5: pxToRem(5),
       8: pxToRem(8),
       10: pxToRem(10),
       16: pxToRem(16),

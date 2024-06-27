@@ -254,7 +254,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           <div ref={widget_container} className="flex flex-col sm:flex-row md:block md:w-180 lg:w-206 xl:w-272">
             <div
               id="widget1"
-              className="origin-bottom-right hover:translate-y-[-10px] relative p-20 mb-16 mr-0 rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue-1 lg:rounded-md xl:rounded-lg"
+              className="relative p-20 mb-16 mr-0 origin-bottom-right rounded-sm sm:mb-0 sm:mr-8 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue-1 lg:rounded-md xl:rounded-lg"
             >
               <strong className="text-white text-shadow-s text-52">2년차</strong>
 
@@ -292,9 +292,11 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
               id="widget3"
               className="relative p-20 origin-bottom-right rounded-sm sm:w-232 md:w-full h-158 xs:h-220 sm:h-232 md:h-120 lg:h-124 xl:h-164 bg-gray-1 lg:rounded-md xl:rounded-lg"
             >
-              <div>나의 경계없는 성장을 위한</div>
-              <div>동료들의 아낌없는</div>
-              <div>피드백을 좋아합니다</div>
+              <div>
+                <p className="mb-5 leading-1">모두와</p>
+                <strong className="block mb-10 text-30 leading-1">공유할 수 있는</strong>
+                <p className="text-22 leading-1">컴포넌트를 만들어요</p>
+              </div>
               <div id="sticker5" className="sticker_item absolute bottom-[10px] right-[0%] w-fit">
                 <StaticImage src={'../images/sticker_5.png'} alt="웹사이트 로고 다크모드" width={80} height={80} placeholder="none" />
               </div>
