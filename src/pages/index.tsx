@@ -18,7 +18,7 @@ dayjs.extend(timezone)
 dayjs.extend(relativeTime)
 dayjs.tz.setDefault('Asia/Seoul')
 
-export default function Page({ data }: PageProps<Queries.PageQuery>) {
+export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
   //zustand state
   const { setMainPageRefs } = useMainPageRefsStore()
   const { footerRef } = useFooterRefStore()
