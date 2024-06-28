@@ -14,7 +14,7 @@ export default function Layout(props: any) {
       <Transition>{props.children}</Transition>
 
       {/* Footer */}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

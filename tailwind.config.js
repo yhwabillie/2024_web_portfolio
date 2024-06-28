@@ -80,6 +80,7 @@ module.exports = {
     height: {
       full: '100%',
       auto: 'auto',
+      1: pxToRem(1),
       15: pxToRem(15),
       24: pxToRem(24),
       38: pxToRem(38),
@@ -122,6 +123,7 @@ module.exports = {
       300: pxToRem(300),
       272: pxToRem(272),
       340: pxToRem(340),
+      400: pxToRem(400),
       405: pxToRem(405),
       486: pxToRem(486),
       500: pxToRem(500),
@@ -142,6 +144,7 @@ module.exports = {
       18: pxToRem(18),
       20: pxToRem(20),
       22: pxToRem(22),
+      24: pxToRem(24),
       26: pxToRem(26),
       30: pxToRem(30),
       40: pxToRem(40),
@@ -221,6 +224,7 @@ module.exports = {
       lg: '2.938rem' /* 47.008 */,
       xl: '4.125rem' /* 66 */,
       2: '1.25rem' /* 20 */,
+      5: pxToRem(5),
       10: pxToRem(10),
       12: pxToRem(12),
       14: pxToRem(14),
@@ -277,6 +281,9 @@ module.exports = {
           'background-repeat': 'no-repeat',
           'background-size': 'cover',
           zIndex: 1,
+        },
+        '.highlight': {
+          background: 'linear-gradient(to top, var(--blue-1) 10%, transparent 10%)',
         },
       })
     }),

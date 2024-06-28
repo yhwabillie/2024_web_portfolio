@@ -420,34 +420,54 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           </div>
         </div>
       </section>
-      <section>
+      <section className="min-h-[500px]">
         <div className="container">
           {/* Desc */}
-          <div className="grid grid-cols-[400px_auto] gap-[50px] relative bg-[#373737]/[0.4] backdrop-blur-[100px] rounded-lg z-2 p-50">
-            <div className="w-400 min-h-[500px] bg-blue-1 rounded-sm"></div>
+          <div className="grid lg:grid-cols-[400px_auto] items-center gap-[50px] relative bg-[#373737]/[0.4] backdrop-blur-[100px] rounded-lg z-2 p-50">
+            <div className="mx-auto overflow-hidden rounded-sm w-400 h-500 lg:m-0">
+              <StaticImage className="w-full h-full" src={'../images/mockup_profile.jpg'} alt="로고" width={493} height={665} placeholder="none" />
+            </div>
             <div className="text-white">
-              <h3 className="text-40 font-[700]">About Me</h3>
-              <ul>
-                <li>
-                  안녕하세요, <em>2년차</em> 웹 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
+              <h3 className="text-40 font-[700] text-shadow text-center lg:text-left">About Me</h3>
+              <p className="text-center mb-30 lg:text-left">
+                <span className="block text-26 text-shadow">
+                  <em className="not-italic highlight">2년차</em> 웹 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
+                </span>
+              </p>
+              <ul className="pl-20 text-20">
+                <li className="list-disc mb-30">
+                  <em className="block p-5 mb-10 not-italic bg-blue-1 leading-1 w-fit text-22 text-shadow">
+                    빠르게 화면단을 구성하는 방법을 압니다.
+                  </em>
+                  <span className="block leading-1.6 tracking-tight text-shadow">
+                    초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영했습니다.
+                  </span>
                 </li>
-                <li>
-                  <em>빠르게 화면단을 구성하는 방법을 압니다.</em>
-                  초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영했습니다.
+                <li className="list-disc mb-30">
+                  <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
+                    기술을 제안하고 공유하는 것을 좋아합니다.
+                  </em>
+                  <span className="block leading-1.6 tracking-tight text-shadow">
+                    Storybook을 도입해 일관성 있는 유즈 케이스를 구성하고 문서로 공유하여 팀원들의 개발 효율성을 향상시켰습니다.
+                  </span>
                 </li>
-                <li>
-                  <em>기술을 제안하고 공유하는 것을 좋아합니다.</em>
-                  Storybook을 도입해 일관성 있는 유즈 케이스를 구성하고 문서로 공유하여 팀원들의 개발 효율성을 향상시켰습니다.
+                <li className="list-disc mb-30">
+                  <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
+                    팀원들과 함께 문제상황을 인지하고 해결합니다.
+                  </em>
+                  <span className="block leading-1.6 tracking-tight text-shadow">
+                    CI/CD 담당 동료의 의존성 설치 시간 문제를 해결하기 위해, 기존 yarn classic에서 yarn berry zero-install로 마이그레이션하여 성능을
+                    개선했습니다.
+                  </span>
                 </li>
-                <li>
-                  <em>팀원들과 함께 문제상황을 인지하고 해결합니다.</em>
-                  CI/CD 담당 동료의 의존성 설치 시간 문제를 해결하기 위해, 기존 yarn classic에서 yarn berry zero-install로 마이그레이션하여 성능을
-                  개선했습니다.
-                </li>
-                <li>
-                  <em>레거시 환경에서도 최선의 방법을 찾을 수 있습니다</em>
-                  JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
-                  클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
+                <li className="list-disc mb-30">
+                  <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
+                    레거시 환경에서도 최선의 방법을 찾을 수 있습니다
+                  </em>
+                  <span className="block leading-1.6 tracking-tight text-shadow">
+                    JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
+                    클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
+                  </span>
                 </li>
               </ul>
             </div>
