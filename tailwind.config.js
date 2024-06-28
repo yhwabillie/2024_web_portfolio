@@ -19,6 +19,7 @@ module.exports = {
     },
     minHeight: {
       full: '100%',
+      layout: '100vh',
       'dynamic-layout-small': `calc(100vh - ${pxToRem(72)})`,
       'dynamic-layout-medium': `calc(100vh - ${pxToRem(84)})`,
       'dynamic-layout-large': `calc(100vh - ${pxToRem(90)})`,

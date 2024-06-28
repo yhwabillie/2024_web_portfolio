@@ -22,5 +22,9 @@ export default function Transition(props: any) {
     }
   }, [props.children])
 
-  return <div ref={container}>{displayChildren}</div>
+  return (
+    <div ref={container} className="min-h-layout">
+      {displayChildren}
+    </div>
+  )
 }
