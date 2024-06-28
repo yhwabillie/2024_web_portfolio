@@ -74,6 +74,10 @@
     @apply h-full m-auto xxs:max-w-xxs xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl;
   }
 
+  .inner {
+    @apply py-25 px-50 h-[100vh] box-border;
+  }
+
   .large-icon {
     @apply w-icon-large h-icon-large text-icon-small rounded-xs hover:text-theme-reverse hover:bg-theme-hover flex justify-center items-center;
   }

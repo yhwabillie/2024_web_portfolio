@@ -15,6 +15,8 @@ export default function Transition(props: any) {
         })
         .then(() => {
           setDisplayChildren(props.children)
+
+          window.scrollTo(0, 0)
           gsap.to(container.current, {
             opacity: 1,
           })
@@ -22,8 +24,14 @@ export default function Transition(props: any) {
     }
   }, [props.children])
 
+  useGSAP(() => {
+    gsap.to(container.current, {
+      opacity: 1,
+    })
+  })
+
   return (
-    <div ref={container} className="min-h-layout">
+    <div ref={container} className="opacity-0 min-h-layout">
       {displayChildren}
     </div>
   )

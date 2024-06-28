@@ -35,6 +35,7 @@ module.exports = {
       lg: pxToRem(1316),
       xl: pxToRem(1712),
       sidebar: pxToRem(412),
+      'fit-content': 'fit-content',
     },
     width: {
       fit: 'fit-content',
@@ -123,6 +124,7 @@ module.exports = {
       340: pxToRem(340),
       405: pxToRem(405),
       486: pxToRem(486),
+      500: pxToRem(500),
       621: pxToRem(621),
       800: pxToRem(800),
       808: pxToRem(808),
@@ -148,6 +150,7 @@ module.exports = {
       48: pxToRem(48),
       52: pxToRem(52),
       60: pxToRem(60),
+      80: pxToRem(80),
     },
     lineHeight: {
       'header-small': '4.5rem',
@@ -157,6 +160,7 @@ module.exports = {
       xl: '2.5rem' /* 40 */,
       1: 1,
       2: 2,
+      1.3: 1.3,
       1.4: 1.4,
       1.6: 1.6,
       64: pxToRem(64),
@@ -204,6 +208,7 @@ module.exports = {
       70: pxToRem(70),
       80: pxToRem(80),
       100: pxToRem(100),
+      200: pxToRem(200),
     },
     padding: {
       0: 0,
@@ -226,6 +231,7 @@ module.exports = {
       35: pxToRem(35),
       30: pxToRem(30),
       40: pxToRem(40),
+      50: pxToRem(50),
       23: pxToRem(23),
       24: pxToRem(24),
       25: pxToRem(25),

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
-import { FaArrowRight } from 'react-icons/fa6'
+import { FaArrowDown, FaArrowRight } from 'react-icons/fa6'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
@@ -9,8 +9,10 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { useFooterRefStore, useMainPageRefsStore } from '@store/storehooks'
 import SEO from '@components/Seo'
 import { StaticImage } from 'gatsby-plugin-image'
-import gsap from 'gsap'
+import gsap, { selector } from 'gsap'
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/all'
+gsap.registerPlugin(ScrollTrigger)
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -18,12 +20,13 @@ dayjs.extend(timezone)
 dayjs.extend(relativeTime)
 dayjs.tz.setDefault('Asia/Seoul')
 
-export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
+export default function Page({ data }: PageProps<Queries.PageQuery>) {
   //zustand state
   const { setMainPageRefs } = useMainPageRefsStore()
-  const { footerRef } = useFooterRefStore()
 
   //refs 정의
+  const container = React.useRef<HTMLElement>(null)
+
   const visualViewRef = React.useRef<HTMLDivElement>(null)
   const aboutRef = React.useRef<HTMLDivElement>(null)
   const careerRef = React.useRef<HTMLDivElement>(null)
@@ -34,59 +37,14 @@ export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
   const video_container = React.useRef<HTMLDivElement>(null)
 
   //ref 종합
-  const allRefs = [visualViewRef, aboutRef, careerRef, projectRef, problemRef, footerRef]
+  const allRefs = [visualViewRef, aboutRef, careerRef, projectRef, problemRef]
 
   //image path
   const visual_bg_path = require('../images/visual_mockup.gif')
 
-  //Marquee
-  // const marqueeString = 'Frontend-Deveoloper,UI-Publisher,UI/UX,Hello World,Dev'
-  // const marqueeArray = [...marqueeString]
-
-  // useGSAP(() => {
-  //   const items = gsap.utils.toArray('.items')
-  //   const pageWrapper = document.querySelector('.page-wrapper')
-
-  //   items.forEach((container: any, i: number) => {
-  //     let localItems = container.querySelectorAll('.item')
-  //     let distance = () => {
-  //       let lastItemBounds = localItems[localItems.length - 1].getBoundingClientRect()
-  //       let containerBounds = container.getBoundingClientRect()
-
-  //       return Math.max(0, lastItemBounds.right - containerBounds.right)
-  //     }
-
-  //     gsap.to(container, {
-  //       x: () => -distance(),
-  //       ease: 'none',
-  //       scrollTrigger: {
-  //         trigger: container,
-  //         start: 'center bottom',
-  //         pinnedContainer: pageWrapper,
-  //         end: () => '+=' + distance(),
-  //         pin: pageWrapper,
-  //         scrub: true,
-  //         markers: true,
-  //         invalidateOnRefresh: true, // will recalculate any function-based tween values on resize/refresh (making it responsive)
-  //       },
-  //     })
-  //   })
-  // })
-
   useGSAP(
     () => {
       let tl = gsap.timeline({ delay: 0.2 })
-
-      //set
-      gsap.set('#main_title', {
-        opacity: 0,
-        y: 100,
-      })
-
-      gsap.set('#sub_title', {
-        opacity: 0,
-        y: 100,
-      })
 
       //timeline
       tl.to('#main_title', {
@@ -180,12 +138,98 @@ export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
     { scope: widget_container },
   )
 
+  //scroll trigger
+  useGSAP(
+    () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '#about .title_container',
+            start: '100% 100%',
+            end: '100% 100%',
+            markers: true,
+          },
+        })
+        .fromTo('#about .title_container span i', { opacity: 0, y: '100%', rotate: '20deg' }, { opacity: 1, y: '0%', rotate: 0, stagger: 0.1 })
+
+      gsap.utils.toArray('#about .logo_wrap span').forEach((selector: any) => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '#about .title_container',
+              start: '60% 100%',
+              end: '50% 30%',
+              // markers: true,
+              scrub: 1,
+            },
+          })
+          .fromTo(selector, { opacity: 0 }, { opacity: 1 })
+      })
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '#about',
+            start: '100% 100%',
+            end: '100% 0%',
+            scrub: 1,
+            // markers: true,
+          },
+        })
+        .to(
+          '#a',
+          {
+            x: -150,
+            y: 250,
+            rotate: 200,
+            ease: 'none',
+            duration: 5,
+          },
+          0,
+        )
+        .to(
+          '#b',
+          {
+            x: -80,
+            y: 150,
+            rotate: -10,
+            ease: 'none',
+            duration: 5,
+          },
+          0,
+        )
+        .to(
+          '#c',
+          {
+            x: 60,
+            y: 40,
+            rotate: -100,
+            ease: 'none',
+            duration: 5,
+          },
+          0,
+        )
+        .to(
+          '#d',
+          {
+            x: 50,
+            y: 450,
+            rotate: 20,
+            ease: 'none',
+            duration: 5,
+          },
+          0,
+        )
+    },
+    { scope: container },
+  )
+
   React.useEffect(() => {
     setMainPageRefs(allRefs)
-  }, [footerRef])
+  }, [])
 
   return (
-    <article className="h-full bg-theme">
+    <article ref={container} className="h-full bg-theme">
       <section id="visualView" className="min-w-250" ref={visualViewRef}>
         <div className="container flex flex-col justify-between md:pt-35 md:flex-row">
           <div
@@ -216,12 +260,15 @@ export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
             </div>
 
             <div className="hidden sm:block absolute top-[50px] left-[50px] md:top-[80px] md:left-[80px] lg:top-[80px] lg:left-[90px] xl:top-[130px] xl:left-[141px] text-white z-2">
-              <strong id="main_title" className="block text-shadow text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
+              <h3
+                id="main_title"
+                className="opacity-0 translate-y-[100px] block font-[700] text-shadow text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52"
+              >
                 간단한 UI 설계 <br /> 매력적인 인터랙션
-              </strong>
-              <p id="sub_title" className="mt-20 font-bold text-shadow text-15 lg:text-22 leading-2">
+              </h3>
+              <h4 id="sub_title" className="opacity-0 translate-y-[100px] mt-20 font-bold text-shadow text-15 lg:text-22 leading-2">
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
-              </p>
+              </h4>
             </div>
 
             <div
@@ -249,9 +296,9 @@ export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
                 pt-10 pb-0 pl-20 pr-25
               "
               >
-                동영상으로 보기 <span className="sr-only">영상 클릭하여 시청하기</span>
+                밑으로 스크롤 <span className="sr-only">아래로 스크롤</span>
                 <span className="flex items-center justify-center ml-16 rounded-md w-icon-xlarge h-icon-xlarge bg-theme-reverse text-theme">
-                  <FaArrowRight />
+                  <FaArrowDown />
                 </span>
               </Link>
             </div>
@@ -259,16 +306,16 @@ export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
 
           {/* Mobile Title */}
           <div className="block mt-20 px-14 mb-70 sm:hidden">
-            <strong id="main_title" className="block font-600 text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
+            <h3 id="main_title" className="block font-[700] text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
               간단한 UI 설계 <br /> 매력적인 인터랙션
-            </strong>
-            <p id="sub_title" className="my-20 text-15 lg:text-22 leading-1.5">
+            </h3>
+            <h4 id="sub_title" className="my-20 text-15 lg:text-22 leading-1.5">
               누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
-            </p>
+            </h4>
             <Link to="/" className="relative flex items-center justify-center bg-gray-1 text-theme-reverse leading-64 text-18 rounded-xxs">
-              동영상으로 보기 <span className="sr-only">영상 클릭하여 시청하기</span>
+              밑으로 스크롤 <span className="sr-only">아래로 스크롤</span>
               <div className="flex items-center justify-center ml-16 rounded-md w-30 h-30 bg-theme-reverse text-theme">
-                <FaArrowRight />
+                <FaArrowDown />
               </div>
             </Link>
           </div>
@@ -346,7 +393,67 @@ export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
           </div>
         </div>
       </section>
-      <section id="about" ref={aboutRef}></section>
+      <section id="about" ref={aboutRef} className="max-h-[100vh]">
+        <div className="container">
+          <h3 className="title_container mr-auto my-[10vh] max-w-fit-content text-80 leading-1.3">
+            <span className="block overflow-hidden title_item">
+              <i className="block font-[600] not-italic origin-top-left">Frontend Dev &</i>
+            </span>
+            <span className="block overflow-hidden title_item">
+              <i className="block font-[400] origin-top-left">Web Publishing</i>
+            </span>
+          </h3>
+          {/* Logo Wrap */}
+          <div className="flex justify-between h-[fit-content] logo_wrap">
+            <span id="a" className="w-[23%] h-[fit-content]">
+              <StaticImage src={'../images/logo_1.png'} alt="로고" width={512} height={512} placeholder="none" />
+            </span>
+            <span id="b" className="w-[23%] h-[fit-content]">
+              <StaticImage src={'../images/logo_2.png'} alt="로고" width={512} height={512} placeholder="none" />
+            </span>
+            <span id="c" className="w-[23%] h-[fit-content]">
+              <StaticImage src={'../images/logo_3.png'} alt="로고" width={512} height={512} placeholder="none" />
+            </span>
+            <span id="d" className="w-[23%] h-[fit-content]">
+              <StaticImage src={'../images/logo_4.png'} alt="로고" width={512} height={512} placeholder="none" />
+            </span>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="container">
+          {/* Desc */}
+          <div className="grid grid-cols-[400px_auto] gap-[50px] relative bg-[#373737]/[0.4] backdrop-blur-[100px] rounded-lg z-2 p-50">
+            <div className="w-400 min-h-[500px] bg-blue-1 rounded-sm"></div>
+            <div className="text-white">
+              <h3 className="text-40 font-[700]">About Me</h3>
+              <ul>
+                <li>
+                  안녕하세요, <em>2년차</em> 웹 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
+                </li>
+                <li>
+                  <em>빠르게 화면단을 구성하는 방법을 압니다.</em>
+                  초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영했습니다.
+                </li>
+                <li>
+                  <em>기술을 제안하고 공유하는 것을 좋아합니다.</em>
+                  Storybook을 도입해 일관성 있는 유즈 케이스를 구성하고 문서로 공유하여 팀원들의 개발 효율성을 향상시켰습니다.
+                </li>
+                <li>
+                  <em>팀원들과 함께 문제상황을 인지하고 해결합니다.</em>
+                  CI/CD 담당 동료의 의존성 설치 시간 문제를 해결하기 위해, 기존 yarn classic에서 yarn berry zero-install로 마이그레이션하여 성능을
+                  개선했습니다.
+                </li>
+                <li>
+                  <em>레거시 환경에서도 최선의 방법을 찾을 수 있습니다</em>
+                  JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
+                  클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
       <section id="career" ref={careerRef}>
         <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
@@ -363,18 +470,6 @@ export default function Page({ data, ...props }: PageProps<Queries.PageQuery>) {
       </section>
       <section id="project" ref={projectRef}></section>
       <section id="problem" ref={problemRef}></section>
-
-      {/* <div className="scrolling-text overflow-hidden bg-blue-1 2xl:mb-[200px] xl:mb-[120px] lg:mb-[80px] mb-[40px]">
-            <div className="container w-[90%] m-auto">
-              <ul className="flex justify-start items scrollx-section flex-nowrap">
-                {marqueeArray.map((item, index) => (
-                  <li key={index} className="item text-[100px] text-white">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div> */}
     </article>
   )
 }
