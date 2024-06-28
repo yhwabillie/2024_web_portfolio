@@ -33,9 +33,6 @@ export default function CategoryLayout(props: PageProps) {
   const { mainPageRefs } = useMainPageRefsStore()
   const { setSidebarStatus } = useSidebarStatusStore()
 
-  //refs 정의
-  const nodeRef = React.useRef<HTMLElement>(null)
-
   //console.log(props.location.state.key, props.location.state.direction)
 
   React.useEffect(() => {
@@ -132,21 +129,10 @@ export default function CategoryLayout(props: PageProps) {
     }
   }
 
-  // overflow-x-hidden hide-scroll h-dynamic-layout-small lg:h-dynamic-layout-medium xl:h-dynamic-layout-large
-
   return (
-    <TransitionGroup className="relative min-h-[calc(100vh-72px)] mt-header-small lg:mt-header-medium xl:mt-header-large">
-      <CSSTransition
-        nodeRef={nodeRef}
-        key={props.location.pathname}
-        timeout={300}
-        classNames={props.location.state?.direction !== undefined ? 'navigate-pop' : 'navigate-push'}
-      >
-        <main ref={nodeRef} className="absolute top-0 left-0 w-full t-40 px-14 lg:px-0">
-          <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
-          {props.children}
-        </main>
-      </CSSTransition>
-    </TransitionGroup>
+    <main className="pt-header-small lg:pt-header-medium xl:pt-header-large px-14 sm:px-0">
+      <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
+      {props.children}
+    </main>
   )
 }

@@ -315,10 +315,10 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
 
               {/* gsap */}
               <div id="sticker2" className="w-40 h-40 lg:w-70 lg:h-70 xl:w-80 xl:h-80 hidden md:block sticker_item absolute bottom-[0px] left-[30%]">
-                <StaticImage src={'../images/sticker_2.png'} alt="Styled-components" width={80} height={80} placeholder="none" />
+                <StaticImage src={'../images/sticker_2.png'} alt="Styled-components" width={480} height={480} placeholder="none" />
               </div>
               <div id="sticker3" className="w-50 h-50 lg:w-70 lg:h-70 xl:w-90 xl:h-90 hidden md:block sticker_item absolute bottom-10px] right-[10%]">
-                <StaticImage src={'../images/sticker_3.png'} alt="tailwind css" width={90} height={90} placeholder="none" />
+                <StaticImage src={'../images/sticker_3.png'} alt="tailwind css" width={352} height={340} placeholder="none" />
               </div>
               <div id="sticker4" className="w-50 h-50 lg:w-90 lg:h-90 xl:w-130 xl:h-130 hidden md:block sticker_item absolute bottom-30px] left-[0%]">
                 <StaticImage src={'../images/sticker_4.png'} alt="GSAP" width={130} height={130} placeholder="none" />

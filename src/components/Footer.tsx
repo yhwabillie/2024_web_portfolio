@@ -1,21 +1,27 @@
 import * as React from 'react'
 import { useFooterRefStore } from '@store/storehooks'
 
-type FooterPropsType = {
-  footerRef: React.RefObject<HTMLElement>
-}
-
-export default function Footer({ footerRef }: FooterPropsType) {
+export default function Footer() {
   //zustand state
-  const { setFooterRef } = useFooterRefStore()
+  // const { setFooterRef } = useFooterRefStore()
 
-  React.useEffect(() => {
-    setFooterRef(footerRef)
-  }, [])
+  // React.useEffect(() => {
+  //   setFooterRef(footerRef)
+  // }, [])
 
   return (
-    <footer id="contact" ref={footerRef} className="sticky bottom-0 left-0 z-4 py-[15vh] flex justify-center items-center">
-      <h2 className="text-[100px]">Footer</h2>
+    <footer className="relative h-800" style={{ clipPath: 'polygon(0% 0, 100% 0, 100% 100%, 0 100%' }}>
+      {/* Sticky Area */}
+      <div className="relative h-[calc(100vh+800px)] -top-[100vh]">
+        {/* Content */}
+        <div className="items-center h-full bg-blue-1">
+          <div className="sticky top-[calc(100vh-800px)] h-800">
+            <div className="container h-full">
+              <h2 className="text-60">Footer</h2>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
   )
 }

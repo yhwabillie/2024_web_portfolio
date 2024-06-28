@@ -17,6 +17,12 @@ module.exports = {
       lg: pxToRem(1440),
       xl: pxToRem(1903),
     },
+    minHeight: {
+      full: '100%',
+      'dynamic-layout-small': `calc(100vh - ${pxToRem(72)})`,
+      'dynamic-layout-medium': `calc(100vh - ${pxToRem(84)})`,
+      'dynamic-layout-large': `calc(100vh - ${pxToRem(90)})`,
+    },
     minWidth: {
       250: pxToRem(250),
     },
@@ -117,6 +123,7 @@ module.exports = {
       405: pxToRem(405),
       486: pxToRem(486),
       621: pxToRem(621),
+      800: pxToRem(800),
       808: pxToRem(808),
       1000: pxToRem(1000),
     },
@@ -177,9 +184,9 @@ module.exports = {
       transparent: 'transparent',
     },
     margin: {
-      'header-small': '4.5rem',
-      'header-medium': '5.25rem',
-      'header-large': '5.625rem',
+      'header-small': pxToRem(72),
+      'header-medium': pxToRem(84),
+      'header-large': pxToRem(90),
       auto: 'auto',
       0: 0,
       5: pxToRem(5),
@@ -199,6 +206,9 @@ module.exports = {
     },
     padding: {
       0: 0,
+      'header-small': pxToRem(72),
+      'header-medium': pxToRem(84),
+      'header-large': pxToRem(90),
       xs: '0.875rem' /* 14 */,
       sm: '1.5rem' /* 24 */,
       md: '2.25rem' /* 36 */,
