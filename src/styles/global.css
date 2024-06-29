@@ -67,6 +67,10 @@
     scrollbar-width: none;
   }
 
+  .perspective {
+    perspective: 500px;
+  }
+
   .ellipsis {
     overflow: hidden;
     white-space: normal;

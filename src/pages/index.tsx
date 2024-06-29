@@ -147,7 +147,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             trigger: '#about .title_container',
             start: '100% 100%',
             end: '100% 100%',
-            markers: true,
+            // markers: true,
           },
         })
         .fromTo('#about .title_container span i', { opacity: 0, y: '100%', rotate: '20deg' }, { opacity: 1, y: '0%', rotate: 0, stagger: 0.1 })
@@ -220,6 +220,29 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           },
           0,
         )
+
+      gsap.utils.toArray('#career .article_container .item').forEach((selector: any, index: number) => {
+        gsap.set(selector, {
+          rotationX: '-65deg',
+          z: '-500px',
+          opacity: 0,
+        })
+
+        ScrollTrigger.create({
+          trigger: selector,
+          start: '0% 80%',
+          onEnter: () => {
+            gsap.to(selector, {
+              rotationX: 0,
+              z: 0,
+              opacity: 1,
+              delay: (index / 3) * 0.05,
+            })
+          },
+          onLeave: () => {},
+          markers: true,
+        })
+      })
     },
     { scope: container },
   )
@@ -482,9 +505,9 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             <h3 className="sticky top-[50%] translate-y-[-50%] text-60">Career</h3>
           </div>
 
-          <div className="grid grid-cols-[repeat(3,32.3%)] gap-x-[1.55%] gap-y-[36px] perspective">
+          <div className="article_container grid grid-cols-[repeat(3,32.3%)] gap-x-[1.55%] gap-y-[36px] perspective">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item: any, index: number) => (
-              <article key={index} className="relative cursor-pointer">
+              <article key={index} className="relative cursor-pointer item">
                 <Link className="link-overlay" to="/">
                   <span className="sr-only">클릭하여 상세보기</span>
                 </Link>
@@ -507,17 +530,14 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
                     </time>
                   </div>
                   <h4 className="block mt-15">
-                    <span className="ellipsis font-[700] text-18 leading-23">
-                      보고싶은 군인 카드 UI 리뉴얼 보고싶은 군인 카드 UI 리뉴얼 보고싶은 군인 카드 UI 리뉴얼 보고싶은 군인 카드 UI 리뉴얼
-                    </span>
+                    <span className="ellipsis font-[700] text-18 leading-23">보고싶은 군인 카드 UI 리뉴얼</span>
                     <span className="mt-5 text-15 ellipsis opacity-70">
                       Back과 Front단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다. Back과 Front단의 레거시 코드를
-                      리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다. Back과 Front단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한
-                      프로젝트입니다.
+                      리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다.
                     </span>
                   </h4>
                 </header>
-                <footer className="mt-10">#tag</footer>
+                <footer className="mt-10 text-15 text-blue-1"># 리팩토링</footer>
               </article>
             ))}
           </div>
