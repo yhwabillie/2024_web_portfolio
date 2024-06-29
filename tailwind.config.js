@@ -78,6 +78,7 @@ module.exports = {
       1424: `calc(${pxToRem(1424)} - ${pxToRem(30)})`,
     },
     height: {
+      fit: 'fit-content',
       full: '100%',
       auto: 'auto',
       1: pxToRem(1),
@@ -200,6 +201,7 @@ module.exports = {
       5: pxToRem(5),
       8: pxToRem(8),
       10: pxToRem(10),
+      14: pxToRem(14),
       15: pxToRem(15),
       16: pxToRem(16),
       18: pxToRem(18),
@@ -284,6 +286,9 @@ module.exports = {
         },
         '.highlight': {
           background: 'linear-gradient(to top, var(--blue-1) 10%, transparent 10%)',
+        },
+        perspective: {
+          perspective: pxToRem(900),
         },
       })
     }),

@@ -393,89 +393,123 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           </div>
         </div>
       </section>
-      <section id="about" ref={aboutRef} className="max-h-[100vh]">
-        <div className="container">
-          <h3 className="title_container mr-auto my-[10vh] max-w-fit-content text-80 leading-1.3">
-            <span className="block overflow-hidden title_item">
-              <i className="block font-[600] not-italic origin-top-left">Frontend Dev &</i>
-            </span>
-            <span className="block overflow-hidden title_item">
-              <i className="block font-[400] origin-top-left">Web Publishing</i>
-            </span>
-          </h3>
-          {/* Logo Wrap */}
-          <div className="flex justify-between h-[fit-content] logo_wrap">
-            <span id="a" className="w-[23%] h-[fit-content]">
-              <StaticImage src={'../images/logo_1.png'} alt="로고" width={512} height={512} placeholder="none" />
-            </span>
-            <span id="b" className="w-[23%] h-[fit-content]">
-              <StaticImage src={'../images/logo_2.png'} alt="로고" width={512} height={512} placeholder="none" />
-            </span>
-            <span id="c" className="w-[23%] h-[fit-content]">
-              <StaticImage src={'../images/logo_3.png'} alt="로고" width={512} height={512} placeholder="none" />
-            </span>
-            <span id="d" className="w-[23%] h-[fit-content]">
-              <StaticImage src={'../images/logo_4.png'} alt="로고" width={512} height={512} placeholder="none" />
-            </span>
-          </div>
-        </div>
-      </section>
-      <section className="min-h-[500px]">
-        <div className="container">
-          {/* Desc */}
-          <div className="grid lg:grid-cols-[400px_auto] items-center gap-[50px] relative bg-[#373737]/[0.4] backdrop-blur-[100px] rounded-lg z-2 p-50">
-            <div className="mx-auto overflow-hidden rounded-sm w-400 h-500 lg:m-0">
-              <StaticImage className="w-full h-full" src={'../images/mockup_profile.jpg'} alt="로고" width={493} height={665} placeholder="none" />
+      <div className="overflow-hidden">
+        <section id="about" ref={aboutRef} className="max-h-[100vh] mt-[15vh]">
+          <div className="container">
+            <h3 className="title_container mr-auto mb-[5vh] max-w-fit-content text-80 leading-1.3">
+              <span className="block overflow-hidden title_item">
+                <i className="block font-[600] not-italic origin-top-left">Frontend Dev &</i>
+              </span>
+              <span className="block overflow-hidden title_item">
+                <i className="block font-[400] origin-top-left">Web Publishing</i>
+              </span>
+            </h3>
+            {/* Logo Wrap */}
+            <div className="flex justify-between h-[fit-content] logo_wrap">
+              <span id="a" className="w-[23%] h-[fit-content]">
+                <StaticImage src={'../images/logo_1.png'} alt="로고" width={512} height={512} placeholder="none" />
+              </span>
+              <span id="b" className="w-[23%] h-[fit-content]">
+                <StaticImage src={'../images/logo_2.png'} alt="로고" width={512} height={512} placeholder="none" />
+              </span>
+              <span id="c" className="w-[23%] h-[fit-content]">
+                <StaticImage src={'../images/logo_3.png'} alt="로고" width={512} height={512} placeholder="none" />
+              </span>
+              <span id="d" className="w-[23%] h-[fit-content]">
+                <StaticImage src={'../images/logo_4.png'} alt="로고" width={512} height={512} placeholder="none" />
+              </span>
             </div>
-            <div className="text-white">
-              <h3 className="text-40 font-[700] text-shadow text-center lg:text-left">About Me</h3>
-              <p className="text-center mb-30 lg:text-left">
-                <span className="block text-26 text-shadow">
-                  <em className="not-italic highlight">2년차</em> 웹 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
+          </div>
+        </section>
+        <section className="min-h-[500px]">
+          <div className="container">
+            {/* Desc */}
+            <div className="grid lg:grid-cols-[400px_auto] items-center gap-[50px] relative bg-[#373737]/[0.4] backdrop-blur-[100px] rounded-lg z-2 p-50">
+              <div className="mx-auto overflow-hidden rounded-sm w-400 h-500 lg:m-0">
+                <StaticImage className="w-full h-full" src={'../images/mockup_profile.jpg'} alt="로고" width={493} height={665} placeholder="none" />
+              </div>
+              <div className="text-white">
+                <h3 className="text-40 font-[700] text-shadow text-center lg:text-left">About Me</h3>
+                <p className="text-center mb-30 lg:text-left">
+                  <span className="block text-26 text-shadow">
+                    <em className="not-italic highlight">2년차</em> 웹 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
+                  </span>
+                </p>
+                <ul className="pl-20 text-20">
+                  <li className="list-disc mb-30">
+                    <em className="block p-5 mb-10 not-italic bg-blue-1 leading-1 w-fit text-22 text-shadow">
+                      빠르게 화면단을 구성하는 방법을 압니다.
+                    </em>
+                    <span className="block leading-1.6 tracking-tight text-shadow">
+                      초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영했습니다.
+                    </span>
+                  </li>
+                  <li className="list-disc mb-30">
+                    <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
+                      기술을 제안하고 공유하는 것을 좋아합니다.
+                    </em>
+                    <span className="block leading-1.6 tracking-tight text-shadow">
+                      Storybook을 도입해 일관성 있는 유즈 케이스를 구성하고 문서로 공유하여 팀원들의 개발 효율성을 향상시켰습니다.
+                    </span>
+                  </li>
+                  <li className="list-disc mb-30">
+                    <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
+                      팀원들과 함께 문제상황을 인지하고 해결합니다.
+                    </em>
+                    <span className="block leading-1.6 tracking-tight text-shadow">
+                      CI/CD 담당 동료의 의존성 설치 시간 문제를 해결하기 위해, 기존 yarn classic에서 yarn berry zero-install로 마이그레이션하여 성능을
+                      개선했습니다.
+                    </span>
+                  </li>
+                  <li className="list-disc mb-30">
+                    <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
+                      레거시 환경에서도 최선의 방법을 찾을 수 있습니다
+                    </em>
+                    <span className="block leading-1.6 tracking-tight text-shadow">
+                      JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
+                      클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section id="career" className="my-[20vh]" ref={careerRef}>
+        <div className="container grid grid-cols-[28%,70%] gap-x-[2%]">
+          <div className="h-auto bg-blue-3">
+            <h3 className="sticky top-[50%] translate-y-[-50%] text-60">Career</h3>
+          </div>
+
+          <div className="grid grid-cols-[repeat(3,32.3%)] gap-x-[1.55%] gap-y-[36px] perspective">
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((item: any, index: number) => (
+              <article key={index} className="relative cursor-pointer">
+                <Link className="link-overlay" to="/">
+                  <span className="sr-only">클릭하여 상세보기</span>
+                </Link>
+
+                <span className="block w-full rounded-xxs mb-14">
+                  <StaticImage
+                    className="block object-cover w-full h-full rounded-xxs"
+                    src={'../images/empty_content.png'}
+                    alt="빈 컨텐츠 이미지"
+                    width={375}
+                    height={250}
+                    placeholder="none"
+                  />
                 </span>
-              </p>
-              <ul className="pl-20 text-20">
-                <li className="list-disc mb-30">
-                  <em className="block p-5 mb-10 not-italic bg-blue-1 leading-1 w-fit text-22 text-shadow">
-                    빠르게 화면단을 구성하는 방법을 압니다.
-                  </em>
-                  <span className="block leading-1.6 tracking-tight text-shadow">
-                    초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영했습니다.
-                  </span>
-                </li>
-                <li className="list-disc mb-30">
-                  <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
-                    기술을 제안하고 공유하는 것을 좋아합니다.
-                  </em>
-                  <span className="block leading-1.6 tracking-tight text-shadow">
-                    Storybook을 도입해 일관성 있는 유즈 케이스를 구성하고 문서로 공유하여 팀원들의 개발 효율성을 향상시켰습니다.
-                  </span>
-                </li>
-                <li className="list-disc mb-30">
-                  <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
-                    팀원들과 함께 문제상황을 인지하고 해결합니다.
-                  </em>
-                  <span className="block leading-1.6 tracking-tight text-shadow">
-                    CI/CD 담당 동료의 의존성 설치 시간 문제를 해결하기 위해, 기존 yarn classic에서 yarn berry zero-install로 마이그레이션하여 성능을
-                    개선했습니다.
-                  </span>
-                </li>
-                <li className="list-disc mb-30">
-                  <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
-                    레거시 환경에서도 최선의 방법을 찾을 수 있습니다
-                  </em>
-                  <span className="block leading-1.6 tracking-tight text-shadow">
-                    JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
-                    클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
-                  </span>
-                </li>
-              </ul>
-            </div>
+                <p className="text-15 opacity-85">프론트엔드</p>
+                <h4>
+                  <span>Title</span>
+                  <span>Description</span>
+                </h4>
+                <p>#tag</p>
+              </article>
+            ))}
           </div>
         </div>
-      </section>
-      <section id="career" ref={careerRef}>
-        <ul>
+        {/* <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
               <li key={index}>
@@ -486,7 +520,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
               </li>
             )
           })}
-        </ul>
+        </ul> */}
       </section>
       <section id="project" ref={projectRef}></section>
       <section id="problem" ref={problemRef}></section>

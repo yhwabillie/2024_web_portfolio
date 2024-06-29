@@ -81,6 +81,10 @@
   .large-icon {
     @apply w-icon-large h-icon-large text-icon-small rounded-xs hover:text-theme-reverse hover:bg-theme-hover flex justify-center items-center;
   }
+
+  .link-overlay {
+    @apply block w-full h-full bottom-0 absolute;
+  }
 }
 
 /* utilities : 다른 어떤 스타일들보다 먼저 적용되야할 작고, 하나의 목적을 가진 클래스를 위한 레이어 */
