@@ -507,9 +507,13 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
                     </time>
                   </div>
                   <h4 className="block mt-15">
-                    <span className="block font-[700] text-18 leading-23">보고싶은 군인 카드 UI 리뉴얼</span>
-                    <span className="block mt-5 text-15 ellipsis opacity-70">
-                      Back과 Front단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다.
+                    <span className="ellipsis font-[700] text-18 leading-23">
+                      보고싶은 군인 카드 UI 리뉴얼 보고싶은 군인 카드 UI 리뉴얼 보고싶은 군인 카드 UI 리뉴얼 보고싶은 군인 카드 UI 리뉴얼
+                    </span>
+                    <span className="mt-5 text-15 ellipsis opacity-70">
+                      Back과 Front단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다. Back과 Front단의 레거시 코드를
+                      리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다. Back과 Front단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한
+                      프로젝트입니다.
                     </span>
                   </h4>
                 </header>
