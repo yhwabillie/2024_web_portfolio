@@ -66,6 +66,16 @@
   .hide-scroll {
     scrollbar-width: none;
   }
+
+  .ellipsis {
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: keep-all;
+  }
 }
 
 /* components : 유틸리티로 재정의 할 수 있는 클래스-기반 스타일을 위한 레이어 (써드파티 라이브러리를 위한 커스텀 스타일을 작성) */
@@ -128,26 +138,4 @@
   --blue-2: #0088da;
   --blue-3: #f0faff;
   --gray-1: #e9ebee;
-}
-
-/* POP - 들어올때 */
-.navigate-pop-enter {
-  transform: translateX(100%);
-}
-
-.navigate-pop-enter-active {
-  z-index: 9999;
-  transform: translateX(0%);
-  transition: transform 300ms ease-in-out;
-}
-
-/* POP - 나갈때 */
-.navigate-pop-exit {
-  transform: translateX(-100%);
-}
-
-.navigate-pop-exit-active {
-  z-index: 9999;
-  transform: translateX(0%);
-  transition: transform 300ms ease-in-out;
 }

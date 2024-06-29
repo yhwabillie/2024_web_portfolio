@@ -489,7 +489,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
                   <span className="sr-only">클릭하여 상세보기</span>
                 </Link>
 
-                <span className="block w-full rounded-xxs mb-14">
+                <section className="block w-full rounded-xxs mb-14">
                   <StaticImage
                     className="block object-cover w-full h-full rounded-xxs"
                     src={'../images/empty_content.png'}
@@ -498,13 +498,22 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
                     height={250}
                     placeholder="none"
                   />
-                </span>
-                <p className="text-15 opacity-85">프론트엔드</p>
-                <h4>
-                  <span>Title</span>
-                  <span>Description</span>
-                </h4>
-                <p>#tag</p>
+                </section>
+                <header>
+                  <div className="inline-flex">
+                    <p className="text-15 opacity-85">웹 퍼블리싱</p>
+                    <time className="block text-15 opacity-85 before:bg-theme-reverse before:content-[''] before:relative before:inline-block before:h-10 before:w-1 before:my-0 before:mx-8">
+                      2022. 12 - 2023. 01
+                    </time>
+                  </div>
+                  <h4 className="block mt-15">
+                    <span className="block font-[700] text-18 leading-23">보고싶은 군인 카드 UI 리뉴얼</span>
+                    <span className="block mt-5 text-15 ellipsis opacity-70">
+                      Back과 Front단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다.
+                    </span>
+                  </h4>
+                </header>
+                <footer className="mt-10">#tag</footer>
               </article>
             ))}
           </div>

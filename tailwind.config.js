@@ -40,6 +40,7 @@ module.exports = {
     width: {
       fit: 'fit-content',
       full: '100%',
+      1: pxToRem(1),
       38: pxToRem(38),
       'icon-medium': pxToRem(34),
       'icon-large': pxToRem(36),
@@ -82,6 +83,7 @@ module.exports = {
       full: '100%',
       auto: 'auto',
       1: pxToRem(1),
+      10: pxToRem(10),
       15: pxToRem(15),
       24: pxToRem(24),
       38: pxToRem(38),
@@ -167,6 +169,7 @@ module.exports = {
       1.3: 1.3,
       1.4: 1.4,
       1.6: 1.6,
+      23: pxToRem(23),
       64: pxToRem(64),
     },
     borderRadius: {
