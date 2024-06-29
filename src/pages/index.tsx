@@ -36,6 +36,8 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
   const widget_container = React.useRef<HTMLDivElement>(null)
   const video_container = React.useRef<HTMLDivElement>(null)
 
+  const pointerRef = React.useRef<HTMLDivElement>(null)
+
   //ref 종합
   const allRefs = [visualViewRef, aboutRef, careerRef, projectRef, problemRef]
 
@@ -95,6 +97,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         ease: 'back',
       })
 
+      //mouseleave
       window.addEventListener('mousemove', (e) => {
         const stickerElement1 = document.querySelector('#sticker1')
         const stickerElement2 = document.querySelector('#sticker1')
@@ -222,16 +225,16 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         )
 
       gsap.utils.toArray('#career .article_container .item').forEach((selector: any, index: number) => {
-        gsap.set(selector, {
-          rotationX: '-65deg',
-          z: '-500px',
-          opacity: 0,
-        })
-
         ScrollTrigger.create({
           trigger: selector,
           start: '0% 80%',
           onEnter: () => {
+            gsap.set(selector, {
+              rotationX: '-65deg',
+              z: '-500px',
+              opacity: 0,
+            })
+
             gsap.to(selector, {
               rotationX: 0,
               z: 0,
@@ -243,6 +246,26 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
           markers: true,
         })
       })
+
+      //career pointer animation
+      let enabled = false
+      let min = careerRef.current?.offsetTop
+      let max = careerRef.current?.offsetHeight! - pointerRef.current?.offsetHeight!
+
+      const movePointer = (e: any) => {
+        let y = e.pageY - min!
+
+        if (y > max) return (y = max)
+        gsap.to(pointerRef.current, { y: y, ease: 'back' })
+      }
+
+      const enableMovement = () => {
+        if (enabled) return
+        enabled = true
+        careerRef.current?.addEventListener('mousemove', movePointer)
+      }
+
+      careerRef.current?.addEventListener('mouseenter', enableMovement)
     },
     { scope: container },
   )
@@ -501,8 +524,14 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
       </div>
       <section id="career" className="my-[20vh]" ref={careerRef}>
         <div className="container grid grid-cols-[28%,70%] gap-x-[2%]">
-          <div className="h-auto bg-blue-3">
+          {/* <div className="h-auto bg-blue-3">
             <h3 className="sticky top-[50%] translate-y-[-50%] text-60">Career</h3>
+          </div> */}
+
+          <div className="h-auto bg-blue-3">
+            <h3 ref={pointerRef} className="text-60">
+              Career
+            </h3>
           </div>
 
           <div className="article_container grid grid-cols-[repeat(3,32.3%)] gap-x-[1.55%] gap-y-[36px] perspective">
