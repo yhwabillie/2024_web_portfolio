@@ -318,7 +318,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           <div
             className="
             flex flex-col mr-0 min-w-300
-            xxs:pr-20
+            xxs:pl-0 xxs:pr-14
             sm:min-w-auto sm:flex-row sm:pr-0
             md:block md:w-180 md:pr-0 md:mr-18
             lg:w-206 lg:mr-30
@@ -450,9 +450,9 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
               </span>
             </h4>
 
-            <div className="flex justify-center gap-4 xs:gap-10 h-fit mb-50 md:mb-80 lg:mb-100">
+            <div className="flex justify-center gap-4 sm:gap-10 h-fit mb-50 md:mb-80 lg:mb-100">
               <StaticImage
-                className="w-[23%] xs:w-[20%] h-fit"
+                className="w-[23%] sm:w-[20%] h-fit"
                 src={'../images/logo_1.png'}
                 width={512}
                 height={512}
@@ -460,7 +460,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] xs:w-[20%] h-fit"
+                className="w-[24%] sm:w-[20%] h-fit"
                 src={'../images/logo_2.png'}
                 width={512}
                 height={512}
@@ -468,7 +468,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] xs:w-[20%] h-fit"
+                className="w-[24%] sm:w-[20%] h-fit"
                 src={'../images/logo_3.png'}
                 width={512}
                 height={512}
@@ -476,7 +476,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] xs:w-[20%] h-fit"
+                className="w-[24%] sm:w-[20%] h-fit"
                 src={'../images/logo_4.png'}
                 width={512}
                 height={512}

@@ -4,7 +4,7 @@ import { FaArrowDown } from 'react-icons/fa6'
 
 export default function MobileSummaryTitle() {
   return (
-    <div className="block mt-20 px-14 mb-70 sm:hidden">
+    <div className="block mt-20 px-14 mb-60 sm:hidden">
       <h3 id="main_title" className="block font-[700] text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
         간단한 UI 설계 <br /> 매력적인 인터랙션
       </h3>
