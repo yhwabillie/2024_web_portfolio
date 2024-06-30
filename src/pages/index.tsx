@@ -276,7 +276,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   block font-[700] text-shadow text-26 
                   sm:text-32 md:text-32 lg:text-48 xl:text-52"
               >
-                간단한 UI 설계 <br /> 매력적인 인터랙션
+                꼼꼼한 UI 설계 <br /> 매력적인 인터랙션
               </h4>
               <h5 className="leading-2 text-15 font-bold text-shadow mt-20 lg:text-22">
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
@@ -490,12 +490,56 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           <div className="container">
             <div className="min-h-[700px] w-full max-w-[375px] md:max-w-[1316px] mx-auto grid gap-5 md:grid-cols-[375px_auto]">
               <div className="grid gap-5 grid-rows-[500px_auto]">
-                <div className="bg-blue-1">이미지</div>
-                <div className="bg-blue-3">디테일</div>
+                <div className="h-fit rounded-md shadow-md overflow-hidden">
+                  <StaticImage src={'../images/mockup_profile.jpg'} width={493} height={665} alt="더미 프로필 이미지" />
+                </div>
+                <div className="bg-gray-1 p-25 rounded-md shadow-md">
+                  <h4 className="text-20 font-[500] block mb-20">Information.</h4>
+                </div>
               </div>
-              <div className="grid gap-5 grid-rows-[repeat(2,350px)]">
-                <div className="bg-[#333]/[0.4]">타이틀</div>
-                <div className="bg-blue-1">디테일</div>
+
+              <div className="bg-gray-glass py-25 px-14 xs:py-30 xs:px-20 md:p-40 rounded-md shadow-md">
+                <h4 className="sr-only">자기소개</h4>
+                <p className="text-20 sm:text-25 lg:text-30 font-[600] tracking-tight mb-20 sm:mb-30">
+                  👋🏻 안녕하세요, 2년차 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
+                </p>
+                <div className="px-14">
+                  <div className="mb-15 sm:mb-20 lg:mb-30">
+                    <strong className="block font-[600] text-18 sm:text-20 lg:text-24 tracking-tight text-blue-highlight mb-5">
+                      방법을 제안하고 시도하는 것을 좋아합니다.
+                    </strong>
+                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                      Storybook7, 8을 신규 도입하여, 자주 사용되는 react-hook-form이 적용된 Form 요소 UI 컴포넌트를 문서화했습니다. 또한 Storybook의
+                      국제화 addon 기능을 활용하여, 컴포넌트 내부 텍스트 변경으로 발생하는 디자인 깨짐 이슈를 사전에 모니터링할 수 있도록
+                      개선하였습니다.
+                    </p>
+                  </div>
+                  <div className="mb-15 sm:mb-20 lg:mb-30">
+                    <strong className="text-18 sm:text-20 lg:text-24 font-[600] tracking-tight text-blue-highlight block mb-5">
+                      빠르게 화면단을 구성하고 피드백을 반영하는 방법을 압니다.
+                    </strong>
+                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                      초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영한 경험이 있습니다.
+                    </p>
+                  </div>
+                  <div className="mb-15 sm:mb-20 lg:mb-30">
+                    <strong className="text-18 sm:text-20 lg:text-24 font-[600] tracking-tight text-blue-highlight block mb-5">
+                      레거시 환경에서도 최선의 방법을 찾을 수 있습니다.
+                    </strong>
+                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                      JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
+                      클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
+                    </p>
+                  </div>
+                  <div>
+                    <strong className="text-18 sm:text-20 lg:text-24 font-[600] tracking-tight text-blue-highlight block mb-5">
+                      사용자를 즐겁게하는 인터페이스를 추구합니다.
+                    </strong>
+                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                      GSAP, Framer Motion과 같은 라이브러리를 활용한 웹 애니메이션과 화면 인터랙션 구현에 관심이 많습니다.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

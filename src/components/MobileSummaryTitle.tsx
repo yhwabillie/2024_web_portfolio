@@ -6,7 +6,7 @@ export default function MobileSummaryTitle() {
   return (
     <div className="block mt-20 px-14 mb-60 sm:hidden">
       <h3 className="block font-[700] text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
-        간단한 UI 설계 <br /> 매력적인 인터랙션
+        꼼꼼한 UI 설계 <br /> 매력적인 인터랙션
       </h3>
       <h4 className="my-20 text-15 lg:text-22 leading-1.5">
         누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.

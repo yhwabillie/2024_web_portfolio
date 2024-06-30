@@ -140,6 +140,8 @@
   --blue-2: #def0ff;
   --blue-3: #0656a6;
   --gray-1: #41474c;
+  --gray-glass: rgba(51, 51, 51, 0.4);
+  --blue-highlight: #b1ecfa;
 }
 
 .light {
@@ -152,8 +154,10 @@
   --theme-corner-left-bottom: url('/corner/round_corner_left_bottom_white.svg');
   --theme-corner-right-top: url('/corner/round_corner_right_top_white.svg');
   --theme-bubble-tail: url('/bubble_tail/bubble_tail_black.svg');
-  --blue-1: #7dd5ff;
+  --blue-1: #a4d8e4;
   --blue-2: #0088da;
-  --blue-3: #f0faff;
+  --blue-3: #80e0f7;
   --gray-1: #e9ebee;
+  --gray-glass: rgba(226, 226, 226, 0.4);
+  --blue-highlight: #0088da;
 }
