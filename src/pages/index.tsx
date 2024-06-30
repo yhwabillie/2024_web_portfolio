@@ -273,12 +273,12 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
             >
               <h4
                 className="
-                  opacity-0 translate-y-[100px] block font-[700] text-shadow text-26 
+                  block font-[700] text-shadow text-26 
                   sm:text-32 md:text-32 lg:text-48 xl:text-52"
               >
                 간단한 UI 설계 <br /> 매력적인 인터랙션
               </h4>
-              <h5 className="opacity-0 translate-y-[100px] leading-2 text-15 font-bold text-shadow mt-20 lg:text-22">
+              <h5 className="leading-2 text-15 font-bold text-shadow mt-20 lg:text-22">
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
               </h5>
             </div>
@@ -304,7 +304,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 after:content-[''] after:l-b-corner after:w-38 after:h-38 after:absolute after:bottom-0 after:right-[-38px]
               "
               >
-                밑으로 스크롤 <span className="sr-only">아래로 스크롤</span>
+                아래로 스크롤해주세요 <span className="sr-only">아래로 스크롤</span>
                 <span className="w-icon-xlarge h-icon-xlarge flex justify-center items-center ml-16 bg-theme-reverse text-theme rounded-md">
                   <FaArrowDown />
                 </span>
@@ -446,7 +446,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 <i className="block font-['D2Coding'] font-[600] not-italic">Frontend Dev</i>
               </span>
               <span className="block text-18 xs:text-20 sm:text-40 md:text-70 lg:text-80 overflow-hidden">
-                <i className="block font-['PyeongChangPeace-Bold'] font-[400] not-italic">Web Publishing</i>
+                <i className="block font-['PyeongChangPeace-Bold'] font-[400] not-italic">& Web Publishing</i>
               </span>
             </h4>
 
@@ -488,7 +488,16 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
         </div>
         <div className="mb-100 lg:mb-200">
           <div className="container">
-            <div className="bg-[#373737]/[0.4]">container</div>
+            <div className="min-h-[700px] w-full max-w-[375px] md:max-w-[1316px] mx-auto grid gap-5 md:grid-cols-[375px_auto]">
+              <div className="grid gap-5 grid-rows-[500px_auto]">
+                <div className="bg-blue-1">이미지</div>
+                <div className="bg-blue-3">디테일</div>
+              </div>
+              <div className="grid gap-5 grid-rows-[repeat(2,350px)]">
+                <div className="bg-[#333]/[0.4]">타이틀</div>
+                <div className="bg-blue-1">디테일</div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
