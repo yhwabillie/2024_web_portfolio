@@ -8,12 +8,14 @@ import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { FaArrowDown } from 'react-icons/fa6'
+import { FaArrowDown, FaArrowRight } from 'react-icons/fa6'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
 import MobileSummaryTitle from '@components/MobileSummaryTitle'
 gsap.registerPlugin(ScrollTrigger)
+
+const visual_bg_path = require('../images/visual_mockup.gif')
 
 dayjs.locale(ko)
 dayjs.extend(utc)
@@ -28,8 +30,12 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   //refs 정의
   const gsapContainer = React.useRef<HTMLElement>(null)
 
-  //asset path
-  const visual_bg_path = require('../images/visual_mockup.gif')
+  useGSAP(
+    () => {
+      let tl = gsap.timeline({})
+    },
+    { scope: gsapContainer },
+  )
 
   // useGSAP(
   //   () => {
@@ -234,6 +240,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   return (
     <article ref={gsapContainer} className="h-full bg-theme">
       <section>
+        <h3 className="sr-only">포트폴리오 써머리</h3>
         <div className="container flex flex-col justify-between md:pt-35 md:flex-row">
           <div
             className="
@@ -264,16 +271,16 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 xl:top-[130px] xl:left-[141px]
                 "
             >
-              <h3
+              <h4
                 className="
                   opacity-0 translate-y-[100px] block font-[700] text-shadow text-26 
                   sm:text-32 md:text-32 lg:text-48 xl:text-52"
               >
                 간단한 UI 설계 <br /> 매력적인 인터랙션
-              </h3>
-              <h4 className="opacity-0 translate-y-[100px] leading-2 text-15 font-bold text-shadow mt-20 lg:text-22">
-                누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
               </h4>
+              <h5 className="opacity-0 translate-y-[100px] leading-2 text-15 font-bold text-shadow mt-20 lg:text-22">
+                누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
+              </h5>
             </div>
 
             <div
@@ -422,111 +429,74 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 height={100}
                 placeholder="none"
               />
-
-              {/* <div
-                className="
-                  w-50 h-50 
-                  md:absolute md:bottom-[10px] md:right-0
-                  lg:w-70 lg:h-70
-                  xl:w-80 xl:h-80 
-                "
-              >
-                
-              </div> */}
             </div>
           </div>
         </div>
       </section>
 
-      {/* <div className="overflow-hidden">
-        <section id="about" ref={aboutRef} className="max-h-[100vh] mt-[15vh]">
+      {/* 수정 시작 */}
+      <section className="overflow-hidden">
+        <h3 className="sr-only">소개</h3>
+        <div className="mt-100 lg:mt-150">
           <div className="container">
-            <h3 className="title_container mr-auto mb-[5vh] max-w-fit-content text-80 leading-1.3">
-              <span className="block overflow-hidden title_item">
-                <i className="block font-[600] not-italic origin-top-left">Frontend Dev &</i>
+            <h4 className="mr-auto mb-50 md:mb-80 lg:mb-100">
+              <span className="flex items-center gap-3 text-24 xs:text-30 sm:gap-8 sm:text-50 md:text-80 lg:text-100 overflow-hidden">
+                <i className="block font-['D2Coding'] font-[600] not-italic">if(👩‍💻)</i>
+                <FaArrowRight />
+                <i className="block font-['D2Coding'] font-[600] not-italic">Frontend Dev</i>
               </span>
-              <span className="block overflow-hidden title_item">
-                <i className="block font-[400] origin-top-left">Web Publishing</i>
+              <span className="block text-18 xs:text-20 sm:text-40 md:text-70 lg:text-80 overflow-hidden">
+                <i className="block font-['PyeongChangPeace-Bold'] font-[400] not-italic">Web Publishing</i>
               </span>
-            </h3>
-            
-            <div className="flex justify-between h-[fit-content] logo_wrap">
-              <span id="a" className="w-[23%] h-[fit-content]">
-                <StaticImage src={'../images/logo_1.png'} alt="로고" width={512} height={512} placeholder="none" />
-              </span>
-              <span id="b" className="w-[23%] h-[fit-content]">
-                <StaticImage src={'../images/logo_2.png'} alt="로고" width={512} height={512} placeholder="none" />
-              </span>
-              <span id="c" className="w-[23%] h-[fit-content]">
-                <StaticImage src={'../images/logo_3.png'} alt="로고" width={512} height={512} placeholder="none" />
-              </span>
-              <span id="d" className="w-[23%] h-[fit-content]">
-                <StaticImage src={'../images/logo_4.png'} alt="로고" width={512} height={512} placeholder="none" />
-              </span>
+            </h4>
+
+            <div className="flex justify-center gap-4 xs:gap-10 h-fit mb-50 md:mb-80 lg:mb-100">
+              <StaticImage
+                className="w-[23%] xs:w-[20%] h-fit"
+                src={'../images/logo_1.png'}
+                width={512}
+                height={512}
+                alt="데스크탑과 모바일 반응형 웹 퍼블리싱 이미지"
+                placeholder="none"
+              />
+              <StaticImage
+                className="w-[24%] xs:w-[20%] h-fit"
+                src={'../images/logo_2.png'}
+                width={512}
+                height={512}
+                alt="손가락 이미지"
+                placeholder="none"
+              />
+              <StaticImage
+                className="w-[24%] xs:w-[20%] h-fit"
+                src={'../images/logo_3.png'}
+                width={512}
+                height={512}
+                alt="데이터 시각화 차트 이미지"
+                placeholder="none"
+              />
+              <StaticImage
+                className="w-[24%] xs:w-[20%] h-fit"
+                src={'../images/logo_4.png'}
+                width={512}
+                height={512}
+                alt="SEO를 표현한 아이콘 이미지"
+                placeholder="none"
+              />
             </div>
           </div>
-        </section>
-        <section className="min-h-[500px]">
+        </div>
+        <div className="mb-100 lg:mb-200">
           <div className="container">
-            
-            <div className="grid lg:grid-cols-[400px_auto] items-center gap-[50px] relative bg-[#373737]/[0.4] backdrop-blur-[100px] rounded-lg z-2 p-50">
-              <div className="mx-auto overflow-hidden rounded-sm w-400 h-500 lg:m-0">
-                <StaticImage className="w-full h-full" src={'../images/mockup_profile.jpg'} alt="로고" width={493} height={665} placeholder="none" />
-              </div>
-              <div className="text-white">
-                <h3 className="text-40 font-[700] text-shadow text-center lg:text-left">About Me</h3>
-                <p className="text-center mb-30 lg:text-left">
-                  <span className="block text-26 text-shadow">
-                    <em className="not-italic highlight">2년차</em> 웹 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
-                  </span>
-                </p>
-                <ul className="pl-20 text-20">
-                  <li className="list-disc mb-30">
-                    <em className="block p-5 mb-10 not-italic bg-blue-1 leading-1 w-fit text-22 text-shadow">
-                      빠르게 화면단을 구성하는 방법을 압니다.
-                    </em>
-                    <span className="block leading-1.6 tracking-tight text-shadow">
-                      초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영했습니다.
-                    </span>
-                  </li>
-                  <li className="list-disc mb-30">
-                    <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
-                      기술을 제안하고 공유하는 것을 좋아합니다.
-                    </em>
-                    <span className="block leading-1.6 tracking-tight text-shadow">
-                      Storybook을 도입해 일관성 있는 유즈 케이스를 구성하고 문서로 공유하여 팀원들의 개발 효율성을 향상시켰습니다.
-                    </span>
-                  </li>
-                  <li className="list-disc mb-30">
-                    <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
-                      팀원들과 함께 문제상황을 인지하고 해결합니다.
-                    </em>
-                    <span className="block leading-1.6 tracking-tight text-shadow">
-                      CI/CD 담당 동료의 의존성 설치 시간 문제를 해결하기 위해, 기존 yarn classic에서 yarn berry zero-install로 마이그레이션하여 성능을
-                      개선했습니다.
-                    </span>
-                  </li>
-                  <li className="list-disc mb-30">
-                    <em className="block p-5 mb-10 not-italic leading-1 w-fit bg-blue-1 text-22 text-shadow">
-                      레거시 환경에서도 최선의 방법을 찾을 수 있습니다
-                    </em>
-                    <span className="block leading-1.6 tracking-tight text-shadow">
-                      JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
-                      클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
-                    </span>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <div className="bg-[#373737]/[0.4]">container</div>
           </div>
-        </section>
-      </div>
-      <section id="career" className="my-[20vh]" ref={careerRef}>
+        </div>
+      </section>
+
+      {/* <section id="career" className="my-[20vh]">
         <div className="container grid grid-cols-[28%,70%] gap-x-[2%]">
           <div className="h-auto bg-blue-3">
-            <h3 ref={pointerRef} className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-60">
-              Career
-            </h3>
+            <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-60">Career</h3>
           </div>
 
           <div className="article_container grid grid-cols-[repeat(3,32.3%)] gap-x-[1.55%] gap-y-[36px] perspective">
