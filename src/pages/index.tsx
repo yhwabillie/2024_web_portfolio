@@ -1,17 +1,18 @@
 import * as React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
-import { FaArrowDown, FaArrowRight } from 'react-icons/fa6'
+import { StaticImage } from 'gatsby-plugin-image'
+import SEO from '@components/Seo'
+import { useFooterRefStore, useMainPageRefsStore } from '@store/storehooks'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { useFooterRefStore, useMainPageRefsStore } from '@store/storehooks'
-import SEO from '@components/Seo'
-import { StaticImage } from 'gatsby-plugin-image'
-import gsap, { selector } from 'gsap'
+import { FaArrowDown } from 'react-icons/fa6'
+import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
+import MobileSummaryTitle from '@components/MobileSummaryTitle'
 gsap.registerPlugin(ScrollTrigger)
 
 dayjs.locale(ko)
@@ -20,426 +21,424 @@ dayjs.extend(timezone)
 dayjs.extend(relativeTime)
 dayjs.tz.setDefault('Asia/Seoul')
 
-export default function Page({ data }: PageProps<Queries.PageQuery>) {
+export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   //zustand state
   const { setMainPageRefs } = useMainPageRefsStore()
 
   //refs 정의
-  const container = React.useRef<HTMLElement>(null)
+  const gsapContainer = React.useRef<HTMLElement>(null)
 
-  const visualViewRef = React.useRef<HTMLDivElement>(null)
-  const aboutRef = React.useRef<HTMLDivElement>(null)
-  const careerRef = React.useRef<HTMLDivElement>(null)
-  const projectRef = React.useRef<HTMLDivElement>(null)
-  const problemRef = React.useRef<HTMLDivElement>(null)
-
-  const widget_container = React.useRef<HTMLDivElement>(null)
-  const video_container = React.useRef<HTMLDivElement>(null)
-
-  const pointerRef = React.useRef<HTMLDivElement>(null)
-
-  //ref 종합
-  const allRefs = [visualViewRef, aboutRef, careerRef, projectRef, problemRef]
-
-  //image path
+  //asset path
   const visual_bg_path = require('../images/visual_mockup.gif')
 
-  useGSAP(
-    () => {
-      let tl = gsap.timeline({ delay: 0.2 })
+  // useGSAP(
+  //   () => {
+  //     let tl = gsap.timeline({ delay: 0.2 })
 
-      //timeline
-      tl.to('#main_title', {
-        opacity: 1,
-        y: 0,
-        ease: 'back',
-      })
+  //     //timeline
+  //     tl.to('#main_title', {
+  //       opacity: 1,
+  //       y: 0,
+  //       ease: 'back',
+  //     })
 
-      tl.to('#sub_title', {
-        opacity: 1,
-        y: 0,
-        ease: 'back',
-      })
-    },
-    { scope: video_container },
-  )
+  //     tl.to('#sub_title', {
+  //       opacity: 1,
+  //       y: 0,
+  //       ease: 'back',
+  //     })
+  //   },
+  //   { scope: video_container },
+  // )
 
-  useGSAP(
-    (context, contextSafe) => {
-      //set
-      gsap.set('.sticker_item', {
-        scale: 0,
-        opacity: 0,
-      })
+  // useGSAP(
+  //   (context, contextSafe) => {
+  //     //set
+  //     gsap.set('.sticker_item', {
+  //       scale: 0,
+  //       opacity: 0,
+  //     })
 
-      //timeline
-      let tl = gsap.timeline({ delay: 0.2 })
+  //     //timeline
+  //     let tl = gsap.timeline({ delay: 0.2 })
 
-      tl.to('#widget1', {
-        rotate: 6,
-        ease: 'circ',
-      })
+  //     tl.to('#widget1', {
+  //       rotate: 6,
+  //       ease: 'circ',
+  //     })
 
-      tl.to('#widget2', {
-        rotate: -6,
-        ease: 'circ',
-      })
+  //     tl.to('#widget2', {
+  //       rotate: -6,
+  //       ease: 'circ',
+  //     })
 
-      tl.to('#widget3', {
-        rotate: 6,
-        ease: 'circ',
-      })
+  //     tl.to('#widget3', {
+  //       rotate: 6,
+  //       ease: 'circ',
+  //     })
 
-      tl.to('.sticker_item', {
-        scale: 1,
-        opacity: 1,
-        stagger: 0.1,
-        ease: 'back',
-      })
+  //     tl.to('.sticker_item', {
+  //       scale: 1,
+  //       opacity: 1,
+  //       stagger: 0.1,
+  //       ease: 'back',
+  //     })
 
-      //mouseleave
-      window.addEventListener('mousemove', (e) => {
-        const stickerElement1 = document.querySelector('#sticker1')
-        const stickerElement2 = document.querySelector('#sticker1')
+  //     //mouseleave
+  //     window.addEventListener('mousemove', (e) => {
+  //       const stickerElement1 = document.querySelector('#sticker1')
+  //       const stickerElement2 = document.querySelector('#sticker1')
 
-        if (stickerElement1 === null || stickerElement2 === null) return
+  //       if (stickerElement1 === null || stickerElement2 === null) return
 
-        const depth1 = 20
+  //       const depth1 = 20
 
-        const moveX_1 = (e.pageX - window.innerWidth / 2) / depth1
-        const moveY_1 = (e.pageY - window.innerHeight / 2) / depth1
+  //       const moveX_1 = (e.pageX - window.innerWidth / 2) / depth1
+  //       const moveY_1 = (e.pageY - window.innerHeight / 2) / depth1
 
-        gsap.to('#sticker1', {
-          x: moveX_1,
-          y: moveY_1,
-          rotateZ: -20,
-        })
+  //       gsap.to('#sticker1', {
+  //         x: moveX_1,
+  //         y: moveY_1,
+  //         rotateZ: -20,
+  //       })
 
-        gsap.to('#sticker2', {
-          x: moveX_1,
-          y: moveY_1,
-          rotateZ: 20,
-        })
+  //       gsap.to('#sticker2', {
+  //         x: moveX_1,
+  //         y: moveY_1,
+  //         rotateZ: 20,
+  //       })
 
-        gsap.to('#sticker3', {
-          x: moveX_1,
-          y: moveY_1,
-        })
+  //       gsap.to('#sticker3', {
+  //         x: moveX_1,
+  //         y: moveY_1,
+  //       })
 
-        gsap.to('#sticker4', {
-          x: moveX_1,
-          y: moveY_1,
-        })
+  //       gsap.to('#sticker4', {
+  //         x: moveX_1,
+  //         y: moveY_1,
+  //       })
 
-        gsap.to('#sticker5', {
-          x: moveX_1,
-          y: moveY_1,
-          rotateZ: 10,
-        })
-      })
-    },
-    { scope: widget_container },
-  )
+  //       gsap.to('#sticker5', {
+  //         x: moveX_1,
+  //         y: moveY_1,
+  //         rotateZ: 10,
+  //       })
+  //     })
+  //   },
+  //   { scope: widget_container },
+  // )
 
-  //scroll trigger
-  useGSAP(
-    () => {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: '#about .title_container',
-            start: '100% 100%',
-            end: '100% 100%',
-            // markers: true,
-          },
-        })
-        .fromTo('#about .title_container span i', { opacity: 0, y: '100%', rotate: '20deg' }, { opacity: 1, y: '0%', rotate: 0, stagger: 0.1 })
-
-      gsap.utils.toArray('#about .logo_wrap span').forEach((selector: any) => {
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: '#about .title_container',
-              start: '60% 100%',
-              end: '50% 30%',
-              // markers: true,
-              scrub: 1,
-            },
-          })
-          .fromTo(selector, { opacity: 0 }, { opacity: 1 })
-      })
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: '#about',
-            start: '100% 100%',
-            end: '100% 0%',
-            scrub: 1,
-            // markers: true,
-          },
-        })
-        .to(
-          '#a',
-          {
-            x: -150,
-            y: 250,
-            rotate: 200,
-            ease: 'none',
-            duration: 5,
-          },
-          0,
-        )
-        .to(
-          '#b',
-          {
-            x: -80,
-            y: 150,
-            rotate: -10,
-            ease: 'none',
-            duration: 5,
-          },
-          0,
-        )
-        .to(
-          '#c',
-          {
-            x: 60,
-            y: 40,
-            rotate: -100,
-            ease: 'none',
-            duration: 5,
-          },
-          0,
-        )
-        .to(
-          '#d',
-          {
-            x: 50,
-            y: 450,
-            rotate: 20,
-            ease: 'none',
-            duration: 5,
-          },
-          0,
-        )
-
-      gsap.utils.toArray('#career .article_container .item').forEach((selector: any, index: number) => {
-        ScrollTrigger.create({
-          trigger: selector,
-          start: '0% 80%',
-          onEnter: () => {
-            gsap.set(selector, {
-              rotationX: '-65deg',
-              z: '-500px',
-              opacity: 0,
-            })
-
-            gsap.to(selector, {
-              rotationX: 0,
-              z: 0,
-              opacity: 1,
-              delay: (index / 3) * 0.05,
-            })
-          },
-          onLeave: () => {},
-          markers: true,
-        })
-      })
-
-      //career pointer animation
-      let enabled = false
-      let min = careerRef.current?.offsetTop
-      let max = careerRef.current?.offsetHeight! - pointerRef.current?.offsetHeight!
-
-      const movePointer = (e: any) => {
-        let y = e.pageY - min!
-
-        if (y > max) return (y = max)
-        gsap.to(pointerRef.current, { y: y, ease: 'back' })
-      }
-
-      const enableMovement = () => {
-        if (enabled) return
-        enabled = true
-        careerRef.current?.addEventListener('mousemove', movePointer)
-      }
-
-      careerRef.current?.addEventListener('mouseenter', enableMovement)
-    },
-    { scope: container },
-  )
-
-  React.useEffect(() => {
-    setMainPageRefs(allRefs)
-  }, [])
+  // useGSAP(
+  //   () => {
+  //     gsap
+  //       .timeline({
+  //         scrollTrigger: {
+  //           trigger: '#about .title_container',
+  //           start: '100% 100%',
+  //           end: '100% 100%',
+  //           // markers: true,
+  //         },
+  //       })
+  //       .fromTo('#about .title_container span i', { opacity: 0, y: '100%', rotate: '20deg' }, { opacity: 1, y: '0%', rotate: 0, stagger: 0.1 })
+  //     gsap.utils.toArray('#about .logo_wrap span').forEach((selector: any) => {
+  //       gsap
+  //         .timeline({
+  //           scrollTrigger: {
+  //             trigger: '#about .title_container',
+  //             start: '60% 100%',
+  //             end: '50% 30%',
+  //             // markers: true,
+  //             scrub: 1,
+  //           },
+  //         })
+  //         .fromTo(selector, { opacity: 0 }, { opacity: 1 })
+  //     })
+  //     gsap
+  //       .timeline({
+  //         scrollTrigger: {
+  //           trigger: '#about',
+  //           start: '100% 100%',
+  //           end: '100% 0%',
+  //           scrub: 1,
+  //           // markers: true,
+  //         },
+  //       })
+  //       .to(
+  //         '#a',
+  //         {
+  //           x: -150,
+  //           y: 250,
+  //           rotate: 200,
+  //           ease: 'none',
+  //           duration: 5,
+  //         },
+  //         0,
+  //       )
+  //       .to(
+  //         '#b',
+  //         {
+  //           x: -80,
+  //           y: 150,
+  //           rotate: -10,
+  //           ease: 'none',
+  //           duration: 5,
+  //         },
+  //         0,
+  //       )
+  //       .to(
+  //         '#c',
+  //         {
+  //           x: 60,
+  //           y: 40,
+  //           rotate: -100,
+  //           ease: 'none',
+  //           duration: 5,
+  //         },
+  //         0,
+  //       )
+  //       .to(
+  //         '#d',
+  //         {
+  //           x: 50,
+  //           y: 450,
+  //           rotate: 20,
+  //           ease: 'none',
+  //           duration: 5,
+  //         },
+  //         0,
+  //       )
+  //     gsap.utils.toArray('#career .article_container .item').forEach((selector: any, index: number) => {
+  //       ScrollTrigger.create({
+  //         trigger: selector,
+  //         start: '0% 80%',
+  //         onEnter: () => {
+  //           gsap.set(selector, {
+  //             rotationX: '-65deg',
+  //             z: '-500px',
+  //             opacity: 0,
+  //           })
+  //           gsap.to(selector, {
+  //             rotationX: 0,
+  //             z: 0,
+  //             opacity: 1,
+  //             delay: (index / 3) * 0.05,
+  //           })
+  //         },
+  //         // markers: true,
+  //       })
+  //     })
+  //   },
+  //   { scope: container },
+  // )
 
   return (
-    <article ref={container} className="h-full bg-theme">
-      <section id="visualView" className="min-w-250" ref={visualViewRef}>
+    <article ref={gsapContainer} className="h-full bg-theme">
+      <section>
         <div className="container flex flex-col justify-between md:pt-35 md:flex-row">
           <div
-            ref={video_container}
-            className="relative after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-black after:opacity-10 overflow-hidden
-            w-full
-            h-200
+            className="
+            relative overflow-hidden
+            w-full h-200 mb-0
             xs:h-256
-            mb-0
-            sm:rounded-bl-0 sm:mb-45
-            sm:h-405 
+            sm:h-405 sm:rounded-bl-0 sm:mb-45
             md:w-755 md:h-486 md:mb-0
-            lg:w-1094 lg:h-621 
-            lg:rounded-tl-md lg:rounded-br-md
-            xl:rounded-tl-lg xl:rounded-br-lg 
-            xl:w-1424 xl:h-808
-            rounded-tl-sm rounded-br-sm
-            rounded-bl-sm
+            lg:w-1094 lg:h-621 lg:rounded-tl-md lg:rounded-br-md
+            xl:w-1424 xl:h-808 xl:rounded-tl-lg xl:rounded-br-lg 
+            rounded-tl-sm rounded-br-sm rounded-bl-sm
+            after:content-[''] after:absolute after:left-0 after:right-0 after:top-0 after:bottom-0 after:bg-black after:opacity-10
             "
           >
-            <div className="absolute top-[50%] left-[50%] bg-gray-1 translate-x-[-50%] translate-y-[-50%] w-full h-full">
+            <div className="w-full h-full bg-gray-1 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+              <span className="sr-only">포트폴리오 영상 화면 영역</span>
               {/* <img className="w-full h-full" src={visual_bg_path.default} alt="visual mockup gif" /> */}
-              <span className="sr-only">웹 프론트 및 퍼블리싱 포트폴리오 화면 영상 보러가기</span>
             </div>
-
-            <div className="absolute top-0 bottom-0 left-0 right-[26%] visual-text-bg">
-              <span className="sr-only">비쥬얼 타이틀 바탕 음영 배경</span>
+            <div className="absolute top-0 bottom-0 left-0 right-[26%] summary-title-bg">
+              <span className="sr-only">영상 화면 영역 타이틀을 위한 음영 배경</span>
             </div>
-
-            <div className="hidden sm:block absolute top-[50px] left-[50px] md:top-[80px] md:left-[80px] lg:top-[80px] lg:left-[90px] xl:top-[130px] xl:left-[141px] text-white z-2">
+            <div
+              className="
+                hidden absolute z-2 top-[50px] left-[50px] text-white 
+                sm:block 
+                md:top-[80px] md:left-[80px] 
+                lg:left-[90px] 
+                xl:top-[130px] xl:left-[141px]
+                "
+            >
               <h3
-                id="main_title"
-                className="opacity-0 translate-y-[100px] block font-[700] text-shadow text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52"
+                className="
+                  opacity-0 translate-y-[100px] block font-[700] text-shadow text-26 
+                  sm:text-32 md:text-32 lg:text-48 xl:text-52"
               >
                 간단한 UI 설계 <br /> 매력적인 인터랙션
               </h3>
-              <h4 id="sub_title" className="opacity-0 translate-y-[100px] mt-20 font-bold text-shadow text-15 lg:text-22 leading-2">
+              <h4 className="opacity-0 translate-y-[100px] leading-2 text-15 font-bold text-shadow mt-20 lg:text-22">
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
               </h4>
             </div>
 
             <div
-              className="absolute top-0 right-0 rounded-bl-lg z-2 bg-theme 
-              flex items-center gap-[20px]
+              className="
+              absolute top-0 right-0 z-2 rounded-bl-lg bg-theme pt-0 pb-10 pl-10 flex items-center gap-[20px]
+              lg:pb-23 lg:pl-23
               before:content-[''] before:w-38 before:h-38 before:absolute before:z-1 before:top-0 before:left-[-38px] before:r-t-corner
               after:content-[''] after:w-38 after:h-38 after:absolute after:z-1 after:bottom-[-38px] after:right-0 after:r-t-corner
-              pt-0 lg:pl-23 lg:pb-23
-              pl-10 pb-10
               "
             >
-              <span className="sr-only">현재 접속 디바이스 타입 알림 영역</span>
-
-              <p className="text-center text-40 sm:text-52 md:text-60 w-60 h-60 sm:w-82 sm:h-82">💻</p>
+              <span className="sr-only">노트북 아이콘</span>
+              <p className="w-60 h-60 text-40 text-center sm:w-82 sm:h-82 sm:text-52 md:text-60">💻</p>
             </div>
 
-            <div className="absolute bottom-0 left-0 hidden sm:block">
-              <Link
-                to="/"
-                className="relative z-2 rounded-tr-lg
+            <div className="hidden absolute bottom-0 left-0 sm:block">
+              <button
+                className="
+                relative z-2 flex text-18 leading-64 text-theme-reverse items-center bg-theme pt-10 pb-0 pl-20 pr-25 rounded-tr-lg
+                md:text-22 md:pt-23 md:pb-12 md:px-58 
                 before:content-[''] before:l-b-corner before:w-38 before:h-38 before:absolute before:top-[-38px] before:left-0
                 after:content-[''] after:l-b-corner after:w-38 after:h-38 after:absolute after:bottom-0 after:right-[-38px]
-                bg-theme flex items-center text-theme-reverse md:text-22 leading-64
-                md:pb-12 md:pt-23 md:px-58 text-18
-                pt-10 pb-0 pl-20 pr-25
               "
               >
                 밑으로 스크롤 <span className="sr-only">아래로 스크롤</span>
-                <span className="flex items-center justify-center ml-16 rounded-md w-icon-xlarge h-icon-xlarge bg-theme-reverse text-theme">
+                <span className="w-icon-xlarge h-icon-xlarge flex justify-center items-center ml-16 bg-theme-reverse text-theme rounded-md">
                   <FaArrowDown />
                 </span>
-              </Link>
+              </button>
             </div>
           </div>
 
-          {/* Mobile Title */}
-          <div className="block mt-20 px-14 mb-70 sm:hidden">
-            <h3 id="main_title" className="block font-[700] text-26 sm:text-32 md:text-32 lg:text-48 xl:text-52">
-              간단한 UI 설계 <br /> 매력적인 인터랙션
-            </h3>
-            <h4 id="sub_title" className="my-20 text-15 lg:text-22 leading-1.5">
-              누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
-            </h4>
-            <Link to="/" className="relative flex items-center justify-center bg-gray-1 text-theme-reverse leading-64 text-18 rounded-xxs">
-              밑으로 스크롤 <span className="sr-only">아래로 스크롤</span>
-              <div className="flex items-center justify-center ml-16 rounded-md w-30 h-30 bg-theme-reverse text-theme">
-                <FaArrowDown />
-              </div>
-            </Link>
-          </div>
+          {/* 모바일 해상도 타이틀 */}
+          <MobileSummaryTitle />
 
           <div
-            ref={widget_container}
-            className="flex flex-col mr-0 xxs:pr-20 md:mr-18 sm:pr-0 md:mr-24 lg:mr-30 md:pr-0 sm:flex-row md:block md:w-180 lg:w-206 xl:w-272"
+            className="
+            flex flex-col mr-0 min-w-300
+            xxs:pr-20
+            sm:min-w-auto sm:flex-row sm:pr-0
+            md:block md:w-180 md:pr-0 md:mr-18
+            lg:w-206 lg:mr-30
+            xl:w-272"
           >
             <div
-              id="widget1"
-              className="relative w-full p-20 mb-16 mr-0 origin-bottom-right rounded-sm sm:mb-0 md:mr-0 md:mb-8 h-160 w-m-245 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-180 lg:mb-16 lg:h-206 xl:h-272 bg-blue-1 lg:rounded-md xl:rounded-lg"
+              className="
+              relative w-full h-auto flex justify-center items-center gap-5 p-20 mb-16 mr-0 origin-bottom-right rounded-sm bg-blue-1
+              sm:block sm:w-232 sm:h-232 sm:mb-0 
+              md:w-full md:h-180 md:mr-0 md:mb-8 
+              lg:h-206 lg:mb-16 lg:rounded-md
+              xl:h-272 xl:rounded-lg
+              "
             >
-              <strong className="text-white text-shadow-s text-40 md:text-26 lg:text-30 xl:text-52">2년차</strong>
-
-              <div className="mb-10 leading-1.4 relative z-1">
-                <p className="font-medium text-white text-shadow-s text-22 md:text-22 xl:text-26">프론트 개발자 & </p>
-                <p className="font-medium text-white text-shadow-s text-18 xl:text-22">웹 퍼블리셔 입니다</p>
+              <div className="leading-1 sm:leading-1.3">
+                <strong className="block text-white text-shadow-s text-26 mb-5 sm:text-40 md:text-26 sm:mb-0 lg:text-30 xl:text-52">2년차</strong>
+                <div className="relative z-2 mb-10 leading-1.4 xs:mb-0">
+                  <p className="font-medium text-white text-shadow-s text-18 md:text-22 xl:text-26">프론트 개발자 & </p>
+                  <p className="font-medium text-white text-shadow-s text-15 md:text-18 xl:text-22">웹 퍼블리셔 입니다</p>
+                </div>
               </div>
-
-              <div className="w-70 h-70 xs:w-150 xs:h-150 sm:w-80 sm:h-80 absolute bottom-[70px] xs:bottom-[20px] right-[14px] block md:hidden">
-                <StaticImage src={'../images/sticker_1.png'} alt="프론트 개발자 스티커 이미지" width={150} height={150} placeholder="none" />
-              </div>
-
-              {/* gsap */}
-              <div
-                id="sticker1"
-                className="md:w-50 md:h-50 lg:w-80 lg:h-80 xl:w-100 xl:h-100 hidden md:block sticker_item absolute bottom-[0px] left-[45%]"
-              >
-                <StaticImage src={'../images/sticker_1.png'} alt="프론트 개발자 스티커 이미지" width={100} height={100} placeholder="none" />
-              </div>
+              <StaticImage
+                className="
+                block w-80 h-80 ml-0
+                sm:ml-auto
+                md:w-50 md:h-50 md:ml-auto md:absolute md:bottom-[0px] md:left-[45%]
+                lg:w-80 lg:h-80
+                xl:w-100 xl:h-100
+                "
+                src={'../images/sticker_1.png'}
+                alt="프론트 개발자, 웹 퍼블리셔 아이콘 스티커 이미지"
+                width={128}
+                height={128}
+                placeholder="none"
+              />
             </div>
             <div
-              id="widget2"
-              className="relative p-20 mb-16 mr-0 origin-top-left rounded-sm text-theme sm:mb-0 md:mr-0 md:mb-8 h-160 xs:h-220 sm:h-232 sm:w-232 md:w-full md:h-170 lg:mb-16 lg:h-259 xl:h-340 bg-blue-2 lg:rounded-md xl:rounded-lg"
+              className="
+                relative h-auto text-center text-theme leading-1 p-20 mb-16 mr-0 origin-top-left rounded-sm bg-blue-2
+                sm:w-232 sm:h-232 sm:mb-0 sm:text-left sm:leading-1.3 
+                md:w-full md:h-170 md:mr-0 md:mb-8
+                lg:h-259 lg:mb-16 lg:rounded-md 
+                xl:h-340 xl:rounded-lg
+              "
             >
-              <strong className="text-30 md:text-26 lg:text-30 xl:text-40">잘하는 것을</strong>
-              <p className="text-18 xl:text-22 font-medium leading-1.4">
-                쏟아낼 수 있는 곳을 <br /> 찾고있어요
+              <strong className="text-26 lg:text-30 xl:text-40 leading-1.6">잘하는 것을</strong>
+              <p className="text-15 mb-10 sm:mb-0 sm:text-18 md:text-15 lg:text-18 xl:text-22 font-medium leading-1.4">
+                쏟아낼 수 있는 곳을 <br className="hidden sm:block" /> 찾고있어요
               </p>
 
-              <div className="w-70 h-70 xs:w-150 xs:h-150 sm:w-80 sm:h-80 absolute bottom-[70px] xs:bottom-[20px] right-[14px] block md:hidden">
-                <StaticImage src={'../images/sticker_2.png'} alt="프론트 개발자 스티커 이미지" width={150} height={150} placeholder="none" />
-              </div>
-
-              {/* gsap */}
-              <div id="sticker2" className="w-40 h-40 lg:w-70 lg:h-70 xl:w-80 xl:h-80 hidden md:block sticker_item absolute bottom-[0px] left-[30%]">
-                <StaticImage src={'../images/sticker_2.png'} alt="Styled-components" width={480} height={480} placeholder="none" />
-              </div>
-              <div id="sticker3" className="w-50 h-50 lg:w-70 lg:h-70 xl:w-90 xl:h-90 hidden md:block sticker_item absolute bottom-10px] right-[10%]">
-                <StaticImage src={'../images/sticker_3.png'} alt="tailwind css" width={352} height={340} placeholder="none" />
-              </div>
-              <div id="sticker4" className="w-50 h-50 lg:w-90 lg:h-90 xl:w-130 xl:h-130 hidden md:block sticker_item absolute bottom-30px] left-[0%]">
-                <StaticImage src={'../images/sticker_4.png'} alt="GSAP" width={130} height={130} placeholder="none" />
+              <div className="sm:flex sm:justify-center sm:items-center sm:mt-20 md:block md:mt-0">
+                <StaticImage
+                  className="
+                  w-60 h-60 
+                  md:w-40 md:h-40 md:absolute md:bottom-0 md:left-[30%]
+                  lg:w-50 lg:h-50 
+                  xl:w-70 xl:h-70"
+                  src={'../images/sticker_2.png'}
+                  alt="React Spring"
+                  width={480}
+                  height={480}
+                  placeholder="none"
+                />
+                <StaticImage
+                  className="
+                  w-60 h-60 
+                  md:w-40 md:h-40 md:absolute md:bottom-[10px] md:right-[10%]
+                  lg:w-70 lg:h-70 
+                  xl:w-100 xl:h-100"
+                  src={'../images/sticker_3.png'}
+                  alt="Framer Motion"
+                  width={480}
+                  height={480}
+                  placeholder="none"
+                />
+                <StaticImage
+                  className="
+                  w-60 h-60 
+                  md:w-40 md:h-40 md:absolute md:bottom-[30px] md:left-0
+                  lg:w-70 lg:h-70 
+                  xl:w-100 xl:h-100"
+                  src={'../images/sticker_4.png'}
+                  alt="GSAP"
+                  width={364}
+                  height={364}
+                  placeholder="none"
+                />
               </div>
             </div>
             <div
-              id="widget3"
-              className="relative p-20 origin-bottom-right rounded-sm sm:w-232 md:w-full h-158 xs:h-220 sm:h-232 md:h-120 lg:h-124 xl:h-164 bg-gray-1 lg:rounded-md xl:rounded-lg"
+              className="
+                relative h-auto flex justify-center items-center gap-5 p-20 origin-bottom-right bg-gray-1 rounded-sm 
+                sm:w-232 sm:h-232 sm:block
+                md:w-full md:h-120 
+                lg:h-124 lg:rounded-md
+                xl:h-164 xl:rounded-lg
+                "
             >
               <div>
-                <p className="mb-5 leading-1 text-18 xs:text-18 sm:text-15">모두와</p>
-                <strong className="block mb-10 text-22 xs:text-30 md:text-22 xl:text-30 leading-1">공유할 수 있는</strong>
-                <p className="text-18 md:text-15 xl:text-22 leading-1">컴포넌트를 만들어요</p>
+                <strong className="block text-24 md:text-22 xl:text-26">공유할 수 있는</strong>
+                <p className="text-15 sm:text-18 md:text-15 xl:text-18">컴포넌트를 만들어요</p>
               </div>
+              <StaticImage
+                className="w-60 h-60 block sm:w-80 sm:h-80 sm:ml-auto sm:mt-35 md:ml-0 md:mt-0 md:w-50 md:h-50 md:absolute md:bottom-[10px] md:right-0 xl:w-80 xl:h-80"
+                src={'../images/sticker_5.png'}
+                alt="Storybook"
+                width={100}
+                height={100}
+                placeholder="none"
+              />
 
-              <div className="w-70 h-70 xs:w-150 xs:h-150 sm:w-80 sm:h-80 absolute bottom-[70px] xs:bottom-[20px] right-[14px] block md:hidden">
-                <StaticImage src={'../images/sticker_5.png'} alt="프론트 개발자 스티커 이미지" width={150} height={150} placeholder="none" />
-              </div>
-
-              {/* gsap */}
-              <div id="sticker5" className="w-50 h-50 lg:w-70 lg:h-70 xl:w-80 xl:h-80 hidden md:block sticker_item absolute bottom-[10px] right-[0%]">
-                <StaticImage src={'../images/sticker_5.png'} alt="Storybook" width={80} height={80} placeholder="none" />
-              </div>
+              {/* <div
+                className="
+                  w-50 h-50 
+                  md:absolute md:bottom-[10px] md:right-0
+                  lg:w-70 lg:h-70
+                  xl:w-80 xl:h-80 
+                "
+              >
+                
+              </div> */}
             </div>
           </div>
         </div>
       </section>
-      <div className="overflow-hidden">
+
+      {/* <div className="overflow-hidden">
         <section id="about" ref={aboutRef} className="max-h-[100vh] mt-[15vh]">
           <div className="container">
             <h3 className="title_container mr-auto mb-[5vh] max-w-fit-content text-80 leading-1.3">
@@ -450,7 +449,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
                 <i className="block font-[400] origin-top-left">Web Publishing</i>
               </span>
             </h3>
-            {/* Logo Wrap */}
+            
             <div className="flex justify-between h-[fit-content] logo_wrap">
               <span id="a" className="w-[23%] h-[fit-content]">
                 <StaticImage src={'../images/logo_1.png'} alt="로고" width={512} height={512} placeholder="none" />
@@ -469,7 +468,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
         </section>
         <section className="min-h-[500px]">
           <div className="container">
-            {/* Desc */}
+            
             <div className="grid lg:grid-cols-[400px_auto] items-center gap-[50px] relative bg-[#373737]/[0.4] backdrop-blur-[100px] rounded-lg z-2 p-50">
               <div className="mx-auto overflow-hidden rounded-sm w-400 h-500 lg:m-0">
                 <StaticImage className="w-full h-full" src={'../images/mockup_profile.jpg'} alt="로고" width={493} height={665} placeholder="none" />
@@ -524,12 +523,8 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
       </div>
       <section id="career" className="my-[20vh]" ref={careerRef}>
         <div className="container grid grid-cols-[28%,70%] gap-x-[2%]">
-          {/* <div className="h-auto bg-blue-3">
-            <h3 className="sticky top-[50%] translate-y-[-50%] text-60">Career</h3>
-          </div> */}
-
           <div className="h-auto bg-blue-3">
-            <h3 ref={pointerRef} className="text-60">
+            <h3 ref={pointerRef} className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-60">
               Career
             </h3>
           </div>
@@ -571,7 +566,7 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
             ))}
           </div>
         </div>
-        {/* <ul>
+        <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
               <li key={index}>
@@ -582,16 +577,14 @@ export default function Page({ data }: PageProps<Queries.PageQuery>) {
               </li>
             )
           })}
-        </ul> */}
-      </section>
-      <section id="project" ref={projectRef}></section>
-      <section id="problem" ref={problemRef}></section>
+        </ul>
+      </section> */}
     </article>
   )
 }
 
 export const query = graphql`
-  query Page {
+  query MainPage {
     allContentfulWork {
       nodes {
         id

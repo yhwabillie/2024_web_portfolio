@@ -85,7 +85,7 @@
 /* components : 유틸리티로 재정의 할 수 있는 클래스-기반 스타일을 위한 레이어 (써드파티 라이브러리를 위한 커스텀 스타일을 작성) */
 @layer components {
   .container {
-    @apply h-full m-auto xxs:max-w-xxs xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl;
+    @apply h-full m-auto min-w-300 xxs:max-w-xxs xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl;
   }
 
   .inner {

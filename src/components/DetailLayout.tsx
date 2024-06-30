@@ -81,7 +81,6 @@ export default function DetailLayout({ title, category, headerImagePath, content
 
         <Link to="/">👈 Go Home</Link>
       </main>
-      <Footer footerRef={footerRef} />
     </>
   )
 }

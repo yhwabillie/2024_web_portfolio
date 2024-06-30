@@ -25,7 +25,9 @@ module.exports = {
       'dynamic-layout-large': `calc(100vh - ${pxToRem(90)})`,
     },
     minWidth: {
+      auto: 'auto',
       250: pxToRem(250),
+      300: pxToRem(300),
     },
     maxWidth: {
       xxs: '100%',
@@ -266,7 +268,7 @@ module.exports = {
         '.text-shadow-s': {
           'text-shadow': '2px 2px 2px rgba(0,0,0,.2)',
         },
-        '.visual-text-bg': {
+        '.summary-title-bg': {
           background: 'linear-gradient(77deg,rgba(0,0,0,.4),transparent 85%)',
         },
         '.l-b-corner': {
