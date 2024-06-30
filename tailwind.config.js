@@ -48,6 +48,7 @@ module.exports = {
       'icon-large': pxToRem(36),
       'icon-xlarge': pxToRem(48),
       tooltip: pxToRem(100),
+      10: pxToRem(10),
       15: pxToRem(15),
       24: pxToRem(24),
       30: pxToRem(30),

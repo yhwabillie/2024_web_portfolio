@@ -489,12 +489,64 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
         <div className="mb-100 lg:mb-200">
           <div className="container">
             <div className="min-h-[700px] w-full max-w-[375px] md:max-w-[1316px] mx-auto grid gap-5 md:grid-cols-[375px_auto]">
-              <div className="grid gap-5 grid-rows-[500px_auto]">
+              <div className="grid gap-5 xs:grid-rows-[500px_auto]">
                 <div className="h-fit rounded-md shadow-md overflow-hidden">
                   <StaticImage src={'../images/mockup_profile.jpg'} width={493} height={665} alt="더미 프로필 이미지" />
                 </div>
-                <div className="bg-gray-1 p-25 rounded-md shadow-md">
-                  <h4 className="text-20 font-[500] block mb-20">Information.</h4>
+                <div className="flex flex-col justify-between bg-gray-1 gap-5 md:gap-0 p-15 lg:p-25 rounded-md shadow-md">
+                  <h4 className="sr-only">Skill Set</h4>
+                  <div className="flex flex-col gap-2">
+                    <ul className="flex gap-2 justify-center">
+                      <li className="w-40 h-40">
+                        <span className="sr-only">HTML5</span>
+                        <StaticImage src={'../images/skill_set_html5.png'} width={90} height={90} alt="스킬셋 HTML5 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">CSS3</span>
+                        <StaticImage src={'../images/skill_set_css3.png'} width={90} height={90} alt="스킬셋 CSS3 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">JS(+ES6)</span>
+                        <StaticImage src={'../images/skill_set_js.png'} width={90} height={90} alt="스킬셋 Javascript 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">TS</span>
+                        <StaticImage src={'../images/skill_set_ts.png'} width={90} height={90} alt="스킬셋 Typescript 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">jQuery</span>
+                        <StaticImage src={'../images/skill_set_jquery.png'} width={90} height={90} alt="스킬셋 jQuery 이미지" />
+                      </li>
+                    </ul>
+                    <ul className="flex gap-2 justify-center">
+                      <li className="w-40 h-40">
+                        <span className="sr-only">NextJS13-14(appDir)</span>
+                        <StaticImage src={'../images/skill_set_nextjs.png'} width={90} height={90} alt="스킬셋 NextJS 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">Recoil</span>
+                        <StaticImage src={'../images/skill_set_recoil.png'} width={90} height={90} alt="스킬셋 Recoil 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">styled-components</span>
+                        <StaticImage src={'../images/skill_set_styled-components.png'} width={90} height={90} alt="스킬셋 styled-components 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">tailwindCSS</span>
+                        <StaticImage src={'../images/skill_set_tailwindcss.png'} width={90} height={90} alt="스킬셋 tailwind css 이미지" />
+                      </li>
+                      <li className="w-40 h-40">
+                        <span className="sr-only">Storybook7-8</span>
+                        <StaticImage src={'../images/skill_set_storybook.png'} width={90} height={90} alt="스킬셋 Storybook 이미지" />
+                      </li>
+                    </ul>
+                  </div>
+
+                  <button className="text-16 font-[600] flex justify-center gap-3 items-center tracking-tighter py-10 px-25 bg-blue-1 rounded-xxs shadow-sm">
+                    <span>⚙️</span>
+                    <span>스킬셋 자세히 보기</span>
+                    <FaArrowRight />
+                  </button>
                 </div>
               </div>
 
