@@ -251,13 +251,25 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   //   { scope: container },
   // )
 
-  type TagsType = '구축' | '운영' | '리팩토링' | '문서화'
+  type CategoryType = 'work-experience' | 'side-project'
+  type TagsType =
+    | '운영'
+    | '리팩토링'
+    | '문서화'
+    | '크로스 플랫폼'
+    | '신규 서비스'
+    | '마이그레이션'
+    | '스크롤 애니메이션'
+    | '데이터 시각화'
+    | 'SEO'
+    | '신규 구축'
+    | 'UI 애니메이션'
   type RoleType = '프론트 개발' | '웹 퍼블리싱'
 
   interface ICareerData {
     id: string
+    category: CategoryType
     slug: string
-    category: string
     company: string
     product: string
     role: RoleType[]
@@ -273,15 +285,145 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
     {
       id: '1',
       category: 'work-experience',
+      slug: 'offerwall-service',
       company: '인에이블다온소프트',
       product: '더캠프',
       role: ['웹 퍼블리싱'],
-      slug: 'slug-work-1',
-      title: 'work1 title',
+      title: '오퍼월 포인트 획득 서비스',
+      startDate: '2022-11',
+      endDate: '2022-11',
+      tags: ['신규 서비스', '크로스 플랫폼'],
+      description: '더캠프 서비스와 연계된 캠프몰 유입을 늘리기 위한 오퍼월 포인트 서비스 구축 프로젝트입니다.',
+    },
+    {
+      id: '2',
+      category: 'work-experience',
+      slug: 'celeb-soldier-service',
+      company: '인에이블다온소프트',
+      product: '더캠프',
+      role: ['프론트 개발'],
+      title: '추천 스타군인 서비스',
+      startDate: '2022-12',
+      endDate: '2022-12',
+      tags: ['신규 서비스'],
+      description: '대규모 회원 유입을 목표로한 연예인 입대 이벤트 활성화 서비스입니다.',
+    },
+    {
+      id: '3',
+      category: 'work-experience',
+      slug: 'missing-soldier-card-renewal',
+      company: '인에이블다온소프트',
+      product: '더캠프',
+      role: ['웹 퍼블리싱'],
+      title: '보고싶은 군인 카드 UI 리뉴얼',
+      startDate: '2022-12',
+      endDate: '2023-01',
+      tags: ['리팩토링', '운영'],
+      description: 'Front와 Back단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한 리뉴얼 프로젝트입니다.',
+    },
+    {
+      id: '4',
+      category: 'work-experience',
+      slug: 'hooking-assessment-biss',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['프론트 개발', '웹 퍼블리싱'],
+      title: 'BISS 심리검사 체험용 웹 페이지 개발',
+      startDate: '2023-08',
+      endDate: '2023-09',
+      tags: ['신규 서비스'],
+      description: '데이터를 수집하기위한 체험용 후킹 미니 심리검사 웹 페이지입니다.',
+    },
+    {
+      id: '5',
+      category: 'work-experience',
+      slug: 'svelte-to-nextjs',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['프론트 개발', '웹 퍼블리싱'],
+      title: '유전자 키트 판매 사이트 NextJS 마이그레이션',
+      startDate: '2023-08',
+      endDate: '2023-10',
+      tags: ['마이그레이션', '운영'],
+      description: '기존에 svelte와 jQuery로 작업되어있는 화면단을 NextJS와 JS로 마이그레이션한 작업입니다.',
+    },
+    {
+      id: '6',
+      category: 'work-experience',
+      slug: 'main-intro-interactive-ui',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['웹 퍼블리싱'],
+      title: 'Menabi 메인 페이지, 소개 페이지 퍼블리싱',
+      startDate: '2023-08',
+      endDate: '2023-08',
+      tags: ['신규 서비스', '스크롤 애니메이션'],
+      description: 'Menabi 서비스 메인 페이지와 소개 페이지 퍼블리싱 작업입니다.',
+    },
+    {
+      id: '7',
+      category: 'work-experience',
+      slug: 'assessment-pifigure-ui',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['프론트 개발', '웹 퍼블리싱'],
+      title: 'piFigure WEB 심리검사 구축',
+      startDate: '2023-09',
+      endDate: '2024-03',
+      tags: ['UI 애니메이션', '데이터 시각화', '문서화', '신규 서비스'],
+      description: '메인 프로덕트인 piFigure의 청소년, 성인용 WEB 심리검사 및 결과 리포트 개발 프로젝트입니다.',
+    },
+    {
+      id: '8',
+      category: 'work-experience',
+      slug: 'search-engine-optimization',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['프론트 개발'],
+      title: '웹 사이트 검색엔진 최적화 작업',
+      startDate: '2024-03',
+      endDate: '2024-03',
+      tags: ['SEO'],
+      description: 'Menabi 키워드의 검색 엔진 최적화를 위한 metadata 작성 및 국제화 웹 페이지 최적화',
+    },
+    {
+      id: '9',
+      category: 'work-experience',
+      slug: 'yarn-berry-migration',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['프론트 개발'],
+      title: 'Yarn Berry 마이그레이션, Zero-Install 도입',
+      startDate: '2024-03',
+      endDate: '2024-04',
+      tags: ['마이그레이션'],
+      description: '빌드 시간을 단축하고 신규 버전의 라이브러리를 사용하기 위한 Yarn 버전 마이그레이션입니다.',
+    },
+    {
+      id: '10',
+      category: 'work-experience',
+      slug: 'email-template-ui',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['웹 퍼블리싱'],
+      title: '발송 이메일 template 퍼블리싱',
+      startDate: '2024-02',
+      endDate: '2024-02',
+      tags: ['신규 서비스'],
+      description: '다양한 엔드포인트와 WEB/Mobile에 대응한 이메일 템플릿 퍼블리싱 작업입니다.',
+    },
+    {
+      id: '11',
+      category: 'work-experience',
+      slug: 'storybook-ui-doc',
+      company: '진스토리 코리아',
+      product: '메나비 (Menabi)',
+      role: ['프론트 개발', '웹 퍼블리싱'],
+      title: 'Storybook 도입 및 자주 사용되는 컴포넌트 UI 문서화',
       startDate: '2024-05',
       endDate: '2024-05',
-      tags: ['리팩토링', '운영', '구축'],
-      description: 'work description1',
+      tags: ['문서화', '운영'],
+      description: '자주 사용되는 react-hook-form이 적용된 Form 컴포넌트의 props와 type을 문서화하였습니다.',
     },
   ]
 
@@ -674,7 +816,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] lg:gap-x-[1.55%] gap-y-[36px] perspective">
             {careerData.map((project: ICareerData, index: number) => (
               <article key={index} className="relative cursor-pointer item">
-                <Link className="link-overlay" to="/">
+                <Link className="link-overlay" to={`${project.category}/${project.slug}`}>
                   <span className="sr-only">클릭하여 상세보기</span>
                 </Link>
 
@@ -703,14 +845,14 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                     </time>
                   </div>
                   <h4 className="block mt-15">
-                    <span className="text-15 opacity-85 text-gray-2">{project.product}</span>
+                    <span className="text-15 text-blue-highlight">{project.product}</span>
                     <span className="ellipsis font-[700] text-18 leading-23">{project.title}</span>
-                    <span className="mt-5 text-15 ellipsis opacity-70">{project.description}</span>
+                    <span className="mt-5 text-15 ellipsis opacity-90">{project.description}</span>
                   </h4>
                 </header>
                 <footer className="mt-10 text-15 text-blue-highlight">
                   {project.tags.map((item: any, index: number) => (
-                    <span key={index} className='inline-block before:content-["#"] pr-5 last:pr-0'>
+                    <span key={index} className='inline-block opacity-85 before:content-["#"] pr-5 last:pr-0'>
                       {item}
                     </span>
                   ))}
