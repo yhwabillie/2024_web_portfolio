@@ -251,6 +251,40 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   //   { scope: container },
   // )
 
+  type TagsType = '구축' | '운영' | '리팩토링' | '문서화'
+  type RoleType = '프론트 개발' | '웹 퍼블리싱'
+
+  interface ICareerData {
+    id: string
+    slug: string
+    category: string
+    company: string
+    product: string
+    role: RoleType[]
+    title: string
+    startDate: string
+    endDate: string
+    description: string
+    tags: TagsType[]
+  }
+
+  //더미 데이터
+  const careerData: ICareerData[] = [
+    {
+      id: '1',
+      category: 'work-experience',
+      company: '인에이블다온소프트',
+      product: '더캠프',
+      role: ['웹 퍼블리싱'],
+      slug: 'slug-work-1',
+      title: 'work1 title',
+      startDate: '2024-05',
+      endDate: '2024-05',
+      tags: ['리팩토링', '운영', '구축'],
+      description: 'work description1',
+    },
+  ]
+
   return (
     <article ref={gsapContainer} className="h-full bg-theme">
       <section>
@@ -587,7 +621,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 <div className="px-14">
                   <div className="mb-15 sm:mb-20 lg:mb-30">
                     <strong className="block mb-5 text-18 text-blue-highlight tracking-tight font-[600] sm:text-20 lg:text-24">
-                      방법을 제안하고 시도하는 것을 좋아합니다.
+                      방법을 제안🙋‍♀️하고 시도하는 것을 좋아합니다.
                     </strong>
                     <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
                       Storybook7, 8을 신규 도입하여, 자주 사용되는 react-hook-form이 적용된 Form 요소 UI 컴포넌트를 문서화했습니다. 또한 Storybook의
@@ -597,15 +631,16 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   </div>
                   <div className="mb-15 sm:mb-20 lg:mb-30">
                     <strong className="block mb-5 text-18 text-blue-highlight font-[600] tracking-tight sm:text-20 lg:text-24">
-                      빠르게 화면단을 구성하고 피드백을 반영하는 방법을 압니다.
+                      빠르게⚡️ 화면단을 구성하고 피드백을 반영하는 방법을 압니다.
                     </strong>
                     <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
-                      초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영한 경험이 있습니다.
+                      초기 스타트업에서 근무하며 CES, 에듀테크, 붐업코리아 등 기업 부스 참가를 위한 목업과 체험용 서비스 화면 UI를 빠르게 제작하고
+                      피드백을 받으며 신속히 반영한 경험이 있습니다.
                     </p>
                   </div>
                   <div className="mb-15 sm:mb-20 lg:mb-30">
                     <strong className="block mb-5 text-18 font-[600] text-blue-highlight tracking-tight sm:text-20 lg:text-24">
-                      레거시 환경에서도 최선의 방법을 찾을 수 있습니다.
+                      레거시 환경에서도 최선의 방법을 찾을🔎 수 있습니다.
                     </strong>
                     <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
                       JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
@@ -614,7 +649,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   </div>
                   <div>
                     <strong className="block mb-5 text-18 font-[600] text-blue-highlight tracking-tight sm:text-20 lg:text-24">
-                      사용자를 즐겁게하는 인터페이스를 추구합니다.
+                      사용자를 즐겁게🤹하는 인터페이스를 추구합니다.
                     </strong>
                     <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
                       GSAP, Framer Motion과 같은 라이브러리를 활용한 웹 애니메이션과 화면 인터랙션 구현에 관심이 많습니다.
@@ -636,8 +671,8 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
             <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">Career</h3>
           </div>
 
-          <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] md:gap-x-[1.55%] gap-y-[36px] perspective">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item: any, index: number) => (
+          <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] lg:gap-x-[1.55%] gap-y-[36px] perspective">
+            {careerData.map((project: ICareerData, index: number) => (
               <article key={index} className="relative cursor-pointer item">
                 <Link className="link-overlay" to="/">
                   <span className="sr-only">클릭하여 상세보기</span>
@@ -654,21 +689,32 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   />
                 </section>
                 <header>
-                  <div className="inline-flex">
-                    <p className="text-15 opacity-85">웹 퍼블리싱</p>
-                    <time className="block text-15 opacity-85 before:bg-theme-reverse before:content-[''] before:relative before:inline-block before:h-10 before:w-1 before:my-0 before:mx-8">
-                      2022. 12 - 2023. 01
+                  <div className="text-15 opacity-85 tracking-tighter text-gray-2">{project.company}</div>
+                  <div className="flex projects-center">
+                    <p className="text-15 opacity-85 tracking-tighter">
+                      {project.role.map((item: any, index: number) => (
+                        <span key={index} className="inline-block first:mr-5 first:after:content-[','] last:after:content-[''] last:mr-0">
+                          {item}
+                        </span>
+                      ))}
+                    </p>
+                    <time className="block tracking-tighter text-15 opacity-85 before:bg-theme-reverse before:content-[''] before:relative before:inline-block before:h-10 before:w-1 before:my-0 before:mx-8">
+                      {`${project.startDate} ~ ${project.endDate}`}
                     </time>
                   </div>
                   <h4 className="block mt-15">
-                    <span className="ellipsis font-[700] text-18 leading-23">보고싶은 군인 카드 UI 리뉴얼</span>
-                    <span className="mt-5 text-15 ellipsis opacity-70">
-                      Back과 Front단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다. Back과 Front단의 레거시 코드를
-                      리팩토링하고 새로운 UI 디자인을 도입한 프로젝트입니다.
-                    </span>
+                    <span className="text-15 opacity-85 text-gray-2">{project.product}</span>
+                    <span className="ellipsis font-[700] text-18 leading-23">{project.title}</span>
+                    <span className="mt-5 text-15 ellipsis opacity-70">{project.description}</span>
                   </h4>
                 </header>
-                <footer className="mt-10 text-15 text-blue-1"># 리팩토링</footer>
+                <footer className="mt-10 text-15 text-blue-highlight">
+                  {project.tags.map((item: any, index: number) => (
+                    <span key={index} className='inline-block before:content-["#"] pr-5 last:pr-0'>
+                      {item}
+                    </span>
+                  ))}
+                </footer>
               </article>
             ))}
           </div>

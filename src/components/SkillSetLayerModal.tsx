@@ -43,21 +43,14 @@ export default function SkillSetLayerModal() {
                   </p>
                 </div>
                 <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">02) Local Storage의 활용</strong>
+                  <strong className="font-[600] tracking-tighter">03) Local Storage의 활용</strong>
                   <p className="pl-20 pr-10 tracking-tighter">로컬스토리지를 활용하여 필요한 데이터를 저장, 가져와서 활용 및 삭제</p>
                 </div>
                 <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">03) 국제화</strong>
-                  <p className="pl-20 pr-10 tracking-tighter">next-intl 라이브러리를 활용한 NextJS 프로젝트 국제화 작업 (한국어/일본어)</p>
-                </div>
-                <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">04) SEO (Google Search에 인덱싱되기위한 기술적인 SEO 작업)</strong>
-                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">
-                    NextJS 환경에서 루트 layout.tsx의 metadata 객체에 필요한 속성 작성, 하위 경로 상속 및 template을 활용한 타이틀 포멧 적용
+                  <strong className="font-[600] tracking-tighter">04) 데이터 시각화</strong>
+                  <p className="pl-20 pr-10 tracking-tighter">
+                    apexchart.js 와 plotly.js를 활용하여 백엔드에서 데이터를 받아 다양한 그래프로 표현 및 디자인에 맞는 커스텀 작업
                   </p>
-                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">metadata 다국어 적용</p>
-                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">sitemap.xml에 필요한 경로들을 빌드시점에 루트에 생성</p>
-                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">Google Lighthouse를 사용하여 웹 최적화 점수 확인 및 피드백</p>
                 </div>
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">05) UI 컴포넌트 문서화</strong>
@@ -65,6 +58,19 @@ export default function SkillSetLayerModal() {
                     자주 사용되는 react-hook-form과 연결된 Form 컴포넌트들을 Storybook을 활용하여 props, props type, 컴포넌트의 용도와 유즈케이스 등을
                     문서화
                   </p>
+                </div>
+                <div className="mb-10">
+                  <strong className="font-[600] tracking-tighter">06) 국제화</strong>
+                  <p className="pl-20 pr-10 tracking-tighter">next-intl 라이브러리를 활용한 NextJS 프로젝트 국제화 작업 (한국어/일본어)</p>
+                </div>
+                <div className="mb-10">
+                  <strong className="font-[600] tracking-tighter">07) SEO (Google Search에 인덱싱되기위한 기술적인 SEO 작업)</strong>
+                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">
+                    NextJS 환경에서 루트 layout.tsx의 metadata 객체에 필요한 속성 작성, 하위 경로 상속 및 template을 활용한 타이틀 포멧 적용
+                  </p>
+                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">metadata 다국어 적용</p>
+                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">sitemap.xml에 필요한 경로들을 빌드시점에 루트에 생성</p>
+                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">Google Lighthouse를 사용하여 웹 최적화 점수 확인 및 피드백</p>
                 </div>
               </div>
             </div>
@@ -94,13 +100,7 @@ export default function SkillSetLayerModal() {
                   </p>
                 </div>
                 <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">05) 데이터 시각화</strong>
-                  <p className="pl-20 pr-10 tracking-tighter">
-                    apexchart.js 와 plotly.js를 활용하여 백엔드에서 데이터를 받아 다양한 그래프로 표현 및 디자인에 맞는 커스텀 작업
-                  </p>
-                </div>
-                <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">06) 인터랙티브 웹 애니메이션 구현</strong>
+                  <strong className="font-[600] tracking-tighter">05) 인터랙티브 웹 애니메이션 구현</strong>
                   <p className="pl-20 pr-10 tracking-tighter">GSAP, Framer Motion, React-Spring를 활용한 인터랙티브 스크롤 애니메이션 구축</p>
                 </div>
               </div>
@@ -112,7 +112,7 @@ export default function SkillSetLayerModal() {
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">01) 스프린트 보드 작성</strong>
                   <p className="pl-20 pr-10 tracking-tighter">
-                    팀원들과 협업하기위해 Notion을 활용하여 스프린트 보드, 일정관리 및 백로그 템플릿을 작성하여 공유
+                    팀원들과 협업하기위해 Notion을 활용하여 스프린트 보드, 일정관리 및 백로그 템플릿을 작성하여 공유 및 프로젝트별 QA 진행
                   </p>
                 </div>
               </div>
