@@ -448,7 +448,6 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
         </div>
       </section>
 
-      {/* 수정 시작 */}
       <section className="overflow-hidden">
         <h3 className="sr-only">소개</h3>
         <div className="mt-100 lg:mt-150">
@@ -631,13 +630,13 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
         {modalState === MODAL.SKILL_SET && ModalComponent[MODAL.SKILL_SET]}
       </section>
 
-      {/* <section id="career" className="my-[20vh]">
-        <div className="container grid grid-cols-[28%,70%] gap-x-[2%]">
-          <div className="h-auto bg-blue-3">
-            <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-60">Career</h3>
+      <section>
+        <div className="container grid md:grid-cols-[28%,70%] gap-x-[2%] mb-100 lg:mb-200">
+          <div className="h-auto bg-blue-3 hidden md:block">
+            <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">Career</h3>
           </div>
 
-          <div className="article_container grid grid-cols-[repeat(3,32.3%)] gap-x-[1.55%] gap-y-[36px] perspective">
+          <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] md:gap-x-[1.55%] gap-y-[36px] perspective">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item: any, index: number) => (
               <article key={index} className="relative cursor-pointer item">
                 <Link className="link-overlay" to="/">
@@ -674,7 +673,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
             ))}
           </div>
         </div>
-        <ul>
+        {/* <ul>
           {data.allContentfulWork.nodes.map((item, index) => {
             return (
               <li key={index}>
@@ -685,8 +684,8 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
               </li>
             )
           })}
-        </ul>
-      </section> */}
+        </ul> */}
+      </section>
     </article>
   )
 }
