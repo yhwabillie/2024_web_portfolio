@@ -454,19 +454,27 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
         <div className="mt-100 lg:mt-150">
           <div className="container">
             <h4 className="mr-auto mb-50 md:mb-80 lg:mb-100">
-              <span className="flex items-center gap-3 text-24 xs:text-30 sm:gap-8 sm:text-50 md:text-80 lg:text-100 overflow-hidden">
-                <i className="block font-['D2Coding'] font-[600] not-italic">if(👩‍💻)</i>
+              <span
+                className="
+                    flex gap-3 items-center text-24 overflow-hidden
+                    xs:text-30
+                    sm:text-50 sm:gap-8
+                    md:text-80
+                    lg:text-100
+                  "
+              >
+                <i className="block not-italic font-[600]font-['D2Coding']">if(👩‍💻)</i>
                 <FaArrowRight />
-                <i className="block font-['D2Coding'] font-[600] not-italic">Frontend Dev</i>
+                <i className="block not-italic font-[600] font-['D2Coding']">Frontend Dev</i>
               </span>
-              <span className="block text-18 xs:text-20 sm:text-40 md:text-70 lg:text-80 overflow-hidden">
-                <i className="block font-['PyeongChangPeace-Bold'] font-[400] not-italic">& W🌐b Publishing</i>
+              <span className="block text-18 overflow-hidden xs:text-20 sm:text-40 md:text-70 lg:text-80">
+                <i className="block not-italic font-[400] font-['PyeongChangPeace-Bold']">& W🌐b Publishing</i>
               </span>
             </h4>
 
-            <div className="flex justify-center gap-4 sm:gap-10 h-fit mb-50 md:mb-80 lg:mb-100">
+            <div className="h-fit mb-50 flex gap-4 justify-center sm:gap-10 md:mb-80 lg:mb-100">
               <StaticImage
-                className="w-[23%] sm:w-[20%] h-fit"
+                className="w-[23%] h-fit sm:w-[20%]"
                 src={'../images/logo_1.png'}
                 width={512}
                 height={512}
@@ -474,7 +482,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] sm:w-[20%] h-fit"
+                className="w-[24%] h-fit sm:w-[20%]"
                 src={'../images/logo_2.png'}
                 width={512}
                 height={512}
@@ -482,7 +490,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] sm:w-[20%] h-fit"
+                className="w-[24%] h-fit sm:w-[20%]"
                 src={'../images/logo_3.png'}
                 width={512}
                 height={512}
@@ -490,7 +498,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] sm:w-[20%] h-fit"
+                className="w-[24%] h-fit sm:w-[20%]"
                 src={'../images/logo_4.png'}
                 width={512}
                 height={512}
@@ -502,14 +510,19 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
         </div>
         <div className="mb-100 lg:mb-200">
           <div className="container">
-            <div className="min-h-[700px] w-full max-w-[375px] md:max-w-[1316px] mx-auto grid gap-5 md:grid-cols-[375px_auto]">
+            <div
+              className="
+                  w-full min-h-[700px] max-w-[375px] grid gap-5 mx-auto
+                  md:max-w-[1316px] md:grid-cols-[375px_auto]
+                "
+            >
               <div className="grid gap-5 xs:grid-rows-[500px_auto]">
-                <div className="h-fit rounded-md shadow-md overflow-hidden">
+                <div className="h-fit overflow-hidden rounded-md shadow-md">
                   <StaticImage src={'../images/mockup_profile.jpg'} width={493} height={665} alt="더미 프로필 이미지" />
                 </div>
-                <div className="flex flex-col justify-between bg-gray-1 gap-5 md:gap-0 p-15 lg:p-25 rounded-md shadow-md">
+                <div className="flex flex-col gap-5 justify-between bg-gray-1 rounded-md shadow-md md:gap-0 p-15 lg:p-25">
                   <h4 className="sr-only">Skill Set</h4>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex gap-2 flex-col">
                     <ul className="flex gap-2 justify-center">
                       <li className="w-40 h-40 bg-white">
                         <span className="sr-only">HTML5</span>
@@ -558,7 +571,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
 
                   <button
                     onClick={() => handleModal(MODAL.SKILL_SET)}
-                    className="text-16 text-white text-shadow font-[600] flex justify-center gap-3 items-center tracking-tighter py-10 px-25 bg-blue-5 rounded-xxs shadow-sm"
+                    className="py-10 px-25 bg-blue-5 flex justify-center gap-3 items-center text-16 text-white font-[600] tracking-tighter text-shadow rounded-xxs shadow-sm"
                   >
                     <span>⚙️</span>
                     <span>스킬셋 자세히 보기</span>
@@ -567,44 +580,44 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 </div>
               </div>
 
-              <div className="bg-gray-glass backdrop-blur-md py-25 px-14 xs:py-30 xs:px-20 md:p-40 rounded-md shadow-md">
+              <div className="py-25 px-14 bg-gray-glass backdrop-blur-md rounded-md shadow-md xs:py-30 xs:px-20 md:p-40">
                 <h4 className="sr-only">자기소개</h4>
-                <p className="text-20 sm:text-25 lg:text-30 font-[600] tracking-tight mb-20 sm:mb-30">
+                <p className="mb-20 text-20 font-[600] tracking-tight sm:mb-30 sm:text-25 lg:text-30">
                   👋🏻 안녕하세요, 2년차 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
                 </p>
                 <div className="px-14">
                   <div className="mb-15 sm:mb-20 lg:mb-30">
-                    <strong className="block font-[600] text-18 sm:text-20 lg:text-24 tracking-tight text-blue-highlight mb-5">
+                    <strong className="block mb-5 text-18 text-blue-highlight tracking-tight font-[600] sm:text-20 lg:text-24">
                       방법을 제안하고 시도하는 것을 좋아합니다.
                     </strong>
-                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                    <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
                       Storybook7, 8을 신규 도입하여, 자주 사용되는 react-hook-form이 적용된 Form 요소 UI 컴포넌트를 문서화했습니다. 또한 Storybook의
                       국제화 addon 기능을 활용하여, 컴포넌트 내부 텍스트 변경으로 발생하는 디자인 깨짐 이슈를 사전에 모니터링할 수 있도록
                       개선하였습니다.
                     </p>
                   </div>
                   <div className="mb-15 sm:mb-20 lg:mb-30">
-                    <strong className="text-18 sm:text-20 lg:text-24 font-[600] tracking-tight text-blue-highlight block mb-5">
+                    <strong className="block mb-5 text-18 text-blue-highlight font-[600] tracking-tight sm:text-20 lg:text-24">
                       빠르게 화면단을 구성하고 피드백을 반영하는 방법을 압니다.
                     </strong>
-                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                    <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
                       초기 스타트업에서 근무하며 투자자들에게 보여줄 MVP 화면단을 빠르게 제작하고 피드백을 받으며 신속히 반영한 경험이 있습니다.
                     </p>
                   </div>
                   <div className="mb-15 sm:mb-20 lg:mb-30">
-                    <strong className="text-18 sm:text-20 lg:text-24 font-[600] tracking-tight text-blue-highlight block mb-5">
+                    <strong className="block mb-5 text-18 font-[600] text-blue-highlight tracking-tight sm:text-20 lg:text-24">
                       레거시 환경에서도 최선의 방법을 찾을 수 있습니다.
                     </strong>
-                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                    <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
                       JSP 레거시 환경에서 하나의 CSS 스타일 파일로 모든 화면이 연결되어 있던 문제를 해결하기 위해, 화면별로 CSS 파일을 분리하고 스타일
                       클래스 컨벤션을 정의하여 React나 Vue 같은 컴포넌트 기반 구조로 개선했습니다.
                     </p>
                   </div>
                   <div>
-                    <strong className="text-18 sm:text-20 lg:text-24 font-[600] tracking-tight text-blue-highlight block mb-5">
+                    <strong className="block mb-5 text-18 font-[600] text-blue-highlight tracking-tight sm:text-20 lg:text-24">
                       사용자를 즐겁게하는 인터페이스를 추구합니다.
                     </strong>
-                    <p className="text-15 lg:text-20 leading-1.6 tracking-tight opacity-85">
+                    <p className="text-15 leading-1.6 tracking-tight opacity-85 lg:text-20">
                       GSAP, Framer Motion과 같은 라이브러리를 활용한 웹 애니메이션과 화면 인터랙션 구현에 관심이 많습니다.
                     </p>
                   </div>
