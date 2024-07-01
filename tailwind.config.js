@@ -26,11 +26,14 @@ module.exports = {
       'dynamic-layout-large': `calc(100vh - ${pxToRem(90)})`,
     },
     minWidth: {
+      full: '100%',
       auto: 'auto',
       250: pxToRem(250),
       300: pxToRem(300),
+      600: pxToRem(600),
     },
     maxWidth: {
+      full: '100%',
       xxs: '100%',
       xs: pxToRem(384),
       sm: pxToRem(712),
@@ -38,6 +41,7 @@ module.exports = {
       lg: pxToRem(1316),
       xl: pxToRem(1712),
       sidebar: pxToRem(412),
+      600: pxToRem(600),
       'fit-content': 'fit-content',
     },
     width: {
@@ -77,6 +81,8 @@ module.exports = {
       245: pxToRem(245),
       260: pxToRem(260),
       272: pxToRem(272),
+      300: pxToRem(300),
+      375: pxToRem(375),
       430: pxToRem(430),
       450: pxToRem(450),
       500: pxToRem(500),
