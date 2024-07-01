@@ -111,7 +111,7 @@
   }
 
   .link-overlay {
-    @apply block w-full h-full bottom-0 absolute;
+    @apply block w-full h-full bottom-0 absolute z-2;
   }
 }
 

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
-import { StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, StaticImage } from 'gatsby-plugin-image'
 import SEO from '@components/Seo'
 import { useFooterRefStore, useMainPageRefsStore, useModalStateStore } from '@store/storehooks'
 import dayjs from 'dayjs'
@@ -277,6 +277,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
     startDate: string
     endDate: string
     description: string
+    thumbnail_path?: string
     tags: TagsType[]
   }
 
@@ -293,6 +294,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2022-11',
       endDate: '2022-11',
       tags: ['신규 서비스', '크로스 플랫폼'],
+      thumbnail_path: 'career_seo.png',
       description: '더캠프 서비스와 연계된 캠프몰 유입을 늘리기 위한 오퍼월 포인트 서비스 구축 프로젝트입니다.',
     },
     {
@@ -306,6 +308,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2022-12',
       endDate: '2022-12',
       tags: ['신규 서비스'],
+      thumbnail_path: 'career_seo.png',
       description: '대규모 회원 유입을 목표로한 연예인 입대 이벤트 활성화 서비스입니다.',
     },
     {
@@ -319,6 +322,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2022-12',
       endDate: '2023-01',
       tags: ['리팩토링', '운영'],
+      thumbnail_path: 'career_seo.png',
       description: 'Front와 Back단의 레거시 코드를 리팩토링하고 새로운 UI 디자인을 도입한 리뉴얼 프로젝트입니다.',
     },
     {
@@ -332,6 +336,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2023-08',
       endDate: '2023-09',
       tags: ['신규 서비스'],
+      thumbnail_path: 'career_seo.png',
       description: '데이터를 수집하기위한 체험용 후킹 미니 심리검사 웹 페이지입니다.',
     },
     {
@@ -345,6 +350,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2023-08',
       endDate: '2023-10',
       tags: ['마이그레이션', '운영'],
+      thumbnail_path: 'career_seo.png',
       description: '기존에 svelte와 jQuery로 작업되어있는 화면단을 NextJS와 JS로 마이그레이션한 작업입니다.',
     },
     {
@@ -358,6 +364,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2023-08',
       endDate: '2023-08',
       tags: ['신규 서비스', '스크롤 애니메이션'],
+      thumbnail_path: 'career_seo.png',
       description: 'Menabi 서비스 메인 페이지와 소개 페이지 퍼블리싱 작업입니다.',
     },
     {
@@ -371,6 +378,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2023-09',
       endDate: '2024-03',
       tags: ['UI 애니메이션', '데이터 시각화', '문서화', '신규 서비스'],
+      thumbnail_path: 'career_seo.png',
       description: '메인 프로덕트인 piFigure의 청소년, 성인용 WEB 심리검사 및 결과 리포트 개발 프로젝트입니다.',
     },
     {
@@ -384,6 +392,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2024-03',
       endDate: '2024-03',
       tags: ['SEO'],
+      thumbnail_path: 'career_seo.png',
       description: 'Menabi 키워드의 검색 엔진 최적화를 위한 metadata 작성 및 국제화 웹 페이지 최적화',
     },
     {
@@ -397,6 +406,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2024-03',
       endDate: '2024-04',
       tags: ['마이그레이션'],
+      thumbnail_path: 'career_seo.png',
       description: '빌드 시간을 단축하고 신규 버전의 라이브러리를 사용하기 위한 Yarn 버전 마이그레이션입니다.',
     },
     {
@@ -410,6 +420,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2024-02',
       endDate: '2024-02',
       tags: ['신규 서비스'],
+      thumbnail_path: 'career_seo.png',
       description: '다양한 엔드포인트와 WEB/Mobile에 대응한 이메일 템플릿 퍼블리싱 작업입니다.',
     },
     {
@@ -423,6 +434,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       startDate: '2024-05',
       endDate: '2024-05',
       tags: ['문서화', '운영'],
+      thumbnail_path: 'career_seo.png',
       description: '자주 사용되는 react-hook-form이 적용된 Form 컴포넌트의 props와 type을 문서화하였습니다.',
     },
   ]
@@ -815,16 +827,24 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
 
           <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] lg:gap-x-[1.55%] gap-y-[36px] perspective">
             {careerData.map((project: ICareerData, index: number) => (
-              <article key={index} className="relative cursor-pointer item">
-                <Link className="link-overlay" to={`${project.category}/${project.slug}`}>
+              <article key={index} className="relative">
+                <Link className="link-overlay" to={`category/${project.category}/${project.slug}`}>
                   <span className="sr-only">클릭하여 상세보기</span>
                 </Link>
 
                 <section className="block w-full rounded-xxs mb-14">
+                  {/* <GatsbyImage
+                    className="block object-cover w-full h-full rounded-xxs"
+                    src={`../images/${project.thumbnail_path}`}
+                    alt={project.title}
+                    width={375}
+                    height={250}
+                    placeholder="none"
+                  /> */}
                   <StaticImage
                     className="block object-cover w-full h-full rounded-xxs"
-                    src={'../images/empty_content.png'}
-                    alt="빈 컨텐츠 이미지"
+                    src={`../images/empty_content.png`}
+                    alt={project.title}
                     width={375}
                     height={250}
                     placeholder="none"
