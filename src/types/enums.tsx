@@ -12,6 +12,12 @@ export enum TOOLTIP {
   RESET = 'reset',
 }
 
+//메인페이지 레이어 모달창
+export enum MODAL {
+  SKILL_SET = 'skillset',
+  RESET = 'reset',
+}
+
 //Sidebar Menu open/close 상태
 export enum SIDEBAR_STATUS {
   OPEN = 'open',

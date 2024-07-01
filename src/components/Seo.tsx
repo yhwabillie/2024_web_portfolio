@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { useSiteMetadata } from '@hooks/use-site-metadata'
+import { useModalStateStore, useSidebarStatusStore } from '@store/storehooks'
+import { MODAL, SIDEBAR_STATUS } from '@/types/enums'
 // import useThemeStore from '../store/useThemeStore'
 
 interface ISEOProps {
@@ -11,6 +13,8 @@ interface ISEOProps {
 
 export default function SEO({ title, description, ogImageUrl, pathname }: ISEOProps) {
   const { metadataDefaultInfo, openGraphDefaultImage } = useSiteMetadata()
+  const { modalState } = useModalStateStore()
+  const { sidebarStatus } = useSidebarStatusStore()
   // const theme = useThemeStore((state: any) => state.theme)
 
   //기본 메타데이터 정제
@@ -29,6 +33,13 @@ export default function SEO({ title, description, ogImageUrl, pathname }: ISEOPr
     og_url: pathname ? `${defaultSiteMetaData.ogUrl}${pathname}` : `${defaultSiteMetaData.ogUrl}`,
     og_image_type: defaultSiteMetaData.ogImageType,
     og_image_path: ogImageUrl ? `${defaultSiteMetaData.ogUrl}${ogImageUrl}` : `${defaultSiteMetaData.ogUrl}${openGraphDefaultImage.publicURL}`,
+  }
+
+  //body에 overflow hidden 처리 (사이드바, 모달 닫기)
+  const changeOverflowState = (sidebarStatus: any, modalState: any) => {
+    if (sidebarStatus === SIDEBAR_STATUS.CLOSE && modalState === MODAL.RESET) return 'auto'
+
+    return 'hidden'
   }
 
   return (
@@ -74,8 +85,7 @@ export default function SEO({ title, description, ogImageUrl, pathname }: ISEOPr
       <title>{seo.title}</title>
 
       {/* Body Tag */}
-      {/* <body className='bg-primary text-text-main' /> */}
-      <body />
+      <body style={{ overflow: changeOverflowState(sidebarStatus, modalState) }} />
     </>
   )
 }

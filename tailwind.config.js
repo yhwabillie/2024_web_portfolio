@@ -20,6 +20,7 @@ module.exports = {
     minHeight: {
       full: '100%',
       layout: '100vh',
+      600: pxToRem(600),
       'dynamic-layout-small': `calc(100vh - ${pxToRem(72)})`,
       'dynamic-layout-medium': `calc(100vh - ${pxToRem(84)})`,
       'dynamic-layout-large': `calc(100vh - ${pxToRem(90)})`,
@@ -41,6 +42,7 @@ module.exports = {
     },
     width: {
       fit: 'fit-content',
+      screen: '100vw',
       full: '100%',
       1: pxToRem(1),
       38: pxToRem(38),
@@ -77,6 +79,7 @@ module.exports = {
       272: pxToRem(272),
       430: pxToRem(430),
       450: pxToRem(450),
+      500: pxToRem(500),
       755: `calc(${pxToRem(755)} - ${pxToRem(18)})`,
       1094: `calc(${pxToRem(1094)} - ${pxToRem(30)})`,
       1424: `calc(${pxToRem(1424)} - ${pxToRem(30)})`,
@@ -84,6 +87,7 @@ module.exports = {
     height: {
       fit: 'fit-content',
       full: '100%',
+      screen: '100vh',
       auto: 'auto',
       1: pxToRem(1),
       10: pxToRem(10),
@@ -205,6 +209,7 @@ module.exports = {
       'blue-highlight': 'var(--blue-highlight)',
       'gray-1': 'var(--gray-1)',
       'gray-glass': 'var(--gray-glass)',
+      'black-layer': 'rgba(0,0,0,0.5)',
       transparent: 'transparent',
     },
     margin: {
@@ -261,6 +266,7 @@ module.exports = {
       25: pxToRem(25),
       28: pxToRem(28),
       58: pxToRem(58),
+      100: pxToRem(100),
     },
     zIndex: {
       0: 9999,

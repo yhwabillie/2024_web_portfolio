@@ -2,7 +2,7 @@ import * as React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
 import { StaticImage } from 'gatsby-plugin-image'
 import SEO from '@components/Seo'
-import { useFooterRefStore, useMainPageRefsStore } from '@store/storehooks'
+import { useFooterRefStore, useMainPageRefsStore, useModalStateStore } from '@store/storehooks'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
@@ -13,6 +13,10 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
 import MobileSummaryTitle from '@components/MobileSummaryTitle'
+import SkillSetLayerModal from '@components/SkillSetLayerModal'
+import { MODAL } from '@/types/enums'
+import { ModalType } from '@/types/globalTypes'
+
 gsap.registerPlugin(ScrollTrigger)
 
 const visual_bg_path = require('../images/visual_mockup.gif')
@@ -26,9 +30,19 @@ dayjs.tz.setDefault('Asia/Seoul')
 export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   //zustand state
   const { setMainPageRefs } = useMainPageRefsStore()
+  const { modalState, setModalState } = useModalStateStore()
 
   //refs 정의
   const gsapContainer = React.useRef<HTMLElement>(null)
+
+  //modal component
+  const ModalComponent = {
+    skillset: <SkillSetLayerModal />,
+    reset: <></>,
+  }
+
+  //스킬셋 모달 클릭 event
+  const handleModal = (modal: ModalType) => setModalState(modal)
 
   useGSAP(
     () => {
@@ -446,7 +460,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 <i className="block font-['D2Coding'] font-[600] not-italic">Frontend Dev</i>
               </span>
               <span className="block text-18 xs:text-20 sm:text-40 md:text-70 lg:text-80 overflow-hidden">
-                <i className="block font-['PyeongChangPeace-Bold'] font-[400] not-italic">& Web Publishing</i>
+                <i className="block font-['PyeongChangPeace-Bold'] font-[400] not-italic">& W🌐b Publishing</i>
               </span>
             </h4>
 
@@ -497,11 +511,11 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   <h4 className="sr-only">Skill Set</h4>
                   <div className="flex flex-col gap-2">
                     <ul className="flex gap-2 justify-center">
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">HTML5</span>
                         <StaticImage src={'../images/skill_set_html5.png'} width={90} height={90} alt="스킬셋 HTML5 이미지" />
                       </li>
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">CSS3</span>
                         <StaticImage src={'../images/skill_set_css3.png'} width={90} height={90} alt="스킬셋 CSS3 이미지" />
                       </li>
@@ -513,36 +527,39 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                         <span className="sr-only">TS</span>
                         <StaticImage src={'../images/skill_set_ts.png'} width={90} height={90} alt="스킬셋 Typescript 이미지" />
                       </li>
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">jQuery</span>
                         <StaticImage src={'../images/skill_set_jquery.png'} width={90} height={90} alt="스킬셋 jQuery 이미지" />
                       </li>
                     </ul>
                     <ul className="flex gap-2 justify-center">
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">NextJS13-14(appDir)</span>
                         <StaticImage src={'../images/skill_set_nextjs.png'} width={90} height={90} alt="스킬셋 NextJS 이미지" />
                       </li>
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">Recoil</span>
                         <StaticImage src={'../images/skill_set_recoil.png'} width={90} height={90} alt="스킬셋 Recoil 이미지" />
                       </li>
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">styled-components</span>
                         <StaticImage src={'../images/skill_set_styled-components.png'} width={90} height={90} alt="스킬셋 styled-components 이미지" />
                       </li>
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">tailwindCSS</span>
                         <StaticImage src={'../images/skill_set_tailwindcss.png'} width={90} height={90} alt="스킬셋 tailwind css 이미지" />
                       </li>
-                      <li className="w-40 h-40">
+                      <li className="w-40 h-40 bg-white">
                         <span className="sr-only">Storybook7-8</span>
                         <StaticImage src={'../images/skill_set_storybook.png'} width={90} height={90} alt="스킬셋 Storybook 이미지" />
                       </li>
                     </ul>
                   </div>
 
-                  <button className="text-16 font-[600] flex justify-center gap-3 items-center tracking-tighter py-10 px-25 bg-blue-1 rounded-xxs shadow-sm">
+                  <button
+                    onClick={() => handleModal(MODAL.SKILL_SET)}
+                    className="text-16 text-white text-shadow font-[600] flex justify-center gap-3 items-center tracking-tighter py-10 px-25 bg-blue-1 rounded-xxs shadow-sm"
+                  >
                     <span>⚙️</span>
                     <span>스킬셋 자세히 보기</span>
                     <FaArrowRight />
@@ -550,7 +567,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 </div>
               </div>
 
-              <div className="bg-gray-glass py-25 px-14 xs:py-30 xs:px-20 md:p-40 rounded-md shadow-md">
+              <div className="bg-gray-glass backdrop-blur-md py-25 px-14 xs:py-30 xs:px-20 md:p-40 rounded-md shadow-md">
                 <h4 className="sr-only">자기소개</h4>
                 <p className="text-20 sm:text-25 lg:text-30 font-[600] tracking-tight mb-20 sm:mb-30">
                   👋🏻 안녕하세요, 2년차 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
@@ -596,6 +613,9 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
             </div>
           </div>
         </div>
+
+        {/* Skillset 레이어 모달 */}
+        {modalState === MODAL.SKILL_SET && ModalComponent[MODAL.SKILL_SET]}
       </section>
 
       {/* <section id="career" className="my-[20vh]">

@@ -1,6 +1,6 @@
 //zustand 상태와 액션을 저장
 import { create } from 'zustand'
-import { SIDEBAR_STATUS } from '@/types/enums'
+import { MODAL, SIDEBAR_STATUS } from '@/types/enums'
 
 //메인페이지 섹션별 Ref DOM Element 배열에 저장
 type MainPageRefsType = {
@@ -41,4 +41,17 @@ type SideMenuState = {
 export const useSidebarStatusStore = create<SideMenuState>((set) => ({
   sidebarStatus: SIDEBAR_STATUS.CLOSE,
   setSidebarStatus: (state: SidebarType) => set({ sidebarStatus: state }),
+}))
+
+//메인페이지 모달 상태값 저장
+type ModalType = MODAL.SKILL_SET | MODAL.RESET
+
+type ModalState = {
+  modalState: ModalType
+  setModalState: (state: ModalType) => void
+}
+
+export const useModalStateStore = create<ModalState>((set) => ({
+  modalState: MODAL.RESET,
+  setModalState: (state: ModalType) => set({ modalState: state }),
 }))
