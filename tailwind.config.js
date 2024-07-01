@@ -214,6 +214,7 @@ module.exports = {
       'blue-2': 'var(--blue-2)',
       'blue-3': 'var(--blue-3)',
       'blue-4': '#def0ff',
+      'blue-5': '#0656a6',
       'blue-highlight': 'var(--blue-highlight)',
       'gray-1': 'var(--gray-1)',
       'gray-glass': 'var(--gray-glass)',

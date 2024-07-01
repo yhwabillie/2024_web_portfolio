@@ -558,7 +558,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
 
                   <button
                     onClick={() => handleModal(MODAL.SKILL_SET)}
-                    className="text-16 text-white text-shadow font-[600] flex justify-center gap-3 items-center tracking-tighter py-10 px-25 bg-blue-1 rounded-xxs shadow-sm"
+                    className="text-16 text-white text-shadow font-[600] flex justify-center gap-3 items-center tracking-tighter py-10 px-25 bg-blue-5 rounded-xxs shadow-sm"
                   >
                     <span>⚙️</span>
                     <span>스킬셋 자세히 보기</span>

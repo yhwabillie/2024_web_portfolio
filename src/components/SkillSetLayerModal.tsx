@@ -111,7 +111,7 @@ export default function SkillSetLayerModal() {
               </div>
             </div>
           </div>
-          <button className="block mt-30 text-15 xs:text-18 tracking-tighter bg-blue-3 text-white py-15 px-30 w-full rounded-xxs">
+          <button className="text-shadow font-[600] block mt-30 text-15 xs:text-18 tracking-tighter bg-blue-5 text-white py-15 px-30 w-full rounded-xxs">
             관련 작업 및 프로젝트 보러가기
           </button>
         </div>
