@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
-import { GatsbyImage, StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
 import SEO from '@components/Seo'
 import { useFooterRefStore, useMainPageRefsStore, useModalStateStore } from '@store/storehooks'
 import dayjs from 'dayjs'
@@ -328,7 +328,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
     {
       id: '4',
       category: 'work-experience',
-      slug: 'hooking-assessment-biss',
+      slug: 'mini-assessment-biss',
       company: '진스토리 코리아',
       product: '메나비 (Menabi)',
       role: ['프론트 개발', '웹 퍼블리싱'],
@@ -338,20 +338,6 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       tags: ['신규 서비스'],
       thumbnail_path: 'career_seo.png',
       description: '데이터를 수집하기위한 체험용 후킹 미니 심리검사 웹 페이지입니다.',
-    },
-    {
-      id: '5',
-      category: 'work-experience',
-      slug: 'svelte-to-nextjs',
-      company: '진스토리 코리아',
-      product: '메나비 (Menabi)',
-      role: ['프론트 개발', '웹 퍼블리싱'],
-      title: '유전자 키트 판매 사이트 NextJS 마이그레이션',
-      startDate: '2023-08',
-      endDate: '2023-10',
-      tags: ['마이그레이션', '운영'],
-      thumbnail_path: 'career_seo.png',
-      description: '기존에 svelte와 jQuery로 작업되어있는 화면단을 NextJS와 JS로 마이그레이션한 작업입니다.',
     },
     {
       id: '6',
@@ -824,61 +810,49 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           <div className="h-auto bg-blue-3 hidden md:block">
             <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">Career</h3>
           </div>
-
           <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] lg:gap-x-[1.55%] gap-y-[36px] perspective">
-            {careerData.map((project: ICareerData, index: number) => (
-              <article key={index} className="relative">
-                <Link className="link-overlay" to={`category/${project.category}/${project.slug}`}>
-                  <span className="sr-only">클릭하여 상세보기</span>
-                </Link>
+            {data.allContentfulWork.nodes.map((project) => {
+              const opengraphImage = getImage(project.ogImage?.gatsbyImageData!)
 
-                <section className="block w-full rounded-xxs mb-14">
-                  {/* <GatsbyImage
-                    className="block object-cover w-full h-full rounded-xxs"
-                    src={`../images/${project.thumbnail_path}`}
-                    alt={project.title}
-                    width={375}
-                    height={250}
-                    placeholder="none"
-                  /> */}
-                  <StaticImage
-                    className="block object-cover w-full h-full rounded-xxs"
-                    src={`../images/empty_content.png`}
-                    alt={project.title}
-                    width={375}
-                    height={250}
-                    placeholder="none"
-                  />
-                </section>
-                <header>
-                  <div className="text-15 opacity-85 tracking-tighter text-gray-2">{project.company}</div>
-                  <div className="flex projects-center">
-                    <p className="text-15 opacity-85 tracking-tighter">
-                      {project.role.map((item: any, index: number) => (
-                        <span key={index} className="inline-block first:mr-5 first:after:content-[','] last:after:content-[''] last:mr-0">
-                          {item}
-                        </span>
-                      ))}
-                    </p>
-                    <time className="block tracking-tighter text-15 opacity-85 before:bg-theme-reverse before:content-[''] before:relative before:inline-block before:h-10 before:w-1 before:my-0 before:mx-8">
-                      {`${project.startDate} ~ ${project.endDate}`}
-                    </time>
-                  </div>
-                  <h4 className="block mt-15">
-                    <span className="text-15 text-blue-highlight">{project.product}</span>
-                    <span className="ellipsis font-[700] text-18 leading-23">{project.title}</span>
-                    <span className="mt-5 text-15 ellipsis opacity-90">{project.description}</span>
-                  </h4>
-                </header>
-                <footer className="mt-10 text-15 text-blue-highlight">
-                  {project.tags.map((item: any, index: number) => (
-                    <span key={index} className='inline-block opacity-85 before:content-["#"] pr-5 last:pr-0'>
-                      {item}
-                    </span>
-                  ))}
-                </footer>
-              </article>
-            ))}
+              return (
+                <article key={project.id} className="relative">
+                  <Link className="link-overlay" to={`category/${project.category}/${project.slug}`}>
+                    <span className="sr-only">클릭하여 상세보기</span>
+                  </Link>
+
+                  <section className="block w-full rounded-xxs mb-14">
+                    <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={opengraphImage!} alt={'//'} />
+                  </section>
+                  <header>
+                    <div className="text-15 opacity-85 tracking-tighter text-gray-2">{project.company}</div>
+                    <div className="flex projects-center">
+                      <p className="text-15 opacity-85 tracking-tighter">
+                        {project.role?.map((item, index) => (
+                          <span key={index} className="inline-block first:mr-5 first:after:content-[','] last:after:content-[''] last:mr-0">
+                            {item}
+                          </span>
+                        ))}
+                      </p>
+                      <time className="block tracking-tighter text-15 opacity-85 before:bg-theme-reverse before:content-[''] before:relative before:inline-block before:h-10 before:w-1 before:my-0 before:mx-8">
+                        {`${dayjs(project.startDate).tz().format('YYYY-MM')} ~ ${dayjs(project.endDate).tz().format('YYYY-MM')}`}
+                      </time>
+                    </div>
+                    <h4 className="block mt-15">
+                      <span className="text-15 text-blue-highlight">{project.product}</span>
+                      <span className="ellipsis font-[700] text-18 leading-23">{project.title}</span>
+                      <span className="mt-5 text-15 ellipsis opacity-90">{project.description}</span>
+                    </h4>
+                  </header>
+                  <footer className="mt-10 text-15 text-blue-highlight">
+                    {project.tags?.map((item, index) => (
+                      <span key={index} className='inline-block opacity-85 before:content-["#"] pr-5 last:pr-0'>
+                        {item}
+                      </span>
+                    ))}
+                  </footer>
+                </article>
+              )
+            })}
           </div>
         </div>
         {/* <ul>
@@ -903,11 +877,20 @@ export const query = graphql`
     allContentfulWork {
       nodes {
         id
-        slug
         category
+        slug
+        company
+        product
+        role
         title
-        createdAt
-        updatedAt
+        startDate
+        endDate
+        tags
+        description
+        ogImage {
+          publicUrl
+          gatsbyImageData
+        }
       }
     }
 
