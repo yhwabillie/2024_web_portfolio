@@ -16,7 +16,7 @@ export default function Transition(props: any) {
         .then(() => {
           setDisplayChildren(props.children)
 
-          window.scrollTo(0, 0)
+          // window.scrollTo(0, 0)
           gsap.to(container.current, {
             opacity: 1,
           })

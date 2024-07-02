@@ -31,10 +31,10 @@ export default function DetailLayout({ title, category, headerImagePath, content
       [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => <p>{children}</p>,
       [BLOCKS.UL_LIST]: (node: any, children: React.ReactNode) => <ul>{children}</ul>,
       [BLOCKS.LIST_ITEM]: (node: any, children: React.ReactNode) => <li>{children}</li>,
-      [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
-        const { uri } = node.data
-        return <a href={uri}>{children}</a>
-      },
+      // [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
+      //   const { uri } = node.data
+      //   return <a href={uri}>{children}</a>
+      // },
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         const { gatsbyImageData, description } = node.data.target
         // console.log('node====>', gatsbyImageData, description)
@@ -43,8 +43,6 @@ export default function DetailLayout({ title, category, headerImagePath, content
       },
     },
   }
-
-  //console.log(richTextDocument)
 
   return (
     <>
@@ -64,10 +62,13 @@ export default function DetailLayout({ title, category, headerImagePath, content
             {nextList.map((item, index) => {
               const date = new Date(`${item.createdAt}`)
               const headerImage = getImage(item.ogImage.gatsbyImageData)!
+              const link = `category/${item.category}/${item.slug}`
+
+              console.log(link)
 
               return (
                 <li key={index}>
-                  <Link to={`/${category}/${item.slug}`}>
+                  <Link to={`/category/${item.category}/${item.slug}`}>
                     <span>{item.title}</span>
                     <p>{item.description}</p>
                     <span>{date.toLocaleString()}</span>
