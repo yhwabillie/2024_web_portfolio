@@ -33,18 +33,20 @@ export default function SkillSetLayerModal() {
               <h4 className="block mb-10 text-20 font-[600] tracking-tighter">👩‍💻 웹 프론트엔드</h4>
               <div className="pl-14 py-15 bg-blue-4 rounded-xxs">
                 <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">01) Form 데이터 예외처리</strong>
-                  <p className="pl-20 pr-10 tracking-tighter">react-hook-form 라이브러리를 사용한 인풋 데이터의 validation 및 관련 UI 컨트롤</p>
-                </div>
-                <div className="mb-10">
+                  <div className="mb-10">
+                    <strong className="font-[600] tracking-tighter">01) Javascript & Typescript</strong>
+                    <p className="pl-20 pr-10 tracking-tighter">LocalStorage를 활용한 데이터 관리</p>
+                    <p className="pl-20 pr-10 tracking-tighter">interface와 type, enum을 활용한 백엔드와의 원활한 소통을 위한 데이터 type 작성</p>
+                  </div>
                   <strong className="font-[600] tracking-tighter">02) Context API, Recoil, Zustand</strong>
                   <p className="pl-20 pr-10 tracking-tighter">
                     상태관리 라이브러리와 Context API를 이용하여 컴포넌트간 데이터 통신 및 전역, 지역 데이터를 분리하여 관리
                   </p>
                 </div>
                 <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">03) Local Storage의 활용</strong>
-                  <p className="pl-20 pr-10 tracking-tighter">로컬스토리지를 활용하여 필요한 데이터를 저장, 가져와서 활용 및 삭제</p>
+                  <strong className="font-[600] tracking-tighter">03) Form 데이터 예외처리 및 DB 전송</strong>
+                  <p className="pl-20 pr-10 tracking-tighter">react-hook-form 라이브러리를 사용한 인풋 데이터의 validation 및 관련 UI 컨트롤</p>
+                  <p className="pl-20 pr-10 tracking-tighter">NextJS server action을 이용한 DB 데이터의 CRUD 작업</p>
                 </div>
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">04) 데이터 시각화</strong>
@@ -55,22 +57,21 @@ export default function SkillSetLayerModal() {
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">05) UI 컴포넌트 문서화</strong>
                   <p className="pl-20 pr-10 tracking-tighter">
-                    자주 사용되는 react-hook-form과 연결된 Form 컴포넌트들을 Storybook을 활용하여 props, props type, 컴포넌트의 용도와 유즈케이스 등을
-                    문서화
+                    자주 사용되는 컴포넌트의 용도, props의 type 및 유즈케이스 등을 Storybook을 활용하여 문서화
                   </p>
                 </div>
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">06) 국제화</strong>
-                  <p className="pl-20 pr-10 tracking-tighter">next-intl 라이브러리를 활용한 NextJS 프로젝트 국제화 작업 (한국어/일본어)</p>
+                  <p className="pl-20 pr-10 tracking-tighter">next-intl 라이브러리를 활용한 NextJS 프로젝트 국제화 작업</p>
+                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">metadata 다국어 적용</p>
                 </div>
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">07) SEO (Google Search에 인덱싱되기위한 기술적인 SEO 작업)</strong>
                   <p className="pl-20 pr-10 leading-1.6 tracking-tighter">
-                    NextJS 환경에서 루트 layout.tsx의 metadata 객체에 필요한 속성 작성, 하위 경로 상속 및 template을 활용한 타이틀 포멧 적용
+                    metadata 필요한 속성 작성, 하위 경로 상속 및 template을 활용한 타이틀 포멧 적용
                   </p>
-                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">metadata 다국어 적용</p>
                   <p className="pl-20 pr-10 leading-1.6 tracking-tighter">sitemap.xml에 필요한 경로들을 빌드시점에 루트에 생성</p>
-                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">Google Lighthouse를 사용하여 웹 최적화 점수 확인 및 피드백</p>
+                  <p className="pl-20 pr-10 leading-1.6 tracking-tighter">Google Lighthouse를 사용한 웹 최적화 점수 확인 및 피드백</p>
                 </div>
               </div>
             </div>
@@ -79,8 +80,10 @@ export default function SkillSetLayerModal() {
               <h4 className="block mb-10 text-20 font-[600] tracking-tighter">👩‍🎨 웹 퍼블리싱</h4>
               <div className="py-15 pl-14 bg-blue-4 rounded-xxs">
                 <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">01) 시멘틱 마크업</strong>
-                  <p className="pl-20 pr-10 tracking-tighter">코드 가독성과 웹 표준, 웹 접근성을 준수하기위한 시멘틱 마크업 작업</p>
+                  <strong className="font-[600] tracking-tighter">01) HTML5 & CSS3</strong>
+                  <p className="pl-20 pr-10 tracking-tighter">코드 가독성과 웹 표준, 웹 접근성을 준수하기위한 시멘틱 마크업</p>
+                  <p className="pl-20 pr-10 tracking-tighter">keyframe을 이용한 애니메이션</p>
+                  <p className="pl-20 pr-10 tracking-tighter">Grid, Flex 활용</p>
                 </div>
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">02) 크로스 브라우징 작업</strong>
@@ -89,14 +92,14 @@ export default function SkillSetLayerModal() {
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">03) 유틸리티 퍼스트 CSS 프레임워크</strong>
                   <p className="pl-20 pr-10 tracking-tighter">
-                    tailwindcss, bootstrap과 같은 프레임워크를 활용하여 웹사이트 화면 구축 및 다양한 해상도 반응형 작업 가능
+                    tailwindcss, bootstrap과 같은 프레임워크를 활용하여 웹사이트 화면 구축 및 다양한 해상도 반응형 작업
                   </p>
                 </div>
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">04) CSS-in-JS</strong>
                   <p className="pl-20 pr-10 tracking-tighter">
                     styled-components의 theme 기능을 활용하여 1개의 컴포넌트에 여러가지 디자인을 분리하여 퍼블리싱 디자인 적용, 화면 구축 및 다양한
-                    해상도 반응형 작업 가능
+                    해상도 반응형 작업
                   </p>
                 </div>
                 <div className="mb-10">
