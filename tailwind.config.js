@@ -87,6 +87,7 @@ module.exports = {
       450: pxToRem(450),
       500: pxToRem(500),
       600: pxToRem(600),
+      1000: pxToRem(1000),
       755: `calc(${pxToRem(755)} - ${pxToRem(18)})`,
       1094: `calc(${pxToRem(1094)} - ${pxToRem(30)})`,
       1424: `calc(${pxToRem(1424)} - ${pxToRem(30)})`,

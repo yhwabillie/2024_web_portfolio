@@ -13,10 +13,11 @@ export default function SkillSetLayerModal() {
       <div className="flex flex-1 items-center my-50 mx-auto">
         <div
           className="
-            min-h-600 text-black box-border bg-white mx-20 p-20 rounded-md shadow-xl 
+            min-h-600 text-black box-border bg-white mx-20 p-14 rounded-md shadow-xl 
             xs:w-400 xs:mx-0 
             sm:w-600 sm:p-30
             md:min-w-600
+            lg:w-1000
             "
         >
           <button onClick={handleResetModal} className="block ml-auto">
@@ -28,15 +29,15 @@ export default function SkillSetLayerModal() {
             <span className="block text-18 font-[600] tracking-tighter xs:text-25">저는 이런 작업을 수행할 수 있습니다.</span>
           </h3>
 
-          <div>
-            <div className="mb-30">
+          <div className="lg:grid lg:gap-[2%] lg:grid-cols-[repeat(2,49%)]">
+            <div className="mb-30 lg:mb-0">
               <h4 className="block mb-10 text-20 font-[600] tracking-tighter">👩‍💻 웹 프론트엔드</h4>
               <div className="pl-14 py-15 bg-blue-4 rounded-xxs">
                 <div className="mb-10">
                   <div className="mb-10">
                     <strong className="font-[600] tracking-tighter">01) Javascript & Typescript</strong>
                     <p className="pl-20 pr-10 tracking-tighter">LocalStorage를 활용한 데이터 관리</p>
-                    <p className="pl-20 pr-10 tracking-tighter">interface와 type, enum을 활용한 백엔드와의 원활한 소통을 위한 데이터 type 작성</p>
+                    <p className="pl-20 pr-10 tracking-tighter">interface와 type, enum을 활용하여 백엔드와 소통하기 위한 데이터 type 작성</p>
                   </div>
                   <strong className="font-[600] tracking-tighter">02) Context API, Recoil, Zustand</strong>
                   <p className="pl-20 pr-10 tracking-tighter">
@@ -76,14 +77,14 @@ export default function SkillSetLayerModal() {
               </div>
             </div>
 
-            <div className="mb-30">
+            <div>
               <h4 className="block mb-10 text-20 font-[600] tracking-tighter">👩‍🎨 웹 퍼블리싱</h4>
-              <div className="py-15 pl-14 bg-blue-4 rounded-xxs">
+              <div className="py-15 pl-14 mb-30 bg-blue-4 rounded-xxs">
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">01) HTML5 & CSS3</strong>
                   <p className="pl-20 pr-10 tracking-tighter">코드 가독성과 웹 표준, 웹 접근성을 준수하기위한 시멘틱 마크업</p>
                   <p className="pl-20 pr-10 tracking-tighter">keyframe을 이용한 애니메이션</p>
-                  <p className="pl-20 pr-10 tracking-tighter">Grid, Flex 활용</p>
+                  <p className="pl-20 pr-10 tracking-tighter">CSS Grid, Flex 활용한 디자인 레이아웃 구축</p>
                 </div>
                 <div className="mb-10">
                   <strong className="font-[600] tracking-tighter">02) 크로스 브라우징 작업</strong>
@@ -107,16 +108,16 @@ export default function SkillSetLayerModal() {
                   <p className="pl-20 pr-10 tracking-tighter">GSAP, Framer Motion, React-Spring를 활용한 인터랙티브 스크롤 애니메이션 구축</p>
                 </div>
               </div>
-            </div>
 
-            <div className="mb-30">
-              <h4 className="block mb-10 text-20 font-[600] tracking-tighter">🤝 협업</h4>
-              <div className="py-15 pl-14 bg-blue-4 rounded-xxs">
-                <div className="mb-10">
-                  <strong className="font-[600] tracking-tighter">01) 스프린트 보드 작성</strong>
-                  <p className="pl-20 pr-10 tracking-tighter">
-                    팀원들과 협업하기위해 Notion을 활용하여 스프린트 보드, 일정관리 및 백로그 템플릿을 작성하여 공유 및 프로젝트별 QA 진행
-                  </p>
+              <div>
+                <h4 className="block mb-10 text-20 font-[600] tracking-tighter">🤝 협업</h4>
+                <div className="py-15 pl-14 bg-blue-4 rounded-xxs">
+                  <div className="mb-10">
+                    <strong className="font-[600] tracking-tighter">01) 스프린트 보드 작성</strong>
+                    <p className="pl-20 pr-10 tracking-tighter">
+                      팀원들과 협업하기위해 Notion을 활용하여 스프린트 보드, 일정관리 및 백로그 템플릿을 작성하여 공유 및 프로젝트별 QA 진행
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
