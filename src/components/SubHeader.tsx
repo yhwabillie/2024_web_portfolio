@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { navigate } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import { MdOutgoingMail } from 'react-icons/md'
-import { IoArrowBackOutline } from 'react-icons/io5'
+import { FaHome } from 'react-icons/fa'
 import { TOOLTIP } from '@/types/enums'
 import Tooltip from '@components/Tooltip'
 
@@ -28,12 +28,12 @@ export default function SubHeader(props: any) {
   return (
     <header className="fixed top-0 left-0 w-full border-b h-header-small lg:h-header-medium xl:h-header-large bg-theme text-theme-reverse z-1 border-theme-gray">
       <div className="container flex items-center justify-between px-14 md:px-0">
-        <button className="large-icon" onClick={() => navigate(-1)}>
-          <span className="sr-only">뒤로가기 버튼</span>
-          <IoArrowBackOutline />
-        </button>
+        <Link className="large-icon" to="/">
+          <span className="sr-only">홈으로</span>
+          <FaHome />
+        </Link>
 
-        <h1 className="text-md lg:text-lg">{props.pageContext.title}</h1>
+        <h1 className="text-md lg:text-lg">{props.pageContext.category}</h1>
 
         <button onMouseEnter={() => handleTooltip(TOOLTIP.MAIL)} onMouseLeave={resetTooltip} className="relative large-icon">
           <span className="sr-only">메일 보내기 버튼</span>

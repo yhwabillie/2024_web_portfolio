@@ -12,13 +12,19 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
         nodes {
           id
           title
+          company
+          role
+          startDate
+          endDate
+          product
+          tags
           slug
           category
           createdAt
           description
           ogImage {
             publicUrl
-            gatsbyImageData(height: 200)
+            gatsbyImageData
           }
           content {
             raw
@@ -27,7 +33,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
                 contentful_id
                 title
                 description
-                gatsbyImageData(width: 150)
+                gatsbyImageData
                 __typename
               }
             }
@@ -51,9 +57,15 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
       component: categoryPostTemplate,
       context: {
         id: node.id,
-        title: node.title,
-        slug: node.slug,
         category: node.category,
+        slug: node.slug,
+        company: node.company,
+        role: node.role,
+        startDate: node.startDate,
+        endDate: node.endDate,
+        product: node.product,
+        tags: node.tags,
+        title: node.title,
         createdAt: node.createdAt,
         description: node.description,
         ogImageUrl: node.ogImage?.publicUrl,

@@ -8,6 +8,12 @@ type BaseWorkDataType = {
   id: string
   title: string
   slug: string
+  company: string
+  product: string
+  tags: string[]
+  role: string[]
+  startDate: string
+  endDate: string
   category: string
   createdAt: string
   description: string
@@ -45,22 +51,20 @@ export default function CategoryPostTemplate({ pageContext, location }: Template
   }, [])
 
   return (
-    <>
-      {/* <article className="h-full bg-theme">
-        <div className="container">
-          <h1>메롱</h1>
-          <div className="w-full h-full bg-blue">컨테이너</div>
-        </div>
-      </article> */}
-
-      <DetailLayout
-        title={pageContext.title}
-        category={pageContext.category}
-        headerImagePath={pageContext.headerImagePath}
-        contentRawData={pageContext.contentRawData}
-        nextList={pageContext.workList}
-      />
-    </>
+    <DetailLayout
+      id={pageContext.id}
+      title={pageContext.title}
+      category={pageContext.category}
+      tags={pageContext.tags}
+      role={pageContext.role}
+      startDate={pageContext.startDate}
+      endDate={pageContext.endDate}
+      company={pageContext.company}
+      product={pageContext.product}
+      headerImagePath={pageContext.headerImagePath}
+      contentRawData={pageContext.contentRawData}
+      nextList={pageContext.workList}
+    />
   )
 }
 

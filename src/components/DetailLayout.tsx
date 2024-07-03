@@ -5,19 +5,33 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { useFooterRefStore } from '@store/storehooks'
 import { NextWorkListType } from '@templates/category-post'
-import Header from '@components/MainHeader'
-import Footer from '@components/Footer'
+import dayjs from 'dayjs'
+import ko from 'dayjs/locale/ko'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+import relativeTime from 'dayjs/plugin/relativeTime'
+dayjs.locale(ko)
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.extend(relativeTime)
+dayjs.tz.setDefault('Asia/Seoul')
 
 interface IDetailLayoutProps {
+  id: string
   category: string
   title: string
+  company: string
+  product: string
+  tags: string[]
+  role: string[]
+  startDate: string
+  endDate: string
   headerImagePath: any
   contentRawData: any
   nextList: NextWorkListType[]
 }
 
 export default function DetailLayout({ title, category, headerImagePath, contentRawData, nextList }: IDetailLayoutProps) {
-  const { footerRef } = useFooterRefStore()
   const headerImage = getImage(headerImagePath)!
   const richTextDocument = contentRawData
   const options = {
@@ -25,63 +39,97 @@ export default function DetailLayout({ title, category, headerImagePath, content
       [MARKS.BOLD]: (text: React.ReactNode) => <b>{text}</b>,
     },
     renderNode: {
-      [BLOCKS.HEADING_1]: (node: any, children: React.ReactNode) => <h1>{children}</h1>,
-      [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => <h2>{children}</h2>,
-      [BLOCKS.HEADING_3]: (node: any, children: React.ReactNode) => <h3>{children}</h3>,
-      [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => <p>{children}</p>,
+      [BLOCKS.HEADING_2]: (node: any, children: React.ReactNode) => (
+        <h2 className="block mb-30 text-24 sm:text-28 md:text-48 font-[600] text-center tracking-tighter">{children}</h2>
+      ),
+      [BLOCKS.HEADING_3]: (node: any, children: React.ReactNode) => (
+        <h3 className="block mb-5 text-20 sm:text-24 md:text-28 font-[600] tracking-tighter">{children}</h3>
+      ),
+      [BLOCKS.HEADING_4]: (node: any, children: React.ReactNode) => (
+        <h4 className="block mb-5 text-18 sm:text-20 md:text-24 text-blue-highlight font-[500] tracking-tighter before:content-['👉'] before:inline-block before:mr-10">
+          {children}
+        </h4>
+      ),
+      [BLOCKS.HEADING_5]: (node: any, children: React.ReactNode) => (
+        <h5 className="block mb-15 text-15 sm:text-18 md:text-20 font-[500] tracking-tighter">{children}</h5>
+      ),
+      [BLOCKS.HEADING_6]: (node: any, children: React.ReactNode) => (
+        <h6 className="block mb-15 text-15 sm:text-18 md:text-20 font-[500] tracking-tighter">{children}</h6>
+      ),
+      [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => (
+        <p className="text-15 sm:text-18 md:text-20 tracking-tighter leading-1.7 mb-30">{children}</p>
+      ),
       [BLOCKS.UL_LIST]: (node: any, children: React.ReactNode) => <ul>{children}</ul>,
       [BLOCKS.LIST_ITEM]: (node: any, children: React.ReactNode) => <li>{children}</li>,
-      // [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
-      //   const { uri } = node.data
-      //   return <a href={uri}>{children}</a>
-      // },
+      [INLINES.HYPERLINK]: (node: any, children: React.ReactNode) => {
+        const { uri } = node.data
+        return <a href={uri}>{children}</a>
+      },
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         const { gatsbyImageData, description } = node.data.target
-        // console.log('node====>', gatsbyImageData, description)
+        //console.log('node====>', gatsbyImageData, description)
 
-        return <GatsbyImage image={getImage(gatsbyImageData)!} alt={description} />
+        return <GatsbyImage className="mb-30 rounded-xxs sm:rounded-sm" image={getImage(gatsbyImageData)!} alt={description} />
       },
     },
   }
 
   return (
-    <>
-      <Header />
-      <main className="container m-auto border-2 border-red">
-        <Link to="/">👈 Go Home</Link>
-        <article>
-          <h1>{title}</h1>
-          <GatsbyImage image={headerImage} alt={title} />
+    <div className="container">
+      {/* bodyRichText Data */}
+      <section className="mt-40 mb-88 sm:mt-88 sm:mb-150 w-full sm:w-500 md:w-768 mx-auto">
+        <article>{renderRichText(richTextDocument, options)}</article>
+      </section>
+      <div className="pb-100">
+        <strong className="block mb-30 md:mb-56 text-20 sm:text-28 md:text-32 text-center font-[600]">{`👩‍💻 다른 ${category} 보기`}</strong>
+        <div className="grid gap-y-[36px] sm:gap-x-[2%] sm:grid-cols-[repeat(2,49%)] md:gap-x-[2%] md:grid-cols-[repeat(3,32%)] lg:gap-x-[1%] lg:grid-cols-[repeat(4,24%)]">
+          {nextList.map((item, index) => {
+            const date = new Date(`${item.createdAt}`)
+            const headerImage = getImage(item.ogImage.gatsbyImageData)!
 
-          {/* bodyRichText Data */}
-          <div>{renderRichText(richTextDocument, options)}</div>
-        </article>
-        <div>
-          <strong>{`Next ${category}`}</strong>
-          <ul>
-            {nextList.map((item, index) => {
-              const date = new Date(`${item.createdAt}`)
-              const headerImage = getImage(item.ogImage.gatsbyImageData)!
-              const link = `category/${item.category}/${item.slug}`
+            return (
+              <article key={item.id} className="relative">
+                <Link className="link-overlay" to={`/category/${item.category}/${item.slug}`}>
+                  <span className="sr-only">클릭하여 상세보기</span>
+                </Link>
 
-              console.log(link)
+                <section className="block w-full rounded-xxs mb-14">
+                  <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={headerImage} alt={item.title} />
+                </section>
 
-              return (
-                <li key={index}>
-                  <Link to={`/category/${item.category}/${item.slug}`}>
-                    <span>{item.title}</span>
-                    <p>{item.description}</p>
-                    <span>{date.toLocaleString()}</span>
-                    <GatsbyImage image={headerImage} alt={item.title} />
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
+                <header>
+                  <div className="text-15 opacity-85 tracking-tighter text-gray-2">{item.company}</div>
+                  <div className="flex projects-center">
+                    <p className="text-15 opacity-85 tracking-tighter">
+                      {item.role.map((role, index) => (
+                        <span key={index} className="inline-block first:mr-5 first:after:content-[','] last:after:content-[''] last:mr-0">
+                          {role}
+                        </span>
+                      ))}
+                    </p>
+                    <time className="block tracking-tighter text-15 opacity-85 before:bg-theme-reverse before:content-[''] before:relative before:inline-block before:h-10 before:w-1 before:my-0 before:mx-8">
+                      {`${dayjs(item.startDate).tz().format('YYYY-MM')} ~ ${dayjs(item.endDate).tz().format('YYYY-MM')}`}
+                    </time>
+                  </div>
+                  <h4 className="block mt-15">
+                    <span className="text-15 text-blue-highlight">{item.product}</span>
+                    <span className="ellipsis font-[700] text-18 leading-23">{item.title}</span>
+                    <span className="mt-5 text-15 ellipsis opacity-90">{item.description}</span>
+                  </h4>
+                </header>
+
+                <footer className="mt-10 text-15 text-blue-highlight">
+                  {item.tags.map((tag, index) => (
+                    <span key={index} className='inline-block opacity-85 before:content-["#"] pr-5 last:pr-0'>
+                      {tag}
+                    </span>
+                  ))}
+                </footer>
+              </article>
+            )
+          })}
         </div>
-
-        <Link to="/">👈 Go Home</Link>
-      </main>
-    </>
+      </div>
+    </div>
   )
 }

@@ -855,18 +855,6 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
             })}
           </div>
         </div>
-        {/* <ul>
-          {data.allContentfulWork.nodes.map((item, index) => {
-            return (
-              <li key={index}>
-                <Link className="text-[1rem]" to={`category/${item.category}/${item.slug}`} state={{ direction: 'navigate-pop' }}>
-                  <strong>{item.title}</strong>
-                  <p>{`게시일: ${dayjs(item.createdAt).tz().format('YYYY-MM-DD a hh:mm:ss')}`}</p>
-                </Link>
-              </li>
-            )
-          })}
-        </ul> */}
       </section>
     </article>
   )
