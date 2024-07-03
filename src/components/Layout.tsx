@@ -6,7 +6,7 @@ import Transition from './Transition'
 
 export default function Layout(props: any) {
   return (
-    <div className="min-h-full base-layout">
+    <div className="min-h-full base-layout bg-blue-1">
       {/* Header */}
       {props.path === '/' ? <MainHeader /> : <SubHeader {...props} />}
 

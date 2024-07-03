@@ -5,6 +5,7 @@ import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types'
 import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { useFooterRefStore } from '@store/storehooks'
 import { NextWorkListType } from '@templates/category-post'
+import { FaHome } from 'react-icons/fa'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
@@ -57,7 +58,7 @@ export default function DetailLayout({ title, category, headerImagePath, content
         <h6 className="block mb-15 text-15 sm:text-18 md:text-20 font-[500] tracking-tighter">{children}</h6>
       ),
       [BLOCKS.PARAGRAPH]: (node: any, children: React.ReactNode) => (
-        <p className="text-15 sm:text-18 md:text-20 tracking-tighter leading-1.7 mb-30">{children}</p>
+        <p className="text-15 sm:text-18 md:text-20 tracking-tighter leading-1.7 mb-30 opacity-75">{children}</p>
       ),
       [BLOCKS.UL_LIST]: (node: any, children: React.ReactNode) => <ul>{children}</ul>,
       [BLOCKS.LIST_ITEM]: (node: any, children: React.ReactNode) => <li>{children}</li>,
@@ -81,7 +82,15 @@ export default function DetailLayout({ title, category, headerImagePath, content
         <article>{renderRichText(richTextDocument, options)}</article>
       </section>
       <div className="pb-100">
-        <strong className="block mb-30 md:mb-56 text-20 sm:text-28 md:text-32 text-center font-[600]">{`👩‍💻 다른 ${category} 보기`}</strong>
+        <div className="relative mb-30 md:mb-56 text-center before:content-[''] before:absolute before:left-0 before:top-[15%] before:translate-y-[-50%] before:w-full before:h-1 before:bg-theme-reverse">
+          <div className="bg-theme relative z-3 w-fit mx-auto px-20">
+            <strong className="block w-fit mx-auto mb-30 text-20 sm:text-28 md:text-32 text-center leading-1 font-[600]">{`👩‍💻 다른 ${category} 보기`}</strong>
+            <Link className="flex justify-center items-center gap-[10px] py-10 px-30 border w-fit mx-auto opacity-70 rounded-[21px]" to="/">
+              <FaHome className="text-20" />
+              <span className="text-15 block leading-[20px]">메인으로 돌아가기</span>
+            </Link>
+          </div>
+        </div>
         <div className="grid gap-y-[36px] sm:gap-x-[2%] sm:grid-cols-[repeat(2,49%)] md:gap-x-[2%] md:grid-cols-[repeat(3,32%)] lg:gap-x-[1%] lg:grid-cols-[repeat(4,24%)]">
           {nextList.map((item, index) => {
             const date = new Date(`${item.createdAt}`)

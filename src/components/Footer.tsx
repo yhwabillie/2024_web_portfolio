@@ -10,12 +10,12 @@ export default function Footer() {
   // }, [])
 
   return (
-    <footer className="relative h-800" style={{ clipPath: 'polygon(0% 0, 100% 0, 100% 100%, 0 100%' }}>
+    <footer className="relative h-400" style={{ clipPath: 'polygon(0% 0, 100% 0, 100% 100%, 0 100%' }}>
       {/* Sticky Area */}
-      <div className="relative h-[calc(100vh+800px)] -top-[100vh]">
+      <div className="relative h-[calc(100vh+400px)] -top-[100vh]">
         {/* Content */}
         <div className="items-center h-full bg-blue-1">
-          <div className="sticky top-[calc(100vh-800px)] h-800">
+          <div className="sticky top-[calc(100vh-400px)] h-800">
             <div className="container h-full">
               <h2 className="text-60">Footer</h2>
             </div>

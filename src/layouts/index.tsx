@@ -130,7 +130,7 @@ export default function CategoryLayout(props: PageProps) {
   }
 
   return (
-    <main className="min-h-layout pt-header-small lg:pt-header-medium xl:pt-header-large px-14 sm:px-0">
+    <main className="relatvie z-3 pb-120 footer-shadow mb-80 block rounded-b-[40px] bg-theme min-h-layout pt-header-small lg:pt-header-medium xl:pt-header-large px-14 sm:px-0">
       <h2 className="sr-only">{getDocumentTitle(`${props.path}`)}</h2>
       {props.children}
     </main>

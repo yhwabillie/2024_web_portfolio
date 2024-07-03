@@ -46,6 +46,26 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
 
   useGSAP(
     () => {
+      //커리어 아이템 호버 event
+      let careerItems = gsap.utils.toArray<HTMLElement>('.career_item')
+
+      careerItems.forEach((selector) => {
+        let CareerItemTL = gsap.timeline({ paused: true, reversed: true })
+
+        CareerItemTL.to(
+          selector.querySelectorAll('section'),
+          {
+            y: -6,
+            duration: 0.2,
+          },
+          0,
+        )
+
+        selector.addEventListener('mouseenter', () => CareerItemTL.play())
+        selector.addEventListener('mouseleave', () => CareerItemTL.reverse())
+      })
+
+      //scroll timeline
       let tl = gsap.timeline({})
     },
     { scope: gsapContainer },
@@ -822,12 +842,12 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
               const opengraphImage = getImage(project.ogImage?.gatsbyImageData!)
 
               return (
-                <article key={project.id} className="relative">
+                <article key={project.id} className="career_item relative">
                   <Link className="link-overlay" to={`category/${project.category}/${project.slug}`}>
                     <span className="sr-only">클릭하여 상세보기</span>
                   </Link>
 
-                  <section className="block w-full rounded-xxs mb-14">
+                  <section className="block w-full rounded-xxs border border-gray-2 mb-14">
                     <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={opengraphImage!} alt={'//'} />
                   </section>
                   <header>
