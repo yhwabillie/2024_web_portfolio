@@ -15,7 +15,7 @@ export default function Footer() {
       <div className="relative h-[calc(100vh+400px)] -top-[100vh]">
         {/* Content */}
         <div className="items-center h-full bg-blue-1">
-          <div className="sticky top-[calc(100vh-400px)] h-800">
+          <div className="sticky top-[calc(100vh-400px)] h-400">
             <div className="container h-full">
               <h2 className="text-60">Footer</h2>
             </div>

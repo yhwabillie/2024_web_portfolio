@@ -6,6 +6,8 @@ import { renderRichText } from 'gatsby-source-contentful/rich-text'
 import { useFooterRefStore } from '@store/storehooks'
 import { NextWorkListType } from '@templates/category-post'
 import { FaHome } from 'react-icons/fa'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 import dayjs from 'dayjs'
 import ko from 'dayjs/locale/ko'
 import utc from 'dayjs/plugin/utc'
@@ -75,6 +77,28 @@ export default function DetailLayout({ title, category, headerImagePath, content
     },
   }
 
+  useGSAP(() => {
+    //커리어 아이템 호버 event
+    let careerItems = gsap.utils.toArray<HTMLElement>('.career_item')
+
+    careerItems.forEach((selector) => {
+      let CareerItemTL = gsap.timeline({ paused: true, reversed: true })
+
+      CareerItemTL.to(
+        selector.querySelectorAll('section'),
+        {
+          y: -6,
+          boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
+          duration: 0.2,
+        },
+        0,
+      )
+
+      selector.addEventListener('mouseenter', () => CareerItemTL.play())
+      selector.addEventListener('mouseleave', () => CareerItemTL.reverse())
+    })
+  })
+
   return (
     <div className="container">
       {/* bodyRichText Data */}
@@ -97,7 +121,7 @@ export default function DetailLayout({ title, category, headerImagePath, content
             const headerImage = getImage(item.ogImage.gatsbyImageData)!
 
             return (
-              <article key={item.id} className="relative">
+              <article key={item.id} className="career_item relative">
                 <Link className="link-overlay" to={`/category/${item.category}/${item.slug}`}>
                   <span className="sr-only">클릭하여 상세보기</span>
                 </Link>

@@ -56,6 +56,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           selector.querySelectorAll('section'),
           {
             y: -6,
+            boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
             duration: 0.2,
           },
           0,
