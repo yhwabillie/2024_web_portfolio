@@ -685,14 +685,21 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           <div className="container">
             <div
               className="
-                  w-full min-h-[700px] max-w-[375px] grid gap-5 mx-auto
+                  w-full min-h-[700px] grid gap-5 mx-auto
                   md:max-w-[1316px] md:grid-cols-[375px_auto]
                 "
             >
-              <div className="grid gap-5 xs:grid-rows-[500px_auto]">
-                <div className="h-fit overflow-hidden rounded-md shadow-md">
-                  <StaticImage src={'../images/mockup_profile.jpg'} width={493} height={665} alt="더미 프로필 이미지" />
+              <div className="grid gap-5 grid-rows-[500px_auto] sm:grid-rows-[665px_auto] md:grid-rows-[500px_auto]">
+                <div className="w-full relative bg-gray-glass backdrop-blur-md h-auto mx-auto rounded-xs shadow-md overflow-hidden">
+                  <StaticImage
+                    className="absolute left-[50%] translate-x-[-50%] h-full w-full sm:w-[65%] md:w-full"
+                    src={'../images/mockup_profile.jpg'}
+                    width={493}
+                    height={665}
+                    alt="더미 프로필 이미지"
+                  />
                 </div>
+
                 <div className="flex flex-col gap-5 justify-between bg-gray-1 rounded-md shadow-md md:gap-0 p-15 lg:p-25">
                   <h4 className="sr-only">Skill Set</h4>
                   <div className="flex gap-2 flex-col">
