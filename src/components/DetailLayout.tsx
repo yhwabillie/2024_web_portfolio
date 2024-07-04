@@ -126,7 +126,7 @@ export default function DetailLayout({ title, category, headerImagePath, content
                   <span className="sr-only">클릭하여 상세보기</span>
                 </Link>
 
-                <section className="block w-full rounded-xxs mb-14">
+                <section className="block w-full border border-gray-2 rounded-xxs mb-14">
                   <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={headerImage} alt={item.title} />
                 </section>
 
