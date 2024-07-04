@@ -27,7 +27,7 @@ dayjs.extend(timezone)
 dayjs.extend(relativeTime)
 dayjs.tz.setDefault('Asia/Seoul')
 
-export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
+export default function Page({ data }: PageProps<any>) {
   //zustand state
   const { setMainPageRefs } = useMainPageRefsStore()
   const { modalState, setModalState } = useModalStateStore()
@@ -706,7 +706,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           <div className="container">
             <div
               className="
-                  w-full min-h-[700px] grid gap-5 mx-auto
+                  w-full min-h-[700px] grid gap-5 mx-auto mb-20
                   md:max-w-[1316px] md:grid-cols-[375px_auto]
                 "
             >
@@ -721,9 +721,10 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   />
                 </div>
 
-                <div className="flex flex-col gap-5 justify-between bg-gray-1 rounded-md shadow-md md:gap-0 p-15 lg:p-25">
-                  <h4 className="sr-only">Skill Set</h4>
+                <div className="flex flex-col gap-5 justify-center bg-gray-1 rounded-md shadow-md md:gap-0 p-15 lg:p-25">
+                  <h4 className="sr-only">주요 경험 기술 스택</h4>
                   <div className="flex gap-2 flex-col">
+                    <p className="text-center text-20 font-[600] tracking-tighter leading-[20px] mb-20">⚙️ 경험한 주요 기술 스택</p>
                     <ul className="flex gap-2 justify-center">
                       <li className="w-40 h-40 bg-white">
                         <span className="sr-only">HTML5</span>
@@ -769,15 +770,6 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                       </li>
                     </ul>
                   </div>
-
-                  <button
-                    onClick={() => handleModal(MODAL.SKILL_SET)}
-                    className="py-10 px-25 bg-blue-5 flex justify-center gap-3 items-center text-16 text-white font-[600] tracking-tighter text-shadow rounded-xxs shadow-sm"
-                  >
-                    <span>⚙️</span>
-                    <span>스킬셋 자세히 보기</span>
-                    <FaArrowRight />
-                  </button>
                 </div>
               </div>
 
@@ -826,11 +818,121 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 </div>
               </div>
             </div>
+
+            {/* 기술 스택 자세히 */}
+            <div
+              className="
+                  w-full min-h-[700px] grid gap-5 mx-auto
+                  md:max-w-[1316px] md:grid-cols-[repeat(2,calc(50%-10px))]"
+            >
+              <h4 className="sr-only">명시 기술 스택 자세한 설명</h4>
+
+              {/* 웹 프론트엔드 */}
+              <div className="bg-gray-glass backdrop-blur-md rounded-md py-25 px-14 xs:py-30 xs:px-20 md:p-40 shadow-md">
+                <h5 className="block mb-20 text-20 sm:text-25 lg:text-30 font-[600] tracking-tighter leading-1">🛠️ 웹 프론트엔드</h5>
+
+                <div className="px-14 md:px-0">
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="block mb-5 text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">JavaScript & jQuery</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      Ajax의 fetch, async await를 이용한 비동기 HTTP 방식의 GET, POST 요청
+                    </p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">LocalStorage를 사용한 데이터 보관 및 활용</p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">DOM 컨트롤 및 관련 애니메이션 구현</p>
+                  </div>
+
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="block mb-5 text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">TypeScript</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      interface, type, enum을 활용하여 백엔드와 소통하기 위한 데이터 type 작성
+                    </p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      react-hook-form, yup을 사용한 인풋 데이터 validation 및 관련 UI 구현
+                    </p>
+                  </div>
+
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="block mb-5 text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">
+                      Context API & 상태관리 라이브러리
+                    </strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      Context API, zustand, Recoil을 이용하여 컴포넌트간 전역, 지역 state관리
+                    </p>
+                  </div>
+
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="block mb-5 text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">데이터 시각화</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      apexchart.js 및 plotly.js를 활용하여 데이터를 다양한 그래프로 표현 및 디자인에 맞게 커스텀
+                    </p>
+                  </div>
+
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="block mb-5 text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">UI 컴포넌트 문서화</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      컴포넌트의 용도, props의 type 및 유즈케이스 등을 Storybook을 활용하여 문서화
+                    </p>
+                  </div>
+
+                  <div>
+                    <strong className="text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">기술적인 SEO 작업</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">NextJS 환경에서 metadata 작성 및 다국어 case 적용</p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">특정 키워드로 Google Search 인덱싱한 경험</p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      Google Lighthouse를 사용한 웹 최적화 점수 확인 및 피드백
+                    </p>
+                  </div>
+                </div>
+              </div>
+              {/* 웹 퍼블리싱 */}
+              <div className="bg-gray-glass backdrop-blur-md rounded-md py-25 px-14 xs:py-30 xs:px-20 md:p-40 shadow-md">
+                <h5 className="block mb-20 text-20 sm:text-25 lg:text-30 font-[600] tracking-tighter leading-1">🎨 웹 퍼블리싱</h5>
+                <div className="px-14 md:px-0">
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">HTML5 & CSS3</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      코드 가독성과 웹 표준, 웹 접근성을 준수하기위한 시멘틱 마크업
+                    </p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">CSS keyframe을 이용한 애니메이션</p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      CSS Grid, Flex 활용한 디자인을 준수하는 화면 레이아웃 구축
+                    </p>
+                  </div>
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">반응형 웹</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      media query, container queries를 사용한 PC, 태블릿, 모바일등 다양한 해상도의 웹 반응형 작업
+                    </p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      하이브리드 앱, 웹앱의 다양한 모바일 디바이스 대처 경험
+                    </p>
+                  </div>
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">인터랙티브 웹</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      GSAP, Framer Motion, React-Spring를 활용한 인터랙티브 스크롤 애니메이션 구현
+                    </p>
+                  </div>
+                  <div className="mb-15 lg:mb-30">
+                    <strong className="text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">CSS 프레임워크</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      tailwindcss, styled-components를 사용한 반응형 웹사이트 화면 구축
+                    </p>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      theme 기능을 이용하여 하나의 컴포넌트에 여러가지 디자인을 분리하여 퍼블리싱
+                    </p>
+                  </div>
+                  <div>
+                    <strong className="text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">크로스 브라우징</strong>
+                    <p className="text-15 lg:text-20 tracking-tighter leading-1.6 opacity-80">
+                      vendor prefix를 사용한 Chrome, Edge, Safari, Firefox 브라우저 및 OS별 대처 경험
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Skillset 레이어 모달 */}
-        {modalState === MODAL.SKILL_SET && ModalComponent[MODAL.SKILL_SET]}
       </section>
 
       <section>
@@ -839,7 +941,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
             <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">Career</h3>
           </div>
           <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] lg:gap-x-[1.55%] gap-y-[36px] perspective">
-            {data.allContentfulWork.nodes.map((project) => {
+            {data.allContentfulWork.nodes.map((project: any) => {
               const opengraphImage = getImage(project.ogImage?.gatsbyImageData!)
 
               return (
@@ -855,7 +957,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                     <div className="text-15 opacity-85 tracking-tighter text-gray-2">{project.company}</div>
                     <div className="flex projects-center">
                       <p className="text-15 opacity-85 tracking-tighter">
-                        {project.role?.map((item, index) => (
+                        {project.role?.map((item: any, index: any) => (
                           <span key={index} className="inline-block first:mr-5 first:after:content-[','] last:after:content-[''] last:mr-0">
                             {item}
                           </span>
@@ -872,7 +974,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                     </h4>
                   </header>
                   <footer className="mt-10 text-15 text-blue-highlight">
-                    {project.tags?.map((item, index) => (
+                    {project.tags?.map((item: any, index: any) => (
                       <span key={index} className='inline-block opacity-85 before:content-["#"] pr-5 last:pr-0'>
                         {item}
                       </span>

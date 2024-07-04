@@ -34,7 +34,7 @@ export default function Footer() {
                     <div>
                       <h3 className="text-28 font-[600]">Contact Me</h3>
                       <p className="text-16 tracking-tighte">
-                        이메일을 복사하여 연락해주세요. <br /> 포트폴리오를 확인해주셔서 감사합니다 :&#41;
+                        관심이 있으시다면 아래의 이메일을 복사하여 연락해주세요. <br /> 포트폴리오를 확인해주셔서 감사합니다 :&#41;
                       </p>
                     </div>
                     <fieldset className="flex justify-between items-center border border-gray-2">
