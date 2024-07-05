@@ -29,7 +29,7 @@ export default function Footer() {
 
               <div className="flex flex-grow-[1] flex-col justify-between items-center">
                 <div className="flex flex-col justify-center items-center">
-                  <StaticImage class="w-200" src="../images/footer_bubble.png" width={559} height={447} alt="footer bubble" />
+                  <StaticImage class="w-200" src="../images/footer_bubble.png" width={400} height={400} alt="footer bubble" />
                   <div className="text-center flex flex-col gap-[20px] justify-center items-center">
                     <div>
                       <h3 className="text-28 font-[600]">Contact Me</h3>

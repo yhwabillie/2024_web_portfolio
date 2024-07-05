@@ -670,15 +670,15 @@ export default function Page({ data }: PageProps<any>) {
             <div className="h-fit mb-50 flex gap-4 justify-center sm:gap-10 md:mb-80 lg:mb-100">
               <StaticImage
                 className="w-[23%] h-fit sm:w-[20%]"
-                src={'../images/logo_1.png'}
+                src={'../images/about_item_1.png'}
                 width={512}
                 height={512}
-                alt="데스크탑과 모바일 반응형 웹 퍼블리싱 이미지"
+                alt="모바일 이미지"
                 placeholder="none"
               />
               <StaticImage
                 className="w-[24%] h-fit sm:w-[20%]"
-                src={'../images/logo_2.png'}
+                src={'../images/about_item_2.png'}
                 width={512}
                 height={512}
                 alt="손가락 이미지"
@@ -686,7 +686,7 @@ export default function Page({ data }: PageProps<any>) {
               />
               <StaticImage
                 className="w-[24%] h-fit sm:w-[20%]"
-                src={'../images/logo_3.png'}
+                src={'../images/about_item_3.png'}
                 width={512}
                 height={512}
                 alt="데이터 시각화 차트 이미지"
@@ -694,10 +694,10 @@ export default function Page({ data }: PageProps<any>) {
               />
               <StaticImage
                 className="w-[24%] h-fit sm:w-[20%]"
-                src={'../images/logo_4.png'}
+                src={'../images/about_item_4.png'}
                 width={512}
                 height={512}
-                alt="SEO를 표현한 아이콘 이미지"
+                alt="도구 이미지"
                 placeholder="none"
               />
             </div>
