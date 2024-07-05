@@ -72,7 +72,13 @@ export default function DetailLayout({ title, category, headerImagePath, content
         const { gatsbyImageData, description } = node.data.target
         //console.log('node====>', gatsbyImageData, description)
 
-        return <GatsbyImage className="mb-30 rounded-xxs sm:rounded-sm" image={getImage(gatsbyImageData)!} alt={description} />
+        return (
+          <GatsbyImage
+            className="mb-30 rounded-xxs border border-theme-gray shadow-lg sm:rounded-sm"
+            image={getImage(gatsbyImageData)!}
+            alt={description}
+          />
+        )
       },
     },
   }
@@ -106,12 +112,15 @@ export default function DetailLayout({ title, category, headerImagePath, content
         <article>{renderRichText(richTextDocument, options)}</article>
       </section>
       <div className="pb-100">
-        <div className="relative mb-30 md:mb-56 text-center before:content-[''] before:absolute before:left-0 before:top-[15%] before:translate-y-[-50%] before:w-full before:h-1 before:bg-theme-reverse">
+        <div className="relative mb-30 md:mb-56 text-center before:content-[''] before:absolute before:left-0 before:top-[15%] before:translate-y-[-50%] before:w-full before:h-[0.1px] before:bg-theme-reverse">
           <div className="bg-theme relative z-3 w-fit mx-auto px-20">
             <strong className="block w-fit mx-auto mb-30 text-20 sm:text-28 md:text-32 text-center leading-1 font-[600]">{`👩‍💻 다른 ${category} 보기`}</strong>
-            <Link className="flex justify-center items-center gap-[10px] py-10 px-30 border w-fit mx-auto opacity-70 rounded-[21px]" to="/">
-              <FaHome className="text-20" />
-              <span className="text-15 block leading-[20px]">메인으로 돌아가기</span>
+            <Link
+              className="flex justify-center items-center gap-[10px] py-10 px-30 border border-gray-2 w-fit mx-auto opacity-70 rounded-[21px]"
+              to="/"
+            >
+              <FaHome className="text-20 text-gray-2" />
+              <span className="text-15 block leading-[20px] text-gray-2 font-[500] tracking-tighter">메인으로 돌아가기</span>
             </Link>
           </div>
         </div>

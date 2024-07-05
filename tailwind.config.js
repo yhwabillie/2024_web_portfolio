@@ -186,7 +186,12 @@ module.exports = {
       90: pxToRem(90),
       100: pxToRem(100),
       120: pxToRem(120),
+      130: pxToRem(130),
       135: pxToRem(135),
+      150: pxToRem(150),
+      160: pxToRem(160),
+      180: pxToRem(180),
+      200: pxToRem(200),
     },
     lineHeight: {
       'header-small': '4.5rem',
