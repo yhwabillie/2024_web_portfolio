@@ -16,6 +16,7 @@ import MobileSummaryTitle from '@components/MobileSummaryTitle'
 import SkillSetLayerModal from '@components/SkillSetLayerModal'
 import { MODAL } from '@/types/enums'
 import { ModalType } from '@/types/globalTypes'
+import { careerList } from '@constants/common'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -707,7 +708,7 @@ export default function Page({ data }: PageProps<any>) {
             <div
               className="
                   w-full min-h-[700px] grid gap-5 mx-auto mb-20
-                  md:max-w-[1316px] md:grid-cols-[375px_auto]
+                  md:grid-cols-[375px_auto]
                 "
             >
               <div className="grid gap-5 grid-rows-[500px_auto] sm:grid-rows-[665px_auto] md:grid-rows-[500px_auto]">
@@ -774,8 +775,8 @@ export default function Page({ data }: PageProps<any>) {
               </div>
 
               <div className="py-25 px-14 bg-gray-glass backdrop-blur-md rounded-md shadow-md xs:py-30 xs:px-20 md:p-40">
-                <h4 className="sr-only">자기소개</h4>
-                <p className="mb-20 text-20 font-[600] tracking-tight sm:mb-30 sm:text-25 lg:text-30">
+                <h4 className="text-25 text-center md:text-left lg:text-40 font-[600] block mb-15 leading-1">About Me.</h4>
+                <p className="text-center md:text-left mb-20 text-20 font-[600] tracking-tight sm:mb-30 sm:text-25 lg:text-30">
                   👋🏻 안녕하세요, 2년차 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
                 </p>
                 <div className="px-14">
@@ -823,13 +824,15 @@ export default function Page({ data }: PageProps<any>) {
             <div
               className="
                   w-full min-h-[700px] grid gap-5 mx-auto
-                  md:max-w-[1316px] md:grid-cols-[repeat(2,calc(50%-10px))]"
+                  md:grid-cols-[repeat(2,calc(50%-10px))]"
             >
               <h4 className="sr-only">명시 기술 스택 자세한 설명</h4>
 
               {/* 웹 프론트엔드 */}
               <div className="bg-gray-glass backdrop-blur-md rounded-md py-25 px-14 xs:py-30 xs:px-20 md:p-40 shadow-md">
-                <h5 className="block mb-20 text-20 sm:text-25 lg:text-30 font-[600] tracking-tighter leading-1">🛠️ 웹 프론트엔드</h5>
+                <h5 className="text-center md:text-left block mb-20 text-20 sm:text-25 lg:text-30 font-[600] tracking-tighter leading-1">
+                  🛠️ 웹 프론트엔드
+                </h5>
 
                 <div className="px-14 md:px-0">
                   <div className="mb-15 lg:mb-30">
@@ -886,7 +889,9 @@ export default function Page({ data }: PageProps<any>) {
               </div>
               {/* 웹 퍼블리싱 */}
               <div className="bg-gray-glass backdrop-blur-md rounded-md py-25 px-14 xs:py-30 xs:px-20 md:p-40 shadow-md">
-                <h5 className="block mb-20 text-20 sm:text-25 lg:text-30 font-[600] tracking-tighter leading-1">🎨 웹 퍼블리싱</h5>
+                <h5 className="text-center md:text-left block mb-20 text-20 sm:text-25 lg:text-30 font-[600] tracking-tighter leading-1">
+                  🎨 웹 퍼블리싱
+                </h5>
                 <div className="px-14 md:px-0">
                   <div className="mb-15 lg:mb-30">
                     <strong className="text-18 lg:text-24 font-[600] tracking-tighter text-blue-highlight">HTML5 & CSS3</strong>
@@ -935,10 +940,109 @@ export default function Page({ data }: PageProps<any>) {
         </div>
       </section>
 
+      {/** Career */}
+      <section className="mb-100 lg:mb-200">
+        <div className="container">
+          <h3 className="text-50 lg:text-60">Career</h3>
+          <ul className="list_container perspective mb-100">
+            {careerList.map((item, index) => (
+              <li key={index} className="border-t-[10px] border-t-theme bg-theme sticky top-[100px] overflow-hidden">
+                <div
+                  className={`${item.color === 'career-1' ? 'bg-career-1' : 'bg-career-2'} rounded-lg border-theme grid gap-y-[30px] grid-cols-[60%,40%] mb-30 w-full`}
+                >
+                  <div
+                    className="relative 
+                  py-60
+                  px-50
+                  after:content-[''] 
+                  after:border-l-[60px] after:border-r-[60px] after:border-b-[60px] after:border-t-[60px] 
+                  after:border-l-transparent after:border-r-transparent after:border-b-transparent after:border-t-theme 
+                  after:absolute after:top-[-30px] after:right-[-60px]
+
+                  before:content-[''] 
+                  before:border-l-[60px] before:border-r-[60px] before:border-b-[60px] before:border-t-[60px] 
+                  before:border-l-transparent before:border-r-transparent before:border-b-theme before:border-t-transparent
+                  before:absolute before:bottom-[-30px] before:right-[-60px]
+                  border-dotted
+                  border-r-[3px]
+                  border-r-theme
+                  grid
+                  grid-rows-[auto,auto,100px]
+                  gap-y-[30px]
+                  "
+                  >
+                    <div>
+                      <h4 className="text-40 font-[600] tracking-tight text-shadow text-white">
+                        {item.name} <span className="text-24 font-[500] opacity-70">{item.sub_name}</span>
+                      </h4>
+                      <p className="text-20 font-[600] mt-50 mb-10 tracking-tight">{item.period}</p>
+                      <p className="text-20 tracking-tight leading-1.6">{item.company_desc}</p>
+                    </div>
+
+                    <div className="mb-50">
+                      <h5 className="block text-20 font-[600] mb-5 tracking-tight">관련 URL</h5>
+                      <div className="flex gap-[5px] flex-wrap">
+                        {item.links.map((link, index) => (
+                          <a
+                            key={index}
+                            className="inline-block text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]"
+                            href={link.url}
+                            target="_blank"
+                          >
+                            {link.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="text-100 h-100 leading-1">
+                      {item.icon} <span className="font-[600] tracking-tight opacity-70">{item.year}</span>
+                    </div>
+                  </div>
+                  <div className="px-50 py-60 flex">
+                    <div className="flex flex-col justify-end">
+                      <div className="mb-20">
+                        <strong className="text-24 font-[600] block leading-1 mb-[8px] tracking-tight">{item.role}</strong>
+                        <p className="text-18 tracking-tight leading-1.6">{item.role_desc}</p>
+                      </div>
+                      <div className="mb-20">
+                        <strong className="text-24 font-[600] block leading-1 mb-[8px] tracking-tight">팀 구성</strong>
+
+                        <ul className="flex gap-x-[5px] flex-wrap">
+                          {item.team.map((i, index) => (
+                            <li key={index} className="inline-block text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]">
+                              {i}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <strong className="text-24 font-[600] tracking-tight block">개발환경</strong>
+
+                        <ul className="flex gap-[5px] flex-wrap">
+                          {item.team_tech.map((tech, index) => (
+                            <li key={index} className="inline-block text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]">
+                              {tech}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/** Work Experience */}
       <section>
         <div className="container grid md:grid-cols-[28%,70%] gap-x-[2%] mb-100 lg:mb-200">
           <div className="h-auto bg-blue-3 hidden md:block">
-            <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">Career</h3>
+            <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">
+              Work <br /> Experience
+            </h3>
           </div>
           <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] lg:gap-x-[1.55%] gap-y-[36px] perspective">
             {data.allContentfulWork.nodes.map((project: any) => {
