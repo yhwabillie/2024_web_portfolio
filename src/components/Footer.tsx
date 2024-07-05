@@ -11,6 +11,8 @@ export default function Footer() {
   //   setFooterRef(footerRef)
   // }, [])
 
+  const emailRef = React.useRef<HTMLInputElement>(null)
+
   return (
     <footer className="relative h-700" style={{ clipPath: 'polygon(0% 0, 100% 0, 100% 100%, 0 100%' }}>
       {/* Sticky Area */}
@@ -37,19 +39,27 @@ export default function Footer() {
                         관심이 있으시다면 아래의 이메일을 복사하여 연락해주세요. <br /> 포트폴리오를 확인해주셔서 감사합니다 :&#41;
                       </p>
                     </div>
-                    <fieldset className="flex justify-between items-center border border-gray-2">
+
+                    {/* Copy&Paste */}
+                    <fieldset className="flex justify-between items-center rounded-[5px] overflow-hidden shadow-lg">
                       <input
+                        ref={emailRef}
                         type="email"
                         value={'jyjcy501@naver.com'}
                         readOnly={true}
-                        className="block text-gray-2 leading-1 py-10 px-20 text-20 tracking-tighter rounded-l-[3px] focus:outline-0"
+                        className="block text-gray-2 w-[calc(100%-44px)] leading-1 py-10 px-20 text-20 tracking-tighter focus:outline-0"
                       />
                       <button
                         title="이메일 복사하기"
-                        className="flex cursor-pointer hover:text-blue-5 items-center bg-theme w-[44px] h-[44px] box-border rounded-r-[3px] shadow-sm"
+                        onClick={() => {
+                          if (!emailRef.current) return
+                          navigator.clipboard.writeText(emailRef.current.value)
+                          alert('이메일이 복사되었습니다.')
+                        }}
+                        className="flex cursor-pointer bg-theme-hover items-center w-[44px] h-[44px] box-border"
                       >
                         <span className="sr-only">이메일 복사하기</span>
-                        <IoCopy className="text-20 block mx-auto" />
+                        <IoCopy className="text-20 text-gray-2 block mx-auto" />
                       </button>
                     </fieldset>
                   </div>

@@ -468,9 +468,9 @@ export default function Page({ data }: PageProps<any>) {
         </div>
       </section>
 
-      <section className="overflow-hidden">
+      <section className="mb-50 md:mb-100 lg:mb-200 overflow-hidden border-b-[1px] border-gray-2">
         <h3 className="sr-only">소개</h3>
-        <div className="mt-100 lg:mt-150">
+        <div className="mt-50 lg:mt-100">
           <div className="container">
             <h4 className="mr-auto mb-50 md:mb-80 lg:mb-100">
               <span
@@ -549,10 +549,10 @@ export default function Page({ data }: PageProps<any>) {
                   />
                 </div>
 
-                <div className="flex flex-col gap-5 justify-center bg-gray-1 rounded-md shadow-md md:gap-0 p-15 lg:p-25">
+                <div className="flex flex-col gap-5 justify-center bg-gray-1 rounded-xs md:rounded-md shadow-md md:gap-0 p-20 md:p-15 lg:p-25">
                   <h4 className="sr-only">주요 경험 기술 스택</h4>
                   <div className="flex gap-2 flex-col">
-                    <p className="text-center text-20 font-[600] tracking-tighter leading-[20px] mb-20">⚙️ 경험한 주요 기술 스택</p>
+                    <p className="text-center text-20 font-[600] tracking-tighter leading-[20px] md:mb-20">⚙️ 경험한 주요 기술 스택 ⚙️</p>
                     <ul className="flex gap-2 justify-center">
                       <li className="w-40 h-40 bg-white">
                         <span className="sr-only">HTML5</span>
@@ -768,16 +768,16 @@ export default function Page({ data }: PageProps<any>) {
       </section>
 
       {/** Career */}
-      <section className="mb-100 lg:mb-200">
-        <div className="container">
-          <h3 className="text-50 lg:text-60 font-[600]">Career</h3>
-          <ul className="list_container perspective mb-100">
+      <section className="mb-100 lg:mb-200 border-b-[1px] border-gray-2">
+        <div className="container mb-100 lg:mb-200">
+          <h3 className="block mb-20 text-center md:text-left text-50 lg:text-60 font-[600]">Career</h3>
+          <ul className="list_container perspective">
             {careerList.map((item, index) => (
-              <li key={index} className="last:border-t-[10px] border-t-theme bg-theme sm:sticky sm:top-[100px] overflow-hidden">
+              <li key={index} className="last:border-t-[10px] border-t-theme bg-theme sm:sticky sm:top-[90px] overflow-hidden">
                 <div
                   className={`${item.color === 'career-1' ? 'bg-career-1' : 'bg-career-2'} rounded-xs md:rounded-lg border-theme 
                  
-                  lg:grid lg:grid-cols-[auto,auto] lg:gap-y-[30px] mb-30 w-full`}
+                  lg:grid lg:grid-cols-[auto,auto] lg:gap-y-[30px] mb-30 last:mb-0 w-full`}
                 >
                   <div
                     className="relative 
@@ -897,10 +897,10 @@ export default function Page({ data }: PageProps<any>) {
       </section>
 
       {/** Work Experience */}
-      <section>
-        <div className="container grid md:grid-cols-[28%,70%] gap-x-[2%] mb-100 lg:mb-200">
-          <div className="h-auto hidden md:block">
-            <h3 className="leading-1 block font-[600] sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">
+      <section className="mb-100 lg:mb-200">
+        <div className="container grid md:grid-cols-[28%,70%] gap-x-[2%]">
+          <div>
+            <h3 className="text-center md:text-left leading-1 block font-[600] sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">
               Work <br /> Experience
             </h3>
           </div>
