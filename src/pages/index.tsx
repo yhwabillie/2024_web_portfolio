@@ -943,49 +943,72 @@ export default function Page({ data }: PageProps<any>) {
       {/** Career */}
       <section className="mb-100 lg:mb-200">
         <div className="container">
-          <h3 className="text-50 lg:text-60">Career</h3>
+          <h3 className="text-50 lg:text-60 font-[600]">Career</h3>
           <ul className="list_container perspective mb-100">
             {careerList.map((item, index) => (
-              <li key={index} className="border-t-[10px] border-t-theme bg-theme sticky top-[100px] overflow-hidden">
+              <li key={index} className="last:border-t-[10px] border-t-theme bg-theme sm:sticky sm:top-[100px] overflow-hidden">
                 <div
-                  className={`${item.color === 'career-1' ? 'bg-career-1' : 'bg-career-2'} rounded-lg border-theme grid gap-y-[30px] grid-cols-[60%,40%] mb-30 w-full`}
+                  className={`${item.color === 'career-1' ? 'bg-career-1' : 'bg-career-2'} rounded-xs md:rounded-lg border-theme 
+                 
+                  lg:grid lg:grid-cols-[auto,auto] lg:gap-y-[30px] mb-30 w-full`}
                 >
                   <div
                     className="relative 
-                  py-60
-                  px-50
+                  py-25 md:py-40 lg:py-60
+                  px-30 md:px-40 lg:px-50
+                  border-b-[3px]
+                  border-b-theme
+                  lg:border-b-0
                   after:content-[''] 
                   after:border-l-[60px] after:border-r-[60px] after:border-b-[60px] after:border-t-[60px] 
                   after:border-l-transparent after:border-r-transparent after:border-b-transparent after:border-t-theme 
-                  after:absolute after:top-[-30px] after:right-[-60px]
+
+                  after:absolute 
+                  lg:after:top-[-30px] 
+                  after:bottom-[-60px]
+                  after:right-[-30px]
+                  lg:after:right-[-60px]
+                  lg:after:rotate-0
+                  after:rotate-90
 
                   before:content-[''] 
                   before:border-l-[60px] before:border-r-[60px] before:border-b-[60px] before:border-t-[60px] 
                   before:border-l-transparent before:border-r-transparent before:border-b-theme before:border-t-transparent
-                  before:absolute before:bottom-[-30px] before:right-[-60px]
+                  lg:before:rotate-0
+                  before:rotate-90
+                  before:bottom-[-60px]
+                  before:left-[-30px]
+                  lg:before:left-[auto]
+                  
+                
+
+                  before:absolute 
+                  lg:before:bottom-[-30px] 
+                  lg:before:right-[-60px]
+
                   border-dotted
-                  border-r-[3px]
-                  border-r-theme
-                  grid
-                  grid-rows-[auto,auto,100px]
-                  gap-y-[30px]
+                  lg:border-r-[3px]
+                  lg:border-r-theme
+                  lg:grid
+                  lg:grid-rows-[auto,auto,100px]
+                  lg:gap-y-[30px]
                   "
                   >
-                    <div>
-                      <h4 className="text-40 font-[600] tracking-tight text-shadow text-white">
-                        {item.name} <span className="text-24 font-[500] opacity-70">{item.sub_name}</span>
+                    <div className="mb-30 lg:mb-0">
+                      <h4 className="text-30 lg:text-40 font-[600] tracking-tight text-shadow text-white">
+                        {item.name} <span className="block md:inline text-24 font-[500] opacity-70">{item.sub_name}</span>
                       </h4>
-                      <p className="text-20 font-[600] mt-50 mb-10 tracking-tight">{item.period}</p>
-                      <p className="text-20 tracking-tight leading-1.6">{item.company_desc}</p>
+                      <p className="text-18 lg:text-20 font-[600] mt-30 lg:mt-50 mb-10 tracking-tight text-black">{item.period}</p>
+                      <p className="text-15 md:text-18 lg:text-20 tracking-tight leading-1.6 text-black">{item.company_desc}</p>
                     </div>
 
-                    <div className="mb-50">
-                      <h5 className="block text-20 font-[600] mb-5 tracking-tight">관련 URL</h5>
+                    <div className="mb-30 lg:mb-50">
+                      <h5 className="block text-18 md:text-20 font-[600] mb-5 tracking-tight text-black">관련 URL</h5>
                       <div className="flex gap-[5px] flex-wrap">
                         {item.links.map((link, index) => (
                           <a
                             key={index}
-                            className="inline-block text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]"
+                            className="bg-white text-black inline-block text-14 md:text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]"
                             href={link.url}
                             target="_blank"
                           >
@@ -995,33 +1018,43 @@ export default function Page({ data }: PageProps<any>) {
                       </div>
                     </div>
 
-                    <div className="text-100 h-100 leading-1">
+                    <div className="text-40 sm:text-80 h-auto xl:text-100 xl:h-100 leading-1">
                       {item.icon} <span className="font-[600] tracking-tight opacity-70">{item.year}</span>
                     </div>
                   </div>
-                  <div className="px-50 py-60 flex">
+                  <div className="pt-30 pb-25 px-30 md:px-50 md:py-60 flex">
                     <div className="flex flex-col justify-end">
                       <div className="mb-20">
-                        <strong className="text-24 font-[600] block leading-1 mb-[8px] tracking-tight">{item.role}</strong>
-                        <p className="text-18 tracking-tight leading-1.6">{item.role_desc}</p>
+                        <strong className="text-18 md:text-20 lg:text-24 font-[600] block leading-1 mb-[8px] tracking-tight text-black">
+                          {item.role}
+                        </strong>
+                        <p className="text-15 md:text-18 tracking-tight leading-1.6 text-black">{item.role_desc}</p>
                       </div>
                       <div className="mb-20">
-                        <strong className="text-24 font-[600] block leading-1 mb-[8px] tracking-tight">팀 구성</strong>
+                        <strong className="text-18 md:text-20 lg:text-24 font-[600] block leading-1 mb-[8px] tracking-tight text-black">
+                          팀 구성
+                        </strong>
 
-                        <ul className="flex gap-x-[5px] flex-wrap">
+                        <ul className="flex gap-[5px] flex-wrap">
                           {item.team.map((i, index) => (
-                            <li key={index} className="inline-block text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]">
+                            <li
+                              key={index}
+                              className="bg-white text-black inline-block text-14 md:text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]"
+                            >
                               {i}
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <strong className="text-24 font-[600] tracking-tight block">개발환경</strong>
+                        <strong className="text-18 md:text-20 mb-5 lg:text-24 font-[600] tracking-tight block text-black">개발환경</strong>
 
                         <ul className="flex gap-[5px] flex-wrap">
                           {item.team_tech.map((tech, index) => (
-                            <li key={index} className="inline-block text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]">
+                            <li
+                              key={index}
+                              className="bg-white text-black inline-block text-14 md:text-16 tracking-tight border-[1.5px] py-10 px-18 leading-1 rounded-[25px]"
+                            >
                               {tech}
                             </li>
                           ))}
@@ -1040,7 +1073,7 @@ export default function Page({ data }: PageProps<any>) {
       <section>
         <div className="container grid md:grid-cols-[28%,70%] gap-x-[2%] mb-100 lg:mb-200">
           <div className="h-auto bg-blue-3 hidden md:block">
-            <h3 className="leading-1 block title_pointer sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">
+            <h3 className="leading-1 block title_pointer font-[600] sticky top-[50%] translate-y-[-50%] text-40 lg:text-60">
               Work <br /> Experience
             </h3>
           </div>

@@ -44,7 +44,7 @@ export const careerList = [
       '서비스 화면 구축과 UI 컴포넌트 설계를 담당했습니다. 24년 3월 1차 구축을 완료한 후, 5월 동경 한국 학교에 B2B로 Menabi를 제공하여 255명의 학생이 검사를 완료하였습니다.',
     team: ['백엔드&인프라(2)', '웹 프론트&퍼블리싱(1)'],
     team_tech: [
-      'Next.js',
+      'Next.js(v13,appRouter)',
       'TypeScript',
       'styled-components',
       'tailwindCSS',
@@ -65,7 +65,7 @@ export const careerList = [
     name: '인에이블다온소프트',
     sub_name: 'EnableDaonSoft',
     period: '2021.09.06 ~ 2023.03.01',
-    company_desc: `대한민국 육군을 위한 위문편지 플랫폼 [더캠프] 서비스 스타트업입니다.`,
+    company_desc: `대한민국 육군을 위한 위문편지 플랫폼 [더캠프] 서비스 스타트업입니다. 육군과 MOU를 체결하여 훈련병을 위한 편지 보내기, 전역일 계산기, 식단 확인하기, 오퍼월 포인트 적립, 커뮤니티 서비스 및 인앱 쇼핑몰을 운영하고 있습니다.`,
     links: [
       {
         title: '회사소개 홈페이지',
@@ -93,6 +93,6 @@ export const careerList = [
     role: '웹 퍼블리싱',
     role_desc: '더캠프 서비스의 Mobile, Web, 백오피스, 카페24 쇼핑몰 스킨 퍼블리싱 유지보수 및 신규 화면 구축을 담당했습니다.',
     team: ['백엔드&인프라(1)', '백엔드&프론트(2)', '웹 퍼블리싱(1)'],
-    team_tech: ['하이브리드 앱', 'Spring MVC', 'JSP', 'CSS3', 'JavaScript', 'jQuery', 'MariaDB', 'MySQL', 'intelliJ'],
+    team_tech: ['하이브리드 앱', 'Spring MVC', 'JSP', 'CSS3', 'JavaScript', 'jQuery', 'MariaDB', 'MySQL', 'MyBatis', 'intelliJ'],
   },
 ]
