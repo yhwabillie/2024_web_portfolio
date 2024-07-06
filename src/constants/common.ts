@@ -52,7 +52,7 @@ export const careerList = [
       'Zustand',
       'Context API',
       'Prisma',
-      'postgresql',
+      'PostgreSQL',
       'Storybook',
       'Jest',
       'Yarn berry',
@@ -65,7 +65,7 @@ export const careerList = [
     name: '인에이블다온소프트',
     sub_name: 'EnableDaonSoft',
     period: '2021.09.06 ~ 2023.03.01',
-    company_desc: `대한민국 육군을 위한 위문편지 플랫폼 [더캠프] 서비스 스타트업입니다. 육군과 MOU를 체결하여 훈련병을 위한 편지 보내기, 전역일 계산기, 식단 확인하기, 오퍼월 포인트 적립, 커뮤니티 서비스 및 인앱 쇼핑몰을 운영하고 있습니다.`,
+    company_desc: `누적 580만 다운로드 육군 위문편지 플랫폼 [더캠프] 서비스 스타트업입니다. 육군과 MOU를 체결하여 훈련병을 위한 편지 보내기, 훈련소 소식, 전역일 계산기, 식단 확인하기, 커뮤니티 및 인앱 쇼핑몰을 운영하고 있습니다.`,
     links: [
       {
         title: '회사소개 홈페이지',
