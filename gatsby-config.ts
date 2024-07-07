@@ -20,6 +20,9 @@ const config: GatsbyConfig = {
     'gatsby-plugin-advanced-sitemap',
     `gatsby-plugin-layout`,
     {
+      resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+    },
+    {
       resolve: 'gatsby-plugin-alias-imports',
       options: {
         alias: {

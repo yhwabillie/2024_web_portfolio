@@ -20,6 +20,7 @@
   "dependencies": {
     "@contentful/rich-text-types": "^16.5.2",
     "@gsap/react": "^2.1.1",
+    "@netlify/functions": "^2.8.1",
     "class-variance-authority": "^0.7.0",
     "contentful-resolve-response": "^1.8.1",
     "dayjs": "^1.11.11",
@@ -67,6 +68,7 @@
     "dotenv": "^16.4.5",
     "gatsby-plugin-alias-imports": "^1.0.5",
     "gatsby-plugin-postcss": "^6.13.1",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.32",
     "path": "^0.12.7",
     "postcss": "^8.4.38",
     "prettier": "^3.3.1",
