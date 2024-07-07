@@ -50,12 +50,16 @@ export default function Footer() {
 
                     {/* Copy&Paste */}
                     <fieldset className="flex justify-between items-center rounded-[5px] overflow-hidden shadow-lg">
+                      <label id="email" className="sr-only">
+                        이메일 복사하기
+                      </label>
                       <input
+                        id="email"
                         ref={emailRef}
                         type="email"
                         value={'jyjcy501@naver.com'}
                         readOnly={true}
-                        className={`${isCopied ? 'text-black' : 'text-gray-2'} block w-[calc(100%-44px)] leading-1 py-10 px-20 text-20 tracking-tighter focus:outline-0`}
+                        className={`${isCopied ? 'text-blue-1' : 'text-black'} block w-[calc(100%-44px)] leading-1 py-10 px-20 text-20 tracking-tighter focus:outline-0`}
                       />
 
                       <button

@@ -14,7 +14,6 @@ import summaryPoster from '@images/videos/summary_thumbnail.png'
 
 export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   gsap.registerPlugin(ScrollTrigger)
-  let mm = gsap.matchMedia()
 
   const summaryRef = useRef<HTMLElement>(null)
   const animationContainerRef = React.useRef<HTMLElement>(null)
@@ -209,7 +208,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           >
             <div className="w-full h-full bg-gray-1 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
               <span className="sr-only">포트폴리오 영상 화면 영역</span>
-              <video controls={false} autoPlay muted loop poster={summaryPoster}>
+              <video controls={false} autoPlay muted loop>
                 <source src={summaryVideo} type="video/mp4" />
               </video>
             </div>
@@ -762,7 +761,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   "
                   >
                     <div className="mb-30 lg:mb-0">
-                      <h4 className="text-30 lg:text-40 font-[600] tracking-tight text-shadow text-white">
+                      <h4 className="text-30 lg:text-40 font-[600] tracking-tight text-black">
                         {item.name} <span className="block md:inline text-24 font-[500] opacity-70">{item.sub_name}</span>
                       </h4>
                       <p className="text-18 lg:text-20 font-[600] mt-30 lg:mt-50 mb-10 tracking-tight text-black">{item.period}</p>
@@ -845,7 +844,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
             </h3>
           </div>
           <div className="grid sm:grid-cols-[repeat(2,48%)] lg:grid-cols-[repeat(3,32.3%)] gap-x-[4%] lg:gap-x-[1.55%] gap-y-[36px] perspective">
-            {data.allContentfulWork.nodes.map((project: any) => {
+            {data.allContentfulWork.nodes.map((project) => {
               const opengraphImage = getImage(project.ogImage?.gatsbyImageData!)
 
               return (
@@ -855,7 +854,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                   </Link>
 
                   <section className="block w-full rounded-xxs border border-gray-2 mb-14">
-                    <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={opengraphImage!} alt={project.title} />
+                    <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={opengraphImage!} alt={project.title!} />
                   </section>
                   <header>
                     <div className="text-15 opacity-85 tracking-tighter text-gray-2">{project.company}</div>
