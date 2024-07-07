@@ -16,6 +16,8 @@ import MobileSummaryTitle from '@components/MobileSummaryTitle'
 import SkillSetLayerModal from '@components/SkillSetLayerModal'
 import { ModalType } from '@/types/globalTypes'
 import { careerList } from '@constants/common'
+import summaryVideo from '@images/videos/summary.mp4'
+
 gsap.registerPlugin(ScrollTrigger)
 
 dayjs.locale(ko)
@@ -291,7 +293,9 @@ export default function Page({ data }: PageProps<any>) {
           >
             <div className="w-full h-full bg-gray-1 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
               <span className="sr-only">포트폴리오 영상 화면 영역</span>
-              {/* <img className="w-full h-full" src={visual_bg_path.default} alt="visual mockup gif" /> */}
+              <video className="" controls autoPlay muted loop>
+                <source src={summaryVideo} type="video/mp4" />
+              </video>
             </div>
             <div className="absolute top-0 bottom-0 left-0 right-[26%] summary-title-bg">
               <span className="sr-only">영상 화면 영역 타이틀을 위한 음영 배경</span>
