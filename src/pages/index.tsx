@@ -894,4 +894,36 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   )
 }
 
+export const query = graphql`
+  query MainPage {
+    allContentfulWork {
+      nodes {
+        id
+        category
+        slug
+        company
+        product
+        role
+        title
+        startDate
+        endDate
+        tags
+        description
+        ogImage {
+          publicUrl
+          gatsbyImageData
+        }
+      }
+    }
+
+    allContentfulProject {
+      nodes {
+        id
+        title
+        createdAt
+      }
+    }
+  }
+`
+
 export const Head: HeadFC = () => <SEO title="메인페이지" description="메인페이지 입니다." />
