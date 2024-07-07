@@ -50,7 +50,9 @@
 
   @font-face {
     font-family: 'D2Coding';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+    src:
+      local('D2Coding'),
+      url(/fonts/D2Coding.woff) format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -58,7 +60,9 @@
 
   @font-face {
     font-family: 'PyeongChangPeace-Bold';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+    src:
+      local('PyeongChangPeace-Bold'),
+      url(/fonts/PyeongChangPeace-Bold.woff2) format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;

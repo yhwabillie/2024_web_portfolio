@@ -50,7 +50,7 @@ export default function Footer() {
 
                     {/* Copy&Paste */}
                     <fieldset className="flex justify-between items-center rounded-[5px] overflow-hidden shadow-lg">
-                      <label id="email" className="sr-only">
+                      <label htmlFor="email" className="sr-only">
                         이메일 복사하기
                       </label>
                       <input

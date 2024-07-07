@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { Suspense, useRef } from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
 import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
 import dayjs from 'dayjs'
@@ -9,8 +9,7 @@ import { FaArrowDown, FaArrowRight } from 'react-icons/fa6'
 import SEO from '@components/Seo'
 import { MobileSummaryTitle } from '@components/MobileSummaryTitle'
 import { careerList } from '@constants/common'
-import summaryVideo from '@images/videos/summary.mp4'
-import summaryPoster from '@images/videos/summary_thumbnail.png'
+import Video from '@components/Video'
 
 export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   gsap.registerPlugin(ScrollTrigger)
@@ -208,9 +207,20 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           >
             <div className="w-full h-full bg-gray-1 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
               <span className="sr-only">포트폴리오 영상 화면 영역</span>
-              <video controls={false} autoPlay muted loop>
-                <source src={summaryVideo} type="video/mp4" />
-              </video>
+
+              <Suspense
+                fallback={
+                  <StaticImage
+                    src="../images/videos/summary_thumbnail.png"
+                    class="h-full w-full"
+                    width={1274}
+                    height={716}
+                    alt="동영상 로딩 이미지"
+                  />
+                }
+              >
+                <Video />
+              </Suspense>
             </div>
             <div className="absolute top-0 bottom-0 left-0 right-[26%] summary-title-bg">
               <span className="sr-only">영상 화면 영역 타이틀을 위한 음영 배경</span>
