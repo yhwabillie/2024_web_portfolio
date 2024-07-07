@@ -293,7 +293,7 @@ export default function Page({ data }: PageProps<any>) {
           >
             <div className="w-full h-full bg-gray-1 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
               <span className="sr-only">포트폴리오 영상 화면 영역</span>
-              <video className="" controls autoPlay muted loop>
+              <video controls={false} autoPlay muted loop>
                 <source src={summaryVideo} type="video/mp4" />
               </video>
             </div>
@@ -374,8 +374,8 @@ export default function Page({ data }: PageProps<any>) {
               <div className="leading-1 sm:leading-1.3">
                 <strong className="block text-white text-shadow-s text-26 mb-5 sm:text-40 md:text-26 sm:mb-0 lg:text-30 xl:text-52">2년차</strong>
                 <div className="relative z-2 mb-10 leading-1.4 xs:mb-0">
-                  <p className="font-medium text-white text-shadow-s text-18 md:text-22 xl:text-26">프론트 개발자 & </p>
-                  <p className="font-medium text-white text-shadow-s text-15 md:text-18 xl:text-22">웹 퍼블리셔 입니다</p>
+                  <p className="font-medium text-white text-shadow-s text-18 md:text-22 xl:text-26">웹 퍼블리셔,</p>
+                  <p className="font-medium text-white text-shadow-s text-15 md:text-18 xl:text-22">프론트 개발 확장 중입니다.</p>
                 </div>
               </div>
               <StaticImage
@@ -402,9 +402,9 @@ export default function Page({ data }: PageProps<any>) {
                 xl:h-340 xl:rounded-lg
               "
             >
-              <strong className="text-26 lg:text-30 xl:text-40 leading-1.6">잘하는 것을</strong>
+              <strong className="text-26 lg:text-30 xl:text-40 leading-1.6 text-shadow-s">잘하는 것을</strong>
               <p className="text-15 mb-10 sm:mb-0 sm:text-18 md:text-15 lg:text-18 xl:text-22 font-medium leading-1.4">
-                쏟아낼 수 있는 곳을 <br className="hidden sm:block" /> 찾고있어요
+                쏟아낼 수 있는 곳을 <br className="hidden sm:block" /> 찾고있습니다.
               </p>
 
               <div className="sm:flex sm:justify-center sm:items-center sm:mt-20 md:block md:mt-0">
@@ -456,8 +456,8 @@ export default function Page({ data }: PageProps<any>) {
                 "
             >
               <div>
-                <strong className="block text-24 md:text-22 xl:text-26">공유할 수 있는</strong>
-                <p className="text-15 sm:text-18 md:text-15 xl:text-18">컴포넌트를 만들어요</p>
+                <strong className="block text-24 md:text-22 xl:text-26 text-shadow-s">공유할 수 있는</strong>
+                <p className="text-15 sm:text-18 md:text-15 xl:text-18">컴포넌트를 만듭니다.</p>
               </div>
               <StaticImage
                 className="w-60 h-60 block sm:w-80 sm:h-80 sm:ml-auto sm:mt-35 md:ml-0 md:mt-0 md:w-50 md:h-50 md:absolute md:bottom-[10px] md:right-0 xl:w-80 xl:h-80"
@@ -608,7 +608,7 @@ export default function Page({ data }: PageProps<any>) {
               <div className="py-25 px-14 bg-gray-glass backdrop-blur-md rounded-md shadow-md xs:py-30 xs:px-20 md:p-40">
                 <h4 className="text-25 text-center md:text-left lg:text-40 font-[600] block mb-15 leading-1">About Me.</h4>
                 <p className="text-center md:text-left mb-20 text-20 font-[600] tracking-tight sm:mb-30 sm:text-25 lg:text-30">
-                  👋🏻 안녕하세요, 2년차 프론트 개발자 & 웹 퍼블리셔 이윤화입니다.
+                  👋🏻 안녕하세요, 2년차 웹 퍼블리셔 이윤화입니다.
                 </p>
                 <div className="px-14">
                   <div className="mb-15 sm:mb-20 lg:mb-30">
