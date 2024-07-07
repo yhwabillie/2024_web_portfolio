@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
 import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
 import dayjs from 'dayjs'
-import gsap from 'gsap'
+import gsap, { selector } from 'gsap'
 import { ScrollTrigger } from 'gsap/all'
 import { useGSAP } from '@gsap/react'
 import { FaArrowDown, FaArrowRight } from 'react-icons/fa6'
@@ -14,75 +14,159 @@ import summaryPoster from '@images/videos/summary_thumbnail.png'
 
 export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
   gsap.registerPlugin(ScrollTrigger)
+  let mm = gsap.matchMedia()
+
+  const summaryRef = useRef<HTMLElement>(null)
   const animationContainerRef = React.useRef<HTMLElement>(null)
 
   useGSAP(
     () => {
-      //scene1_TL
-      const scene1_TL = gsap.timeline({
-        scrollTrigger: {
-          trigger: animationContainerRef.current,
-          start: '0% 50%',
-          end: '0% 0%',
-          toggleActions: 'play reverse play reverse',
-        },
-        ease: 'circle',
-      })
+      //gsap matcher
+      let mm = gsap.matchMedia()
+      const breakPoint = 1024
 
-      scene1_TL
-        .fromTo('.main_title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
-        .fromTo('.sub_title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
-        .fromTo('.widget_1', { rotate: 0 }, { rotate: 6, duration: 0.1 })
-        .fromTo('.widget_2', { rotate: 0 }, { rotate: -6, duration: 0.1 })
-        .fromTo('.widget_3', { rotate: 0 }, { rotate: 6, duration: 0.1 })
-        .fromTo(
-          '.sticker_item',
-          {
-            scale: 0,
-            opacity: 0,
-          },
-          {
-            scale: 1,
-            opacity: 1,
-            stagger: 0.1,
+      mm.add(
+        {
+          isDesktop: `(min-width: ${breakPoint}px) and (prefers-reduced-motion: no-preference)`,
+          isMobile: `(max-width: ${breakPoint - 1}px) and (prefers-reduced-motion: no-preference)`,
+        },
+        (context) => {
+          //mouseevent summary
+          let mouseEventEnable = true
+
+          const enableAnimation = () => (mouseEventEnable = true)
+          const disableAnimation = () => (mouseEventEnable = false)
+
+          ScrollTrigger.create({
+            trigger: summaryRef.current,
+            start: 'top center',
+            end: 'bottom center',
+            onEnter: enableAnimation,
+            onLeave: disableAnimation,
+            onEnterBack: enableAnimation,
+            onLeaveBack: disableAnimation,
+          })
+
+          window.addEventListener('mousemove', (event) => {
+            if (!mouseEventEnable) return
+
+            const stickers = gsap.utils.toArray<HTMLElement>('.sticker_item')
+            const { pageX, pageY } = event
+            const { innerWidth, innerHeight } = window
+
+            stickers.forEach((sticker) => {
+              if (!sticker) return
+
+              const animationProps = context.conditions?.isMobile
+                ? { transform: 'translate(0,0)' }
+                : {
+                    x: (pageX - innerWidth / 2) / 20,
+                    y: (pageY - innerHeight / 2) / 20,
+                  }
+
+              gsap.to(sticker, animationProps)
+            })
+          })
+
+          //scene1_TL
+          const scene1_TL = gsap.timeline({
+            scrollTrigger: {
+              trigger: animationContainerRef.current,
+              start: '0% 50%',
+              end: '0% 0%',
+              toggleActions: 'play reverse play reverse',
+            },
+            ease: 'circle',
+          })
+
+          const scene1_animations = [
+            { target: '.main_title', from: { opacity: 0, y: 50 }, to: { opacity: 1, y: 0, duration: 0.3 } },
+            { target: '.sub_title', from: { opacity: 0, y: 50 }, to: { opacity: 1, y: 0, duration: 0.3 } },
+            { target: '.widget_1', from: { rotate: 0 }, to: { rotate: 6, duration: 0.1 } },
+            { target: '.widget_2', from: { rotate: 0 }, to: { rotate: -6, duration: 0.1 } },
+            { target: '.widget_3', from: { rotate: 0 }, to: { rotate: 6, duration: 0.1 } },
+            { target: '.sticker_item', from: { scale: 0, opacity: 0 }, to: { scale: 1, opacity: 1, stagger: 0.1, ease: 'back' } },
+          ]
+
+          scene1_animations.forEach(({ target, from, to }) => {
+            scene1_TL.fromTo(target, from, to)
+          })
+
+          //scene2_TL
+          const scene2_TL = gsap.timeline({
+            scrollTrigger: {
+              trigger: '.about_title_1',
+              start: '0% 70%',
+              end: '100% 0%',
+              scrub: 1,
+            },
             ease: 'back',
-          },
-        )
+          })
 
-      //scene2_TL
-      const scene2_TL = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.about_title_1',
-          start: '0% 70%',
-          end: '100% 0%',
-          toggleActions: 'play reverse play reverse',
+          const scene2_animations = [
+            { target: '.about_title_1', from: { opacity: 0, y: 50 }, to: { opacity: 1, y: 0, duration: 0.5 }, position: 0 },
+            { target: '.about_title_2', from: { opacity: 0, y: 50 }, to: { opacity: 1, y: 0, duration: 0.5 }, position: 0.1 },
+            { target: '.about_item_1', from: { opacity: 0, scale: 0 }, to: { opacity: 1, scale: 1, duration: 0.5 }, position: 0.2 },
+            { target: '.about_item_2', from: { opacity: 0, scale: 0 }, to: { opacity: 1, scale: 1, duration: 0.5 }, position: 0.3 },
+            { target: '.about_item_3', from: { opacity: 0, scale: 0 }, to: { opacity: 1, scale: 1, duration: 0.5 }, position: 0.4 },
+            { target: '.about_item_4', from: { opacity: 0, scale: 0 }, to: { opacity: 1, scale: 1, duration: 0.5 }, position: 0.5 },
+          ]
+
+          scene2_animations.forEach(({ target, from, to, position }) => {
+            scene2_TL.fromTo(target, from, to, position)
+          })
+
+          //scene3_TL
+          const scene3_TL = gsap.timeline({
+            scrollTrigger: {
+              trigger: '.about_item_container',
+              start: '0% 70%',
+              end: '100% 0%',
+              scrub: 1,
+            },
+          })
+
+          const scene3_mobile_animations = [
+            { x: -15, y: 10, rotate: 30 },
+            { x: -10, y: 10, rotate: -50 },
+            { x: 10, y: 10, rotate: 50 },
+            { x: 10, y: 10, rotate: 30 },
+          ]
+
+          const scene3_desktop_animations = [
+            { x: -150, y: 250, rotate: 200 },
+            { x: -80, y: 400, rotate: -40 },
+            { x: 60, y: 300, rotate: -100 },
+            { x: 80, y: 400, rotate: 20 },
+          ]
+
+          const scene3_animations = context.conditions?.isMobile ? scene3_mobile_animations : scene3_desktop_animations
+
+          scene3_animations.forEach((anim, index) => {
+            scene3_TL.to(`.about_item_${index + 1}`, { ...anim, ease: 'none', duration: 3 }, 0)
+          })
+
+          //scene4_TL
+          gsap.utils.toArray<HTMLElement>('.career_item').forEach((selector) => {
+            const scene4_TL = gsap.timeline({
+              scrollTrigger: {
+                trigger: selector,
+                start: context.conditions?.isMobile ? '0% 80%' : '0% 20%',
+                end: '0% 0%',
+                scrub: 1,
+              },
+            })
+
+            if (context.conditions?.isMobile) {
+              scene4_TL.fromTo(selector, { opacity: 0 }, { opacity: 1 })
+            } else {
+              scene4_TL.to(selector, { transform: 'rotateX(-10deg) scale(0.9)', transformOrigin: 'top', opacity: 0.5 }, 0)
+            }
+          })
         },
-        ease: 'circle',
-      })
+      )
 
-      scene2_TL
-        .fromTo('.about_title_1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
-        .fromTo('.about_title_2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
-        .fromTo('.about_title_3', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
-        .fromTo('.about_title_4', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
-
-      //scene3_TL
-      const scene3_TL = gsap.timeline({
-        scrollTrigger: {
-          trigger: '.about_item_container',
-          start: '0% 70%',
-          end: '100% 0%',
-          scrub: 1,
-        },
-      })
-
-      scene3_TL
-        .to('.about_item_1', { x: -150, y: 250, rotate: 200, ease: 'none', duration: 3 }, 0)
-        .to('.about_item_2', { x: -80, y: 400, rotate: -10, ease: 'none', duration: 3 }, 0)
-        .to('.about_item_3', { x: 60, y: 300, rotate: -100, ease: 'none', duration: 3 }, 0)
-        .to('.about_item_4', { x: 80, y: 400, rotate: 20, ease: 'none', duration: 3 }, 0)
-
-      //hover
+      //gsap hover
       const workItems = gsap.utils.toArray<HTMLElement>('.work_item')
 
       workItems.forEach((selector) => {
@@ -105,159 +189,9 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
     { scope: animationContainerRef },
   )
 
-  // useGSAP(
-  //   (context, contextSafe) => {
-
-  //     //mouseleave
-  //     window.addEventListener('mousemove', (e) => {
-  //       const stickerElement1 = document.querySelector('#sticker1')
-  //       const stickerElement2 = document.querySelector('#sticker1')
-
-  //       if (stickerElement1 === null || stickerElement2 === null) return
-
-  //       const depth1 = 20
-
-  //       const moveX_1 = (e.pageX - window.innerWidth / 2) / depth1
-  //       const moveY_1 = (e.pageY - window.innerHeight / 2) / depth1
-
-  //       gsap.to('#sticker1', {
-  //         x: moveX_1,
-  //         y: moveY_1,
-  //         rotateZ: -20,
-  //       })
-
-  //       gsap.to('#sticker2', {
-  //         x: moveX_1,
-  //         y: moveY_1,
-  //         rotateZ: 20,
-  //       })
-
-  //       gsap.to('#sticker3', {
-  //         x: moveX_1,
-  //         y: moveY_1,
-  //       })
-
-  //       gsap.to('#sticker4', {
-  //         x: moveX_1,
-  //         y: moveY_1,
-  //       })
-
-  //       gsap.to('#sticker5', {
-  //         x: moveX_1,
-  //         y: moveY_1,
-  //         rotateZ: 10,
-  //       })
-  //     })
-  //   },
-  //   { scope: widget_container },
-  // )
-
-  // useGSAP(
-  //   () => {
-  //     gsap
-  //       .timeline({
-  //         scrollTrigger: {
-  //           trigger: '#about .title_container',
-  //           start: '100% 100%',
-  //           end: '100% 100%',
-  //           // markers: true,
-  //         },
-  //       })
-  //       .fromTo('#about .title_container span i', { opacity: 0, y: '100%', rotate: '20deg' }, { opacity: 1, y: '0%', rotate: 0, stagger: 0.1 })
-  //     gsap.utils.toArray('#about .logo_wrap span').forEach((selector: any) => {
-  //       gsap
-  //         .timeline({
-  //           scrollTrigger: {
-  //             trigger: '#about .title_container',
-  //             start: '60% 100%',
-  //             end: '50% 30%',
-  //             // markers: true,
-  //             scrub: 1,
-  //           },
-  //         })
-  //         .fromTo(selector, { opacity: 0 }, { opacity: 1 })
-  //     })
-  //     gsap
-  //       .timeline({
-  //         scrollTrigger: {
-  //           trigger: '#about',
-  //           start: '100% 100%',
-  //           end: '100% 0%',
-  //           scrub: 1,
-  //           // markers: true,
-  //         },
-  //       })
-  //       .to(
-  //         '#a',
-  //         {
-  //           x: -150,
-  //           y: 250,
-  //           rotate: 200,
-  //           ease: 'none',
-  //           duration: 5,
-  //         },
-  //         0,
-  //       )
-  //       .to(
-  //         '#b',
-  //         {
-  //           x: -80,
-  //           y: 150,
-  //           rotate: -10,
-  //           ease: 'none',
-  //           duration: 5,
-  //         },
-  //         0,
-  //       )
-  //       .to(
-  //         '#c',
-  //         {
-  //           x: 60,
-  //           y: 40,
-  //           rotate: -100,
-  //           ease: 'none',
-  //           duration: 5,
-  //         },
-  //         0,
-  //       )
-  //       .to(
-  //         '#d',
-  //         {
-  //           x: 50,
-  //           y: 450,
-  //           rotate: 20,
-  //           ease: 'none',
-  //           duration: 5,
-  //         },
-  //         0,
-  //       )
-  //     gsap.utils.toArray('#career .article_container .item').forEach((selector: any, index: number) => {
-  //       ScrollTrigger.create({
-  //         trigger: selector,
-  //         start: '0% 80%',
-  //         onEnter: () => {
-  //           gsap.set(selector, {
-  //             rotationX: '-65deg',
-  //             z: '-500px',
-  //             opacity: 0,
-  //           })
-  //           gsap.to(selector, {
-  //             rotationX: 0,
-  //             z: 0,
-  //             opacity: 1,
-  //             delay: (index / 3) * 0.05,
-  //           })
-  //         },
-  //         // markers: true,
-  //       })
-  //     })
-  //   },
-  //   { scope: container },
-  // )
-
   return (
     <article ref={animationContainerRef} className="h-full bg-theme">
-      <section id="summary">
+      <section ref={summaryRef}>
         <h3 className="sr-only">포트폴리오 써머리</h3>
         <div className="container flex flex-col justify-between md:pt-35 md:flex-row">
           <div
@@ -464,7 +398,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           <div className="container">
             <h4
               className="about_title_container 
-            mr-auto mb-50 md:mb-80 lg:mb-100"
+            mr-auto"
             >
               <span
                 className="about_title_1
@@ -767,12 +701,19 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
       </section>
 
       {/** Career */}
-      <section className="mb-100 lg:mb-200 border-b-[1px] border-gray-2">
+      <section
+        className="career_item_container
+      mb-100 lg:mb-200 border-b-[1px] border-gray-2"
+      >
         <div className="container mb-100 lg:mb-200">
           <h3 className="block mb-20 text-center md:text-left text-50 lg:text-60 font-[600]">Career</h3>
           <ul className="list_container perspective">
             {careerList.map((item, index) => (
-              <li key={index} className="last:border-t-[10px] border-t-theme bg-theme sm:sticky sm:top-[90px] overflow-hidden">
+              <li
+                key={index}
+                className="career_item
+              last:border-t-[10px] border-t-theme bg-theme sm:sticky sm:top-[90px] overflow-hidden brightness-100"
+              >
                 <div
                   className={`${item.color === 'career-1' ? 'bg-career-1' : 'bg-career-2'} rounded-xs md:rounded-lg border-theme 
                  
