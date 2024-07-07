@@ -1,59 +1,94 @@
-import * as React from 'react'
+import React from 'react'
 import { HeadFC, Link, graphql, type PageProps } from 'gatsby'
 import { GatsbyImage, StaticImage, getImage } from 'gatsby-plugin-image'
-import SEO from '@components/Seo'
-import { useMainPageRefsStore, useModalStateStore } from '@store/storehooks'
 import dayjs from 'dayjs'
-import ko from 'dayjs/locale/ko'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-import relativeTime from 'dayjs/plugin/relativeTime'
-import { FaArrowDown, FaArrowRight } from 'react-icons/fa6'
 import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/all'
-import MobileSummaryTitle from '@components/MobileSummaryTitle'
-import SkillSetLayerModal from '@components/SkillSetLayerModal'
-import { ModalType } from '@/types/globalTypes'
+import { useGSAP } from '@gsap/react'
+import { FaArrowDown, FaArrowRight } from 'react-icons/fa6'
+import SEO from '@components/Seo'
+import { MobileSummaryTitle } from '@components/MobileSummaryTitle'
 import { careerList } from '@constants/common'
 import summaryVideo from '@images/videos/summary.mp4'
+import summaryPoster from '@images/videos/summary_thumbnail.png'
 
-gsap.registerPlugin(ScrollTrigger)
-
-dayjs.locale(ko)
-dayjs.extend(utc)
-dayjs.extend(timezone)
-dayjs.extend(relativeTime)
-dayjs.tz.setDefault('Asia/Seoul')
-
-const visual_bg_path = require('../images/visual_mockup.gif')
-
-export default function Page({ data }: PageProps<any>) {
-  //zustand state
-  const { setMainPageRefs } = useMainPageRefsStore()
-  const { modalState, setModalState } = useModalStateStore()
-
-  //refs 정의
-  const gsapContainer = React.useRef<HTMLElement>(null)
-
-  //modal component
-  const ModalComponent = {
-    skillset: <SkillSetLayerModal />,
-    reset: <></>,
-  }
-
-  //스킬셋 모달 클릭 event
-  const handleModal = (modal: ModalType) => setModalState(modal)
+export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
+  gsap.registerPlugin(ScrollTrigger)
+  const animationContainerRef = React.useRef<HTMLElement>(null)
 
   useGSAP(
     () => {
-      //커리어 아이템 호버 event
-      let careerItems = gsap.utils.toArray<HTMLElement>('.career_item')
+      //scene1_TL
+      const scene1_TL = gsap.timeline({
+        scrollTrigger: {
+          trigger: animationContainerRef.current,
+          start: '0% 50%',
+          end: '0% 0%',
+          toggleActions: 'play reverse play reverse',
+        },
+        ease: 'circle',
+      })
 
-      careerItems.forEach((selector) => {
-        let CareerItemTL = gsap.timeline({ paused: true, reversed: true })
+      scene1_TL
+        .fromTo('.main_title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
+        .fromTo('.sub_title', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
+        .fromTo('.widget_1', { rotate: 0 }, { rotate: 6, duration: 0.1 })
+        .fromTo('.widget_2', { rotate: 0 }, { rotate: -6, duration: 0.1 })
+        .fromTo('.widget_3', { rotate: 0 }, { rotate: 6, duration: 0.1 })
+        .fromTo(
+          '.sticker_item',
+          {
+            scale: 0,
+            opacity: 0,
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            stagger: 0.1,
+            ease: 'back',
+          },
+        )
 
-        CareerItemTL.to(
+      //scene2_TL
+      const scene2_TL = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.about_title_1',
+          start: '0% 70%',
+          end: '100% 0%',
+          toggleActions: 'play reverse play reverse',
+        },
+        ease: 'circle',
+      })
+
+      scene2_TL
+        .fromTo('.about_title_1', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
+        .fromTo('.about_title_2', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
+        .fromTo('.about_title_3', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
+        .fromTo('.about_title_4', { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.3 })
+
+      //scene3_TL
+      const scene3_TL = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.about_item_container',
+          start: '0% 70%',
+          end: '100% 0%',
+          scrub: 1,
+        },
+      })
+
+      scene3_TL
+        .to('.about_item_1', { x: -150, y: 250, rotate: 200, ease: 'none', duration: 3 }, 0)
+        .to('.about_item_2', { x: -80, y: 400, rotate: -10, ease: 'none', duration: 3 }, 0)
+        .to('.about_item_3', { x: 60, y: 300, rotate: -100, ease: 'none', duration: 3 }, 0)
+        .to('.about_item_4', { x: 80, y: 400, rotate: 20, ease: 'none', duration: 3 }, 0)
+
+      //hover
+      const workItems = gsap.utils.toArray<HTMLElement>('.work_item')
+
+      workItems.forEach((selector) => {
+        const workItemTL = gsap.timeline({ paused: true, reversed: true })
+
+        workItemTL.to(
           selector.querySelectorAll('section'),
           {
             y: -6,
@@ -63,68 +98,15 @@ export default function Page({ data }: PageProps<any>) {
           0,
         )
 
-        selector.addEventListener('mouseenter', () => CareerItemTL.play())
-        selector.addEventListener('mouseleave', () => CareerItemTL.reverse())
+        selector.addEventListener('mouseenter', () => workItemTL.play())
+        selector.addEventListener('mouseleave', () => workItemTL.reverse())
       })
-
-      //scroll timeline
-      let tl = gsap.timeline({})
     },
-    { scope: gsapContainer },
+    { scope: animationContainerRef },
   )
 
   // useGSAP(
-  //   () => {
-  //     let tl = gsap.timeline({ delay: 0.2 })
-
-  //     //timeline
-  //     tl.to('#main_title', {
-  //       opacity: 1,
-  //       y: 0,
-  //       ease: 'back',
-  //     })
-
-  //     tl.to('#sub_title', {
-  //       opacity: 1,
-  //       y: 0,
-  //       ease: 'back',
-  //     })
-  //   },
-  //   { scope: video_container },
-  // )
-
-  // useGSAP(
   //   (context, contextSafe) => {
-  //     //set
-  //     gsap.set('.sticker_item', {
-  //       scale: 0,
-  //       opacity: 0,
-  //     })
-
-  //     //timeline
-  //     let tl = gsap.timeline({ delay: 0.2 })
-
-  //     tl.to('#widget1', {
-  //       rotate: 6,
-  //       ease: 'circ',
-  //     })
-
-  //     tl.to('#widget2', {
-  //       rotate: -6,
-  //       ease: 'circ',
-  //     })
-
-  //     tl.to('#widget3', {
-  //       rotate: 6,
-  //       ease: 'circ',
-  //     })
-
-  //     tl.to('.sticker_item', {
-  //       scale: 1,
-  //       opacity: 1,
-  //       stagger: 0.1,
-  //       ease: 'back',
-  //     })
 
   //     //mouseleave
   //     window.addEventListener('mousemove', (e) => {
@@ -274,8 +256,8 @@ export default function Page({ data }: PageProps<any>) {
   // )
 
   return (
-    <article ref={gsapContainer} className="h-full bg-theme">
-      <section>
+    <article ref={animationContainerRef} className="h-full bg-theme">
+      <section id="summary">
         <h3 className="sr-only">포트폴리오 써머리</h3>
         <div className="container flex flex-col justify-between md:pt-35 md:flex-row">
           <div
@@ -293,7 +275,7 @@ export default function Page({ data }: PageProps<any>) {
           >
             <div className="w-full h-full bg-gray-1 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
               <span className="sr-only">포트폴리오 영상 화면 영역</span>
-              <video controls={false} autoPlay muted loop>
+              <video controls={false} autoPlay muted loop poster={summaryPoster}>
                 <source src={summaryVideo} type="video/mp4" />
               </video>
             </div>
@@ -310,13 +292,16 @@ export default function Page({ data }: PageProps<any>) {
                 "
             >
               <h4
-                className="
+                className="main_title
                   block font-[700] text-shadow text-26 
                   sm:text-32 md:text-32 lg:text-48 xl:text-52"
               >
                 꼼꼼한 UI 설계 <br /> 매력적인 인터랙션
               </h4>
-              <h5 className="leading-2 text-15 font-bold text-shadow mt-20 lg:text-22">
+              <h5
+                className="sub_title
+              leading-2 text-15 font-bold text-shadow mt-20 lg:text-22"
+              >
                 누구나 사용할 수 있는 UI 컴포넌트와 <br /> 시선을 끄는 인터랙션을 개발하는 이윤화입니다.
               </h5>
             </div>
@@ -363,7 +348,7 @@ export default function Page({ data }: PageProps<any>) {
             xl:w-272"
           >
             <div
-              className="
+              className="widget_1
               relative w-full h-auto flex justify-center items-center gap-5 p-20 mb-16 mr-0 origin-bottom-right rounded-sm bg-blue-1
               sm:block sm:w-232 sm:h-232 sm:mb-0 
               md:w-full md:h-180 md:mr-0 md:mb-8 
@@ -379,7 +364,7 @@ export default function Page({ data }: PageProps<any>) {
                 </div>
               </div>
               <StaticImage
-                className="
+                className="sticker_item
                 block w-80 h-80 ml-0
                 sm:ml-auto
                 md:w-50 md:h-50 md:ml-auto md:absolute md:bottom-[0px] md:left-[45%]
@@ -394,7 +379,7 @@ export default function Page({ data }: PageProps<any>) {
               />
             </div>
             <div
-              className="
+              className="widget_2
                 relative h-auto text-center text-theme leading-1 p-20 mb-16 mr-0 origin-top-left rounded-sm bg-blue-2
                 sm:w-232 sm:h-232 sm:mb-0 sm:text-left sm:leading-1.3 
                 md:w-full md:h-170 md:mr-0 md:mb-8
@@ -409,7 +394,7 @@ export default function Page({ data }: PageProps<any>) {
 
               <div className="sm:flex sm:justify-center sm:items-center sm:mt-20 md:block md:mt-0">
                 <StaticImage
-                  className="
+                  className="sticker_item
                   w-60 h-60 
                   md:w-40 md:h-40 md:absolute md:bottom-0 md:left-[30%]
                   lg:w-50 lg:h-50 
@@ -421,7 +406,7 @@ export default function Page({ data }: PageProps<any>) {
                   placeholder="none"
                 />
                 <StaticImage
-                  className="
+                  className="sticker_item
                   w-60 h-60 
                   md:w-40 md:h-40 md:absolute md:bottom-[10px] md:right-[10%]
                   lg:w-70 lg:h-70 
@@ -433,7 +418,7 @@ export default function Page({ data }: PageProps<any>) {
                   placeholder="none"
                 />
                 <StaticImage
-                  className="
+                  className="sticker_item
                   w-60 h-60 
                   md:w-40 md:h-40 md:absolute md:bottom-[30px] md:left-0
                   lg:w-70 lg:h-70 
@@ -447,7 +432,7 @@ export default function Page({ data }: PageProps<any>) {
               </div>
             </div>
             <div
-              className="
+              className="widget_3
                 relative h-auto flex justify-center items-center gap-5 p-20 origin-bottom-right bg-gray-1 rounded-sm 
                 sm:w-232 sm:h-232 sm:block
                 md:w-full md:h-120 
@@ -460,7 +445,8 @@ export default function Page({ data }: PageProps<any>) {
                 <p className="text-15 sm:text-18 md:text-15 xl:text-18">컴포넌트를 만듭니다.</p>
               </div>
               <StaticImage
-                className="w-60 h-60 block sm:w-80 sm:h-80 sm:ml-auto sm:mt-35 md:ml-0 md:mt-0 md:w-50 md:h-50 md:absolute md:bottom-[10px] md:right-0 xl:w-80 xl:h-80"
+                className="sticker_item
+                w-60 h-60 block sm:w-80 sm:h-80 sm:ml-auto sm:mt-35 md:ml-0 md:mt-0 md:w-50 md:h-50 md:absolute md:bottom-[10px] md:right-0 xl:w-80 xl:h-80"
                 src={'../images/sticker_5.png'}
                 alt="Storybook"
                 width={100}
@@ -476,9 +462,12 @@ export default function Page({ data }: PageProps<any>) {
         <h3 className="sr-only">소개</h3>
         <div className="mt-50 lg:mt-100">
           <div className="container">
-            <h4 className="mr-auto mb-50 md:mb-80 lg:mb-100">
+            <h4
+              className="about_title_container 
+            mr-auto mb-50 md:mb-80 lg:mb-100"
+            >
               <span
-                className="
+                className="about_title_1
                     justify-center
                     sm:justify-start
                     flex gap-3 items-center text-30 overflow-hidden
@@ -493,14 +482,20 @@ export default function Page({ data }: PageProps<any>) {
                 <FaArrowRight />
                 <i className="block not-italic font-[600] font-['D2Coding'] tracking-tighter">Frontend Dev</i>
               </span>
-              <span className="block text-30 text-center md:text-left overflow-hidden xs:text-35 sm:text-70 md:text-80 lg:text-100 xl:text-130">
+              <span
+                className="about_title_2 
+              block text-30 text-center md:text-left overflow-hidden xs:text-35 sm:text-70 md:text-80 lg:text-100 xl:text-130"
+              >
                 <i className="block not-italic font-[400] font-['PyeongChangPeace-Bold']">& W🌐b Publishing</i>
               </span>
             </h4>
 
-            <div className="h-fit mb-50 flex gap-4 justify-center sm:gap-10 md:mb-80 lg:mb-100">
+            <div
+              className="about_item_container
+            h-fit mb-50 flex gap-4 justify-center sm:gap-10 md:mb-80 lg:mb-100"
+            >
               <StaticImage
-                className="w-[23%] h-fit sm:w-[20%]"
+                className="about_item_1 w-[23%] h-fit sm:w-[20%]"
                 src={'../images/about_item_1.png'}
                 width={512}
                 height={512}
@@ -508,7 +503,7 @@ export default function Page({ data }: PageProps<any>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] h-fit sm:w-[20%]"
+                className="about_item_2  w-[24%] h-fit sm:w-[20%]"
                 src={'../images/about_item_2.png'}
                 width={512}
                 height={512}
@@ -516,7 +511,7 @@ export default function Page({ data }: PageProps<any>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] h-fit sm:w-[20%]"
+                className="about_item_3 w-[24%] h-fit sm:w-[20%]"
                 src={'../images/about_item_3.png'}
                 width={512}
                 height={512}
@@ -524,7 +519,7 @@ export default function Page({ data }: PageProps<any>) {
                 placeholder="none"
               />
               <StaticImage
-                className="w-[24%] h-fit sm:w-[20%]"
+                className="about_item_4 w-[24%] h-fit sm:w-[20%]"
                 src={'../images/about_item_4.png'}
                 width={512}
                 height={512}
@@ -913,13 +908,13 @@ export default function Page({ data }: PageProps<any>) {
               const opengraphImage = getImage(project.ogImage?.gatsbyImageData!)
 
               return (
-                <article key={project.id} className="career_item relative">
+                <article key={project.id} className="work_item relative">
                   <Link className="link-overlay" to={`category/${project.category}/${project.slug}`}>
                     <span className="sr-only">클릭하여 상세보기</span>
                   </Link>
 
                   <section className="block w-full rounded-xxs border border-gray-2 mb-14">
-                    <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={opengraphImage!} alt={'//'} />
+                    <GatsbyImage className="block object-cover w-full h-full rounded-xxs" image={opengraphImage!} alt={project.title} />
                   </section>
                   <header>
                     <div className="text-15 opacity-85 tracking-tighter text-gray-2">{project.company}</div>
@@ -932,7 +927,7 @@ export default function Page({ data }: PageProps<any>) {
                         ))}
                       </p>
                       <time className="block tracking-tighter text-15 opacity-85 before:bg-theme-reverse before:content-[''] before:relative before:inline-block before:h-10 before:w-1 before:my-0 before:mx-8">
-                        {`${dayjs(project.startDate).tz().format('YYYY-MM')} ~ ${dayjs(project.endDate).tz().format('YYYY-MM')}`}
+                        {`${dayjs(project.startDate).format('YYYY-MM')} ~ ${dayjs(project.endDate).format('YYYY-MM')}`}
                       </time>
                     </div>
                     <h4 className="block mt-15">
@@ -957,37 +952,5 @@ export default function Page({ data }: PageProps<any>) {
     </article>
   )
 }
-
-export const query = graphql`
-  query MainPage {
-    allContentfulWork {
-      nodes {
-        id
-        category
-        slug
-        company
-        product
-        role
-        title
-        startDate
-        endDate
-        tags
-        description
-        ogImage {
-          publicUrl
-          gatsbyImageData
-        }
-      }
-    }
-
-    allContentfulProject {
-      nodes {
-        id
-        title
-        createdAt
-      }
-    }
-  }
-`
 
 export const Head: HeadFC = () => <SEO title="메인페이지" description="메인페이지 입니다." />

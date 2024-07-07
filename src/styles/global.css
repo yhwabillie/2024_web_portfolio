@@ -76,6 +76,12 @@
     object-fit: fill;
   }
 
+  video[poster] {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* 스크롤 삭제 */
   .hide-scroll::-webkit-scrollbar {
     display: none;
