@@ -31,7 +31,7 @@ export default function Transition(props: any) {
   })
 
   return (
-    <div ref={container} className="opacity-0 min-h-layout">
+    <div ref={container} className="opacity-0 min-h-layout bg-blue-1">
       {displayChildren}
     </div>
   )

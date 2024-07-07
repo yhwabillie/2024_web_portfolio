@@ -55,7 +55,7 @@ export default function Footer() {
                         type="email"
                         value={'jyjcy501@naver.com'}
                         readOnly={true}
-                        className="block text-gray-2 w-[calc(100%-44px)] leading-1 py-10 px-20 text-20 tracking-tighter focus:outline-0"
+                        className={`${isCopied ? 'text-black' : 'text-gray-2'} block w-[calc(100%-44px)] leading-1 py-10 px-20 text-20 tracking-tighter focus:outline-0`}
                       />
 
                       <button
