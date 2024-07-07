@@ -207,8 +207,9 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
           >
             <div className="w-full h-full bg-gray-1 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
               <span className="sr-only">포트폴리오 영상 화면 영역</span>
+              <Video />
 
-              <Suspense
+              {/* <Suspense
                 fallback={
                   <StaticImage
                     src="../images/videos/summary_thumbnail.png"
@@ -220,7 +221,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
                 }
               >
                 <Video />
-              </Suspense>
+              </Suspense> */}
             </div>
             <div className="absolute top-0 bottom-0 left-0 right-[26%] summary-title-bg">
               <span className="sr-only">영상 화면 영역 타이틀을 위한 음영 배경</span>
