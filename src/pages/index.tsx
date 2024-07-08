@@ -211,13 +211,7 @@ export default function Page({ data }: PageProps<Queries.MainPageQuery>) {
 
               <Suspense
                 fallback={
-                  <StaticImage
-                    src="../images/videos/summary_thumbnail.png"
-                    class="h-full w-full"
-                    width={1274}
-                    height={716}
-                    alt="동영상 로딩 이미지"
-                  />
+                  <StaticImage src="../images/summary_thumbnail.png" class="h-full w-full" width={1274} height={716} alt="동영상 로딩 이미지" />
                 }
               >
                 <Video />
